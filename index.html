@@ -1,26 +1,25 @@
-<!DOCTYPE html>
+<!DOCTYPE ahtml>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>C4d: Word transformation</title>
+    <title>INTUITY – Main MENU</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Shared styles from the central command file */
+        /* Base styles for a clean, modern look */
         :root {
             --main-blue: #1a263c;
             --black-strip: #0d0d0d;
-            --card-bg: #fff;
-            --shadow: 0 6px 28px rgba(30,40,60,0.17), 0 2px 6px rgba(0,0,0,.10);
+            --light-bg: #eef2f7; /* A slightly darker background for better contrast */
             --card-radius: 20px;
-            --footer-height: 64px;
+            --footer-height: 48px; /* Thinner black strip */
         }
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             min-height: 100vh;
-            background: #f6f8fa;
+            background: var(--light-bg);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             font-weight: 400;
             box-sizing: border-box;
@@ -57,6 +56,85 @@
             font-weight: 400;
             margin-bottom: 26px;
         }
+        .carousel-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 80px; /* Increased gap */
+            margin-top: 38px;
+            margin-bottom: 56px;
+            overflow-x: auto;
+            padding: 0 40px 10px 40px;
+            scrollbar-color: #bfcce2 #e9eef8;
+            scrollbar-width: thin;
+        }
+        .carousel-row::-webkit-scrollbar {
+            height: 12px;
+        }
+        .carousel-row::-webkit-scrollbar-thumb {
+            background: #bfcce2;
+            border-radius: 8px;
+        }
+        
+        .card {
+            position: relative;
+            min-width: 170px;
+            max-width: 210px;
+            height: 170px;
+            background-color: #ffffff; /* Changed to pure white */
+            border-radius: var(--card-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.22rem;
+            font-weight: 600;
+            color: var(--main-blue);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            padding: 18px;
+            line-height: 1.4;
+            user-select: none;
+            
+            box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.9), 
+                        5px 5px 15px rgba(175, 182, 192, 0.4);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: -7px -7px 20px rgba(255, 255, 255, 0.9), 
+                        7px 7px 20px rgba(175, 182, 192, 0.4);
+        }
+        
+        .card-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--main-blue);
+        }
+
+        .intuity-initial {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #98a2ad;
+            box-shadow: inset 2px 2px 6px rgba(175, 182, 192, 0.4);
+            position: relative; /* Add position relative */
+            top: -15px;       /* Lift the element up */
+        }
+
+        /* Styles for the floating back strip */
         .black-strip {
             position: fixed;
             bottom: 0;
@@ -79,7 +157,7 @@
             cursor: pointer;
         }
         .black-strip .arrow {
-            font-size: 2.42rem;
+            font-size: 1.9rem; /* Reduced font size to fit thinner strip */
             font-weight: 600;
             margin-right: 14px;
             transition: color 0.17s;
@@ -88,26 +166,30 @@
             color: #63e3c0;
         }
         .black-strip .back-label {
-            font-size: 1.3rem;
+            font-size: 1.1rem; /* Reduced font size to fit thinner strip */
             font-weight: 600;
             letter-spacing: 0.5px;
             margin-left: 6px;
         }
         @media (max-width: 1100px) {
-            .carousel-row { gap: 24px; padding: 0 20px 10px 20px; }
+            .carousel-row { gap: 60px; padding: 0 20px 10px 20px; } /* Increased gap */
             .card { min-width: 150px; height: 142px; font-size: 1.05rem; padding: 13px; }
-            .black-strip { width: 90%; }
+            .intuity-initial { width: 24px; height: 24px; font-size: 1rem; }
+            .black-strip { width: 90%; height: 42px; }
+            .black-strip .arrow { font-size: 1.7rem; }
+            .black-strip .back-label { font-size: 0.9rem; }
         }
         @media (max-width: 800px) {
             .title { font-size: 2.2rem;}
-            .carousel-row { gap: 15px; padding: 0 15px 10px 15px; }
+            .carousel-row { gap: 30px; padding: 0 15px 10px 15px; } /* Increased gap */
             .card { min-width: 128px; height: 108px; font-size: 0.93rem; padding: 8px;}
-            .black-strip { font-size: 1rem; padding: 0 17px; width: 95%;}
-            .black-strip .arrow { font-size: 2.09rem;}
-            .black-strip .back-label { font-size: 1.07rem;}
+            .intuity-initial { width: 22px; height: 22px; font-size: 0.9rem; }
+            .black-strip { font-size: 0.9rem; padding: 0 17px; width: 95%; height: 38px; }
+            .black-strip .arrow { font-size: 1.6rem;}
+            .black-strip .back-label { font-size: 0.8rem;}
         }
         @media (max-width: 550px) {
-            .carousel-row { gap: 9px; padding: 0 10px 10px 10px; }
+            .carousel-row { gap: 18px; padding: 0 10px 10px 10px; } /* Increased gap */
             .card { min-width: 90px; height: 82px; font-size: 0.82rem; padding: 2px;}
             .container { padding-top: 12px; }
         }
@@ -119,22 +201,96 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">C4d: Word transformation</div>
-        <div class="subtitle">This page contains the content for Word Transformation.</div>
-        <!-- Your content goes here -->
-        <p>This is where you would place the main content for word transformation exercises and rules.</p>
+        <!-- Titles will be updated dynamically by JavaScript -->
+        <div id="main-title" class="title">INTUITY</div>
+        <div id="sub-title" class="subtitle">Language Generator</div>
+        <div id="author-label" class="author">Majid Nashtai</div>
+        <!-- This carousel row will be dynamically populated -->
+        <div id="carousel-container" class="carousel-row"></div>
     </div>
 
+    <!-- Black strip footer (back arrow and label) -->
     <div id="black-strip" class="black-strip">
-        <span class="arrow">&#8592;</span>
+        <span id="back-arrow" class="arrow">&#8592;</span>
         <span class="back-label">Back</span>
     </div>
 
     <script>
+        // --- DATA STRUCTURE ---
+        // This object holds the first level of the hierarchy.
+        // The `url` property for each item points to the next independent HTML file.
+        const data = {
+            title: "INTUITY",
+            subtitle: "Language Generator",
+            author: "Majid Nashtai",
+            levels: {
+                main: {
+                    title: "INTUITY",
+                    subtitle: "Language Generator",
+                    items: [
+                        { label: "Grammar Rules", url: "grammar-rules.html" },
+                        { label: "Similar words", url: "similar-words.html" },
+                        { label: "Use of English", url: "use-of-english.html" },
+                        { label: "Reading", url: "reading.html" },
+                        { label: "Writing", url: "writing.html" },
+                        { label: "Speaking", url: "speaking.html" }
+                    ]
+                }
+            }
+        };
+
+        // --- DOM REFERENCES ---
+        const carouselContainer = document.getElementById('carousel-container');
+        const mainTitle = document.getElementById('main-title');
+        const subTitle = document.getElementById('sub-title');
+        const authorLabel = document.getElementById('author-label');
         const backStrip = document.getElementById('black-strip');
-        // Set up the back button to navigate to the previous page in history
-        backStrip.addEventListener('click', () => {
-            window.history.back();
+        
+        // --- FUNCTIONS ---
+        // Renders the cards for the given level.
+        function renderCards(level) {
+            // Clear the existing carousel content
+            carouselContainer.innerHTML = '';
+            
+            // Update the header titles
+            mainTitle.textContent = level.title;
+            subTitle.textContent = level.subtitle;
+            
+            // Hide the author label on sub-levels
+            authorLabel.style.display = 'block';
+            
+            // Show/hide the back button based on history
+            backStrip.style.display = 'flex';
+
+            // Create and append cards for each item in the current level
+            level.items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('tabindex', '0');
+                
+                // Add label with inline icon to the card
+                const label = document.createElement('span');
+                label.className = 'card-label';
+                // The <br> tag has been removed for a cleaner CSS-based layout
+                label.innerHTML = `<span class="intuity-initial">i</span>${item.label}`;
+                card.appendChild(label);
+                
+                // Add click event listener to handle navigation
+                card.addEventListener('click', () => {
+                    // Navigate to the specified URL
+                    if (item.url) {
+                        window.location.href = item.url;
+                    }
+                });
+
+                carouselContainer.appendChild(card);
+            });
+        }
+
+        // --- INITIALIZATION ---
+        // Render the main menu when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards(data.levels.main);
         });
     </script>
 </body>
