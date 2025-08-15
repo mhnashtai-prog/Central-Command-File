@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AT A GLANCE – Main MENU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-blue: #1a263c;
+      --black-strip: #0d0d0d;
+      --card-bg: #fff;
+      --shadow: 0 6px 28px rgba(30,40,60,0.17), 0 2px 6px rgba(0,0,0,.10);
+      --card-radius: 20px;
+      --footer-height: 64px;
+      --transition: 280ms cubic-bezier(.22,.61,.36,1);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      min-height: 100vh;
+      background: #f6f8fa;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-weight: 400;
+      box-sizing: border-box;
+    }
+    body {
+      padding-bottom: var(--footer-height);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 98vw;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 42px;
+      flex: 1 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .title {
+      font-size: 3.0rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--main-blue);
+      margin-bottom: 3px;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      color: #42587b;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .author {
+      font-size: 1.05rem;
+      color: #7c91b5;
+      font-weight: 400;
+      margin-bottom: 26px;
+    }
+
+    /* Carousel stage */
+    .stage {
+      position: relative;
+      width: 100%;
+      min-height: 320px;
+    }
+    .view {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateX(40px);
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .view.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .carousel-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 36px;
+      margin-top: 38px;
+      margin-bottom: 56px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-color: #bfcce2 #e9eef8;
+      scrollbar-width: thin;
+    }
+    .carousel-row::-webkit-scrollbar { height: 12px; }
+    .carousel-row::-webkit-scrollbar-thumb { background: #bfcce2; border-radius: 8px; }
+
+    .card {
+      min-width: 170px;
+      max-width: 210px;
+      height: 170px;
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.06rem;
+      font-weight: 700;
+      color: var(--main-blue);
+      transition: box-shadow 0.18s, transform 0.14s, background 0.2s;
+      cursor: pointer;
+      text-align: center;
+      padding: 18px;
+      line-height: 1.35;
+      user-select: none;
+      outline: none;
+    }
+    .card:hover, .card:focus-visible {
+      box-shadow: 0 12px 36px rgba(30,40,60,0.29), 0 4px 12px rgba(0,0,0,.16);
+      background: #f4fcf9;
+      transform: scale(1.032);
+    }
+
+    /* Interactive leaf view */
+    .leaf {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 20px;
+    }
+    .leaf h2 { color: var(--main-blue); margin: 8px 0; }
+    .leaf p { color: #42587b; max-width: 840px; line-height: 1.6; }
+    .leaf .placeholder {
+      width: min(920px, 92vw);
+      min-height: 280px;
+      border-radius: 16px;
+      background: white;
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+
+    /* Footer back strip */
+    .black-strip {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      height: var(--footer-height);
+      background: var(--black-strip);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 40px;
+      font-size: 1.25rem;
+      color: #fff;
+      box-shadow: 0 -2px 14px rgba(0,0,0,0.18);
+      border-radius: 32px 32px 0 0;
+      z-index: 40;
+      font-weight: 600;
+      gap: 12px;
+    }
+    .black-strip .arrow {
+      font-size: 2.42rem;
+      font-weight: 600;
+      margin-right: 4px;
+      transition: color 0.17s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .black-strip .arrow:hover { color: #63e3c0; }
+    .black-strip .back-label { font-size: 1.12rem; font-weight: 700; letter-spacing: .3px; }
+    .black-strip .breadcrumb { opacity: .82; font-weight: 500; }
+    .black-strip .disabled { opacity: .35; pointer-events: none; }
+
+    @media (max-width: 1100px) {
+      .carousel-row { gap: 24px; }
+      .card { min-width: 150px; height: 142px; font-size: 1.0rem; padding: 13px; }
+    }
+    @media (max-width: 800px) {
+      .title { font-size: 2.2rem;}
+      .carousel-row { gap: 15px; }
+      .card { min-width: 128px; height: 108px; font-size: 0.93rem; padding: 8px;}
+      .black-strip { font-size: 1rem; padding: 0 17px;}
+      .black-strip .arrow { font-size: 2.09rem;}
+      .black-strip .back-label { font-size: 1.0rem;}
+    }
+    @media (max-width: 550px) {
+      .carousel-row { gap: 9px;}
+      .card { min-width: 100px; height: 92px; font-size: 0.86rem; padding: 6px;}
+      .container { padding-top: 12px; }
+    }
+    @media (max-width:700px) {
+      .carousel-row::-webkit-scrollbar { display: none;}
+      .carousel-row { scrollbar-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">AT A GLANCE</div>
+    <div class="subtitle">Language Generator</div>
+    <div class="author">Majid Nashtai</div>
+
+    <!-- Stage holds all views (carousels and leaf pages). Only one is active -->
+    <div id="stage" class="stage"></div>
+  </div>
+
+  <!-- Footer back bar -->
+  <div class="black-strip">
+    <span id="backBtn" class="arrow" aria-label="Back" role="button" tabindex="0">&#8592;</span>
+    <span class="back-label">Back</span>
+    <span id="breadcrumb" class="breadcrumb"></span>
+  </div>
+
+  <script>
+    // ---- DATA MODEL (exactly from your document) ----
+    const MODEL = {
+      A: { label: 'Grammar Rules', children: {
+        A1: { label: 'Tenses' },
+        A2: { label: 'Similar words' },
+        A3: { label: 'Conditionals & Wishes' },
+        A4: { label: 'Passive Voice' },
+        A5: { label: 'Reported Speech' },
+        A6: { label: 'Linking words' },
+        A7: { label: 'Past modals' },
+        A8: { label: 'Inversion' },
+        A9: { label: 'Gerunds & Infinitives' },
+        A10: { label: 'Phrasal verbs' },
+        A11: { label: 'Miscellaneous structures' },
+        A12: { label: 'Verbs & Adjectives Collocations' },
+      }},
+      B: { label: 'Similar words', children: {
+        B1: { label: 'Vocabulary' },
+        B2: { label: 'Academic expressions' },
+        B3: { label: 'sentences' },
+        B4: { label: 'Paragraphs' },
+        B5: { label: 'Lists' },
+      }},
+      C: { label: 'Use of English', children: {
+        C1: { label: 'Test 1', children: {
+          C1a: { label: 'Multiple Choice' },
+          C1b: { label: 'Gap-fill' },
+          C1c: { label: 'Word Formation' },
+          C1d: { label: 'Word transformation' },
+        }},
+        C2: { label: 'Test 2', children: {
+          C2a: { label: 'Multiple Choice' },
+          C2b: { label: 'Gap-fill' },
+          C2c: { label: 'Word Formation' },
+          C2d: { label: 'Word transformation' },
+        }},
+        C3: { label: 'Test 3', children: {
+          C3a: { label: 'Multiple Choice' },
+          C3b: { label: 'Gap-fill' },
+          C3c: { label: 'Word Formation' },
+          C3d: { label: 'Word transformation' },
+        }},
+        C4: { label: 'Test 4', children: {
+          C4a: { label: 'Multiple Choice' },
+          C4b: { label: 'Gap-fill' },
+          C4c: { label: 'Word Formation' },
+          C4d: { label: 'Word transformation' },
+        }},
+        C5: { label: 'Test 5', children: {
+          C5a: { label: 'Multiple Choice' },
+          C5b: { label: 'Gap-fill' },
+          C5c: { label: 'Word Formation' },
+          C5d: { label: 'Word transformation' },
+        }},
+        C6: { label: 'Test 6', children: {
+          C6a: { label: 'Multiple Choice' },
+          C6b: { label: 'Gap-fill' },
+          C6c: { label: 'Word Formation' },
+          C6d: { label: 'Word transformation' },
+        }},
+        C7: { label: 'Test 7', children: {
+          C7a: { label: 'Multiple Choice' },
+          C7b: { label: 'Gap-fill' },
+          C7c: { label: 'Word Formation' },
+          C7d: { label: 'Word transformation' },
+        }},
+        C8: { label: 'Test 8', children: {
+          C8a: { label: 'Multiple Choice' },
+          C8b: { label: 'Gap-fill' },
+          C8c: { label: 'Word Formation' },
+          C8d: { label: 'Word transformation' },
+        }},
+        C9: { label: 'Test 9', children: {
+          C9a: { label: 'Multiple Choice' },
+          C9b: { label: 'Gap-fill' },
+          C9c: { label: 'Word Formation' },
+          C9d: { label: 'Word transformation' },
+        }},
+        C10: { label: 'Test 10', children: {
+          C10a: { label: 'Multiple Choice' },
+          C10b: { label: 'Gap-fill' },
+          C10c: { label: 'Word Formation' },
+          C10d: { label: 'Word transformation' },
+        }},
+      }},
+      D: { label: 'Reading', children: Object.fromEntries(
+        Array.from({length: 10}, (_,i)=>{
+          const n=i+1; return [
+            'D'+n,
+            { label: `Set ${n}`, children: {
+              ['D'+n+'a']: { label: 'Multiple choice' },
+              ['D'+n+'b']: { label: 'Gapped text' },
+              ['D'+n+'c']: { label: 'Multiple matching' },
+            }}
+          ];
+        })
+      )},
+      E: { label: 'Writing', children: {
+        E1: { label: 'Essays', children: {
+          E1a: { label: 'for & against' },
+          E1b: { label: 'problems & solutions' },
+          E1c: { label: 'cause & effect' },
+          E1d: { label: 'opinion & speculating' },
+          E1e: { label: 'agree and disagree' },
+          E1f: { label: 'useful expressions' },
+        }},
+        E2: { label: 'Reports', children: {
+          E2a: { label: 'Samples' },
+          E2b: { label: 'Useful expressions' },
+        }},
+        E3: { label: 'Reviews', children: {
+          E3a: { label: 'Samples' },
+          E3b: { label: 'Useful expressions' },
+        }},
+        E4: { label: 'Letters/Emails', children: {
+          E4a: { label: 'Samples' },
+          E4b: { label: 'Useful expressions' },
+        }},
+        E5: { label: 'Articles', children: {
+          E5a: { label: 'Samples' },
+          E5b: { label: 'Useful expressions' },
+        }},
+      }},
+      F: { label: 'Speaking', children: {
+        F1: { label: 'General questions', children: {
+          F1a: { label: 'General questions' },
+          F1b: { label: 'Useful expressions' },
+        }},
+        F2: { label: 'Comparing pictures', children: {
+          F2a: { label: 'comparing pictures' },
+          F2b: { label: 'Useful expressions' },
+        }},
+        F3: { label: 'Collaborative task', children: {
+          F3a: { label: 'Collaborative task' },
+          F3b: { label: 'Useful expressions' },
+        }},
+        F4: { label: 'Personal views', children: {
+          F4a: { label: 'Personal views' },
+          F4b: { label: 'Useful Expressions' },
+        }},
+      }},
+    };
+
+    // ---- RENDERER ----
+    const stage = document.getElementById('stage');
+    const breadcrumbEl = document.getElementById('breadcrumb');
+    const backBtn = document.getElementById('backBtn');
+
+    // Navigation stack of node keys (e.g., ['ROOT'], ['ROOT','A'], ['ROOT','A','A1'])
+    const NAV = ['ROOT'];
+
+    // Build a flat map for quick lookup by key
+    const INDEX = { ROOT: { label: 'Main Menu', children: MODEL } };
+    // Recursively flatten MODEL
+    (function buildIndex(prefixKey, obj){
+      for (const [k, v] of Object.entries(obj)) {
+        INDEX[k] = { label: v.label, children: v.children || null };
+        if (v.children) buildIndex(k, v.children);
+      }
+    })('ROOT', MODEL);
+
+    function makeCard(text, key){
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.setAttribute('tabindex','0');
+      el.textContent = text;
+      el.addEventListener('click', ()=> navigateTo(key));
+      el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); navigateTo(key); }});
+      return el;
+    }
+
+    function makeCarouselView(id, title, items){
+      const view = document.createElement('section');
+      view.className = 'view';
+      view.id = id;
+      const row = document.createElement('div');
+      row.className = 'carousel-row';
+      items.forEach(({label, key}) => row.appendChild(makeCard(label, key)));
+      // Header is already on page; keep content minimal
+      view.appendChild(row);
+      return view;
+    }
+
+    function makeLeafView(id, title){
+      const view = document.createElement('section');
+      view.className = 'view';
+      view.id = id;
+      const wrap = document.createElement('div');
+      wrap.className = 'leaf';
+      const h2 = document.createElement('h2');
+      h2.textContent = title;
+      const p = document.createElement('p');
+      p.textContent = 'Placeholder for interactive content. You can paste quizzes, readers, widgets, or scripts here. This remains inside the single HTML file.';
+      const box = document.createElement('div');
+      box.className = 'placeholder';
+      box.textContent = 'Interactive area – ' + title;
+      wrap.append(h2, p, box);
+      view.appendChild(wrap);
+      return view;
+    }
+
+    function ensureViewFor(key){
+      // If it exists, return it
+      const id = 'view-'+key;
+      let view = document.getElementById(id);
+      if (view) return view;
+
+      const node = INDEX[key];
+      if (!node) return null;
+
+      if (node.children) {
+        // Build carousel
+        const items = Object.entries(node.children).map(([k, v])=> ({ key: k, label: v.label }));
+        view = makeCarouselView(id, node.label, items);
+      } else {
+        // Build leaf
+        view = makeLeafView(id, node.label + ` (${key})`);
+      }
+      stage.appendChild(view);
+      return view;
+    }
+
+    function setActiveView(key){
+      // Deactivate all
+      stage.querySelectorAll('.view').forEach(v=> v.classList.remove('active'));
+      const view = ensureViewFor(key);
+      if (view) view.classList.add('active');
+
+      // Breadcrumb text
+      breadcrumbEl.textContent = ' / ' + NAV.slice(1).map(k=> INDEX[k]?.label || k).join(' / ');
+
+      // Back enabled?
+      if (NAV.length > 1) backBtn.classList.remove('disabled');
+      else backBtn.classList.add('disabled');
+    }
+
+    function navigateTo(key){
+      NAV.push(key);
+      setActiveView(key);
+    }
+
+    function goBack(){
+      if (NAV.length <= 1) return; // at root
+      NAV.pop();
+      const current = NAV[NAV.length-1];
+      setActiveView(current);
+    }
+
+    backBtn.addEventListener('click', goBack);
+    backBtn.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); goBack(); }});
+
+    // Initialize
+    setActiveView('ROOT');
+  </script>
+</body>
+</html>
