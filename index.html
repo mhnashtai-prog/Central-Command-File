@@ -3,7 +3,402 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AT A GLANCE – Main MENU</title>
+  <title>AT A GLANCE – Main MENU</t<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>AT A GLANCE – Main MENU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* All original styles are preserved */
+        :root {
+            --main-blue: #1a263c;
+            --black-strip: #0d0d0d;
+            --card-bg: #fff;
+            --shadow: 0 6px 28px rgba(30,40,60,0.17), 0 2px 6px rgba(0,0,0,.10);
+            --card-radius: 20px;
+            --footer-height: 64px;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            min-height: 100vh;
+            background: #f6f8fa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-weight: 400;
+            box-sizing: border-box;
+        }
+        body {
+            padding-bottom: var(--footer-height);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 98vw;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 42px;
+            flex: 1 0 auto;
+        }
+        .title {
+            font-size: 3.0rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: var(--main-blue);
+            margin-bottom: 3px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #42587b;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .author {
+            font-size: 1.05rem;
+            color: #7c91b5;
+            font-weight: 400;
+            margin-bottom: 26px;
+        }
+        .carousel-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 36px;
+            margin-top: 38px;
+            margin-bottom: 56px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-color: #bfcce2 #e9eef8;
+            scrollbar-width: thin;
+        }
+        .carousel-row::-webkit-scrollbar {
+            height: 12px;
+        }
+        .carousel-row::-webkit-scrollbar-thumb {
+            background: #bfcce2;
+            border-radius: 8px;
+        }
+        .card {
+            min-width: 170px;
+            max-width: 210px;
+            height: 170px;
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.22rem;
+            font-weight: 600;
+            color: var(--main-blue);
+            transition: box-shadow 0.18s, transform 0.14s;
+            cursor: pointer;
+            text-align: center;
+            padding: 18px;
+            line-height: 1.4;
+            user-select: none;
+        }
+        .card:hover {
+            box-shadow: 0 12px 36px rgba(30,40,60,0.29), 0 4px 12px rgba(0,0,0,.16);
+            background: #f4fcf9;
+            transform: scale(1.032);
+        }
+        .black-strip {
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            height: var(--footer-height);
+            background: var(--black-strip);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 40px;
+            font-size: 1.25rem;
+            color: #fff;
+            box-shadow: 0 -2px 14px rgba(0,0,0,0.18);
+            border-radius: 32px 32px 0 0;
+            z-index: 40;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+        .black-strip.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .black-strip .arrow {
+            font-size: 2.42rem;
+            font-weight: 600;
+            margin-right: 14px;
+            transition: color 0.17s;
+            cursor: pointer;
+        }
+        .black-strip .arrow:hover {
+            color: #63e3c0;
+        }
+        .black-strip .back-label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-left: 6px;
+        }
+        @media (max-width: 1100px) {
+            .carousel-row { gap: 24px; }
+            .card { min-width: 150px; height: 142px; font-size: 1.05rem; padding: 13px; }
+        }
+        @media (max-width: 800px) {
+            .title { font-size: 2.2rem;}
+            .carousel-row { gap: 15px; }
+            .card { min-width: 128px; height: 108px; font-size: 0.93rem; padding: 8px;}
+            .black-strip { font-size: 1rem; padding: 0 17px;}
+            .black-strip .arrow { font-size: 2.09rem;}
+            .black-strip .back-label { font-size: 1.07rem;}
+        }
+        @media (max-width: 550px) {
+            .carousel-row { gap: 9px;}
+            .card { min-width: 90px; height: 82px; font-size: 0.82rem; padding: 2px;}
+            .container { padding-top: 12px; }
+        }
+        @media (max-width:700px) {
+            .carousel-row::-webkit-scrollbar { display: none;}
+            .carousel-row { scrollbar-width: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Titles will be updated dynamically by JavaScript -->
+        <div id="main-title" class="title">AT A GLANCE</div>
+        <div id="sub-title" class="subtitle">Language Generator</div>
+        <div id="author-label" class="author">Majid Nashtai</div>
+        <!-- This carousel row will be dynamically populated -->
+        <div id="carousel-container" class="carousel-row"></div>
+    </div>
+
+    <!-- Black strip footer (back arrow and label) -->
+    <div id="black-strip" class="black-strip hidden">
+        <span id="back-arrow" class="arrow">&#8592;</span>
+        <span class="back-label">Back</span>
+    </div>
+
+    <script>
+        // --- DATA STRUCTURE ---
+        // This object holds the entire 4-level hierarchy of your file system.
+        // `title` is for the main heading, `subtitle` is for the subheading.
+        // `items` contains an array of cards, each with a `label` and a `nextLevel` pointer.
+        // A card without a `nextLevel` is a Level 3 item, which leads to "interactive content".
+        const data = {
+            title: "AT A GLANCE",
+            subtitle: "Language Generator",
+            author: "Majid Nashtai",
+            levels: {
+                main: {
+                    title: "AT A GLANCE",
+                    subtitle: "Language Generator",
+                    items: [
+                        { label: "Grammar Rules", nextLevel: "grammar-rules" },
+                        { label: "Similar words", nextLevel: "similar-words" },
+                        { label: "Use of English", nextLevel: "use-of-english" },
+                        { label: "Reading", nextLevel: "reading" },
+                        { label: "Writing", nextLevel: "writing" },
+                        { label: "Speaking", nextLevel: "speaking" }
+                    ]
+                },
+                "grammar-rules": {
+                    title: "Grammar Rules",
+                    subtitle: "Subcategory of 'Grammar Rules'",
+                    items: [
+                        { label: "A1: Tenses" },
+                        { label: "A2: Similar words" },
+                        { label: "A3: Conditionals & Wishes" },
+                        { label: "A4: Passive Voice" },
+                        { label: "A5: Reported Speech" },
+                        { label: "A6: Linking words" },
+                        { label: "A7: Past modals" },
+                        { label: "A8: Inversion" },
+                        { label: "A9: Gerunds & Infinitives" },
+                        { label: "A10: Phrasal verbs" },
+                        { label: "A11: Miscellaneous structures" },
+                        { label: "A12: Verbs & Adjectives Collocations" }
+                    ]
+                },
+                "similar-words": {
+                    title: "Similar Words",
+                    subtitle: "Subcategory of 'Similar words'",
+                    items: [
+                        { label: "B1: Vocabulary" },
+                        { label: "B2: Academic expressions" },
+                        { label: "B3: sentences" },
+                        { label: "B4: Paragraphs" },
+                        { label: "B5: Lists" }
+                    ]
+                },
+                "use-of-english": {
+                    title: "Use of English",
+                    subtitle: "Tests 1-10",
+                    items: Array.from({ length: 10 }, (_, i) => ({
+                        label: `C${i + 1}: Test ${i + 1}`,
+                        nextLevel: `use-of-english-test-${i + 1}`
+                    }))
+                },
+                "reading": {
+                    title: "Reading",
+                    subtitle: "Tests 1-10",
+                    items: Array.from({ length: 10 }, (_, i) => ({
+                        label: `D${i + 1}`,
+                        nextLevel: `reading-test-${i + 1}`
+                    }))
+                },
+                "writing": {
+                    title: "Writing",
+                    subtitle: "Subcategory of 'Writing'",
+                    items: Array.from({ length: 5 }, (_, i) => ({
+                        label: `E${i + 1}a: for & against...`,
+                        nextLevel: `writing-category-${i + 1}`
+                    }))
+                },
+                "speaking": {
+                    title: "Speaking",
+                    subtitle: "Subcategory of 'Speaking'",
+                    items: Array.from({ length: 4 }, (_, i) => ({
+                        label: `F${i + 1}a: questions...`,
+                        nextLevel: `speaking-category-${i + 1}`
+                    }))
+                },
+                // --- LEVEL 3: USE OF ENGLISH TESTS ---
+                ...Object.fromEntries(
+                    Array.from({ length: 10 }, (_, i) => [
+                        `use-of-english-test-${i + 1}`,
+                        {
+                            title: `Test ${i + 1}`,
+                            subtitle: "Interactive content for Use of English",
+                            items: [
+                                { label: `C${i + 1}a: Multiple Choice` },
+                                { label: `C${i + 1}b: Gap-fill` },
+                                { label: `C${i + 1}c: Word Formation` },
+                                { label: `C${i + 1}d: Word transformation` }
+                            ]
+                        }
+                    ])
+                ),
+                // --- LEVEL 3: READING TESTS ---
+                ...Object.fromEntries(
+                    Array.from({ length: 10 }, (_, i) => [
+                        `reading-test-${i + 1}`,
+                        {
+                            title: `Reading Test ${i + 1}`,
+                            subtitle: "Interactive content for Reading",
+                            items: [
+                                { label: `D${i + 1}a: Multiple choice` },
+                                { label: `D${i + 1}b: Gapped text` },
+                                { label: `D${i + 1}c: Multiple matching` }
+                            ]
+                        }
+                    ])
+                ),
+                // --- LEVEL 3: WRITING CATEGORIES ---
+                "writing-category-1": { title: "Writing E1", subtitle: "for & against", items: [{label: "E1a: for & against"}, {label: "E1b: problems & solutions"}, {label: "E1c: cause & effect"}, {label: "E1d: opinion & speculating"}, {label: "E1e: agree and disagree"}, {label: "E1f: useful expressions"}] },
+                "writing-category-2": { title: "Writing E2", subtitle: "Samples & expressions", items: [{label: "E2a: Samples"}, {label: "E2b: Useful expressions"}] },
+                "writing-category-3": { title: "Writing E3", subtitle: "Samples & expressions", items: [{label: "E3a: Samples"}, {label: "E3b: Useful expressions"}] },
+                "writing-category-4": { title: "Writing E4", subtitle: "Samples & expressions", items: [{label: "E4a: Samples"}, {label: "E4b: Useful expressions"}] },
+                "writing-category-5": { title: "Writing E5", subtitle: "Samples & expressions", items: [{label: "E5a: Samples"}, {label: "E5b: Useful expressions"}] },
+
+                // --- LEVEL 3: SPEAKING CATEGORIES ---
+                "speaking-category-1": { title: "Speaking F1", subtitle: "General Questions", items: [{label: "F1a: General questions"}, {label: "F1b: Useful expressions"}] },
+                "speaking-category-2": { title: "Speaking F2", subtitle: "Comparing Pictures", items: [{label: "F2a: comparing pictures"}, {label: "F2b: Useful expressions"}] },
+                "speaking-category-3": { title: "Speaking F3", subtitle: "Collaborative Task", items: [{label: "F3a: Collaborative task"}, {label: "F3b: Useful expressions"}] },
+                "speaking-category-4": { title: "Speaking F4", subtitle: "Personal Views", items: [{label: "F4a: Personal views"}, {label: "F4b: Useful Expressions"}] },
+            }
+        };
+
+        // --- STATE MANAGEMENT ---
+        let history = []; // Stores the path taken to allow for going back
+        let currentLevel = data.levels.main; // The current level being displayed
+
+        // --- DOM REFERENCES ---
+        const carouselContainer = document.getElementById('carousel-container');
+        const mainTitle = document.getElementById('main-title');
+        const subTitle = document.getElementById('sub-title');
+        const authorLabel = document.getElementById('author-label');
+        const backStrip = document.getElementById('black-strip');
+        const backArrow = document.getElementById('back-arrow');
+        const backLabel = document.querySelector('#black-strip .back-label');
+
+        // --- FUNCTIONS ---
+        // Renders the cards for the given level.
+        function renderCards(level) {
+            // Clear the existing carousel content
+            carouselContainer.innerHTML = '';
+            
+            // Update the header titles
+            mainTitle.textContent = level.title;
+            subTitle.textContent = level.subtitle;
+            
+            // Hide the author label on sub-levels
+            authorLabel.style.display = history.length === 0 ? 'block' : 'none';
+            
+            // Show/hide the back button based on history
+            if (history.length > 0) {
+                backStrip.classList.remove('hidden');
+                const previousLevel = history[history.length - 1];
+                backLabel.textContent = `Back to ${previousLevel.title}`;
+            } else {
+                backStrip.classList.add('hidden');
+            }
+
+            // Create and append cards for each item in the current level
+            level.items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('tabindex', '0');
+                card.textContent = item.label;
+                
+                // Add click event listener to handle navigation
+                card.addEventListener('click', () => {
+                    // Check if the card has a `nextLevel` property
+                    if (item.nextLevel && data.levels[item.nextLevel]) {
+                        // Push current level to history for 'back' functionality
+                        history.push(currentLevel);
+                        // Update current level to the next one
+                        currentLevel = data.levels[item.nextLevel];
+                        // Render the cards for the new level
+                        renderCards(currentLevel);
+                    } else {
+                        // If there is no `nextLevel`, it's a Level 3 card.
+                        // You can add logic here to display the final interactive content.
+                        // For now, an alert will be used as a placeholder.
+                        alert(`Interactive content for: ${item.label}`);
+                    }
+                });
+
+                carouselContainer.appendChild(card);
+            });
+        }
+
+        // Handles the 'back' button functionality
+        function goBack() {
+            if (history.length > 0) {
+                // Pop the last level from history
+                currentLevel = history.pop();
+                // Render the cards for the previous level
+                renderCards(currentLevel);
+            }
+        }
+
+        // --- EVENT LISTENERS ---
+        backArrow.addEventListener('click', goBack);
+        backStrip.addEventListener('click', goBack);
+
+        // --- INITIALIZATION ---
+        // Render the main menu when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards(data.levels.main);
+        });
+    </script>
+</body>
+</html>
+itle>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
