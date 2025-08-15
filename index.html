@@ -10,8 +10,8 @@
         :root {
             --main-blue: #1a263c;
             --black-strip: #0d0d0d;
-            --light-bg: #eef2f7; /* A slightly darker background for better contrast */
-            --card-radius: 20px;
+            --light-bg: #f2f8ff; /* Updated to a slightly lighter background */
+            --card-radius: 30px; /* Increased for a rounder look */
             --footer-height: 48px; /* Thinner black strip */
         }
         html, body {
@@ -97,14 +97,16 @@
             line-height: 1.4;
             user-select: none;
             
-            box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.9), 
-                        5px 5px 15px rgba(175, 182, 192, 0.4);
+            /* Updated box-shadow for a thinner top/left glow */
+            box-shadow: -2px -2px 8px rgba(255, 255, 255, 0.9), 
+                        5px 5px 10px rgba(175, 182, 192, 0.4);
         }
 
         .card:hover {
             transform: translateY(-2px);
-            box-shadow: -7px -7px 20px rgba(255, 255, 255, 0.9), 
-                        7px 7px 20px rgba(175, 182, 192, 0.4);
+            /* Updated hover box-shadow for a thinner top/left glow */
+            box-shadow: -4px -4px 12px rgba(255, 255, 255, 0.9), 
+                        7px 7px 15px rgba(175, 182, 192, 0.4);
         }
         
         .card-label {
