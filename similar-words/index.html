@@ -33,38 +33,17 @@
       box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);position:relative;top:-15px;
     }
     .black-strip {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: var(--footer-height, 48px);
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 80%; height: var(--footer-height, 48px);
       background: linear-gradient(135deg, #2b3951, #1a263c);
-      border-radius: 32px 32px 0 0;
-      box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0 40px;
-      font-size: 1.25rem;
-      color: #fff;
-      z-index: 101;
-      font-weight: 600;
-      cursor: pointer;
+      border-radius: 32px 32px 0 0; box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
+      display: flex; align-items: center; justify-content: flex-start;
+      padding: 0 40px; font-size: 1.25rem; color: #fff; z-index: 101;
+      font-weight: 600; cursor: pointer;
     }
-    .black-strip .arrow {
-      font-size: 1.9rem;
-      font-weight: 600;
-      margin-right: 14px;
-      transition: color 0.17s;
-    }
+    .black-strip .arrow { font-size: 1.9rem; font-weight: 600; margin-right: 14px; transition: color 0.17s; }
     .black-strip .arrow:hover { color: #63e3c0; }
-    .black-strip .back-label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-left: 6px;
-    }
+    .black-strip .back-label { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.5px; margin-left: 6px; }
     .under-construction-content { display:none; text-align:center; padding-top:50px; }
     .under-construction-content h2 { font-size:2rem; color:var(--main-blue); }
     .under-construction-content p { font-size:1.2rem; color:#42587b; }
@@ -137,9 +116,9 @@
       ucContent.style.display='none';
     }
     
-    // ✅ FIXED: Always return to Central Command
+    // ✅ CORRECT PATH: Go up one level to Central Command
     backStrip.addEventListener('click', function() {
-      window.location.href = "index.html"; // Adjust path to your Central Command file
+      window.location.href = '../index.html';
     });
     
     document.addEventListener('DOMContentLoaded',renderCards);
