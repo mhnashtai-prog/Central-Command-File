@@ -26,7 +26,6 @@
         transition: transform .3s, box-shadow .3s;
     }
     .card:hover { transform:translateY(-2px); }
-
     .intuity-initial { width:28px; height:28px; border-radius:50%; background:var(--light-bg);
       display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2rem; color:#98a2ad;
       box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4); position: relative; top: -15px;
@@ -91,7 +90,7 @@
   </div>
   <div id="back-strip" class="black-strip">
     <span class="arrow">←</span>
-    <span class="back-label">Back to Main Menu</span>
+    <span class="back-label">Central Command</span>
   </div>
   <script>
     const data = {
@@ -103,19 +102,18 @@
         { label: "Reported Speech", url: "reported-speech/index.html" },
         { label: "Linking Words", url: "linking-words/index.html" },
         { label: "Past Modals", url: "past-modals/index.html" },
-        { label: "Inversion", url: "" }, // Test UC here
+        { label: "Inversion", url: "" },
         { label: "Gerunds & Infinitives", url: "gerunds-infinitives/index.html" },
         { label: "Phrasal Verbs", url: "phrasal-verbs/index.html" },
         { label: "Miscellaneous Structures", url: "miscellaneous-structures/index.html" },
         { label: "Verb & Adjective Collocations", url: "verbs-adjectives-collocation/index.html" }
       ]
     };
-
     const carouselContainer=document.getElementById('carousel-container');
     const carouselView=document.getElementById('carousel-view');
     const ucContent=document.getElementById('under-construction-content');
     const backStrip=document.getElementById('back-strip');
-
+    
     function renderCards(){
       carouselContainer.innerHTML='';
       data.items.forEach(item=>{
@@ -127,7 +125,7 @@
       });
       showCarousel();
     }
-
+    
     async function handle(item){
       if(!item.url){ showUC(); return; }
       try {
@@ -136,28 +134,21 @@
         else showUC();
       } catch { showUC(); }
     }
-
+    
     function showUC(){
       carouselView.style.display='none';
       ucContent.style.display='block';
-      // Keep the strip visible but don't change it since it's always showing
     }
     function showCarousel(){
       carouselView.style.display='block';
       ucContent.style.display='none';
-      // Keep the strip visible
     }
-
-    // Set up back navigation to main menu
+    
+    // ✅ FIXED: Always return to Central Command
     backStrip.addEventListener('click', function() {
-      if (ucContent.style.display === 'block') {
-        // If we're in under construction view, go back to carousel
-        showCarousel();
-      } else {
-        // If we're in main view, show message about main menu navigation
-        alert("Navigation to 'Main Menu' will be available soon.");
-      }
+      window.location.href = "index.html"; // Adjust path to your Central Command file
     });
+    
     document.addEventListener('DOMContentLoaded',renderCards);
   </script>
 </body>
