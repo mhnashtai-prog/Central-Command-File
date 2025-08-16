@@ -29,21 +29,21 @@
     }
     .card:hover { transform:translateY(-2px); }
 
-    .intuity-initial {
-      width:28px; height:28px; border-radius:50%; background:var(--light-bg); 
-      display:flex; align-items:center; justify-content:center; 
+    .intuity-initial { width:28px; height:28px; border-radius:50%; background:var(--light-bg);
+      display:flex; align-items:center; justify-content:center;
       font-weight:800; font-size:1.2rem; color:#98a2ad;
       box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);
-      position:relative; top:-15px;
+      position: relative; top: -15px;
     }
 
+    /* ✅ The ONE correct strip */
     .black-strip {
       position:fixed; bottom:0; left:50%; transform:translateX(-50%);
       width:80%; height:var(--footer-height);
       background:linear-gradient(135deg,#2b3951,#1a263c);
       border-radius:32px 32px 0 0;
       box-shadow:0 -2px 14px rgba(0,0,0,0.25);
-      display:none; /* hidden until UC state */
+      display:none; /* hidden until Under Construction */
       align-items:center; justify-content:flex-start;
       padding:0 40px; font-size:1.25rem; font-weight:600;
       color:#fff; cursor:pointer; z-index:40;
@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <!-- ✅ ONLY ONE STRIP (Back) -->
+  <!-- ✅ Only one strip (“Back”) -->
   <div id="back-strip" class="black-strip">
     <span class="arrow">←</span><span class="back-label">Back</span>
   </div>
@@ -104,7 +104,7 @@
     }
 
     async function handle(item){
-      if(!item.url){showUC();return;}
+      if(!item.url){ showUC(); return; }
       try {
         const res=await fetch(item.url,{method:'HEAD'});
         if(res.ok) window.location.href=item.url;
@@ -128,4 +128,3 @@
   </script>
 </body>
 </html>
-
