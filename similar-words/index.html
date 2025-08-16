@@ -90,7 +90,7 @@
   </div>
   <div id="back-strip" class="black-strip">
     <span class="arrow">←</span>
-    <span class="back-label">Back to Main Menu</span>
+    <span class="back-label">Central Command</span>
   </div>
   <script>
     const data = {
@@ -102,12 +102,11 @@
         { label: "Lists", url: "lists/index.html" }
       ]
     };
-
     const carouselContainer=document.getElementById('carousel-container');
     const carouselView=document.getElementById('carousel-view');
     const ucContent=document.getElementById('under-construction-content');
     const backStrip=document.getElementById('back-strip');
-
+    
     function renderCards(){
       carouselContainer.innerHTML='';
       data.items.forEach(item=>{
@@ -119,7 +118,7 @@
       });
       showCarousel();
     }
-
+    
     async function handle(item){
       if(!item.url){ showUC(); return; }
       try {
@@ -128,29 +127,21 @@
         else showUC();
       } catch { showUC(); }
     }
-
+    
     function showUC(){
       carouselView.style.display='none';
       ucContent.style.display='block';
-      // Keep the strip visible but don't change it since it's always showing
     }
     function showCarousel(){
       carouselView.style.display='block';
       ucContent.style.display='none';
-      // Keep the strip visible
     }
-
-    // Set up back navigation to main menu
+    
+    // ✅ FIXED: Always return to Central Command
     backStrip.addEventListener('click', function() {
-      if (ucContent.style.display === 'block') {
-        // If we're in under construction view, go back to carousel
-        showCarousel();
-      } else {
-        // If we're in main view, show message about main menu navigation
-        alert("Navigation to 'Main Menu' will be available soon.");
-      }
+      window.location.href = "index.html"; // Adjust path to your Central Command file
     });
-
+    
     document.addEventListener('DOMContentLoaded',renderCards);
   </script>
 </body>
