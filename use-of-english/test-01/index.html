@@ -27,7 +27,7 @@
         .main-content-wrapper {
             flex-grow: 1;
             overflow-y: auto;
-            padding-bottom: 20px;
+            padding-bottom: var(--footer-height);
         }
         .container {
             max-width: 98vw;
@@ -62,14 +62,14 @@
         .carousel-container {
             display: flex;
             justify-content: flex-start;
-            gap: 28px;
+            gap: 40px;
             overflow-x: auto;
             padding: 20px;
             -webkit-overflow-scrolling: touch;
         }
         .quiz-box {
             min-width: 220px;
-            height: 160px;
+            height: 220px;
             background-color: #fff;
             border-radius: var(--card-radius);
             display: flex;
@@ -152,6 +152,7 @@
         }
         .black-strip .arrow {
             font-size: 1.9rem;
+            font-weight: 600;
             margin-right: 14px;
             transition: color 0.17s;
         }
@@ -165,14 +166,16 @@
             margin-left: 6px;
         }
         @media (max-width: 1100px) {
-            .carousel-container { gap: 18px; }
-            .quiz-box { min-width: 150px; height: 120px; }
+            .carousel-container { gap: 24px; }
+            .quiz-box { min-width: 150px; height: 150px; }
             .black-strip { width: 90%; height: 44px; }
         }
         @media (max-width: 700px) {
-            .carousel-container { gap: 10px; }
-            .quiz-box { min-width: 118px; height: 88px; }
-            .black-strip { font-size: 0.9rem; padding: 12px; width: 94%; height: 38px; }
+            .carousel-container { gap: 16px; }
+            .quiz-box { min-width: 118px; height: 118px; }
+            .black-strip { font-size: 0.92rem; padding: 0 14px; width: 94%; height: 38px; }
+            .black-strip .arrow { font-size: 1.4rem; }
+            .black-strip .back-label { font-size: 0.86rem; }
         }
     </style>
 </head>
@@ -213,11 +216,13 @@
             { name: "TEST 9", link: null },
             { name: "TEST 10", link: null }
         ];
+        
         const carousel = document.getElementById('carouselContainer');
         const messageBox = document.getElementById('messageBox');
         const messageText = document.getElementById('messageText');
         const closeMessageBtn = document.getElementById('closeMessageBtn');
         const mainBackStrip = document.getElementById('main-back-strip');
+        
         // Render boxes
         function renderBoxes() {
             carousel.innerHTML = '';
@@ -235,16 +240,19 @@
                 carousel.appendChild(box);
             });
         }
+        
         function showMessageBox(message) {
             messageText.textContent = message;
             messageBox.style.display = 'flex';
         }
+        
         function hideMessageBox() {
             messageBox.style.display = 'none';
         }
+        
         closeMessageBtn.addEventListener('click', hideMessageBox);
         
-        // ✅ FIXED: Back navigation to Central Command
+        // Back navigation to Central Command
         mainBackStrip.addEventListener('click', function() {
             window.location.href = '../index.html';
         });
