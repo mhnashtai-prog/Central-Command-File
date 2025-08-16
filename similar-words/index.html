@@ -12,41 +12,43 @@
       --card-radius: 30px;
       --footer-height: 48px;
     }
-    html, body { margin: 0; padding: 0; min-height: 100vh; background: var(--light-bg); font-family: 'Inter', sans-serif; }
-    body { display: flex; flex-direction: column; padding-bottom: calc(var(--footer-height) * 2); } /* space for two strips */
+    html, body { margin:0; padding:0; min-height:100vh; background:var(--light-bg); font-family:'Inter',sans-serif; }
+    body { display:flex; flex-direction:column; padding-bottom: var(--footer-height); }
 
-    .container { max-width: 98vw; margin: 0 auto; text-align: center; padding-top: 42px; flex: 1 0 auto; }
-    .title { font-size: 3rem; font-weight: 700; color: var(--main-blue); margin-bottom: 3px; }
-    .subtitle { font-size: 1.2rem; color: #42587b; margin-bottom: 2px; }
-    .author { font-size: 1rem; color: #7c91b5; margin-bottom: 26px; }
+    .container { max-width:98vw; margin:0 auto; text-align:center; padding-top:42px; flex:1 0 auto; }
+    .title { font-size:3rem; font-weight:700; color:var(--main-blue); margin-bottom:3px; }
+    .subtitle { font-size:1.2rem; color:#42587b; margin-bottom:2px; }
+    .author { font-size:1rem; color:#7c91b5; margin-bottom:26px; }
 
-    .carousel-row { display: flex; gap: 80px; overflow-x: auto; padding: 0 40px 10px 40px; margin: 38px 0 56px; }
-    .card { min-width: 170px; height: 170px; border-radius: var(--card-radius); background:#fff;
+    .carousel-row { display:flex; gap:80px; overflow-x:auto; padding:0 40px 10px 40px; margin:38px 0 56px; }
+    .card { min-width:170px; height:170px; border-radius:var(--card-radius); background:#fff;
         display:flex; align-items:center; justify-content:center; flex-direction:column;
         font-size:1.22rem; font-weight:600; color:var(--main-blue); cursor:pointer;
         box-shadow:-2px -2px 8px rgba(255,255,255,0.9),5px 5px 10px rgba(175,182,192,0.4);
-      transition: transform .3s, box-shadow .3s;
+        transition: transform .3s, box-shadow .3s;
     }
-    .card:hover { transform: translateY(-2px); }
+    .card:hover { transform:translateY(-2px); }
 
     .intuity-initial {
-      width:28px; height:28px; border-radius:50%; background:var(--light-bg); display:flex; align-items:center; justify-content:center;
-      font-weight:800; font-size:1.2rem; color:#98a2ad; box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);
-      position: relative; top:-15px;
+      width:28px; height:28px; border-radius:50%; background:var(--light-bg); 
+      display:flex; align-items:center; justify-content:center; 
+      font-weight:800; font-size:1.2rem; color:#98a2ad;
+      box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);
+      position:relative; top:-15px;
     }
 
-    .black-strip, .central-command-strip {
-      position: fixed; left: 50%; transform: translateX(-50%);
-      width: 80%; height: var(--footer-height);
-      background: linear-gradient(135deg,#2b3951,#1a263c);
-      border-radius: 32px 32px 0 0;
-      display: flex; align-items: center; justify-content: flex-start;
-      padding: 0 40px; font-size: 1.25rem; font-weight: 600;
-      color:#fff; cursor:pointer; z-index: 40; box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
+    .black-strip {
+      position:fixed; bottom:0; left:50%; transform:translateX(-50%);
+      width:80%; height:var(--footer-height);
+      background:linear-gradient(135deg,#2b3951,#1a263c);
+      border-radius:32px 32px 0 0;
+      box-shadow:0 -2px 14px rgba(0,0,0,0.25);
+      display:none; /* hidden until UC state */
+      align-items:center; justify-content:flex-start;
+      padding:0 40px; font-size:1.25rem; font-weight:600;
+      color:#fff; cursor:pointer; z-index:40;
     }
-    .black-strip { bottom: calc(var(--footer-height)); display: none; } /* hidden until UC state */
-    .central-command-strip { bottom: 0; display: flex; z-index: 39; }   /* always visible */
-    .black-strip .arrow, .central-command-strip .arrow { font-size:1.9rem; margin-right:14px; }
+    .black-strip .arrow { font-size:1.9rem; margin-right:14px; }
 
     .under-construction-content { display:none; text-align:center; padding-top:50px; }
     .under-construction-content h2 { font-size:2rem; color:var(--main-blue); }
@@ -66,13 +68,9 @@
     </div>
   </div>
 
-  <!-- Dynamic back (to carousel) -->
+  <!-- ✅ ONLY ONE STRIP (Back) -->
   <div id="back-strip" class="black-strip">
     <span class="arrow">←</span><span class="back-label">Back</span>
-  </div>
-  <!-- Persistent back (to Central Command) -->
-  <div id="central-strip" class="central-command-strip">
-    <span class="arrow">⇤</span><span class="back-label">Central Command</span>
   </div>
 
   <script>
@@ -88,11 +86,10 @@
       ]
     };
 
-    const carouselContainer = document.getElementById('carousel-container');
-    const carouselView = document.getElementById('carousel-view');
-    const ucContent = document.getElementById('under-construction-content');
-    const backStrip = document.getElementById('back-strip');
-    const centralStrip = document.getElementById('central-strip');
+    const carouselContainer=document.getElementById('carousel-container');
+    const carouselView=document.getElementById('carousel-view');
+    const ucContent=document.getElementById('under-construction-content');
+    const backStrip=document.getElementById('back-strip');
 
     function renderCards(){
       carouselContainer.innerHTML='';
@@ -107,13 +104,14 @@
     }
 
     async function handle(item){
-      if(!item.url){showUC(); return;}
-      try{
+      if(!item.url){showUC();return;}
+      try {
         const res=await fetch(item.url,{method:'HEAD'});
         if(res.ok) window.location.href=item.url;
         else showUC();
-      }catch{showUC();}
+      } catch { showUC(); }
     }
+
     function showUC(){
       carouselView.style.display='none';
       ucContent.style.display='block';
@@ -126,7 +124,6 @@
     }
 
     backStrip.addEventListener('click',showCarousel);
-    centralStrip.addEventListener('click',()=>{ window.location.href="../Central-Command-File/index.html"; });
     document.addEventListener('DOMContentLoaded',renderCards);
   </script>
 </body>
