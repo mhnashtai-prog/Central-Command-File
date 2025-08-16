@@ -36,7 +36,7 @@
       flex: 1 0 auto;
     }
     .title {
-      font-size: 3.0rem;
+      font-size: 3rem;
       font-weight: 700;
       letter-spacing: 0.01em;
       color: var(--main-blue);
@@ -47,12 +47,6 @@
       color: #42587b;
       font-weight: 500;
       margin-bottom: 2px;
-    }
-    .author {
-      font-size: 1.05rem;
-      color: #7c91b5;
-      font-weight: 400;
-      margin-bottom: 26px;
     }
     .carousel-row {
       display: flex;
@@ -66,19 +60,15 @@
       scrollbar-color: #bfcce2 #e9eef8;
       scrollbar-width: thin;
     }
-    .carousel-row::-webkit-scrollbar {
-      height: 12px;
-    }
-    .carousel-row::-webkit-scrollbar-thumb {
-      background: #bfcce2;
-      border-radius: 8px;
-    }
+    .carousel-row::-webkit-scrollbar { height: 12px; }
+    .carousel-row::-webkit-scrollbar-thumb { background: #bfcce2; border-radius: 8px; }
+    
     .card {
       position: relative;
       min-width: 170px;
       max-width: 210px;
       height: 170px;
-      background-color: #ffffff;
+      background-color: #fff;
       border-radius: var(--card-radius);
       display: flex;
       flex-direction: column;
@@ -91,7 +81,6 @@
       cursor: pointer;
       text-align: center;
       padding: 18px;
-      line-height: 1.4;
       user-select: none;
       box-shadow: -2px -2px 8px rgba(255,255,255,0.9), 5px 5px 10px rgba(175,182,192,0.4);
     }
@@ -99,106 +88,52 @@
       transform: translateY(-2px);
       box-shadow: -4px -4px 12px rgba(255,255,255,0.9), 7px 7px 15px rgba(175,182,192,0.4);
     }
-    .card-label {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--main-blue);
-    }
+
     .intuity-initial {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       background-color: var(--light-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: #98a2ad;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.2rem; color: #98a2ad;
       box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);
-      position: relative;
-      top: -15px;
+      position: relative; top: -15px;
     }
+
     .black-strip {
       position: fixed;
-      bottom: 0;
-      left: 50%;
+      bottom: 0; left: 50%;
       transform: translateX(-50%);
       width: 80%;
       height: var(--footer-height);
       background: linear-gradient(135deg, #2b3951, #1a263c);
       border-radius: 32px 32px 0 0;
       box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
-      display: flex;
+      display: none; /* hidden by default */
       align-items: center;
       justify-content: flex-start;
       padding: 0 40px;
       font-size: 1.25rem;
       color: #fff;
-      z-index: 101;
+      z-index: 40;
       font-weight: 600;
       cursor: pointer;
     }
-    .black-strip .arrow {
-      font-size: 1.9rem;
-      margin-right: 14px;
-      transition: color 0.17s;
-    }
-    .black-strip .arrow:hover {
-      color: #63e3c0;
-    }
-    .black-strip .back-label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-left: 6px;
-    }
+    .black-strip .arrow { font-size: 1.9rem; margin-right: 14px; }
+    .black-strip .back-label { font-size: 1.1rem; }
+    
     .under-construction-content {
       display: none;
       text-align: center;
       padding-top: 50px;
     }
-    .under-construction-content h2 {
-      font-size: 2rem; color: var(--main-blue);
-    }
-    .under-construction-content p {
-      font-size: 1.2rem; color: #42587b;
-    }
-    @media (max-width: 1100px) {
-      .carousel-row { gap: 60px; padding: 0 20px 10px 20px; }
-      .card { min-width: 150px; height: 142px; font-size: 1.05rem; padding: 13px; }
-      .intuity-initial { width: 24px; height: 24px; font-size: 1rem; }
-      .black-strip { width: 90%; height: 42px; }
-      .black-strip .arrow { font-size: 1.7rem; }
-      .black-strip .back-label { font-size: 0.9rem; }
-    }
-    @media (max-width: 800px) {
-      .title { font-size: 2.2rem;}
-      .carousel-row { gap: 30px; padding: 0 15px 10px 15px; }
-      .card { min-width: 128px; height: 108px; font-size: 0.93rem; padding: 8px;}
-      .intuity-initial { width: 22px; height: 22px; font-size: 0.9rem; }
-      .black-strip { font-size: 0.9rem; padding: 0 17px; width: 95%; height: 38px; }
-      .black-strip .arrow { font-size: 1.6rem;}
-      .black-strip .back-label { font-size: 0.8rem;}
-    }
-    @media (max-width: 550px) {
-      .carousel-row { gap: 18px; padding: 0 10px 10px 10px; }
-      .card { min-width: 90px; height: 82px; font-size: 0.82rem; padding: 2px;}
-      .container { padding-top: 12px; }
-    }
-    @media (max-width:700px) {
-      .carousel-row::-webkit-scrollbar { display: none;}
-      .carousel-row { scrollbar-width: none; }
-    }
+    .under-construction-content h2 { font-size: 2rem; color: var(--main-blue); }
+    .under-construction-content p { font-size: 1.2rem; color: #42587b; }
   </style>
 </head>
 <body>
   <div class="container">
     <div id="main-title" class="title">INTUITY</div>
-    <div id="sub-title" class="subtitle">'Grammar Rules'</div>
+    <div id="sub-title" class="subtitle">Grammar Rules</div>
     <div id="carousel-view">
       <div id="carousel-container" class="carousel-row"></div>
     </div>
@@ -207,35 +142,36 @@
       <h2>Page under construction.</h2>
     </div>
   </div>
-  <!-- Always visible "Back to Central Command" -->
-  <div id="main-back-strip" class="black-strip">
+  <!-- Footer back strip (only visible when error/UC state) -->
+  <div id="back-strip" class="black-strip">
     <span class="arrow">←</span>
-    <span class="back-label">Central Command</span>
+    <span class="back-label">Back</span>
   </div>
+
   <script>
     const data = {
       title: "INTUITY",
-      subtitle: "'Grammar Rules'",
+      subtitle: "Grammar Rules",
       items: [
-        { label: "Tenses", url: "tenses.html" },
-        { label: "Similar Words", url: "similar-words.html" },
-        { label: "Conditionals & Wishes", url: "conditionals.html" },
-        { label: "Passive Voice", url: "passive-voice.html" },
-        { label: "Reported Speech", url: "reported-speech.html" },
-        { label: "Linking Words", url: "linking-words.html" },
-        { label: "Past modals", url: "past-modals.html" },
+        { label: "Tenses", url: "tenses/index.html" },
+        { label: "Comparatives", url: "comparatives/index.html" },
+        { label: "Conditionals & Wishes", url: "conditionals-wishes/index.html" },
+        { label: "Passive Voice", url: "passive-voice/index.html" },
+        { label: "Reported Speech", url: "reported-speech/index.html" },
+        { label: "Linking Words", url: "linking-words/index.html" },
+        { label: "Past Modals", url: "past-modals/index.html" },
         { label: "Inversion", url: "" },
-        { label: "Gerunds & Infinitives", url: "gerunds-infinitives.html" },
-        { label: "Phrasal verbs", url: "phrasal-verbs.html" },
-        { label: "Miscellaneous Structures", url: "miscellaneous.html" },
-        { label: "Verbs & Adjectives Collocations", url: "collocations.html" }
+        { label: "Gerunds & Infinitives", url: "gerunds-infinitives/index.html" },
+        { label: "Phrasal Verbs", url: "phrasal-verbs/index.html" },
+        { label: "Miscellaneous Structures", url: "miscellaneous-structures/index.html" },
+        { label: "Verb & Adjective Collocations", url: "verbs-adjectives-collocation/index.html" }
       ]
     };
 
     const carouselContainer = document.getElementById('carousel-container');
     const carouselView = document.getElementById('carousel-view');
     const underConstructionContent = document.getElementById('under-construction-content');
-    const mainBackStrip = document.getElementById('main-back-strip');
+    const backStrip = document.getElementById('back-strip');
 
     function renderCards() {
       carouselContainer.innerHTML = '';
@@ -243,17 +179,14 @@
         const card = document.createElement('div');
         card.className = 'card';
         card.setAttribute('tabindex', '0');
-
         const label = document.createElement('span');
         label.className = 'card-label';
         label.innerHTML = `<span class="intuity-initial">i</span>${item.label}`;
         card.appendChild(label);
-
         card.addEventListener('click', () => handleCardClick(item));
         carouselContainer.appendChild(card);
       });
-      carouselView.style.display = 'block';
-      underConstructionContent.style.display = 'none';
+      showCarousel(); // reset to carousel view
     }
 
     async function handleCardClick(item) {
@@ -273,16 +206,21 @@
       }
     }
 
+    // Show/hide functions like Central Command
     function showUnderConstruction() {
       carouselView.style.display = 'none';
       underConstructionContent.style.display = 'block';
+      backStrip.style.display = 'flex';
+    }
+    function showCarousel() {
+      carouselView.style.display = 'block';
+      underConstructionContent.style.display = 'none';
+      backStrip.style.display = 'none';
     }
 
-    mainBackStrip.addEventListener('click', function() {
-      window.location.href = "central-command.html";
-    });
-
+    backStrip.addEventListener('click', showCarousel);
     document.addEventListener('DOMContentLoaded', renderCards);
   </script>
 </body>
 </html>
+
