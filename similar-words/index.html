@@ -101,7 +101,6 @@
             box-shadow: -2px -2px 8px rgba(255, 255, 255, 0.9), 
                         5px 5px 10px rgba(175, 182, 192, 0.4);
         }
-
         .card:hover {
             transform: translateY(-2px);
             /* Updated hover box-shadow for a thinner top/left glow */
@@ -119,7 +118,6 @@
             font-weight: 700;
             color: var(--main-blue);
         }
-
         .intuity-initial {
             width: 28px;
             height: 28px;
@@ -135,7 +133,6 @@
             position: relative; /* Add position relative */
             top: -15px;      /* Lift the element up */
         }
-
         /* Styles for the floating back strip */
         .black-strip {
             position: fixed;
@@ -147,7 +144,7 @@
             background: linear-gradient(135deg, #2b3951, #1a263c);
             border-radius: 32px 32px 0 0;
             box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: flex-start;
             padding: 0 40px;
@@ -172,6 +169,17 @@
             font-weight: 600;
             letter-spacing: 0.5px;
             margin-left: 6px;
+        }
+        .under-construction-content {
+            display: none;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .under-construction-content h2 {
+            font-size: 2rem; color: var(--main-blue);
+        }
+        .under-construction-content p {
+            font-size: 1.2rem; color: #42587b;
         }
         @media (max-width: 1100px) {
             .carousel-row { gap: 60px; padding: 0 20px 10px 20px; } /* Increased gap */
@@ -208,29 +216,33 @@
         <div id="sub-title" class="subtitle">Similar words</div>
         <div id="author-label" class="author">Majid Nashtai</div>
         <!-- This carousel row will be dynamically populated -->
-        <div id="carousel-container" class="carousel-row"></div>
+        <div id="carousel-view">
+            <div id="carousel-container" class="carousel-row"></div>
+        </div>
+        <!-- Under Construction Message -->
+        <div id="under-construction-content" class="under-construction-content">
+            <p>Sorry, the page you are trying to access is unavailable.</p>
+            <h2>Page under construction.</h2>
+        </div>
     </div>
-
     <!-- Black strip footer (back arrow and label) -->
     <div id="black-strip" class="black-strip">
-        <span id="back-arrow" class="arrow">&#8592;</span>
+        <span id="back-arrow" class="arrow">←</span>
         <span class="back-label">Back</span>
     </div>
-
     <script>
         // --- DATA STRUCTURE ---
-        // This object holds the first level of the hierarchy.
         const data = {
             title: "INYUITY",
             subtitle: "Similar words",
             author: "Majid Nashtai",
             levels: {
                 main: {
-                    title: "INYUITY",
+                    title: "INTUITY",
                     subtitle: "Similar words",
                     items: [
                         { label: "Vocabulary" },
-                        { label: "Academic expressions" },
+                        { label: "Academic Expressions" },
                         { label: "Sentences" },
                         { label: "Paragraphs" },
                         { label: "Lists" }
@@ -238,66 +250,67 @@
                 }
             }
         };
-
         // --- DOM REFERENCES ---
         const carouselContainer = document.getElementById('carousel-container');
         const mainTitle = document.getElementById('main-title');
         const subTitle = document.getElementById('sub-title');
         const authorLabel = document.getElementById('author-label');
         const backStrip = document.getElementById('black-strip');
+        const carouselView = document.getElementById('carousel-view');
+        const underConstructionContent = document.getElementById('under-construction-content');
         
-        // --- FUNCTIONS ---
         // Renders the cards for the given level.
         function renderCards(level) {
-            // Clear the existing carousel content
             carouselContainer.innerHTML = '';
-            
-            // Update the header titles
             mainTitle.textContent = level.title;
             subTitle.textContent = level.subtitle;
-            
-            // Hide the author label on sub-levels
             authorLabel.style.display = 'block';
-            
-            // Show/hide the back button based on history
-            backStrip.style.display = 'flex';
+            carouselView.style.display = 'block';
+            underConstructionContent.style.display = 'none';
+            backStrip.style.display = 'none';
 
-            // Create and append cards for each item in the current level
             level.items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.setAttribute('tabindex', '0');
-                
-                // Add label with inline icon to the card
                 const label = document.createElement('span');
                 label.className = 'card-label';
                 label.innerHTML = `<span class="intuity-initial">i</span>${item.label}`;
                 card.appendChild(label);
-                
-                // Add click event listener to handle navigation
-                card.addEventListener('click', () => {
-                    // Navigate to the specified URL or show a message
-                    if (item.url) {
-                        window.location.href = item.url;
-                    }
-                });
 
+                card.addEventListener('click', () => {
+                    // If item.url missing/empty, show sorry message
+                    if (!item.url || item.url.trim() === "") {
+                        showUnderConstruction();
+                        return;
+                    }
+                    // Otherwise try HEAD request (fetch) as fallback
+                    fetch(item.url, { method: 'HEAD' })
+                      .then(r => {
+                        if (r.ok) window.location.href = item.url;
+                        else showUnderConstruction();
+                      })
+                      .catch(showUnderConstruction);
+                });
                 carouselContainer.appendChild(card);
             });
         }
+        function showUnderConstruction() {
+            carouselView.style.display = 'none';
+            underConstructionContent.style.display = 'block';
+            backStrip.style.display = 'flex';
+        }
+        function showCarousel() {
+            carouselView.style.display = 'block';
+            underConstructionContent.style.display = 'none';
+            backStrip.style.display = 'none';
+        }
+        backStrip.addEventListener('click', showCarousel);
 
-        // Event listener for the back button
-        backStrip.addEventListener('click', () => {
-            // This is a placeholder for navigation. In a real app,
-            // you'd navigate back to the main menu page.
-            window.history.back();
-        });
-
-        // --- INITIALIZATION ---
-        // Render the main menu when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             renderCards(data.levels.main);
         });
     </script>
 </body>
 </html>
+
