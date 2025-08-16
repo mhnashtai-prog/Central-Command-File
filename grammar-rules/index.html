@@ -14,11 +14,9 @@
     }
     html, body { margin:0; padding:0; min-height:100vh; background:var(--light-bg); font-family:'Inter',sans-serif; }
     body { display:flex; flex-direction:column; padding-bottom: var(--footer-height); }
-
     .container { max-width:98vw; margin:0 auto; text-align:center; padding-top:42px; flex:1 0 auto; }
     .title { font-size:3rem; font-weight:700; color:var(--main-blue); margin-bottom:3px; }
     .subtitle { font-size:1.2rem; color:#42587b; margin-bottom:2px; }
-
     .carousel-row { display:flex; gap:80px; overflow-x:auto; padding:0 40px 10px 40px; margin:38px 0 56px; }
     .card { min-width:170px; height:170px; border-radius:var(--card-radius); background:#fff;
         display:flex; align-items:center; justify-content:center; flex-direction:column;
@@ -29,13 +27,9 @@
     .card:hover { transform:translateY(-2px); }
 
     .intuity-initial { width:28px; height:28px; border-radius:50%; background:var(--light-bg);
-      display:flex; align-items:center; justify-content:center;
-      font-weight:800; font-size:1.2rem; color:#98a2ad;
-      box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);
-      position: relative; top:-15px;
+      display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2rem; color:#98a2ad;
+      box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4); position: relative; top: -15px;
     }
-
-    /* ✅ The one reliable Back strip */
     .black-strip {
       position:fixed; bottom:0; left:50%; transform:translateX(-50%);
       width:80%; height:var(--footer-height);
@@ -48,33 +42,32 @@
       color:#fff; cursor:pointer; z-index:40;
     }
     .black-strip .arrow { font-size:1.9rem; margin-right:14px; }
-
     .under-construction-content { display:none; text-align:center; padding-top:50px; }
     .under-construction-content h2 { font-size:2rem; color:var(--main-blue); }
     .under-construction-content p { font-size:1.2rem; color:#42587b; }
+    @media (max-width: 700px) {
+      .black-strip { width: 95%; height: 38px; font-size: 0.92rem; padding: 0 14px; }
+      .black-strip .arrow { font-size: 1.4rem; }
+      .black-strip .back-label { font-size: 0.86rem; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="title">INTUITY</div>
     <div class="subtitle">Grammar Rules</div>
-
     <div id="carousel-view"><div id="carousel-container" class="carousel-row"></div></div>
     <div id="under-construction-content" class="under-construction-content">
       <p>Sorry, the page you are trying to access is unavailable.</p>
       <h2>Page under construction.</h2>
     </div>
   </div>
-
-  <!-- ✅ Only one strip (“Back”) -->
   <div id="back-strip" class="black-strip">
-    <span class="arrow">←</span><span class="back-label">Back</span>
+    <span class="arrow">←</span>
+    <span class="back-label">Back</span>
   </div>
-
   <script>
     const data = {
-      title: "INTUITY",
-      subtitle: "Grammar Rules",
       items: [
         { label: "Tenses", url: "tenses/index.html" },
         { label: "Comparatives", url: "comparatives/index.html" },
@@ -83,7 +76,7 @@
         { label: "Reported Speech", url: "reported-speech/index.html" },
         { label: "Linking Words", url: "linking-words/index.html" },
         { label: "Past Modals", url: "past-modals/index.html" },
-        { label: "Inversion", url: "" }, /* intentionally UC */
+        { label: "Inversion", url: "" }, // Test UC here
         { label: "Gerunds & Infinitives", url: "gerunds-infinitives/index.html" },
         { label: "Phrasal Verbs", url: "phrasal-verbs/index.html" },
         { label: "Miscellaneous Structures", url: "miscellaneous-structures/index.html" },
