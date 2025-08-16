@@ -9,8 +9,8 @@
     :root {
       --main-blue: #1a263c;
       --black-strip: #0d0d0d;
-      --light-bg: #f2f8ff;    /* Use Similar Words background */
-      --card-radius: 30px;    /* Match card roundness */
+      --light-bg: #f2f8ff;
+      --card-radius: 30px;
       --footer-height: 48px;
     }
     html, body {
@@ -58,7 +58,7 @@
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      gap: 80px; /* Increased gap */
+      gap: 80px;
       margin-top: 38px;
       margin-bottom: 56px;
       overflow-x: auto;
@@ -78,7 +78,7 @@
       min-width: 170px;
       max-width: 210px;
       height: 170px;
-      background-color: #ffffff;      /* MATCH: Similar Words boxes pure white */
+      background-color: #ffffff;
       border-radius: var(--card-radius);
       display: flex;
       flex-direction: column;
@@ -93,7 +93,6 @@
       padding: 18px;
       line-height: 1.4;
       user-select: none;
-      /* MATCH: Similar Words neumorphic shadow style */
       box-shadow: -2px -2px 8px rgba(255,255,255,0.9), 5px 5px 10px rgba(175,182,192,0.4);
     }
     .card:hover {
@@ -112,7 +111,7 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background-color: var(--light-bg);  /* Soft blue, as in Similar Words */
+      background-color: var(--light-bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -133,13 +132,13 @@
       background: linear-gradient(135deg, #2b3951, #1a263c);
       border-radius: 32px 32px 0 0;
       box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: flex-start;
       padding: 0 40px;
       font-size: 1.25rem;
       color: #fff;
-      z-index: 40;
+      z-index: 101;
       font-weight: 600;
       cursor: pointer;
     }
@@ -208,9 +207,10 @@
       <h2>Page under construction.</h2>
     </div>
   </div>
-  <div id="black-strip" class="black-strip">
+  <!-- Always visible "Back to Central Command" -->
+  <div id="main-back-strip" class="black-strip">
     <span class="arrow">←</span>
-    <span class="back-label">Back</span>
+    <span class="back-label">Central Command</span>
   </div>
   <script>
     const data = {
@@ -235,7 +235,7 @@
     const carouselContainer = document.getElementById('carousel-container');
     const carouselView = document.getElementById('carousel-view');
     const underConstructionContent = document.getElementById('under-construction-content');
-    const backStrip = document.getElementById('black-strip');
+    const mainBackStrip = document.getElementById('main-back-strip');
 
     function renderCards() {
       carouselContainer.innerHTML = '';
@@ -252,6 +252,8 @@
         card.addEventListener('click', () => handleCardClick(item));
         carouselContainer.appendChild(card);
       });
+      carouselView.style.display = 'block';
+      underConstructionContent.style.display = 'none';
     }
 
     async function handleCardClick(item) {
@@ -274,16 +276,11 @@
     function showUnderConstruction() {
       carouselView.style.display = 'none';
       underConstructionContent.style.display = 'block';
-      backStrip.style.display = 'flex';
     }
 
-    function showCarousel() {
-      carouselView.style.display = 'block';
-      underConstructionContent.style.display = 'none';
-      backStrip.style.display = 'none';
-    }
-
-    backStrip.addEventListener('click', showCarousel);
+    mainBackStrip.addEventListener('click', function() {
+      window.location.href = "central-command.html";
+    });
 
     document.addEventListener('DOMContentLoaded', renderCards);
   </script>
