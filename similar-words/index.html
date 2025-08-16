@@ -13,7 +13,8 @@
       --footer-height: 48px;
     }
     html, body { margin:0; padding:0; min-height:100vh; background:var(--light-bg); font-family:'Inter',sans-serif; }
-    body { display:flex; flex-direction:column; padding-bottom: var(--footer-height); }
+    body { display:flex; flex-direction:column; }
+    .main-content-wrapper { flex-grow: 1; overflow-y: auto; padding-bottom: var(--footer-height); }
     .container { max-width:98vw; margin:0 auto; text-align:center; padding-top:42px; flex:1 0 auto; }
     .title { font-size:3rem; font-weight:700; color:var(--main-blue); margin-bottom:3px; }
     .subtitle { font-size:1.2rem; color:#42587b; margin-bottom:2px; }
@@ -32,17 +33,38 @@
       box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);position:relative;top:-15px;
     }
     .black-strip {
-      position:fixed; bottom:0; left:50%; transform:translateX(-50%);
-      width:80%; height:var(--footer-height);
-      background:linear-gradient(135deg,#2b3951,#1a263c);
-      border-radius:32px 32px 0 0;
-      box-shadow:0 -2px 14px rgba(0,0,0,0.25);
-      display:none; /* hidden until UC */
-      align-items:center; justify-content:flex-start;
-      padding:0 40px; font-size:1.25rem; font-weight:600;
-      color:#fff; cursor:pointer; z-index:40;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: var(--footer-height, 48px);
+      background: linear-gradient(135deg, #2b3951, #1a263c);
+      border-radius: 32px 32px 0 0;
+      box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 40px;
+      font-size: 1.25rem;
+      color: #fff;
+      z-index: 101;
+      font-weight: 600;
+      cursor: pointer;
     }
-    .black-strip .arrow { font-size:1.9rem; margin-right:14px; }
+    .black-strip .arrow {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin-right: 14px;
+      transition: color 0.17s;
+    }
+    .black-strip .arrow:hover { color: #63e3c0; }
+    .black-strip .back-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-left: 6px;
+    }
     .under-construction-content { display:none; text-align:center; padding-top:50px; }
     .under-construction-content h2 { font-size:2rem; color:var(--main-blue); }
     .under-construction-content p { font-size:1.2rem; color:#42587b; }
@@ -54,19 +76,21 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="title">INTUITY</div>
-    <div class="subtitle">Similar Words</div>
-    <div class="author">Majid Nashtai</div>
-    <div id="carousel-view"><div id="carousel-container" class="carousel-row"></div></div>
-    <div id="under-construction-content" class="under-construction-content">
-      <p>Sorry, the page you are trying to access is unavailable.</p>
-      <h2>Page under construction.</h2>
+  <div class="main-content-wrapper">
+    <div class="container">
+      <div class="title">INTUITY</div>
+      <div class="subtitle">Similar Words</div>
+      <div class="author">Majid Nashtai</div>
+      <div id="carousel-view"><div id="carousel-container" class="carousel-row"></div></div>
+      <div id="under-construction-content" class="under-construction-content">
+        <p>Sorry, the page you are trying to access is unavailable.</p>
+        <h2>Page under construction.</h2>
+      </div>
     </div>
   </div>
   <div id="back-strip" class="black-strip">
     <span class="arrow">←</span>
-    <span class="back-label">Back</span>
+    <span class="back-label">Back to Main Menu</span>
   </div>
   <script>
     const data = {
@@ -108,15 +132,25 @@
     function showUC(){
       carouselView.style.display='none';
       ucContent.style.display='block';
-      backStrip.style.display='flex';
+      // Keep the strip visible but don't change it since it's always showing
     }
     function showCarousel(){
       carouselView.style.display='block';
       ucContent.style.display='none';
-      backStrip.style.display='none';
+      // Keep the strip visible
     }
 
-    backStrip.addEventListener('click',showCarousel);
+    // Set up back navigation to main menu
+    backStrip.addEventListener('click', function() {
+      if (ucContent.style.display === 'block') {
+        // If we're in under construction view, go back to carousel
+        showCarousel();
+      } else {
+        // If we're in main view, show message about main menu navigation
+        alert("Navigation to 'Main Menu' will be available soon.");
+      }
+    });
+
     document.addEventListener('DOMContentLoaded',renderCards);
   </script>
 </body>
