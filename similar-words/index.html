@@ -6,13 +6,12 @@
     <title>INYUITY – Similar words</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Base styles for a clean, modern look */
         :root {
             --main-blue: #1a263c;
             --black-strip: #0d0d0d;
-            --light-bg: #f2f8ff; /* Updated to a slightly lighter background */
-            --card-radius: 30px; /* Increased for a rounder look */
-            --footer-height: 48px; /* Thinner black strip */
+            --light-bg: #f2f8ff;
+            --card-radius: 30px;
+            --footer-height: 48px;
         }
         html, body {
             margin: 0;
@@ -60,7 +59,7 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
-            gap: 80px; /* Increased gap */
+            gap: 80px;
             margin-top: 38px;
             margin-bottom: 56px;
             overflow-x: auto;
@@ -75,13 +74,12 @@
             background: #bfcce2;
             border-radius: 8px;
         }
-        
         .card {
             position: relative;
             min-width: 170px;
             max-width: 210px;
             height: 170px;
-            background-color: #ffffff; /* Changed to pure white */
+            background-color: #ffffff;
             border-radius: var(--card-radius);
             display: flex;
             flex-direction: column;
@@ -96,18 +94,12 @@
             padding: 18px;
             line-height: 1.4;
             user-select: none;
-            
-            /* Updated box-shadow for a thinner top/left glow */
-            box-shadow: -2px -2px 8px rgba(255, 255, 255, 0.9), 
-                        5px 5px 10px rgba(175, 182, 192, 0.4);
+            box-shadow: -2px -2px 8px rgba(255,255,255,0.9), 5px 5px 10px rgba(175,182,192,0.4);
         }
         .card:hover {
             transform: translateY(-2px);
-            /* Updated hover box-shadow for a thinner top/left glow */
-            box-shadow: -4px -4px 12px rgba(255, 255, 255, 0.9), 
-                        7px 7px 15px rgba(175, 182, 192, 0.4);
+            box-shadow: -4px -4px 12px rgba(255,255,255,0.9), 7px 7px 15px rgba(175,182,192,0.4);
         }
-        
         .card-label {
             display: flex;
             flex-direction: column;
@@ -129,11 +121,10 @@
             font-weight: 800;
             font-size: 1.2rem;
             color: #98a2ad;
-            box-shadow: inset 2px 2px 6px rgba(175, 182, 192, 0.4);
-            position: relative; /* Add position relative */
-            top: -15px;      /* Lift the element up */
+            box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);
+            position: relative;
+            top: -15px;
         }
-        /* Styles for the floating back strip */
         .black-strip {
             position: fixed;
             bottom: 0;
@@ -144,20 +135,18 @@
             background: linear-gradient(135deg, #2b3951, #1a263c);
             border-radius: 32px 32px 0 0;
             box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: flex-start;
             padding: 0 40px;
             font-size: 1.25rem;
             color: #fff;
-            z-index: 40;
+            z-index: 101;
             font-weight: 600;
-            transition: all 0.3s ease;
             cursor: pointer;
         }
         .black-strip .arrow {
-            font-size: 1.9rem; /* Reduced font size to fit thinner strip */
-            font-weight: 600;
+            font-size: 1.9rem;
             margin-right: 14px;
             transition: color 0.17s;
         }
@@ -165,7 +154,7 @@
             color: #63e3c0;
         }
         .black-strip .back-label {
-            font-size: 1.1rem; /* Reduced font size to fit thinner strip */
+            font-size: 1.1rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             margin-left: 6px;
@@ -182,7 +171,7 @@
             font-size: 1.2rem; color: #42587b;
         }
         @media (max-width: 1100px) {
-            .carousel-row { gap: 60px; padding: 0 20px 10px 20px; } /* Increased gap */
+            .carousel-row { gap: 60px; padding: 0 20px 10px 20px; }
             .card { min-width: 150px; height: 142px; font-size: 1.05rem; padding: 13px; }
             .intuity-initial { width: 24px; height: 24px; font-size: 1rem; }
             .black-strip { width: 90%; height: 42px; }
@@ -191,7 +180,7 @@
         }
         @media (max-width: 800px) {
             .title { font-size: 2.2rem;}
-            .carousel-row { gap: 30px; padding: 0 15px 10px 15px; } /* Increased gap */
+            .carousel-row { gap: 30px; padding: 0 15px 10px 15px; }
             .card { min-width: 128px; height: 108px; font-size: 0.93rem; padding: 8px;}
             .intuity-initial { width: 22px; height: 22px; font-size: 0.9rem; }
             .black-strip { font-size: 0.9rem; padding: 0 17px; width: 95%; height: 38px; }
@@ -199,7 +188,7 @@
             .black-strip .back-label { font-size: 0.8rem;}
         }
         @media (max-width: 550px) {
-            .carousel-row { gap: 18px; padding: 0 10px 10px 10px; } /* Increased gap */
+            .carousel-row { gap: 18px; padding: 0 10px 10px 10px; }
             .card { min-width: 90px; height: 82px; font-size: 0.82rem; padding: 2px;}
             .container { padding-top: 12px; }
         }
@@ -211,27 +200,23 @@
 </head>
 <body>
     <div class="container">
-        <!-- Titles will be updated dynamically by JavaScript -->
-        <div id="main-title" class="title">INYUITY</div>
-        <div id="sub-title" class="subtitle">Similar words</div>
+        <div id="main-title" class="title">INTUITY</div>
+        <div id="sub-title" class="subtitle">Similar Words</div>
         <div id="author-label" class="author">Majid Nashtai</div>
-        <!-- This carousel row will be dynamically populated -->
         <div id="carousel-view">
             <div id="carousel-container" class="carousel-row"></div>
         </div>
-        <!-- Under Construction Message -->
         <div id="under-construction-content" class="under-construction-content">
             <p>Sorry, the page you are trying to access is unavailable.</p>
             <h2>Page under construction.</h2>
         </div>
     </div>
-    <!-- Black strip footer (back arrow and label) -->
-    <div id="black-strip" class="black-strip">
-        <span id="back-arrow" class="arrow">←</span>
-        <span class="back-label">Back</span>
+    <!-- Always visible "Back to Central Command" -->
+    <div id="main-back-strip" class="black-strip">
+        <span class="arrow">←</span>
+        <span class="back-label">Central Command</span>
     </div>
     <script>
-        // --- DATA STRUCTURE ---
         const data = {
             title: "INYUITY",
             subtitle: "Similar words",
@@ -250,16 +235,14 @@
                 }
             }
         };
-        // --- DOM REFERENCES ---
         const carouselContainer = document.getElementById('carousel-container');
         const mainTitle = document.getElementById('main-title');
         const subTitle = document.getElementById('sub-title');
         const authorLabel = document.getElementById('author-label');
-        const backStrip = document.getElementById('black-strip');
         const carouselView = document.getElementById('carousel-view');
         const underConstructionContent = document.getElementById('under-construction-content');
-        
-        // Renders the cards for the given level.
+        const mainBackStrip = document.getElementById('main-back-strip');
+        // Render cards
         function renderCards(level) {
             carouselContainer.innerHTML = '';
             mainTitle.textContent = level.title;
@@ -267,8 +250,6 @@
             authorLabel.style.display = 'block';
             carouselView.style.display = 'block';
             underConstructionContent.style.display = 'none';
-            backStrip.style.display = 'none';
-
             level.items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -277,20 +258,17 @@
                 label.className = 'card-label';
                 label.innerHTML = `<span class="intuity-initial">i</span>${item.label}`;
                 card.appendChild(label);
-
                 card.addEventListener('click', () => {
-                    // If item.url missing/empty, show sorry message
                     if (!item.url || item.url.trim() === "") {
                         showUnderConstruction();
                         return;
                     }
-                    // Otherwise try HEAD request (fetch) as fallback
                     fetch(item.url, { method: 'HEAD' })
-                      .then(r => {
-                        if (r.ok) window.location.href = item.url;
-                        else showUnderConstruction();
-                      })
-                      .catch(showUnderConstruction);
+                        .then(r => {
+                            if (r.ok) window.location.href = item.url;
+                            else showUnderConstruction();
+                        })
+                        .catch(showUnderConstruction);
                 });
                 carouselContainer.appendChild(card);
             });
@@ -298,19 +276,13 @@
         function showUnderConstruction() {
             carouselView.style.display = 'none';
             underConstructionContent.style.display = 'block';
-            backStrip.style.display = 'flex';
         }
-        function showCarousel() {
-            carouselView.style.display = 'block';
-            underConstructionContent.style.display = 'none';
-            backStrip.style.display = 'none';
-        }
-        backStrip.addEventListener('click', showCarousel);
-
+        mainBackStrip.addEventListener('click', function() {
+            window.location.href = "central-command.html";
+        });
         document.addEventListener('DOMContentLoaded', () => {
             renderCards(data.levels.main);
         });
     </script>
 </body>
 </html>
-
