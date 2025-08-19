@@ -376,9 +376,9 @@
   </div>
 
   <script>
-    // Level 3: Multiple Choice Tests (TEST 1-10)
+    // Level 3: Multiple Choice Tests (all show under construction)
     const tests = [
-      { name: "TEST 1", link: "test1.html" },
+      { name: "TEST 1", link: null },
       { name: "TEST 2", link: null },
       { name: "TEST 3", link: null },
       { name: "TEST 4", link: null },
@@ -414,12 +414,8 @@
         `;
         
         card.addEventListener('click', () => {
-          // Original Multiple Choice functionality preserved
-          if (test.link) {
-            window.location.href = test.link;
-          } else {
-            showMessageBox("This test is not available yet.");
-          }
+          // Show under construction for all tests (including TEST 1)
+          showMessageBox("This test is not available yet.");
         });
         
         carouselRow.appendChild(card);
@@ -519,10 +515,12 @@
       window.location.href = '../index.html';
     });
 
-    // Initialize
+    // Initialize - keep gray footer hidden on sub-pages
     document.addEventListener('DOMContentLoaded', function() {
       createCards();
       setTimeout(updateThumbPosition, 100);
+      // Ensure gray footer stays hidden on sub-pages
+      footerBlack.style.display = 'none';
     });
 
     // Handle window resize
