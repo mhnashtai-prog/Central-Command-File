@@ -426,10 +426,14 @@
     function showMessageBox(message) {
       messageText.textContent = message;
       messageBox.style.display = 'flex';
+      // Ensure gray footer stays hidden when showing message
+      footerBlack.style.display = 'none';
     }
 
     function hideMessageBox() {
       messageBox.style.display = 'none';
+      // Keep gray footer hidden after closing message
+      footerBlack.style.display = 'none';
     }
 
     closeMessageBtn.addEventListener('click', hideMessageBox);
