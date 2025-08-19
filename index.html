@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>INTUITY – Main MENU</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
   <style>
     html { box-sizing: border-box; }
     *, *:before, *:after { box-sizing: inherit; }
@@ -93,17 +93,17 @@
     }
     .carousel-row::-webkit-scrollbar { display: none; }
     .card {
-      aspect-ratio: 1/1;
-      width: 180px;
-      min-width: 180px;
-      border-radius: 24px;
+      width: 253px;
+      height: 253px;
+      min-width: 253px;
+      border-radius: 49px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       flex: 0 0 auto;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-size: 1.45rem;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 1.74rem;
       font-weight: 700;
       color: #111;
       background: #fff;
@@ -118,17 +118,22 @@
       user-select: none;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       margin: 0;
+      position: relative;
+      text-align: center;
+      line-height: 1.18;
+      padding: 0 20px;
+      transform: translateY(0px);
     }
     .card-logo-text {
       display: block;
-      font-family: 'Montserrat', Arial Black, Arial, sans-serif;
-      font-weight: 700;
-      font-size: 34px;
+      font-family: 'Poppins', 'Montserrat', 'Arial Black', Arial, sans-serif;
+      font-weight: 900;
+      font-size: 46px;
       color: #111;
-      margin-bottom: 16px;
+      margin: 0 auto 34px auto;
       opacity: 0.89;
       letter-spacing: -0.08em;
-      line-height: 1;
+      line-height: 0.7;
       text-shadow: 0 2.5px 8px #ddd2;
       user-select: none;
       pointer-events: none;
@@ -136,11 +141,12 @@
     }
     .card-label {
       text-align: center;
-      font-size: 1.14rem;
+      font-size: 1.74rem;
       font-weight: 700;
       color: #181c2e;
       margin: 0;
       line-height: 1.18;
+      margin-top: -15px;
     }
     .card:hover {
       background: #f5f9fd;
@@ -165,6 +171,31 @@
         inset -1px -1px 3px rgba(0,0,0,0.15),
         inset 1px 1px 2px rgba(255,255,255,0.3);
       transform: translateY(-1.5px) scale(0.98);
+    }
+    @media (max-width: 1100px) {
+      .carousel-container,
+      .slider-bar-wrapper {
+        max-width: 99vw;
+      }
+      .carousel-row {
+        gap: 39px;
+      }
+      .card {
+        width: 31vw;
+        min-width: 140px;
+        height: 31vw;
+        min-height: 140px;
+        font-size: 1.36rem;
+        padding: 0 12px;
+      }
+      .card-logo-text { 
+        font-size: 28px; 
+        margin-bottom: 24px;
+      }
+      .card-label { 
+        margin-top: -9px;
+        font-size: 1.36rem;
+      }
     }
     .slider-bar-wrapper {
       width: 97vw;
@@ -322,20 +353,14 @@
   </div>
 
   <script>
-    // Data with more items to ensure scrolling
+    // Data with exactly 6 cards as requested
     const cardData = [
       { label: "Grammar Rules", url: "grammar-rules.html" },
-      { label: "Similar words", url: "similar-words.html" },
+      { label: "Similar Words", url: "similar-words.html" },
       { label: "Use of English", url: "use-of-english.html" },
       { label: "Reading", url: "reading.html" },
       { label: "Writing", url: "writing.html" },
-      { label: "Speaking", url: "speaking.html" },
-      { label: "Vocabulary", url: "vocabulary.html" },
-      { label: "Listening", url: "listening.html" },
-      { label: "Pronunciation", url: "pronunciation.html" },
-      { label: "Idioms", url: "idioms.html" },
-      { label: "Phrasal Verbs", url: "phrasal-verbs.html" },
-      { label: "Conversations", url: "conversations.html" }
+      { label: "Speaking", url: "speaking.html" }
     ];
 
     // DOM elements
@@ -349,7 +374,7 @@
 
     let isDragging = false;
 
-    // Create cards
+    // Create cards with the new larger styling
     function createCards() {
       cardData.forEach(item => {
         const card = document.createElement('div');
@@ -359,7 +384,16 @@
           <div class="card-label">${item.label}</div>
         `;
         card.addEventListener('click', () => {
-          showUnderConstruction();
+          if (!item.url || item.url.trim() === "") {
+            showUnderConstruction();
+            return;
+          }
+          fetch(item.url, { method: 'HEAD' })
+            .then(r => {
+              if (r.ok) window.location.href = item.url;
+              else showUnderConstruction();
+            })
+            .catch(showUnderConstruction);
         });
         carouselRow.appendChild(card);
       });
