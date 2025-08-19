@@ -2,126 +2,523 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>INTUITY – Similar Words</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --main-blue: #1a263c;
-      --light-bg: #f2f8ff;
-      --card-radius: 30px;
-      --footer-height: 48px;
+    html { box-sizing: border-box; }
+    *, *:before, *:after { box-sizing: inherit; }
+    body {
+      background: #f6f7fa;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    html, body { margin:0; padding:0; min-height:100vh; background:var(--light-bg); font-family:'Inter',sans-serif; }
-    body { display:flex; flex-direction:column; }
-    .main-content-wrapper { flex-grow: 1; overflow-y: auto; padding-bottom: var(--footer-height); }
-    .container { max-width:98vw; margin:0 auto; text-align:center; padding-top:42px; flex:1 0 auto; }
-    .title { font-size:3rem; font-weight:700; color:var(--main-blue); margin-bottom:3px; }
-    .subtitle { font-size:1.2rem; color:#42587b; margin-bottom:2px; }
-    .author { font-size:1rem; color:#7c91b5; margin-bottom:26px; }
-    .carousel-row { display:flex; gap:80px; overflow-x:auto; padding:0 40px 10px 40px; margin:38px 0 56px; }
-    .card { min-width:170px; height:170px; border-radius:var(--card-radius); background:#fff;
-        display:flex; align-items:center; justify-content:center; flex-direction:column;
-        font-size:1.22rem; font-weight:600; color:var(--main-blue); cursor:pointer;
-        box-shadow:-2px -2px 8px rgba(255,255,255,0.9),5px 5px 10px rgba(175,182,192,0.4);
-        transition: transform .3s, box-shadow .3s;
+    .container {
+      width: 100vw;
+      min-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
-    .card:hover { transform:translateY(-2px); }
-    .intuity-initial { width:28px; height:28px; border-radius:50%; background:var(--light-bg);
-      display:flex; align-items:center; justify-content:center;
-      font-weight:800; font-size:1.2rem; color:#98a2ad;
-      box-shadow: inset 2px 2px 6px rgba(175,182,192,0.4);position:relative;top:-15px;
+    .title {
+      margin-top: 40px;
+      font-size: 3.0rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #181c2e;
+      text-align: center;
+      margin-bottom: 8px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-transform: uppercase;
+    }
+    .divider {
+      width: 54px;
+      height: 2px;
+      background: #7a8eb5;
+      margin: 0 auto 14px auto;
+      border-radius: 2px;
+      opacity: 0.68;
+    }
+    .tag-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 28px;
+      gap: 2px;
+    }
+    .subtitle {
+      font-size: 1.13rem;
+      font-weight: 500;
+      color: #5e6a7d;
+      letter-spacing: 0.03em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    .author {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: #8ba0b3;
+      letter-spacing: 0.02em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    .carousel-container {
+      width: 96vw;
+      max-width: 980px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 4vh;
+      padding: 10px 0 40px 0;
+    }
+    .carousel-row {
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      gap: 61px;
+      -webkit-overflow-scrolling: touch;
+      align-items: flex-start;
+      scrollbar-width: none;
+      margin-bottom: 20px;
+      padding: 15px 20px 18px 20px;
+    }
+    .carousel-row::-webkit-scrollbar { display: none; }
+    .card {
+      width: 253px;
+      height: 253px;
+      min-width: 253px;
+      border-radius: 49px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 1.74rem;
+      font-weight: 700;
+      color: #111;
+      background: #fff;
+      box-shadow:
+        0px 15.3px 30.6px -6.1px rgba(83, 89, 100, 0.40),
+        0px 6.1px 12.2px -3.1px rgba(83, 89, 100, 0.29),
+        -9.2px -9.2px 18.4px -1.5px rgba(255,255,255,0.9),
+        0px -4.6px 9.2px -1.5px rgba(255,230,150,0.15),
+        inset 1px 1px 2px rgba(255,255,255,0.4),
+        inset -1px -1px 3px rgba(0,0,0,0.08);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 0;
+      position: relative;
+      text-align: center;
+      line-height: 1.18;
+      padding: 0 20px;
+      transform: translateY(0px);
+    }
+    .card-logo-text {
+      display: block;
+      font-family: 'Poppins', 'Montserrat', 'Arial Black', Arial, sans-serif;
+      font-weight: 900;
+      font-size: 46px;
+      color: #111;
+      margin: 0 auto 34px auto;
+      opacity: 0.89;
+      letter-spacing: -0.08em;
+      line-height: 0.7;
+      text-shadow: 0 2.5px 8px #ddd2;
+      user-select: none;
+      pointer-events: none;
+      text-align: center;
+    }
+    .card-label {
+      text-align: center;
+      font-size: 1.74rem;
+      font-weight: 700;
+      color: #181c2e;
+      margin: 0;
+      line-height: 1.18;
+      margin-top: -15px;
+    }
+    .card:hover {
+      background: #f5f9fd;
+      color: #086fc7;
+      box-shadow:
+        0px 26.8px 45.9px -6.1px rgba(83, 89, 100, 0.52),
+        0px 10.4px 20.7px -4px rgba(83, 89, 100, 0.34),
+        -11.8px -11.8px 23.6px -1.5px rgba(255,255,255,1),
+        0px -7px 14px -1.1px rgba(255,230,150,0.25),
+        inset 2px 2px 4px rgba(255,255,255,0.6),
+        inset -2px -2px 6px rgba(0,0,0,0.05);
+      transform: translateY(-7px) scale(1.02);
+    }
+    .card:active {
+      background: #f2f7fc;
+      color: #0860b8;
+      box-shadow:
+        0px 7px 14px -5.1px rgba(83,89,100,0.46),
+        0px 3px 6px -1.5px rgba(83,89,100,0.37),
+        -7px -7px 14px -1.5px rgba(255,255,255,0.8),
+        0px -3px 6px -0.8px rgba(255,230,150,0.2),
+        inset -1px -1px 3px rgba(0,0,0,0.15),
+        inset 1px 1px 2px rgba(255,255,255,0.3);
+      transform: translateY(-1.5px) scale(0.98);
+    }
+    @media (max-width: 1100px) {
+      .carousel-container,
+      .slider-bar-wrapper {
+        max-width: 99vw;
+      }
+      .carousel-row {
+        gap: 39px;
+      }
+      .card {
+        width: 31vw;
+        min-width: 140px;
+        height: 31vw;
+        min-height: 140px;
+        font-size: 1.36rem;
+        padding: 0 12px;
+      }
+      .card-logo-text { 
+        font-size: 28px; 
+        margin-bottom: 24px;
+      }
+      .card-label { 
+        margin-top: -9px;
+        font-size: 1.36rem;
+      }
+    }
+    .slider-bar-wrapper {
+      width: 97vw;
+      max-width: 970px;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 20%;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+    .custom-slider {
+      position: relative;
+      width: 100%;
+      height: 9.5px;
+      background: #a0a0a0;
+      border-radius: 9.5px;
+      box-shadow: 0 1px 4px 0 #2224;
+      display: flex;
+      align-items: center;
+    }
+    .slider-thumb {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(160deg, #fafcff 70%, #e9eaea 100%);
+      border-radius: 50%;
+      box-shadow:
+        0px 9px 6px -2px rgba(83,89,100,0.60),
+        -3px -3px 7px -2px rgba(255,255,255,0.90),
+        0px -7px 11px 0 rgba(255,230,150,0.20);
+      border: 2px solid #e6e7ea;
+      transform: translateY(-50%);
+      cursor: grab;
+      transition: left 0.2s, box-shadow 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .slider-thumb:active {
+      cursor: grabbing;
+      box-shadow:
+        0px 11px 7px -2px rgba(83,89,100,0.64),
+        -5px -5px 9px -2px rgba(255,255,255,1),
+        0px -10px 14px 0 rgba(255,230,150,0.28);
+    }
+    .slider-thumb::after {
+      content: '';
+      position: absolute;
+      left: 26%;
+      top: 27%;
+      width: 22%;
+      height: 12%;
+      background: linear-gradient(to bottom, #fff 90%, rgba(205,210,213,0.10) 100%);
+      border-radius: 50%;
+      opacity: 0.78;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .footer-black {
+      width: 97vw;
+      max-width: 990px;
+      height: 28px;
+      margin: 0 auto;
+      background: #444;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 18px 0 #2226;
+    }
+    .under-construction-content {
+      display: none;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .under-construction-content h2 {
+      font-size: 2rem; color: #181c2e;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .under-construction-content p {
+      font-size: 1.2rem; color: #42587b;
+      font-family: 'Montserrat', Arial, sans-serif;
     }
     .black-strip {
-      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 80%; height: var(--footer-height, 48px);
-      background: linear-gradient(135deg, #2b3951, #1a263c);
-      border-radius: 32px 32px 0 0; box-shadow: 0 -2px 14px rgba(0,0,0,0.25);
-      display: flex; align-items: center; justify-content: flex-start;
-      padding: 0 40px; font-size: 1.25rem; color: #fff; z-index: 101;
-      font-weight: 600; cursor: pointer;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 28px;
+      background: #444;
+      border-radius: 24px;
+      box-shadow: 0 2px 18px 0 #2226;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: #fff;
+      z-index: 40;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Montserrat', Arial, sans-serif;
     }
-    .black-strip .arrow { font-size: 1.9rem; font-weight: 600; margin-right: 14px; transition: color 0.17s; }
-    .black-strip .arrow:hover { color: #63e3c0; }
-    .black-strip .back-label { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.5px; margin-left: 6px; }
-    .under-construction-content { display:none; text-align:center; padding-top:50px; }
-    .under-construction-content h2 { font-size:2rem; color:var(--main-blue); }
-    .under-construction-content p { font-size:1.2rem; color:#42587b; }
-    @media (max-width: 700px) {
-      .black-strip { width: 95%; height: 38px; font-size: 0.92rem; padding: 0 14px; }
-      .black-strip .arrow { font-size: 1.4rem; }
-      .black-strip .back-label { font-size: 0.86rem; }
+    .black-strip .arrow {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin-right: 14px;
+      transition: color 0.17s;
+    }
+    .black-strip .arrow:hover {
+      color: #63e3c0;
+    }
+    .black-strip .back-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-left: 6px;
     }
   </style>
 </head>
 <body>
-  <div class="main-content-wrapper">
-    <div class="container">
-      <div class="title">INTUITY</div>
+  <div class="container">
+    <div class="title">INTUITY</div>
+    <div class="divider"></div>
+    <div class="tag-group">
       <div class="subtitle">Similar Words</div>
       <div class="author">Majid Nashtai</div>
-      <div id="carousel-view"><div id="carousel-container" class="carousel-row"></div></div>
-      <div id="under-construction-content" class="under-construction-content">
-        <p>Sorry, the page you are trying to access is unavailable.</p>
-        <h2>Page under construction.</h2>
+    </div>
+    <div class="carousel-container" id="carouselContainerAll">
+      <div class="carousel-row" id="carousel-row"></div>
+      <div class="slider-bar-wrapper">
+        <div class="custom-slider" id="customSlider">
+          <div class="slider-thumb" id="sliderThumb"></div>
+        </div>
       </div>
     </div>
+    <div class="footer-black"></div>
+    <!-- Under Construction Message -->
+    <div id="under-construction-content" class="under-construction-content">
+      <p>Sorry, the page you are trying to access is unavailable.</p>
+      <h2>Page under construction.</h2>
+    </div>
+    <div id="black-strip" class="black-strip">
+      <span class="arrow">←</span>
+      <span class="back-label">Back</span>
+    </div>
   </div>
-  <div id="back-strip" class="black-strip">
-    <span class="arrow">←</span>
-    <span class="back-label">Central Command</span>
-  </div>
+
   <script>
-    const data = {
-      items: [
-        { label: "Vocabulary", url: "vocabulary/index.html" },
-        { label: "Academic Expressions", url: "academic-expressions/index.html" },
-        { label: "Sentences", url: "sentences/index.html" },
-        { label: "Paragraphs", url: "paragraphs/index.html" },
-        { label: "Lists", url: "lists/index.html" }
-      ]
-    };
-    const carouselContainer=document.getElementById('carousel-container');
-    const carouselView=document.getElementById('carousel-view');
-    const ucContent=document.getElementById('under-construction-content');
-    const backStrip=document.getElementById('back-strip');
-    
-    function renderCards(){
-      carouselContainer.innerHTML='';
-      data.items.forEach(item=>{
-        const card=document.createElement('div');
-        card.className='card';
-        card.innerHTML=`<span class="intuity-initial">i</span>${item.label}`;
-        card.addEventListener('click',()=>handle(item));
-        carouselContainer.appendChild(card);
+    // Original Similar Words data structure maintained
+    const cardData = [
+      { label: "Vocabulary", url: "vocabulary/index.html" },
+      { label: "Academic Expressions", url: "academic-expressions/index.html" },
+      { label: "Sentences", url: "sentences/index.html" },
+      { label: "Paragraphs", url: "paragraphs/index.html" },
+      { label: "Lists", url: "lists/index.html" }
+    ];
+
+    // DOM elements
+    const carouselRow = document.getElementById('carousel-row');
+    const sliderThumb = document.getElementById('sliderThumb');
+    const customSlider = document.getElementById('customSlider');
+    const blackStrip = document.getElementById('black-strip');
+    const carouselContainerAll = document.getElementById('carouselContainerAll');
+    const underConstructionContent = document.getElementById('under-construction-content');
+    const footerBlack = document.querySelector('.footer-black');
+
+    let isDragging = false;
+
+    // Create cards with enhanced linking functionality (same as Central Command)
+    function createCards() {
+      cardData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <span class="card-logo-text">i</span>
+          <div class="card-label">${item.label}</div>
+        `;
+        
+        card.addEventListener('click', () => {
+          // Original functionality maintained for Similar Words
+          if (!item.url || item.url.trim() === "") {
+            showUnderConstruction();
+            return;
+          }
+          
+          fetch(item.url, { method: 'HEAD' })
+            .then(response => {
+              if (response.ok) {
+                window.location.href = item.url;
+              } else {
+                showUnderConstruction();
+              }
+            })
+            .catch(() => {
+              showUnderConstruction();
+            });
+        });
+        
+        carouselRow.appendChild(card);
       });
-      showCarousel();
     }
-    
-    async function handle(item){
-      if(!item.url){ showUC(); return; }
-      try {
-        const res=await fetch(item.url,{method:'HEAD'});
-        if(res.ok) window.location.href=item.url;
-        else showUC();
-      } catch { showUC(); }
+
+    // Update thumb position based on scroll
+    function updateThumbPosition() {
+      const scrollLeft = carouselRow.scrollLeft;
+      const scrollWidth = carouselRow.scrollWidth;
+      const clientWidth = carouselRow.clientWidth;
+      const sliderWidth = customSlider.clientWidth;
+      const thumbWidth = sliderThumb.offsetWidth;
+      
+      if (scrollWidth <= clientWidth) {
+        sliderThumb.style.left = '0px';
+        return;
+      }
+      
+      const maxScroll = scrollWidth - clientWidth;
+      const maxThumbPosition = sliderWidth - thumbWidth;
+      const thumbPosition = (scrollLeft / maxScroll) * maxThumbPosition;
+      
+      sliderThumb.style.left = thumbPosition + 'px';
     }
-    
-    function showUC(){
-      carouselView.style.display='none';
-      ucContent.style.display='block';
+
+    // Handle scroll events
+    carouselRow.addEventListener('scroll', updateThumbPosition);
+
+    // Handle thumb dragging
+    sliderThumb.addEventListener('mousedown', startDrag);
+    sliderThumb.addEventListener('touchstart', startDrag);
+
+    function startDrag(e) {
+      isDragging = true;
+      e.preventDefault();
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('touchmove', drag);
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchend', stopDrag);
     }
-    function showCarousel(){
-      carouselView.style.display='block';
-      ucContent.style.display='none';
+
+    function drag(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const sliderRect = customSlider.getBoundingClientRect();
+      const thumbWidth = sliderThumb.offsetWidth;
+      
+      let newLeft = clientX - sliderRect.left - (thumbWidth / 2);
+      const maxLeft = customSlider.clientWidth - thumbWidth;
+      
+      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+      
+      const percentage = newLeft / maxLeft;
+      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
+      
+      carouselRow.scrollLeft = percentage * maxScroll;
     }
-    
-    // ✅ CORRECT PATH: Go up one level to Central Command
-    backStrip.addEventListener('click', function() {
+
+    function stopDrag() {
+      isDragging = false;
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('touchmove', drag);
+      document.removeEventListener('mouseup', stopDrag);
+      document.removeEventListener('touchend', stopDrag);
+    }
+
+    // Handle slider bar clicks
+    customSlider.addEventListener('click', function(e) {
+      if (e.target === sliderThumb) return;
+      
+      const sliderRect = customSlider.getBoundingClientRect();
+      const clickX = e.clientX - sliderRect.left;
+      const sliderWidth = customSlider.clientWidth;
+      const percentage = clickX / sliderWidth;
+      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
+      
+      carouselRow.scrollLeft = percentage * maxScroll;
+    });
+
+    // Enhanced under construction functionality with better messaging
+    function showUnderConstruction() {
+      carouselContainerAll.style.display = 'none';
+      underConstructionContent.style.display = 'block';
+      blackStrip.style.display = 'flex';
+      footerBlack.style.display = 'none';
+      
+      // Add some visual feedback
+      console.log('Showing under construction page - file not found or in development');
+    }
+
+    function showCarousel() {
+      carouselContainerAll.style.display = 'flex';
+      underConstructionContent.style.display = 'none';
+      blackStrip.style.display = 'none';
+      footerBlack.style.display = 'flex';
+      setTimeout(updateThumbPosition, 100);
+      
+      console.log('Returning to similar words carousel');
+    }
+
+    // Back button functionality - goes back to Central Command
+    blackStrip.addEventListener('click', function() {
       window.location.href = '../index.html';
     });
-    
-    document.addEventListener('DOMContentLoaded',renderCards);
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      createCards();
+      setTimeout(updateThumbPosition, 100);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      setTimeout(updateThumbPosition, 100);
+    });
   </script>
 </body>
 </html>
