@@ -374,7 +374,7 @@
 
     let isDragging = false;
 
-    // Create cards with the new larger styling
+    // Create cards with enhanced linking functionality
     function createCards() {
       cardData.forEach(item => {
         const card = document.createElement('div');
@@ -383,18 +383,54 @@
           <span class="card-logo-text">i</span>
           <div class="card-label">${item.label}</div>
         `;
+        
         card.addEventListener('click', () => {
-          if (!item.url || item.url.trim() === "") {
-            showUnderConstruction();
-            return;
+          // Special handling for Grammar Rules - links to the other carousel
+          if (item.label === "Grammar Rules") {
+            // Try to navigate to the grammar rules carousel
+            const link = document.createElement('a');
+            link.href = item.url;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            
+            // Check if file exists before navigating
+            fetch(item.url, { method: 'HEAD' })
+              .then(response => {
+                document.body.removeChild(link);
+                if (response.ok) {
+                  // File exists - navigate to grammar rules carousel
+                  window.location.href = item.url;
+                } else {
+                  // File doesn't exist - show under construction
+                  showUnderConstruction();
+                }
+              })
+              .catch(() => {
+                document.body.removeChild(link);
+                // Network error or file doesn't exist - show under construction
+                showUnderConstruction();
+              });
+          } else {
+            // For other cards, check if URL exists or show under construction
+            if (!item.url || item.url.trim() === "") {
+              showUnderConstruction();
+              return;
+            }
+            
+            fetch(item.url, { method: 'HEAD' })
+              .then(response => {
+                if (response.ok) {
+                  window.location.href = item.url;
+                } else {
+                  showUnderConstruction();
+                }
+              })
+              .catch(() => {
+                showUnderConstruction();
+              });
           }
-          fetch(item.url, { method: 'HEAD' })
-            .then(r => {
-              if (r.ok) window.location.href = item.url;
-              else showUnderConstruction();
-            })
-            .catch(showUnderConstruction);
         });
+        
         carouselRow.appendChild(card);
       });
     }
@@ -475,12 +511,15 @@
       carouselRow.scrollLeft = percentage * maxScroll;
     });
 
-    // Under construction functionality
+    // Enhanced under construction functionality with better messaging
     function showUnderConstruction() {
       carouselContainerAll.style.display = 'none';
       underConstructionContent.style.display = 'block';
       blackStrip.style.display = 'flex';
       footerBlack.style.display = 'none';
+      
+      // Add some visual feedback
+      console.log('Showing under construction page - file not found or in development');
     }
 
     function showCarousel() {
@@ -489,6 +528,8 @@
       blackStrip.style.display = 'none';
       footerBlack.style.display = 'flex';
       setTimeout(updateThumbPosition, 100);
+      
+      console.log('Returning to main carousel');
     }
 
     blackStrip.addEventListener('click', showCarousel);
