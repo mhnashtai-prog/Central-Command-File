@@ -274,37 +274,18 @@
       transform: translateX(-50%);
       box-shadow: 0 2px 18px 0 #2226;
     }
-    .message-box {
+    .under-construction-content {
       display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center; align-items: center;
-      z-index: 102;
-    }
-    .message-box-content {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      max-width: 80%;
-      color: #181c2e;
+      padding-top: 50px;
     }
-    .message-box-content p {
-      margin: 0 0 10px 0;
-      font-size: 1.1rem;
-    }
-    .message-box-content button {
-      padding: 10px 20px;
-      background-color: #181c2e;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    .under-construction-content h2 {
+      font-size: 2rem; color: #181c2e;
       font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 600;
+    }
+    .under-construction-content p {
+      font-size: 1.2rem; color: #42587b;
+      font-family: 'Montserrat', Arial, sans-serif;
     }
     .black-strip {
       position: fixed;
@@ -359,22 +340,18 @@
         </div>
       </div>
     </div>
-    <div class="footer-black"></div>
-    <!-- Back button for going to Central Command -->
+    <div class="footer-black" style="display: none;"></div>
+    <!-- Under Construction Message -->
+    <div id="under-construction-content" class="under-construction-content">
+      <p>Sorry, the page you are trying to access is unavailable.</p>
+      <h2>Page under construction.</h2>
+    </div>
     <div id="black-strip" class="black-strip" style="display: flex;">
       <span class="arrow">←</span>
       <span class="back-label">Central Command</span>
     </div>
   </div>
-
-  <!-- Custom message box -->
-  <div id="messageBox" class="message-box">
-    <div class="message-box-content">
-      <p id="messageText"></p>
-      <button id="closeMessageBtn">OK</button>
-    </div>
-  </div>
-
+  
   <script>
     // ✅ CORRECT: Use of English exercise types (Level 2)
     const tests = [
@@ -390,10 +367,8 @@
     const customSlider = document.getElementById('customSlider');
     const blackStrip = document.getElementById('black-strip');
     const carouselContainerAll = document.getElementById('carouselContainerAll');
+    const underConstructionContent = document.getElementById('under-construction-content');
     const footerBlack = document.querySelector('.footer-black');
-    const messageBox = document.getElementById('messageBox');
-    const messageText = document.getElementById('messageText');
-    const closeMessageBtn = document.getElementById('closeMessageBtn');
 
     let isDragging = false;
 
@@ -411,7 +386,7 @@
           if (test.link) {
             window.location.href = test.link;
           } else {
-            showMessageBox("Page under construction");
+            showUnderConstruction();
           }
         });
         
@@ -419,17 +394,21 @@
       });
     }
 
-    // Original message box functionality
-    function showMessageBox(message) {
-      messageText.textContent = message;
-      messageBox.style.display = 'flex';
+    // Enhanced under construction functionality
+    function showUnderConstruction() {
+      carouselContainerAll.style.display = 'none';
+      underConstructionContent.style.display = 'block';
+      blackStrip.style.display = 'flex';
+      footerBlack.style.display = 'none';
     }
 
-    function hideMessageBox() {
-      messageBox.style.display = 'none';
+    function showCarousel() {
+      carouselContainerAll.style.display = 'flex';
+      underConstructionContent.style.display = 'none';
+      blackStrip.style.display = 'flex';
+      footerBlack.style.display = 'none';
+      setTimeout(updateThumbPosition, 100);
     }
-
-    closeMessageBtn.addEventListener('click', hideMessageBox);
 
     // Update thumb position based on scroll
     function updateThumbPosition() {
