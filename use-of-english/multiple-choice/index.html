@@ -290,45 +290,69 @@
       font-family: 'Montserrat', Arial, sans-serif;
       font-weight: 600;
     }
-    .back-footer {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 44px;
+    .footer-black {
+      width: 97vw;
+      max-width: 990px;
+      height: 28px;
+      margin: 0 auto;
       background: #444;
-      border-radius: 22px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      font-size: 1rem;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 18px 0 #2226;
+    }
+    .under-construction-content {
+      display: none;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .under-construction-content h2 {
+      font-size: 2rem; color: #181c2e;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .under-construction-content p {
+      font-size: 1.2rem; color: #42587b;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .black-strip {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 28px;
+      background: #444;
+      border-radius: 24px;
+      box-shadow: 0 2px 18px 0 #2226;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
       color: #fff;
       z-index: 40;
       font-weight: 600;
       cursor: pointer;
       font-family: 'Montserrat', Arial, sans-serif;
-      transition: all 0.2s ease;
     }
-    .back-footer:hover {
-      background: #555;
-      transform: translateX(-50%) translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-    }
-    .back-footer .arrow {
-      font-size: 1.4rem;
+    .black-strip .arrow {
+      font-size: 1.9rem;
       font-weight: 600;
+      margin-right: 14px;
       transition: color 0.17s;
     }
-    .back-footer:hover .arrow {
+    .black-strip .arrow:hover {
       color: #63e3c0;
     }
-    .back-footer .back-label {
-      font-size: 1rem;
+    .black-strip .back-label {
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 0.5px;
+      margin-left: 6px;
     }
   </style>
 </head>
@@ -348,9 +372,13 @@
         </div>
       </div>
     </div>
-    
-    <!-- Single compact back footer -->
-    <div id="backFooter" class="back-footer">
+    <div class="footer-black" style="display: none;"></div>
+    <!-- Under Construction Message -->
+    <div id="under-construction-content" class="under-construction-content">
+      <p>Sorry, the page you are trying to access is unavailable.</p>
+      <h2>Page under construction.</h2>
+    </div>
+    <div id="black-strip" class="black-strip" style="display: flex;">
       <span class="arrow">←</span>
       <span class="back-label">Back</span>
     </div>
@@ -382,7 +410,10 @@
     const carouselRow = document.getElementById('carousel-row');
     const sliderThumb = document.getElementById('sliderThumb');
     const customSlider = document.getElementById('customSlider');
-    const backFooter = document.getElementById('backFooter');
+    const blackStrip = document.getElementById('black-strip');
+    const carouselContainerAll = document.getElementById('carouselContainerAll');
+    const underConstructionContent = document.getElementById('under-construction-content');
+    const footerBlack = document.querySelector('.footer-black');
     const messageBox = document.getElementById('messageBox');
     const messageText = document.getElementById('messageText');
     const closeMessageBtn = document.getElementById('closeMessageBtn');
@@ -489,11 +520,32 @@
       messageBox.style.display = 'none';
     }
 
+    // Enhanced under construction functionality with better messaging
+    function showUnderConstruction() {
+      carouselContainerAll.style.display = 'none';
+      underConstructionContent.style.display = 'block';
+      blackStrip.style.display = 'flex';  // Keep back button visible
+      footerBlack.style.display = 'none';
+      
+      // Add some visual feedback
+      console.log('Showing under construction page - file not found or in development');
+    }
+
+    function showCarousel() {
+      carouselContainerAll.style.display = 'flex';
+      underConstructionContent.style.display = 'none';
+      blackStrip.style.display = 'flex';  // Keep back button visible
+      footerBlack.style.display = 'flex';
+      setTimeout(updateThumbPosition, 100);
+      
+      console.log('Returning to multiple choice carousel');
+    }
+
     closeMessageBtn.addEventListener('click', hideMessageBox);
 
-    // Back navigation - goes to multiple-choice/index.html
-    backFooter.addEventListener('click', function() {
-      window.location.href = 'multiple-choice/index.html';
+    // Back button functionality - goes back to Use of English
+    blackStrip.addEventListener('click', function() {
+      window.location.href = '../index.html';
     });
 
     document.addEventListener('DOMContentLoaded', function() {
