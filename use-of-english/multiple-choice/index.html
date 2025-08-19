@@ -348,8 +348,8 @@
     <div class="title">INTUITY</div>
     <div class="divider"></div>
     <div class="tag-group">
-      <div class="subtitle">Use of English</div>
-      <div class="author">Choose exercise type</div>
+      <div class="subtitle">Multiple Choice</div>
+      <div class="author">Select a test below</div>
     </div>
     <div class="carousel-container" id="carouselContainerAll">
       <div class="carousel-row" id="carousel-row"></div>
@@ -360,10 +360,10 @@
       </div>
     </div>
     <div class="footer-black"></div>
-    <!-- Back button for going to Central Command -->
+    <!-- Level 3 → Level 2 Navigation -->
     <div id="black-strip" class="black-strip" style="display: flex;">
       <span class="arrow">←</span>
-      <span class="back-label">Central Command</span>
+      <span class="back-label">Back</span>
     </div>
   </div>
 
@@ -376,12 +376,18 @@
   </div>
 
   <script>
-    // Use of English exercise types (Level 2)
+    // Level 3: Multiple Choice Tests (TEST 1-10)
     const tests = [
-      { name: "Multiple Choice", link: "multiple-choice/index.html" },
-      { name: "Gap Fill", link: "gap-fill/index.html" },
-      { name: "Word Formation", link: "word-formation/index.html" },
-      { name: "Word Transformation", link: "word-transformation/index.html" }
+      { name: "TEST 1", link: "test1.html" },
+      { name: "TEST 2", link: null },
+      { name: "TEST 3", link: null },
+      { name: "TEST 4", link: null },
+      { name: "TEST 5", link: null },
+      { name: "TEST 6", link: null },
+      { name: "TEST 7", link: null },
+      { name: "TEST 8", link: null },
+      { name: "TEST 9", link: null },
+      { name: "TEST 10", link: null }
     ];
 
     // DOM elements
@@ -508,7 +514,7 @@
       carouselRow.scrollLeft = percentage * maxScroll;
     });
 
-    // Back button functionality - goes back to Central Command
+    // LEVEL 3 → LEVEL 2 Navigation: Back to Use of English
     blackStrip.addEventListener('click', function() {
       window.location.href = '../index.html';
     });
