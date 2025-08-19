@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>INTUITY – Main MENU</title>
+  <title>INTUITY – Grammar Rules</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
   <style>
@@ -16,7 +16,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-   }
+    }
     .container {
       width: 100vw;
       min-height: 95vh;
@@ -297,7 +297,7 @@
       background: #444;
       border-radius: 24px;
       box-shadow: 0 2px 18px 0 #2226;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.25rem;
@@ -329,7 +329,7 @@
     <div class="title">INTUITY</div>
     <div class="divider"></div>
     <div class="tag-group">
-      <div class="subtitle">Language Generator</div>
+      <div class="subtitle">Grammar Rules</div>
       <div class="author">Majid Nashtai</div>
     </div>
     <div class="carousel-container" id="carouselContainerAll">
@@ -346,25 +346,28 @@
       <p>Sorry, the page you are trying to access is unavailable.</p>
       <h2>Page under construction.</h2>
     </div>
-    <div id="black-strip" class="black-strip">
+    <!-- Back button - always visible -->
+    <div id="black-strip" class="black-strip" style="display: flex;">
       <span class="arrow">←</span>
-      <span class="back-label">Back</span>
+      <span class="back-label">Central Command</span>
     </div>
   </div>
 
   <script>
-    // Data with extra cards to ensure scrolling functionality
+    // Grammar Rules data structure (A1-A12 from your file structure)
     const cardData = [
-      { label: "Grammar Rules", url: "grammar-rules.html" },
-      { label: "Similar Words", url: "similar-words.html" },
-      { label: "Use of English", url: "use-of-english.html" },
-      { label: "Reading", url: "reading.html" },
-      { label: "Writing", url: "writing.html" },
-      { label: "Speaking", url: "speaking.html" },
-      { label: "Vocabulary", url: "vocabulary.html" },
-      { label: "Listening", url: "listening.html" },
-      { label: "Pronunciation", url: "pronunciation.html" },
-      { label: "Idioms", url: "idioms.html" }
+      { label: "Tenses", url: "tenses/index.html" },
+      { label: "Comparatives", url: "comparatives/index.html" },
+      { label: "Conditionals Wishes", url: "conditionals-wishes/index.html" },
+      { label: "Passive Voice", url: "passive-voice/index.html" },
+      { label: "Reported Speech", url: "reported-speech/index.html" },
+      { label: "Linking Words", url: "linking-words/index.html" },
+      { label: "Past Modals", url: "past-modals/index.html" },
+      { label: "Inversion", url: "inversion/index.html" },
+      { label: "Gerunds Infinitives", url: "gerunds-infinitives/index.html" },
+      { label: "Phrasal Verbs", url: "phrasal-verbs/index.html" },
+      { label: "Miscellaneous Structures", url: "miscellaneous-structures/index.html" },
+      { label: "Verbs Adjectives Collocation", url: "verbs-adjectives-collocation/index.html" }
     ];
 
     // DOM elements
@@ -378,7 +381,7 @@
 
     let isDragging = false;
 
-    // Create cards with the new larger styling
+    // Create cards with enhanced linking functionality
     function createCards() {
       cardData.forEach(item => {
         const card = document.createElement('div');
@@ -387,18 +390,26 @@
           <span class="card-logo-text">i</span>
           <div class="card-label">${item.label}</div>
         `;
+        
         card.addEventListener('click', () => {
           if (!item.url || item.url.trim() === "") {
             showUnderConstruction();
             return;
           }
+          
           fetch(item.url, { method: 'HEAD' })
-            .then(r => {
-              if (r.ok) window.location.href = item.url;
-              else showUnderConstruction();
+            .then(response => {
+              if (response.ok) {
+                window.location.href = item.url;
+              } else {
+                showUnderConstruction();
+              }
             })
-            .catch(showUnderConstruction);
+            .catch(() => {
+              showUnderConstruction();
+            });
         });
+        
         carouselRow.appendChild(card);
       });
     }
@@ -483,19 +494,22 @@
     function showUnderConstruction() {
       carouselContainerAll.style.display = 'none';
       underConstructionContent.style.display = 'block';
-      blackStrip.style.display = 'flex';
+      blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'none';
     }
 
     function showCarousel() {
       carouselContainerAll.style.display = 'flex';
       underConstructionContent.style.display = 'none';
-      blackStrip.style.display = 'none';
+      blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'flex';
       setTimeout(updateThumbPosition, 100);
     }
 
-    blackStrip.addEventListener('click', showCarousel);
+    // Back button functionality - goes back to Central Command
+    blackStrip.addEventListener('click', function() {
+      window.location.href = '../index.html';
+    });
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
