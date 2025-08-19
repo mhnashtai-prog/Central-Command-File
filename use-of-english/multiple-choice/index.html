@@ -197,83 +197,7 @@
         font-size: 1.36rem;
       }
     }
-    .slider-bar-wrapper {
-      width: 97vw;
-      max-width: 970px;
-      justify-content: flex-start;
-      align-items: center;
-      margin-left: 20%;
-      margin-top: 8px;
-      margin-bottom: 0;
-    }
-    .custom-slider {
-      position: relative;
-      width: 100%;
-      height: 9.5px;
-      background: #a0a0a0;
-      border-radius: 9.5px;
-      box-shadow: 0 1px 4px 0 #2224;
-      display: flex;
-      align-items: center;
-    }
-    .slider-thumb {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 38px;
-      height: 38px;
-      background: linear-gradient(160deg, #fafcff 70%, #e9eaea 100%);
-      border-radius: 50%;
-      box-shadow:
-        0px 9px 6px -2px rgba(83,89,100,0.60),
-        -3px -3px 7px -2px rgba(255,255,255,0.90),
-        0px -7px 11px 0 rgba(255,230,150,0.20);
-      border: 2px solid #e6e7ea;
-      transform: translateY(-50%);
-      cursor: grab;
-      transition: left 0.2s, box-shadow 0.18s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      overflow: hidden;
-    }
-    .slider-thumb:active {
-      cursor: grabbing;
-      box-shadow:
-        0px 11px 7px -2px rgba(83,89,100,0.64),
-        -5px -5px 9px -2px rgba(255,255,255,1),
-        0px -10px 14px 0 rgba(255,230,150,0.28);
-    }
-    .slider-thumb::after {
-      content: '';
-      position: absolute;
-      left: 26%;
-      top: 27%;
-      width: 22%;
-      height: 12%;
-      background: linear-gradient(to bottom, #fff 90%, rgba(205,210,213,0.10) 100%);
-      border-radius: 50%;
-      opacity: 0.78;
-      z-index: 3;
-      pointer-events: none;
-    }
-    .footer-black {
-      width: 97vw;
-      max-width: 990px;
-      height: 28px;
-      margin: 0 auto;
-      background: #444;
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 2px 18px 0 #2226;
-    }
+    /*.slider-bar-wrapper { display: none !important; }*/ /* not present anymore */
     .message-box {
       display: none;
       position: fixed;
@@ -353,30 +277,22 @@
     </div>
     <div class="carousel-container" id="carouselContainerAll">
       <div class="carousel-row" id="carousel-row"></div>
-      <div class="slider-bar-wrapper">
-        <div class="custom-slider" id="customSlider">
-          <div class="slider-thumb" id="sliderThumb"></div>
-        </div>
-      </div>
+      <!-- THE SLIDER BAR IS REMOVED -->
     </div>
-    <div class="footer-black" style="display: none;"></div>
-    <!-- Level 3 → Level 2 Navigation -->
+    <!-- The ONLY footer: (arrow + Back) -->
     <div id="black-strip" class="black-strip" style="display: flex;">
       <span class="arrow">←</span>
       <span class="back-label">Back</span>
     </div>
   </div>
-
-  <!-- Custom message box -->
   <div id="messageBox" class="message-box">
     <div class="message-box-content">
       <p id="messageText"></p>
       <button id="closeMessageBtn">OK</button>
     </div>
   </div>
-
   <script>
-    // Level 3: Multiple Choice Tests (all show under construction)
+    // Multiple Choice Tests
     const tests = [
       { name: "TEST 1", link: null },
       { name: "TEST 2", link: null },
@@ -389,21 +305,13 @@
       { name: "TEST 9", link: null },
       { name: "TEST 10", link: null }
     ];
-
     // DOM elements
     const carouselRow = document.getElementById('carousel-row');
-    const sliderThumb = document.getElementById('sliderThumb');
-    const customSlider = document.getElementById('customSlider');
     const blackStrip = document.getElementById('black-strip');
-    const carouselContainerAll = document.getElementById('carouselContainerAll');
-    const footerBlack = document.querySelector('.footer-black');
     const messageBox = document.getElementById('messageBox');
     const messageText = document.getElementById('messageText');
     const closeMessageBtn = document.getElementById('closeMessageBtn');
-
-    let isDragging = false;
-
-    // Create cards with enhanced design but original functionality
+    // No more slider
     function createCards() {
       tests.forEach(test => {
         const card = document.createElement('div');
@@ -412,125 +320,25 @@
           <span class="card-logo-text">i</span>
           <div class="card-label">${test.name}</div>
         `;
-        
         card.addEventListener('click', () => {
-          // Show under construction for all tests (including TEST 1)
           showMessageBox("This test is not available yet.");
         });
-        
         carouselRow.appendChild(card);
       });
     }
-
-    // Original message box functionality
     function showMessageBox(message) {
       messageText.textContent = message;
       messageBox.style.display = 'flex';
-      // Ensure gray footer stays hidden when showing message
-      footerBlack.style.display = 'none';
     }
-
     function hideMessageBox() {
       messageBox.style.display = 'none';
-      // Keep gray footer hidden after closing message
-      footerBlack.style.display = 'none';
     }
-
     closeMessageBtn.addEventListener('click', hideMessageBox);
-
-    // Update thumb position based on scroll
-    function updateThumbPosition() {
-      const scrollLeft = carouselRow.scrollLeft;
-      const scrollWidth = carouselRow.scrollWidth;
-      const clientWidth = carouselRow.clientWidth;
-      const sliderWidth = customSlider.clientWidth;
-      const thumbWidth = sliderThumb.offsetWidth;
-      
-      if (scrollWidth <= clientWidth) {
-        sliderThumb.style.left = '0px';
-        return;
-      }
-      
-      const maxScroll = scrollWidth - clientWidth;
-      const maxThumbPosition = sliderWidth - thumbWidth;
-      const thumbPosition = (scrollLeft / maxScroll) * maxThumbPosition;
-      
-      sliderThumb.style.left = thumbPosition + 'px';
-    }
-
-    // Handle scroll events
-    carouselRow.addEventListener('scroll', updateThumbPosition);
-
-    // Handle thumb dragging
-    sliderThumb.addEventListener('mousedown', startDrag);
-    sliderThumb.addEventListener('touchstart', startDrag);
-
-    function startDrag(e) {
-      isDragging = true;
-      e.preventDefault();
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag);
-      document.addEventListener('mouseup', stopDrag);
-      document.addEventListener('touchend', stopDrag);
-    }
-
-    function drag(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const sliderRect = customSlider.getBoundingClientRect();
-      const thumbWidth = sliderThumb.offsetWidth;
-      
-      let newLeft = clientX - sliderRect.left - (thumbWidth / 2);
-      const maxLeft = customSlider.clientWidth - thumbWidth;
-      
-      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-      
-      const percentage = newLeft / maxLeft;
-      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
-      
-      carouselRow.scrollLeft = percentage * maxScroll;
-    }
-
-    function stopDrag() {
-      isDragging = false;
-      document.removeEventListener('mousemove', drag);
-      document.removeEventListener('touchmove', drag);
-      document.removeEventListener('mouseup', stopDrag);
-      document.removeEventListener('touchend', stopDrag);
-    }
-
-    // Handle slider bar clicks
-    customSlider.addEventListener('click', function(e) {
-      if (e.target === sliderThumb) return;
-      
-      const sliderRect = customSlider.getBoundingClientRect();
-      const clickX = e.clientX - sliderRect.left;
-      const sliderWidth = customSlider.clientWidth;
-      const percentage = clickX / sliderWidth;
-      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
-      
-      carouselRow.scrollLeft = percentage * maxScroll;
-    });
-
-    // LEVEL 3 → LEVEL 2 Navigation: Back to Use of English
+    // ✅ FIXED: "Back" navigation button → goes back to Use of English
     blackStrip.addEventListener('click', function() {
       window.location.href = '../index.html';
     });
-
-    // Initialize - keep gray footer hidden on sub-pages
-    document.addEventListener('DOMContentLoaded', function() {
-      createCards();
-      setTimeout(updateThumbPosition, 100);
-      // Ensure gray footer stays hidden on sub-pages
-      footerBlack.style.display = 'none';
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', function() {
-      setTimeout(updateThumbPosition, 100);
-    });
+    document.addEventListener('DOMContentLoaded', createCards);
   </script>
 </body>
 </html>
