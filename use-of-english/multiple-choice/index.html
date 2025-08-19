@@ -173,8 +173,7 @@
       transform: translateY(-1.5px) scale(0.98);
     }
     @media (max-width: 1100px) {
-      .carousel-container,
-      .slider-bar-wrapper {
+      .carousel-container {
         max-width: 99vw;
       }
       .carousel-row {
@@ -196,8 +195,15 @@
         margin-top: -9px;
         font-size: 1.36rem;
       }
+      .back-footer {
+        width: 90% !important;
+        height: 38px !important;
+        font-size: 0.9rem !important;
+      }
+      .back-footer .arrow {
+        font-size: 1.2rem !important;
+      }
     }
-    /*.slider-bar-wrapper { display: none !important; }*/ /* not present anymore */
     .message-box {
       display: none;
       position: fixed;
@@ -230,40 +236,45 @@
       font-family: 'Montserrat', Arial, sans-serif;
       font-weight: 600;
     }
-    .black-strip {
+    .back-footer {
       position: fixed;
-      bottom: 0;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 80%;
-      height: 28px;
+      width: 600px;
+      height: 44px;
       background: #444;
-      border-radius: 24px;
-      box-shadow: 0 2px 18px 0 #2226;
+      border-radius: 22px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      gap: 8px;
+      font-size: 1rem;
       color: #fff;
       z-index: 40;
       font-weight: 600;
       cursor: pointer;
       font-family: 'Montserrat', Arial, sans-serif;
+      transition: all 0.2s ease;
     }
-    .black-strip .arrow {
-      font-size: 1.9rem;
+    .back-footer:hover {
+      background: #555;
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    }
+    .back-footer .arrow {
+      font-size: 1.4rem;
       font-weight: 600;
-      margin-right: 14px;
       transition: color 0.17s;
     }
-    .black-strip .arrow:hover {
+    .back-footer:hover .arrow {
       color: #63e3c0;
     }
-    .black-strip .back-label {
-      font-size: 1.1rem;
+    .back-footer .back-label {
+      font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.5px;
-      margin-left: 6px;
     }
   </style>
 </head>
@@ -277,20 +288,22 @@
     </div>
     <div class="carousel-container" id="carouselContainerAll">
       <div class="carousel-row" id="carousel-row"></div>
-      <!-- THE SLIDER BAR IS REMOVED -->
     </div>
-    <!-- The ONLY footer: (arrow + Back) -->
-    <div id="black-strip" class="black-strip" style="display: flex;">
+    
+    <!-- Single compact back footer -->
+    <div id="backFooter" class="back-footer">
       <span class="arrow">←</span>
       <span class="back-label">Back</span>
     </div>
   </div>
+  
   <div id="messageBox" class="message-box">
     <div class="message-box-content">
       <p id="messageText"></p>
       <button id="closeMessageBtn">OK</button>
     </div>
   </div>
+  
   <script>
     // Multiple Choice Tests
     const tests = [
@@ -305,13 +318,14 @@
       { name: "TEST 9", link: null },
       { name: "TEST 10", link: null }
     ];
+
     // DOM elements
     const carouselRow = document.getElementById('carousel-row');
-    const blackStrip = document.getElementById('black-strip');
+    const backFooter = document.getElementById('backFooter');
     const messageBox = document.getElementById('messageBox');
     const messageText = document.getElementById('messageText');
     const closeMessageBtn = document.getElementById('closeMessageBtn');
-    // No more slider
+
     function createCards() {
       tests.forEach(test => {
         const card = document.createElement('div');
@@ -326,18 +340,23 @@
         carouselRow.appendChild(card);
       });
     }
+
     function showMessageBox(message) {
       messageText.textContent = message;
       messageBox.style.display = 'flex';
     }
+
     function hideMessageBox() {
       messageBox.style.display = 'none';
     }
+
     closeMessageBtn.addEventListener('click', hideMessageBox);
-    // ✅ FIXED: "Back" navigation button → goes back to Use of English
-    blackStrip.addEventListener('click', function() {
+
+    // ✅ FIXED: Back navigation - goes up one level to Use of English
+    backFooter.addEventListener('click', function() {
       window.location.href = '../index.html';
     });
+
     document.addEventListener('DOMContentLoaded', createCards);
   </script>
 </body>
