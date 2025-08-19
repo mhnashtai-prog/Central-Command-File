@@ -376,9 +376,9 @@
   </div>
 
   <script>
-    // Level 3: Multiple Choice Tests (all show under construction)
+    // Level 3: Multiple Choice Tests (TEST 1-10)
     const tests = [
-      { name: "TEST 1", link: null },
+      { name: "TEST 1", link: "test1.html" },
       { name: "TEST 2", link: null },
       { name: "TEST 3", link: null },
       { name: "TEST 4", link: null },
@@ -414,8 +414,12 @@
         `;
         
         card.addEventListener('click', () => {
-          // Show under construction for all tests (including TEST 1)
-          showMessageBox("This test is not available yet.");
+          // Original Multiple Choice functionality preserved
+          if (test.link) {
+            window.location.href = test.link;
+          } else {
+            showMessageBox("This test is not available yet.");
+          }
         });
         
         carouselRow.appendChild(card);
