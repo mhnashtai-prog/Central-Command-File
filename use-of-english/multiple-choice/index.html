@@ -92,6 +92,67 @@
       padding: 15px 20px 18px 20px;
     }
     .carousel-row::-webkit-scrollbar { display: none; }
+    .slider-bar-wrapper {
+      width: 97vw;
+      max-width: 970px;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 20%;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+    .custom-slider {
+      position: relative;
+      width: 100%;
+      height: 9.5px;
+      background: #a0a0a0;
+      border-radius: 9.5px;
+      box-shadow: 0 1px 4px 0 #2224;
+      display: flex;
+      align-items: center;
+    }
+    .slider-thumb {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(160deg, #fafcff 70%, #e9eaea 100%);
+      border-radius: 50%;
+      box-shadow:
+        0px 9px 6px -2px rgba(83,89,100,0.60),
+        -3px -3px 7px -2px rgba(255,255,255,0.90),
+        0px -7px 11px 0 rgba(255,230,150,0.20);
+      border: 2px solid #e6e7ea;
+      transform: translateY(-50%);
+      cursor: grab;
+      transition: left 0.2s, box-shadow 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .slider-thumb:active {
+      cursor: grabbing;
+      box-shadow:
+        0px 11px 7px -2px rgba(83,89,100,0.64),
+        -5px -5px 9px -2px rgba(255,255,255,1),
+        0px -10px 14px 0 rgba(255,230,150,0.28);
+    }
+    .slider-thumb::after {
+      content: '';
+      position: absolute;
+      left: 26%;
+      top: 27%;
+      width: 22%;
+      height: 12%;
+      background: linear-gradient(to bottom, #fff 90%, rgba(205,210,213,0.10) 100%);
+      border-radius: 50%;
+      opacity: 0.78;
+      z-index: 3;
+      pointer-events: none;
+    }
     .card {
       width: 253px;
       height: 253px;
@@ -173,7 +234,8 @@
       transform: translateY(-1.5px) scale(0.98);
     }
     @media (max-width: 1100px) {
-      .carousel-container {
+      .carousel-container,
+      .slider-bar-wrapper {
         max-width: 99vw;
       }
       .carousel-row {
@@ -194,14 +256,6 @@
       .card-label { 
         margin-top: -9px;
         font-size: 1.36rem;
-      }
-      .back-footer {
-        width: 90% !important;
-        height: 38px !important;
-        font-size: 0.9rem !important;
-      }
-      .back-footer .arrow {
-        font-size: 1.2rem !important;
       }
     }
     .message-box {
@@ -288,6 +342,11 @@
     </div>
     <div class="carousel-container" id="carouselContainerAll">
       <div class="carousel-row" id="carousel-row"></div>
+      <div class="slider-bar-wrapper">
+        <div class="custom-slider" id="customSlider">
+          <div class="slider-thumb" id="sliderThumb"></div>
+        </div>
+      </div>
     </div>
     
     <!-- Single compact back footer -->
@@ -321,10 +380,14 @@
 
     // DOM elements
     const carouselRow = document.getElementById('carousel-row');
+    const sliderThumb = document.getElementById('sliderThumb');
+    const customSlider = document.getElementById('customSlider');
     const backFooter = document.getElementById('backFooter');
     const messageBox = document.getElementById('messageBox');
     const messageText = document.getElementById('messageText');
     const closeMessageBtn = document.getElementById('closeMessageBtn');
+
+    let isDragging = false;
 
     function createCards() {
       tests.forEach(test => {
@@ -335,11 +398,87 @@
           <div class="card-label">${test.name}</div>
         `;
         card.addEventListener('click', () => {
-          showMessageBox("This test is not available yet.");
+          showMessageBox("Page under construction");
         });
         carouselRow.appendChild(card);
       });
     }
+
+    // Update thumb position based on scroll
+    function updateThumbPosition() {
+      const scrollLeft = carouselRow.scrollLeft;
+      const scrollWidth = carouselRow.scrollWidth;
+      const clientWidth = carouselRow.clientWidth;
+      const sliderWidth = customSlider.clientWidth;
+      const thumbWidth = sliderThumb.offsetWidth;
+      
+      if (scrollWidth <= clientWidth) {
+        sliderThumb.style.left = '0px';
+        return;
+      }
+      
+      const maxScroll = scrollWidth - clientWidth;
+      const maxThumbPosition = sliderWidth - thumbWidth;
+      const thumbPosition = (scrollLeft / maxScroll) * maxThumbPosition;
+      
+      sliderThumb.style.left = thumbPosition + 'px';
+    }
+
+    // Handle scroll events
+    carouselRow.addEventListener('scroll', updateThumbPosition);
+
+    // Handle thumb dragging
+    sliderThumb.addEventListener('mousedown', startDrag);
+    sliderThumb.addEventListener('touchstart', startDrag);
+
+    function startDrag(e) {
+      isDragging = true;
+      e.preventDefault();
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('touchmove', drag);
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchend', stopDrag);
+    }
+
+    function drag(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const sliderRect = customSlider.getBoundingClientRect();
+      const thumbWidth = sliderThumb.offsetWidth;
+      
+      let newLeft = clientX - sliderRect.left - (thumbWidth / 2);
+      const maxLeft = customSlider.clientWidth - thumbWidth;
+      
+      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+      
+      const percentage = newLeft / maxLeft;
+      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
+      
+      carouselRow.scrollLeft = percentage * maxScroll;
+    }
+
+    function stopDrag() {
+      isDragging = false;
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('touchmove', drag);
+      document.removeEventListener('mouseup', stopDrag);
+      document.removeEventListener('touchend', stopDrag);
+    }
+
+    // Handle slider bar clicks
+    customSlider.addEventListener('click', function(e) {
+      if (e.target === sliderThumb) return;
+      
+      const sliderRect = customSlider.getBoundingClientRect();
+      const clickX = e.clientX - sliderRect.left;
+      const sliderWidth = customSlider.clientWidth;
+      const percentage = clickX / sliderWidth;
+      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
+      
+      carouselRow.scrollLeft = percentage * maxScroll;
+    });
 
     function showMessageBox(message) {
       messageText.textContent = message;
@@ -357,7 +496,15 @@
       window.location.href = '../index.html';
     });
 
-    document.addEventListener('DOMContentLoaded', createCards);
+    document.addEventListener('DOMContentLoaded', function() {
+      createCards();
+      setTimeout(updateThumbPosition, 100);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      setTimeout(updateThumbPosition, 100);
+    });
   </script>
 </body>
 </html>
