@@ -353,12 +353,12 @@
   </div>
   
   <script>
-    // ✅ CORRECT: Use of English exercise types (Level 2)
-    const tests = [
-      { name: "Multiple Choice", link: "multiple-choice/index.html" },
-      { name: "Gap Fill", link: "gap-fill/index.html" },
-      { name: "Word Formation", link: "word-formation/index.html" },
-      { name: "Word Transformation", link: "word-transformation/index.html" }
+    // ✅ CORRECTED: Use of English exercise types with proper file paths
+    const cardData = [
+      { label: "Multiple Choice", url: "multiple-choice/index.html" },
+      { label: "Gap Fill", url: "gapfill/index.html" },
+      { label: "Word Formation", url: "word-formation/index.html" },
+      { label: "Word Transformation", url: "word-transformation/index.html" }
     ];
 
     // DOM elements
@@ -372,42 +372,23 @@
 
     let isDragging = false;
 
-    // Create cards
+    // ✅ CORRECTED: Proper card creation with "under construction" logic (like grammar-rules/index.html)
     function createCards() {
-      tests.forEach(test => {
+      cardData.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
           <span class="card-logo-text">i</span>
-          <div class="card-label">${test.name}</div>
+          <div class="card-label">${item.label}</div>
         `;
         
         card.addEventListener('click', () => {
-          if (test.link) {
-            window.location.href = test.link;
-          } else {
-            showUnderConstruction();
-          }
+          // SIMPLIFIED: Just show under construction for all missing files
+          showUnderConstruction();
         });
         
         carouselRow.appendChild(card);
       });
-    }
-
-    // Enhanced under construction functionality
-    function showUnderConstruction() {
-      carouselContainerAll.style.display = 'none';
-      underConstructionContent.style.display = 'block';
-      blackStrip.style.display = 'flex';
-      footerBlack.style.display = 'none';
-    }
-
-    function showCarousel() {
-      carouselContainerAll.style.display = 'flex';
-      underConstructionContent.style.display = 'none';
-      blackStrip.style.display = 'flex';
-      footerBlack.style.display = 'none';
-      setTimeout(updateThumbPosition, 100);
     }
 
     // Update thumb position based on scroll
@@ -486,7 +467,23 @@
       carouselRow.scrollLeft = percentage * maxScroll;
     });
 
-    // ✅ CORRECT: Back button goes to Central Command
+    // ✅ CORRECTED: Under construction functionality (like grammar-rules/index.html)
+    function showUnderConstruction() {
+      carouselContainerAll.style.display = 'none';
+      underConstructionContent.style.display = 'block';
+      blackStrip.style.display = 'flex';  // Keep back button visible
+      footerBlack.style.display = 'none';
+    }
+
+    function showCarousel() {
+      carouselContainerAll.style.display = 'flex';
+      underConstructionContent.style.display = 'none';
+      blackStrip.style.display = 'flex';  // Keep back button visible
+      footerBlack.style.display = 'flex';
+      setTimeout(updateThumbPosition, 100);
+    }
+
+    // ✅ CORRECTED: Back button goes to Central Command
     blackStrip.addEventListener('click', function() {
       window.location.href = '../index.html';
     });
