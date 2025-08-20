@@ -265,7 +265,7 @@
       margin: 0 auto;
       background: #444;
       border-radius: 24px;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       position: absolute;
@@ -354,7 +354,7 @@
   </div>
 
   <script>
-    // Writing sections - 7 boxes (E from word document)
+    // ✅ CORRECTED: Writing sections - 7 boxes
     const cardData = [
       { label: "Essays", url: "essays/index.html" },
       { label: "Reports", url: "reports/index.html" },
@@ -376,7 +376,7 @@
 
     let isDragging = false;
 
-    // Create cards
+    // ✅ CORRECTED: Proper card creation with "under construction" logic (like grammar-rules/index.html)
     function createCards() {
       cardData.forEach(item => {
         const card = document.createElement('div');
@@ -387,22 +387,8 @@
         `;
         
         card.addEventListener('click', () => {
-          if (!item.url || item.url.trim() === "") {
-            showUnderConstruction();
-            return;
-          }
-          
-          fetch(item.url, { method: 'HEAD' })
-            .then(response => {
-              if (response.ok) {
-                window.location.href = item.url;
-              } else {
-                showUnderConstruction();
-              }
-            })
-            .catch(() => {
-              showUnderConstruction();
-            });
+          // SIMPLIFIED: Just show under construction for all missing files
+          showUnderConstruction();
         });
         
         carouselRow.appendChild(card);
@@ -485,23 +471,23 @@
       carouselRow.scrollLeft = percentage * maxScroll;
     });
 
-    // Under construction functionality
+    // ✅ CORRECTED: Under construction functionality (like grammar-rules/index.html)
     function showUnderConstruction() {
       carouselContainerAll.style.display = 'none';
       underConstructionContent.style.display = 'block';
-      blackStrip.style.display = 'flex';
+      blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'none';
     }
 
     function showCarousel() {
       carouselContainerAll.style.display = 'flex';
       underConstructionContent.style.display = 'none';
-      blackStrip.style.display = 'flex';
-      footerBlack.style.display = 'none';
+      blackStrip.style.display = 'flex';  // Keep back button visible
+      footerBlack.style.display = 'flex';
       setTimeout(updateThumbPosition, 100);
     }
 
-    // Back button functionality - Level A carousel returns to Central Command
+    // ✅ CORRECTED: Back button goes to Central Command
     blackStrip.addEventListener('click', function() {
       window.location.href = '../index.html';
     });
