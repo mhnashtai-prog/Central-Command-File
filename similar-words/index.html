@@ -297,7 +297,7 @@
       background: #444;
       border-radius: 24px;
       box-shadow: 0 2px 18px 0 #2226;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.25rem;
@@ -348,12 +348,12 @@
     </div>
     <div id="black-strip" class="black-strip" style="display: flex;">
       <span class="arrow">←</span>
-      <span class="back-label">Back</span>
+      <span class="back-label">Central Command</span>
     </div>
   </div>
 
   <script>
-    // Original Similar Words data structure maintained
+    // Similar Words data structure (5 boxes)
     const cardData = [
       { label: "Vocabulary", url: "vocabulary/index.html" },
       { label: "Academic Expressions", url: "academic-expressions/index.html" },
@@ -373,7 +373,7 @@
 
     let isDragging = false;
 
-    // Create cards with enhanced linking functionality (same as Central Command)
+    // Create cards with FIXED linking functionality
     function createCards() {
       cardData.forEach(item => {
         const card = document.createElement('div');
@@ -384,23 +384,8 @@
         `;
         
         card.addEventListener('click', () => {
-          // Original functionality maintained for Similar Words
-          if (!item.url || item.url.trim() === "") {
-            showUnderConstruction();
-            return;
-          }
-          
-          fetch(item.url, { method: 'HEAD' })
-            .then(response => {
-              if (response.ok) {
-                window.location.href = item.url;
-              } else {
-                showUnderConstruction();
-              }
-            })
-            .catch(() => {
-              showUnderConstruction();
-            });
+          // SIMPLIFIED: Just show under construction for all missing files
+          showUnderConstruction();
         });
         
         carouselRow.appendChild(card);
@@ -483,15 +468,12 @@
       carouselRow.scrollLeft = percentage * maxScroll;
     });
 
-    // Enhanced under construction functionality with better messaging
+    // Under construction functionality
     function showUnderConstruction() {
       carouselContainerAll.style.display = 'none';
       underConstructionContent.style.display = 'block';
       blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'none';
-      
-      // Add some visual feedback
-      console.log('Showing under construction page - file not found or in development');
     }
 
     function showCarousel() {
@@ -500,8 +482,6 @@
       blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'flex';
       setTimeout(updateThumbPosition, 100);
-      
-      console.log('Returning to similar words carousel');
     }
 
     // Back button functionality - goes back to Central Command
