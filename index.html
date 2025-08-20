@@ -2,29 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>INTUITY – Main MENU</title>
+  <title>INTUITY — Main MENU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
   <style>
     html { box-sizing: border-box; }
     *, *:before, *:after { box-sizing: inherit; }
+    
     body {
-      background: linear-gradient(135deg, 
-        #ff9a9e 0%, 
-        #fecfef 15%, 
-        #fecfef 25%, 
-        #a8edea 45%, 
-        #5fb3d4 65%, 
-        #396afc 85%, 
-        #2948ff 100%);
-      background-attachment: fixed;
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', Arial, sans-serif;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      background: 
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(255, 154, 158, 0.9) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 70% at 60% 70%, rgba(254, 207, 239, 0.8) 0%, transparent 60%),
+        radial-gradient(ellipse 120% 80% at 40% 40%, rgba(168, 237, 234, 0.7) 0%, transparent 70%),
+        radial-gradient(ellipse 90% 100% at 80% 30%, rgba(95, 179, 212, 0.8) 0%, transparent 60%),
+        radial-gradient(ellipse 110% 90% at 85% 20%, rgba(57, 106, 252, 0.9) 0%, transparent 70%),
+        radial-gradient(ellipse 100% 120% at 90% 50%, rgba(41, 72, 255, 0.8) 0%, transparent 80%),
+        linear-gradient(135deg, #ff9a9e 0%, #fad0c4 20%, #a8edea 40%, #5fb3d4 60%, #396afc 80%, #2948ff 100%);
+      background-attachment: fixed;
     }
+
     .container {
       width: 100vw;
       min-height: 95vh;
@@ -32,7 +36,9 @@
       flex-direction: column;
       align-items: center;
       position: relative;
+      z-index: 1;
     }
+    
     .title {
       margin-top: 40px;
       font-size: 3.0rem;
@@ -45,6 +51,7 @@
       text-transform: uppercase;
       text-shadow: 0 2px 12px rgba(0,0,0,0.15);
     }
+    
     .divider {
       width: 54px;
       height: 2px;
@@ -53,6 +60,7 @@
       border-radius: 2px;
       opacity: 0.9;
     }
+    
     .tag-group {
       display: flex;
       flex-direction: column;
@@ -60,6 +68,7 @@
       margin-bottom: 28px;
       gap: 2px;
     }
+    
     .subtitle {
       font-size: 1.13rem;
       font-weight: 500;
@@ -70,6 +79,7 @@
       margin: 0;
       text-shadow: 0 1px 6px rgba(0,0,0,0.1);
     }
+    
     .author {
       font-size: 0.92rem;
       font-weight: 500;
@@ -80,6 +90,7 @@
       margin: 0;
       text-shadow: 0 1px 6px rgba(0,0,0,0.1);
     }
+    
     .carousel-container {
       width: 96vw;
       max-width: 980px;
@@ -91,6 +102,7 @@
       margin-top: 4vh;
       padding: 10px 0 40px 0;
     }
+    
     .carousel-row {
       width: 100%;
       overflow-x: auto;
@@ -102,7 +114,9 @@
       margin-bottom: 20px;
       padding: 15px 20px 18px 20px;
     }
+    
     .carousel-row::-webkit-scrollbar { display: none; }
+    
     .card {
       width: 253px;
       height: 253px;
@@ -136,6 +150,7 @@
       padding: 0 20px;
       transform: translateY(0px);
     }
+    
     .card-logo-text {
       display: block;
       font-family: 'Poppins', 'Montserrat', 'Arial Black', Arial, sans-serif;
@@ -151,6 +166,7 @@
       pointer-events: none;
       text-align: center;
     }
+    
     .card-label {
       text-align: center;
       font-size: 1.74rem;
@@ -160,6 +176,7 @@
       line-height: 1.18;
       margin-top: -15px;
     }
+    
     .card:hover {
       background: rgba(245, 249, 253, 0.98);
       color: #086fc7;
@@ -172,6 +189,7 @@
       transform: translateY(-7px) scale(1.02);
       border: 1px solid rgba(255,255,255,0.5);
     }
+    
     .card:active {
       background: rgba(242, 247, 252, 0.95);
       color: #0860b8;
@@ -183,6 +201,7 @@
         inset 1px 1px 2px rgba(255,255,255,0.5);
       transform: translateY(-1.5px) scale(0.98);
     }
+    
     @media (max-width: 1100px) {
       .carousel-container,
       .slider-bar-wrapper {
@@ -208,6 +227,7 @@
         font-size: 1.36rem;
       }
     }
+    
     .slider-bar-wrapper {
       width: 97vw;
       max-width: 970px;
@@ -217,6 +237,7 @@
       margin-top: 8px;
       margin-bottom: 0;
     }
+    
     .custom-slider {
       position: relative;
       width: 100%;
@@ -228,6 +249,7 @@
       align-items: center;
       backdrop-filter: blur(10px);
     }
+    
     .slider-thumb {
       position: absolute;
       top: 50%;
@@ -250,12 +272,14 @@
       overflow: hidden;
       backdrop-filter: blur(20px);
     }
+    
     .slider-thumb:active {
       cursor: grabbing;
       box-shadow:
         0px 11px 7px -2px rgba(0,0,0,0.35),
         0px -10px 14px 0 rgba(255,255,255,0.5);
     }
+    
     .slider-thumb::after {
       content: '';
       position: absolute;
@@ -269,6 +293,7 @@
       z-index: 3;
       pointer-events: none;
     }
+    
     .footer-black {
       width: 97vw;
       max-width: 990px;
@@ -287,23 +312,27 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.1);
     }
+    
     .under-construction-content {
       display: none;
       text-align: center;
       padding-top: 50px;
     }
+    
     .under-construction-content h2 {
       font-size: 2rem; 
       color: #fff;
       font-family: 'Montserrat', Arial, sans-serif;
       text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
+    
     .under-construction-content p {
       font-size: 1.2rem; 
       color: rgba(255,255,255,0.9);
       font-family: 'Montserrat', Arial, sans-serif;
       text-shadow: 0 1px 8px rgba(0,0,0,0.2);
     }
+    
     .black-strip {
       position: fixed;
       bottom: 0;
@@ -326,15 +355,18 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.2);
     }
+    
     .black-strip .arrow {
       font-size: 1.9rem;
       font-weight: 600;
       margin-right: 14px;
       transition: color 0.17s;
     }
+    
     .black-strip .arrow:hover {
       color: #63e3c0;
    }
+    
     .black-strip .back-label {
       font-size: 1.1rem;
       font-weight: 600;
