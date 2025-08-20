@@ -172,6 +172,31 @@
         inset 1px 1px 2px rgba(255,255,255,0.3);
       transform: translateY(-1.5px) scale(0.98);
     }
+    @media (max-width: 1100px) {
+      .carousel-container,
+      .slider-bar-wrapper {
+        max-width: 99vw;
+      }
+      .carousel-row {
+        gap: 39px;
+      }
+      .card {
+        width: 31vw;
+        min-width: 140px;
+        height: 31vw;
+        min-height: 140px;
+        font-size: 1.36rem;
+        padding: 0 12px;
+      }
+      .card-logo-text { 
+        font-size: 28px; 
+        margin-bottom: 24px;
+      }
+      .card-label { 
+        margin-top: -9px;
+        font-size: 1.36rem;
+      }
+    }
     .slider-bar-wrapper {
       width: 97vw;
       max-width: 970px;
@@ -232,63 +257,6 @@
       opacity: 0.78;
       z-index: 3;
       pointer-events: none;
-    }
-    @media (max-width: 1100px) {
-      .carousel-container,
-      .slider-bar-wrapper {
-        max-width: 99vw;
-      }
-      .carousel-row {
-        gap: 39px;
-      }
-      .card {
-        width: 31vw;
-        min-width: 140px;
-        height: 31vw;
-        min-height: 140px;
-        font-size: 1.36rem;
-        padding: 0 12px;
-      }
-      .card-logo-text { 
-        font-size: 28px; 
-        margin-bottom: 24px;
-      }
-      .card-label { 
-        margin-top: -9px;
-        font-size: 1.36rem;
-      }
-    }
-    .message-box {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center; align-items: center;
-      z-index: 102;
-    }
-    .message-box-content {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      max-width: 80%;
-      color: #181c2e;
-    }
-    .message-box-content p {
-      margin: 0 0 10px 0;
-      font-size: 1.1rem;
-    }
-    .message-box-content button {
-      padding: 10px 20px;
-      background-color: #181c2e;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 600;
     }
     .footer-black {
       width: 97vw;
@@ -378,32 +346,26 @@
       <p>Sorry, the page you are trying to access is unavailable.</p>
       <h2>Page under construction.</h2>
     </div>
+    <!-- Back arrow to Use of English carousel -->
     <div id="black-strip" class="black-strip" style="display: flex;">
       <span class="arrow">←</span>
-      <span class="back-label">Back</span>
-    </div>
-  </div>
-  
-  <div id="messageBox" class="message-box">
-    <div class="message-box-content">
-      <p id="messageText"></p>
-      <button id="closeMessageBtn">OK</button>
+      <span class="back-label">Use of English</span>
     </div>
   </div>
   
   <script>
-    // Multiple Choice Tests
-    const tests = [
-      { name: "TEST 1", link: null },
-      { name: "TEST 2", link: null },
-      { name: "TEST 3", link: null },
-      { name: "TEST 4", link: null },
-      { name: "TEST 5", link: null },
-      { name: "TEST 6", link: null },
-      { name: "TEST 7", link: null },
-      { name: "TEST 8", link: null },
-      { name: "TEST 9", link: null },
-      { name: "TEST 10", link: null }
+    // ✅ CORRECTED: Multiple Choice tests - 10 boxes (matching your GitHub file structure)
+    const cardData = [
+      { label: "TEST 1", url: "test-01/index.html" },
+      { label: "TEST 2", url: "test-02/index.html" },
+      { label: "TEST 3", url: "test-03/index.html" },
+      { label: "TEST 4", url: "test-04/index.html" },
+      { label: "TEST 5", url: "test-05/index.html" },
+      { label: "TEST 6", url: "test-06/index.html" },
+      { label: "TEST 7", url: "test-07/index.html" },
+      { label: "TEST 8", url: "test-08/index.html" },
+      { label: "TEST 9", url: "test-09/index.html" },
+      { label: "TEST 10", url: "test-10/index.html" }
     ];
 
     // DOM elements
@@ -414,23 +376,24 @@
     const carouselContainerAll = document.getElementById('carouselContainerAll');
     const underConstructionContent = document.getElementById('under-construction-content');
     const footerBlack = document.querySelector('.footer-black');
-    const messageBox = document.getElementById('messageBox');
-    const messageText = document.getElementById('messageText');
-    const closeMessageBtn = document.getElementById('closeMessageBtn');
 
     let isDragging = false;
 
+    // ✅ CORRECTED: Proper card creation with "under construction" logic (like grammar-rules/index.html)
     function createCards() {
-      tests.forEach(test => {
+      cardData.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
           <span class="card-logo-text">i</span>
-          <div class="card-label">${test.name}</div>
+          <div class="card-label">${item.label}</div>
         `;
+        
         card.addEventListener('click', () => {
-          showMessageBox("Page under construction");
+          // SIMPLIFIED: Just show under construction for all missing files
+          showUnderConstruction();
         });
+        
         carouselRow.appendChild(card);
       });
     }
@@ -511,43 +474,28 @@
       carouselRow.scrollLeft = percentage * maxScroll;
     });
 
-    function showMessageBox(message) {
-      messageText.textContent = message;
-      messageBox.style.display = 'flex';
-    }
-
-    function hideMessageBox() {
-      messageBox.style.display = 'none';
-    }
-
-    // Enhanced under construction functionality with better messaging
+    // ✅ CORRECTED: Under construction functionality (like grammar-rules/index.html)
     function showUnderConstruction() {
       carouselContainerAll.style.display = 'none';
       underConstructionContent.style.display = 'block';
       blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'none';
-      
-      // Add some visual feedback
-      console.log('Showing under construction page - file not found or in development');
     }
 
     function showCarousel() {
       carouselContainerAll.style.display = 'flex';
       underConstructionContent.style.display = 'none';
       blackStrip.style.display = 'flex';  // Keep back button visible
-      footerBlack.style.display = 'none';  // Keep gray footer hidden
+      footerBlack.style.display = 'none';
       setTimeout(updateThumbPosition, 100);
-      
-      console.log('Returning to multiple choice carousel');
     }
 
-    closeMessageBtn.addEventListener('click', hideMessageBox);
-
-    // Back button functionality - goes back to Use of English
+    // ✅ CORRECTED: Back button goes to Use of English
     blackStrip.addEventListener('click', function() {
       window.location.href = '../index.html';
     });
 
+    // Initialize
     document.addEventListener('DOMContentLoaded', function() {
       createCards();
       setTimeout(updateThumbPosition, 100);
