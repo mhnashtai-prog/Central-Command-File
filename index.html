@@ -1,600 +1,1243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>INTUITY — Main MENU</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
-  <style>
-    html { box-sizing: border-box; }
-    *, *:before, *:after { box-sizing: inherit; }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-      background: 
-        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(255, 154, 158, 0.9) 0%, transparent 50%),
-        radial-gradient(ellipse 100% 70% at 60% 70%, rgba(254, 207, 239, 0.8) 0%, transparent 60%),
-        radial-gradient(ellipse 120% 80% at 40% 40%, rgba(168, 237, 234, 0.7) 0%, transparent 70%),
-        radial-gradient(ellipse 90% 100% at 80% 30%, rgba(95, 179, 212, 0.8) 0%, transparent 60%),
-        radial-gradient(ellipse 110% 90% at 85% 20%, rgba(57, 106, 252, 0.9) 0%, transparent 70%),
-        radial-gradient(ellipse 100% 120% at 90% 50%, rgba(41, 72, 255, 0.8) 0%, transparent 80%),
-        linear-gradient(135deg, #ff9a9e 0%, #fad0c4 20%, #a8edea 40%, #5fb3d4 60%, #396afc 80%, #2948ff 100%);
-      background-attachment: fixed;
-    }
-
-    .container {
-      width: 100vw;
-      min-height: 95vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .title {
-      margin-top: 40px;
-      font-size: 3.0rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #fff;
-      text-align: center;
-      margin-bottom: 8px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      text-transform: uppercase;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.15);
-    }
-    
-    .divider {
-      width: 54px;
-      height: 2px;
-      background: rgba(255,255,255,0.8);
-      margin: 0 auto 14px auto;
-      border-radius: 2px;
-      opacity: 0.9;
-    }
-    
-    .tag-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 28px;
-      gap: 2px;
-    }
-    
-    .subtitle {
-      font-size: 1.13rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.95);
-      letter-spacing: 0.03em;
-      font-family: 'Montserrat', Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    }
-    
-    .author {
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.8);
-      letter-spacing: 0.02em;
-      font-family: 'Montserrat', Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    }
-    
-    .carousel-container {
-      width: 96vw;
-      max-width: 980px;
-      margin: 0 auto;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 4vh;
-      padding: 10px 0 40px 0;
-    }
-    
-    .carousel-row {
-      width: 100%;
-      overflow-x: auto;
-      display: flex;
-      gap: 61px;
-      -webkit-overflow-scrolling: touch;
-      align-items: flex-start;
-      scrollbar-width: none;
-      margin-bottom: 20px;
-      padding: 15px 20px 18px 20px;
-    }
-    
-    .carousel-row::-webkit-scrollbar { display: none; }
-    
-    .card {
-      width: 253px;
-      height: 253px;
-      min-width: 253px;
-      border-radius: 49px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 1.74rem;
-      font-weight: 700;
-      color: #111;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.3);
-      box-shadow:
-        0px 15.3px 30.6px -6.1px rgba(0, 0, 0, 0.25),
-        0px 6.1px 12.2px -3.1px rgba(0, 0, 0, 0.15),
-        0px -4.6px 9.2px -1.5px rgba(255,255,255,0.4),
-        inset 1px 1px 2px rgba(255,255,255,0.6),
-        inset -1px -1px 3px rgba(0,0,0,0.05);
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      margin: 0;
-      position: relative;
-      text-align: center;
-      line-height: 1.18;
-      padding: 0 20px;
-      transform: translateY(0px);
-    }
-    
-    .card-logo-text {
-      display: block;
-      font-family: 'Poppins', 'Montserrat', 'Arial Black', Arial, sans-serif;
-      font-weight: 900;
-      font-size: 46px;
-      color: #111;
-      margin: 0 auto 34px auto;
-      opacity: 0.89;
-      letter-spacing: -0.08em;
-      line-height: 0.7;
-      text-shadow: 0 2.5px 8px rgba(0,0,0,0.1);
-      user-select: none;
-      pointer-events: none;
-      text-align: center;
-    }
-    
-    .card-label {
-      text-align: center;
-      font-size: 1.74rem;
-      font-weight: 700;
-      color: #181c2e;
-      margin: 0;
-      line-height: 1.18;
-      margin-top: -15px;
-    }
-    
-    .card:hover {
-      background: rgba(245, 249, 253, 0.98);
-      color: #086fc7;
-      box-shadow:
-        0px 26.8px 45.9px -6.1px rgba(0, 0, 0, 0.35),
-        0px 10.4px 20.7px -4px rgba(0, 0, 0, 0.2),
-        0px -7px 14px -1.1px rgba(255,255,255,0.5),
-        inset 2px 2px 4px rgba(255,255,255,0.8),
-        inset -2px -2px 6px rgba(0,0,0,0.03);
-      transform: translateY(-7px) scale(1.02);
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-    
-    .card:active {
-      background: rgba(242, 247, 252, 0.95);
-      color: #0860b8;
-      box-shadow:
-        0px 7px 14px -5.1px rgba(0,0,0,0.3),
-        0px 3px 6px -1.5px rgba(0,0,0,0.2),
-        0px -3px 6px -0.8px rgba(255,255,255,0.3),
-        inset -1px -1px 3px rgba(0,0,0,0.1),
-        inset 1px 1px 2px rgba(255,255,255,0.5);
-      transform: translateY(-1.5px) scale(0.98);
-    }
-    
-    @media (max-width: 1100px) {
-      .carousel-container,
-      .slider-bar-wrapper {
-        max-width: 99vw;
-      }
-      .carousel-row {
-        gap: 39px;
-      }
-      .card {
-        width: 31vw;
-        min-width: 140px;
-        height: 31vw;
-        min-height: 140px;
-        font-size: 1.36rem;
-        padding: 0 12px;
-      }
-      .card-logo-text { 
-        font-size: 28px; 
-        margin-bottom: 24px;
-      }
-      .card-label { 
-        margin-top: -9px;
-        font-size: 1.36rem;
-      }
-    }
-    
-    .slider-bar-wrapper {
-      width: 97vw;
-      max-width: 970px;
-      justify-content: flex-start;
-      align-items: center;
-      margin-left: 20%;
-      margin-top: 8px;
-      margin-bottom: 0;
-    }
-    
-    .custom-slider {
-      position: relative;
-      width: 100%;
-      height: 9.5px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 9.5px;
-      box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      backdrop-filter: blur(10px);
-    }
-    
-    .slider-thumb {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 38px;
-      height: 38px;
-      background: linear-gradient(160deg, rgba(255,255,255,0.95) 70%, rgba(240,240,240,0.9) 100%);
-      border-radius: 50%;
-      box-shadow:
-        0px 9px 6px -2px rgba(0,0,0,0.3),
-        0px -7px 11px 0 rgba(255,255,255,0.4);
-      border: 1px solid rgba(255,255,255,0.6);
-      transform: translateY(-50%);
-      cursor: grab;
-      transition: left 0.2s, box-shadow 0.18s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
-    
-    .slider-thumb:active {
-      cursor: grabbing;
-      box-shadow:
-        0px 11px 7px -2px rgba(0,0,0,0.35),
-        0px -10px 14px 0 rgba(255,255,255,0.5);
-    }
-    
-    .slider-thumb::after {
-      content: '';
-      position: absolute;
-      left: 26%;
-      top: 27%;
-      width: 22%;
-      height: 12%;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.9) 90%, rgba(205,210,213,0.10) 100%);
-      border-radius: 50%;
-      opacity: 0.78;
-      z-index: 3;
-      pointer-events: none;
-    }
-    
-    .footer-black {
-      width: 97vw;
-      max-width: 990px;
-      height: 28px;
-      margin: 0 auto;
-      background: rgba(0,0,0,0.7);
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 2px 18px 0 rgba(0,0,0,0.4);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .under-construction-content {
-      display: none;
-      text-align: center;
-      padding-top: 50px;
-    }
-    
-    .under-construction-content h2 {
-      font-size: 2rem; 
-      color: #fff;
-      font-family: 'Montserrat', Arial, sans-serif;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    }
-    
-    .under-construction-content p {
-      font-size: 1.2rem; 
-      color: rgba(255,255,255,0.9);
-      font-family: 'Montserrat', Arial, sans-serif;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.2);
-    }
-    
-    .black-strip {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 28px;
-      background: rgba(0,0,0,0.8);
-      border-radius: 24px;
-      box-shadow: 0 2px 18px 0 rgba(0,0,0,0.4);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      color: #fff;
-      z-index: 40;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: 'Montserrat', Arial, sans-serif;
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-    
-    .black-strip .arrow {
-      font-size: 1.9rem;
-      font-weight: 600;
-      margin-right: 14px;
-      transition: color 0.17s;
-    }
-    
-    .black-strip .arrow:hover {
-      color: #63e3c0;
-   }
-    
-    .black-strip .back-label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-left: 6px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="title">INTUITY</div>
-    <div class="divider"></div>
-    <div class="tag-group">
-      <div class="subtitle">Language Generator</div>
-      <div class="author">Majid Nashtai</div>
-    </div>
-    <div class="carousel-container" id="carouselContainerAll">
-      <div class="carousel-row" id="carousel-row"></div>
-      <div class="slider-bar-wrapper">
-        <div class="custom-slider" id="customSlider">
-          <div class="slider-thumb" id="sliderThumb"></div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-black"></div>
-    <!-- Under Construction Message -->
-    <div id="under-construction-content" class="under-construction-content">
-      <p>Sorry, the page you are trying to access is unavailable.</p>
-      <h2>Page under construction.</h2>
-    </div>
-    <div id="black-strip" class="black-strip">
-      <span class="arrow">←</span>
-      <span class="back-label">Back</span>
-    </div>
-  </div>
-
-  <script>
-    // Data with exactly 6 cards as requested
-    const cardData = [
-      { label: "Grammar Rules", url: "grammar-rules/index.html" },
-      { label: "Similar Words", url: "similar-words/index.html" },
-      { label: "Use of English", url: "use-of-english/index.html" },
-      { label: "Reading", url: "reading.html" },
-      { label: "Writing", url: "writing.html" },
-      { label: "Speaking", url: "speaking.html" }
-    ];
-
-    // DOM elements
-    const carouselRow = document.getElementById('carousel-row');
-    const sliderThumb = document.getElementById('sliderThumb');
-    const customSlider = document.getElementById('customSlider');
-    const blackStrip = document.getElementById('black-strip');
-    const carouselContainerAll = document.getElementById('carouselContainerAll');
-    const underConstructionContent = document.getElementById('under-construction-content');
-    const footerBlack = document.querySelector('.footer-black');
-
-    let isDragging = false;
-
-    // Create cards with enhanced linking functionality
-    function createCards() {
-      cardData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <span class="card-logo-text">i</span>
-          <div class="card-label">${item.label}</div>
-        `;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTUITY — FCE Main Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family:Inter:wght@700&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        card.addEventListener('click', () => {
-          // Special handling for Grammar Rules - links to the other carousel
-          if (item.label === "Grammar Rules") {
-            // Try to navigate to the grammar rules carousel
-            const link = document.createElement('a');
-            link.href = item.url;
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            
-            // Check if file exists before navigating
-            fetch(item.url, { method: 'HEAD' })
-              .then(response => {
-                document.body.removeChild(link);
-                if (response.ok) {
-                  // File exists - navigate to grammar rules carousel
-                  window.location.href = item.url;
-                } else {
-                  // File doesn't exist - show under construction
-                  showUnderConstruction();
-                }
-              })
-              .catch(() => {
-                document.body.removeChild(link);
-                // Network error or file doesn't exist - show under construction
-                showUnderConstruction();
-              });
-          } else {
-            // For other cards, check if URL exists or show under construction
-            if (!item.url || item.url.trim() === "") {
-              showUnderConstruction();
-              return;
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, 
+                #2c5aa0 0%, 
+                #3b6bb5 15%, 
+                #4a7bc8 30%, 
+                #7a9fd9 45%, 
+                #b8d3ea 60%, 
+                #e8c5d8 75%, 
+                #f0b7c9 85%, 
+                #f5a9ba 100%
+            );
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* Modern Full-Height Vertical Navigation */
+        .vertical-nav {
+            position: fixed;
+            top: 0;
+            right: 20px;
+            height: 100vh;
+            width: 8px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .vertical-slider-container {
+            height: 100vh;
+            width: 8px;
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.2) 50%, 
+                rgba(255,255,255,0.1) 100%);
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .vertical-slider-thumb {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(145deg, 
+                rgba(255,255,255,0.95) 0%, 
+                rgba(255,255,255,0.8) 50%,
+                rgba(240,240,240,0.9) 100%);
+            border-radius: 10px;
+            box-shadow:
+                0px 8px 16px rgba(0,0,0,0.2),
+                0px 4px 8px rgba(0,0,0,0.1),
+                inset 0px 1px 2px rgba(255,255,255,0.8),
+                inset 0px -1px 2px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            transform: translateX(-50%);
+            cursor: grab;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            backdrop-filter: blur(20px);
+        }
+        
+        .vertical-slider-thumb:active {
+            cursor: grabbing;
+            transform: translateX(-50%) scale(1.1);
+            box-shadow:
+                0px 12px 24px rgba(0,0,0,0.3),
+                0px 6px 12px rgba(0,0,0,0.15),
+                inset 0px 2px 4px rgba(255,255,255,0.9),
+                inset 0px -2px 4px rgba(0,0,0,0.15);
+        }
+        
+        .vertical-slider-thumb::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.4) 0%, 
+                rgba(255,255,255,0.1) 100%);
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+        
+        /* Progress indicator dots */
+        .progress-dots {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+        
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .progress-dot.active {
+            background: rgba(255,255,255,0.9);
+            transform: scale(1.5);
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        
+        /* Main Container */
+        .main-container {
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .sections-wrapper {
+            width: 100%;
+            transform: translateY(0);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Hero Section - Reduced spacing */
+        .hero-section {
+            width: 100vw;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #fff;
+            margin-bottom: 8px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.13rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.95);
+            letter-spacing: 0.03em;
+            text-align: center;
+            margin: 0 0 2px 0;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .hero-author {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0.02em;
+            text-align: center;
+            margin: 0;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .hero-divider {
+            width: 54px;
+            height: 2px;
+            background: rgba(255,255,255,0.8);
+            margin: 0 auto 14px auto;
+            border-radius: 2px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        /* Unified Sections Container - Reduced spacing */
+        .unified-sections {
+            width: 100vw;
+            position: relative;
+        }
+        
+        /* Individual Sections - Reduced from 75px to 60px (20% reduction) */
+        .section {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            padding: 0 20px;
+            margin-bottom: 60px; /* Reduced from 75px */
+            min-height: auto;
+        }
+        
+        .section:first-child {
+            margin-top: 38px; /* Reduced to ~1cm from title */
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .section-title {
+            font-size: 2.0rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        
+        .section-subtitle {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.95);
+            letter-spacing: 0.03em;
+            text-align: center;
+            margin: 0;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section-divider {
+            width: 40px;
+            height: 2px;
+            background: rgba(255,255,255,0.8);
+            margin: 8px auto;
+            border-radius: 2px;
+            opacity: 0.68;
+        }
+        
+        /* Carousel Container */
+        .carousel-container {
+            width: 96vw;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0;
+        }
+        
+        .carousel-row {
+            width: 100%;
+            overflow-x: auto;
+            display: flex;
+            gap: 25px;
+            -webkit-overflow-scrolling: touch;
+            align-items: flex-start;
+            scrollbar-width: none;
+            margin-bottom: 10px;
+            padding: 10px 20px 12px 20px;
+        }
+        
+        .carousel-row::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Cards */
+        .card {
+            width: 126px;
+            height: 126px;
+            min-width: 126px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow:
+                0px 7.5px 15px -3px rgba(0, 0, 0, 0.25),
+                0px 3px 6px -1.5px rgba(0, 0, 0, 0.15),
+                0px -2.3px 4.6px -0.75px rgba(255,255,255,0.4),
+                inset 0.5px 0.5px 1px rgba(255,255,255,0.6),
+                inset -0.5px -0.5px 1.5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            text-align: center;
+            line-height: 1.18;
+            padding: 0 10px;
+            transform: translateY(0px);
+            flex: 0 0 auto;
+        }
+        
+        .card-logo-text {
+            display: block;
+            font-family: 'Poppins', 'Montserrat', 'Arial Black', Arial, sans-serif;
+            font-weight: 900;
+            font-size: 23px;
+            color: #111;
+            margin: 0 auto 17px auto;
+            opacity: 0.89;
+            letter-spacing: -0.08em;
+            line-height: 0.7;
+            text-shadow: 0 1.25px 4px rgba(0,0,0,0.1);
+            user-select: none;
+            pointer-events: none;
+            text-align: center;
+        }
+        
+        .card-label {
+            text-align: center;
+            font-size: 0.87rem;
+            font-weight: 700;
+            color: #181c2e;
+            margin: 0;
+            line-height: 1.18;
+            margin-top: -7.5px;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        
+        .card:hover {
+            background: rgba(245, 249, 253, 0.98);
+            color: #086fc7;
+            box-shadow:
+                0px 13.5px 23px -3px rgba(0, 0, 0, 0.35),
+                0px 5.2px 10.5px -2px rgba(0, 0, 0, 0.2),
+                0px -3.5px 7px -0.55px rgba(255,255,255,0.5),
+                inset 1px 1px 2px rgba(255,255,255,0.8),
+                inset -1px -1px 3px rgba(0,0,0,0.03);
+            transform: translateY(-3.5px) scale(1.02);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        .card:active {
+            background: rgba(242, 247, 252, 0.95);
+            color: #0860b8;
+            box-shadow:
+                0px 3.5px 7px -2.5px rgba(0,0,0,0.3),
+                0px 1.5px 3px -0.75px rgba(0,0,0,0.2),
+                0px -1.5px 3px -0.4px rgba(255,255,255,0.3),
+                inset -0.5px -0.5px 1.5px rgba(0,0,0,0.1),
+                inset 0.5px 0.5px 1px rgba(255,255,255,0.5);
+            transform: translateY(-0.75px) scale(0.98);
+        }
+        
+        /* Improved Responsive Horizontal Slider */
+        .slider-bar-wrapper {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 4px;
+            padding: 0 20px;
+        }
+        
+        .custom-slider {
+            position: relative;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.2) 0%, 
+                rgba(255,255,255,0.4) 50%, 
+                rgba(255,255,255,0.2) 100%);
+            border-radius: 12px;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.2),
+                0 1px 2px rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .slider-thumb {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(145deg, 
+                rgba(255,255,255,0.95) 0%, 
+                rgba(255,255,255,0.85) 50%,
+                rgba(240,240,240,0.9) 100%);
+            border-radius: 50%;
+            box-shadow:
+                0px 8px 12px rgba(0,0,0,0.25),
+                0px 4px 6px rgba(0,0,0,0.15),
+                inset 0px 1px 2px rgba(255,255,255,0.8),
+                inset 0px -1px 2px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.4);
+            transform: translateY(-50%);
+            cursor: grab;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            backdrop-filter: blur(20px);
+        }
+        
+        .slider-thumb:active {
+            cursor: grabbing;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow:
+                0px 12px 18px rgba(0,0,0,0.3),
+                0px 6px 9px rgba(0,0,0,0.2),
+                inset 0px 2px 4px rgba(255,255,255,0.9),
+                inset 0px -2px 4px rgba(0,0,0,0.15);
+        }
+        
+        .slider-thumb::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: linear-gradient(145deg, 
+                rgba(255,255,255,0.8) 0%, 
+                rgba(200,200,200,0.4) 100%);
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .vertical-nav {
+                right: 10px;
+                width: 6px;
             }
             
-            fetch(item.url, { method: 'HEAD' })
-              .then(response => {
-                if (response.ok) {
-                  window.location.href = item.url;
-                } else {
-                  showUnderConstruction();
-                }
-              })
-              .catch(() => {
-                showUnderConstruction();
-              });
-          }
+            .vertical-slider-container {
+                width: 6px;
+            }
+            
+            .vertical-slider-thumb {
+                width: 16px;
+                height: 40px;
+            }
+            
+            .progress-dots {
+                right: 30px;
+            }
+            
+            .progress-dot {
+                width: 6px;
+                height: 6px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section {
+                height: 40vh;
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .section {
+                margin-bottom: 40px;
+                padding: 0 15px;
+            }
+            
+            .section:first-child {
+                margin-top: 30px;
+            }
+            
+            .card {
+                width: 100px;
+                height: 100px;
+                min-width: 100px;
+                border-radius: 16px;
+            }
+            
+            .card-logo-text {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+            
+            .card-label {
+                font-size: 0.7rem;
+                margin-top: -6px;
+            }
+            
+            .carousel-row {
+                gap: 15px;
+                padding: 8px 10px 10px 10px;
+            }
+            
+            .slider-thumb {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .custom-slider {
+                height: 10px;
+            }
+        }
+        
+        /* Extra responsive adjustments */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .card {
+                width: 90px;
+                height: 90px;
+                min-width: 90px;
+            }
+            
+            .carousel-row {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Full-Height Vertical Navigation -->
+    <nav class="vertical-nav">
+        <div class="vertical-slider-container" id="verticalSlider">
+            <div class="vertical-slider-thumb" id="verticalThumb"></div>
+        </div>
+    </nav>
+    
+    <!-- Progress Dots -->
+    <div class="progress-dots" id="progressDots">
+        <div class="progress-dot active" data-section="0"></div>
+        <div class="progress-dot" data-section="1"></div>
+        <div class="progress-dot" data-section="2"></div>
+        <div class="progress-dot" data-section="3"></div>
+        <div class="progress-dot" data-section="4"></div>
+        <div class="progress-dot" data-section="5"></div>
+        <div class="progress-dot" data-section="6"></div>
+        <div class="progress-dot" data-section="7"></div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="sections-wrapper" id="sectionsWrapper">
+            
+            <!-- Hero Section -->
+            <section class="hero-section" data-section="0">
+                <h1 class="hero-title">INTUITY</h1>
+                <div class="hero-divider"></div>
+                <p class="hero-subtitle">learning Intuitively</p>
+                <p class="hero-author">Majid Nashtai</p>
+            </section>
+            
+            <!-- Unified Sections Container -->
+            <div class="unified-sections">
+                
+                <!-- 1. Central Command Carousel -->
+                <section class="section" data-section="1">
+                    <div class="section-header">
+                        <h2 class="section-title">FCE Skills</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">Choose your learning path</p>
+                    </div>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-row" id="centralCarousel">
+                            <div class="card" onclick="scrollToSection(2)">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Grammar Rules</div>
+                            </div>
+                            <div class="card" onclick="scrollToSection(3)">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Similar Words</div>
+                            </div>
+                            <div class="card" onclick="scrollToSection(4)">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Use of English</div>
+                            </div>
+                            <div class="card" onclick="scrollToSection(5)">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Reading</div>
+                            </div>
+                            <div class="card" onclick="scrollToSection(6)">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Writing</div>
+                            </div>
+                            <div class="card" onclick="scrollToSection(7)">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Speaking</div>
+                            </div>
+                        </div>
+                        <div class="slider-bar-wrapper">
+                            <div class="custom-slider" id="centralSlider">
+                                <div class="slider-thumb" id="centralThumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 2. Grammar Rules Carousel -->
+                <section class="section" data-section="2">
+                    <div class="section-header">
+                        <h2 class="section-title">Grammar Rules</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">Master English Grammar</p>
+                    </div>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-row" id="grammarCarousel">
+                            <div class="card" onclick="openModule('grammar-rules/tenses')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Tenses</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/comparatives')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Comparatives</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/conditionals-wishes')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Conditionals</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/passive-voice')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Passive Voice</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/reported-speech')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Reported Speech</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/linking-words')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Linking Words</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/past-modals')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Past Modals</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/inversion')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Inversion</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/gerunds-infinitives')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Gerunds</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/phrasal-verbs')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Phrasal Verbs</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/miscellaneous')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Miscellaneous</div>
+                            </div>
+                            <div class="card" onclick="openModule('grammar-rules/collocations')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Collocations</div>
+                            </div>
+                        </div>
+                        <div class="slider-bar-wrapper">
+                            <div class="custom-slider" id="grammarSlider">
+                                <div class="slider-thumb" id="grammarThumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 3. Similar Words Carousel -->
+                <section class="section" data-section="3">
+                    <div class="section-header">
+                        <h2 class="section-title">Similar Words</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">Expand Your Vocabulary</p>
+                    </div>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-row" id="vocabularyCarousel">
+                            <div class="card" onclick="openModule('similar-words/vocabulary')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Vocabulary</div>
+                            </div>
+                            <div class="card" onclick="openModule('similar-words/academic-expressions')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Academic</div>
+                            </div>
+                            <div class="card" onclick="openModule('similar-words/sentences')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Sentences</div>
+                            </div>
+                            <div class="card" onclick="openModule('similar-words/paragraphs')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Paragraphs</div>
+                            </div>
+                            <div class="card" onclick="openModule('similar-words/lists')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Lists</div>
+                            </div>
+                        </div>
+                        <div class="slider-bar-wrapper">
+                            <div class="custom-slider" id="vocabularySlider">
+                                <div class="slider-thumb" id="vocabularyThumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 4. Use of English Carousel -->
+                <section class="section" data-section="4">
+                    <div class="section-header">
+                        <h2 class="section-title">Use of English</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">Practice & Test</p>
+                    </div>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-row" id="useOfEnglishCarousel">
+                            <div class="card" onclick="openModule('use-of-english/multiple-choice')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Multiple Choice</div>
+                            </div>
+                            <div class="card" onclick="openModule('use-of-english/gapfill')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Gap Fill</div>
+                            </div>
+                            <div class="card" onclick="openModule('use-of-english/word-formation')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Word Formation</div>
+                            </div>
+                            <div class="card" onclick="openModule('use-of-english/word-transformation')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Word Transform</div>
+                            </div>
+                        </div>
+                        <div class="slider-bar-wrapper">
+                            <div class="custom-slider" id="useOfEnglishSlider">
+                                <div class="slider-thumb" id="useOfEnglishThumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 5. Reading Carousel -->
+                <section class="section" data-section="5">
+                    <div class="section-header">
+                        <h2 class="section-title">Reading</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">Comprehension Skills</p>
+                    </div>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-row" id="readingCarousel">
+                            <div class="card" onclick="openModule('reading/multiple-choice-d')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Multiple Choice</div>
+                            </div>
+                            <div class="card" onclick="openModule('reading/gapped-text-d')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Gapped Text</div>
+                            </div>
+                            <div class="card" onclick="openModule('reading/multiple-matching-d')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Multiple Matching</div>
+                            </div>
+                        </div>
+                        <div class="slider-bar-wrapper">
+                            <div class="custom-slider" id="readingSlider">
+                                <div class="slider-thumb" id="readingThumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 6. Writing Carousel -->
+                <section class="section" data-section="6">
+                    <div class="section-header">
+                        <h2 class="section-title">Writing</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">Express Your Ideas</p>
+                    </div>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-row" id="writingCarousel">
+                            <div class="card" onclick="openModule('writing/essays')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Essays</div>
+                            </div>
+                            <div class="card" onclick="openModule('writing/reports')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Reports</div>
+                            </div>
+                            <div class="card" onclick="openModule('writing/reviews')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Reviews</div>
+                            </div>
+                            <div class="card" onclick="openModule('writing/email-letters')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Emails</div>
+                            </div>
+                            <div class="card" onclick="openModule('writing/articles')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Articles</div>
+                            </div>
+                            <div class="card" onclick="openModule('writing/expressions-writing')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Expressions</div>
+                            </div>
+                            <div class="card" onclick="openModule('writing/correction-assessment')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Assessment</div>
+                            </div>
+                        </div>
+                        <div class="slider-bar-wrapper">
+                            <div class="custom-slider" id="writingSlider">
+                                <div class="slider-thumb" id="writingThumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 7. Speaking Carousel -->
+                <section class="section" data-section="7">
+                    <div class="section-header">
+                        <h2 class="section-title">Speaking</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">Communication Skills</p>
+                    </div>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-row" id="speakingCarousel">
+                            <div class="card" onclick="openModule('speaking/part-01')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">General Questions</div>
+                            </div>
+                            <div class="card" onclick="openModule('speaking/part-02')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Comparing Pictures</div>
+                            </div>
+                            <div class="card" onclick="openModule('speaking/part-03')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Collaborative Task</div>
+                            </div>
+                            <div class="card" onclick="openModule('speaking/part-04')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Personal Views</div>
+                            </div>
+                            <div class="card" onclick="openModule('speaking/expressions-speaking')">
+                                <span class="card-logo-text">i</span>
+                                <div class="card-label">Expressions</div>
+                            </div>
+                        </div>
+                        <div class="slider-bar-wrapper">
+                            <div class="custom-slider" id="speakingSlider">
+                                <div class="slider-thumb" id="speakingThumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize variables
+        const sliders = [
+            'central', 'grammar', 'vocabulary', 'useOfEnglish', 'reading', 'writing', 'speaking'
+        ];
+        
+        let isDragging = false;
+        let isVerticalDragging = false;
+        let currentSlider = null;
+        let currentSection = 0;
+        const totalSections = 8; // Hero + 7 carousels
+        
+        // DOM elements
+        const sectionsWrapper = document.getElementById('sectionsWrapper');
+        const verticalSlider = document.getElementById('verticalSlider');
+        const verticalThumb = document.getElementById('verticalThumb');
+        const progressDots = document.querySelectorAll('.progress-dot');
+        
+        // Calculate section positions for precise navigation
+        function getSectionPositions() {
+            const heroHeight = document.querySelector('.hero-section').offsetHeight;
+            const sections = document.querySelectorAll('.unified-sections .section');
+            const positions = [0]; // Hero section at 0
+            
+            let currentPosition = heroHeight;
+            sections.forEach((section, index) => {
+                positions.push(currentPosition);
+                currentPosition += section.offsetHeight + 60; // Section height + reduced margin
+            });
+            
+            return positions;
+        }
+        
+        // Scroll to specific section with precise positioning
+        function scrollToSection(sectionIndex) {
+            if (sectionIndex < 0 || sectionIndex >= totalSections) return;
+            
+            currentSection = sectionIndex;
+            const positions = getSectionPositions();
+            let translateY = -positions[sectionIndex];
+            
+            sectionsWrapper.style.transform = `translateY(${translateY}px)`;
+            updateVerticalThumb();
+            updateProgressDots();
+        }
+        
+        // Update vertical thumb position
+        function updateVerticalThumb() {
+            const sliderHeight = verticalSlider.clientHeight;
+            const thumbHeight = verticalThumb.offsetHeight;
+            const maxTop = sliderHeight - thumbHeight;
+            const thumbPosition = (currentSection / (totalSections - 1)) * maxTop;
+            
+            verticalThumb.style.top = thumbPosition + 'px';
+        }
+        
+        // Update progress dots
+        function updateProgressDots() {
+            progressDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSection);
+            });
+        }
+        
+        // Progress dots click handlers
+        progressDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                scrollToSection(index);
+            });
         });
         
-        carouselRow.appendChild(card);
-      });
-    }
+        // Vertical slider functionality
+        function startVerticalDrag(e) {
+            isVerticalDragging = true;
+            e.preventDefault();
+            document.addEventListener('mousemove', dragVertical);
+            document.addEventListener('touchmove', dragVertical, { passive: false });
+            document.addEventListener('mouseup', stopVerticalDrag);
+            document.addEventListener('touchend', stopVerticalDrag);
+        }
+        
+        function dragVertical(e) {
+            if (!isVerticalDragging) return;
+            e.preventDefault();
+            
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            const sliderRect = verticalSlider.getBoundingClientRect();
+            const thumbHeight = verticalThumb.offsetHeight;
+            
+            let newTop = clientY - sliderRect.top - (thumbHeight / 2);
+            const maxTop = verticalSlider.clientHeight - thumbHeight;
+            
+            newTop = Math.max(0, Math.min(newTop, maxTop));
+            
+            const percentage = newTop / maxTop;
+            const sectionIndex = Math.round(percentage * (totalSections - 1));
+            
+            if (sectionIndex !== currentSection) {
+                scrollToSection(sectionIndex);
+            }
+        }
+        
+        function stopVerticalDrag() {
+            isVerticalDragging = false;
+            document.removeEventListener('mousemove', dragVertical);
+            document.removeEventListener('touchmove', dragVertical);
+            document.removeEventListener('mouseup', stopVerticalDrag);
+            document.removeEventListener('touchend', stopVerticalDrag);
+        }
+        
+        // Horizontal slider functionality for each carousel
+        function initializeSlider(sliderId) {
+            const carousel = document.getElementById(sliderId + 'Carousel');
+            const slider = document.getElementById(sliderId + 'Slider');
+            const thumb = document.getElementById(sliderId + 'Thumb');
+            
+            if (!carousel || !slider || !thumb) return;
+            
+            function updateThumbPosition() {
+                const scrollLeft = carousel.scrollLeft;
+                const scrollWidth = carousel.scrollWidth;
+                const clientWidth = carousel.clientWidth;
+                const sliderWidth = slider.clientWidth;
+                const thumbWidth = thumb.offsetWidth;
+                
+                if (scrollWidth <= clientWidth) {
+                    thumb.style.left = '0px';
+                    return;
+                }
+                
+                const maxScroll = scrollWidth - clientWidth;
+                const maxThumbPosition = sliderWidth - thumbWidth;
+                const thumbPosition = (scrollLeft / maxScroll) * maxThumbPosition;
+                
+                thumb.style.left = thumbPosition + 'px';
+            }
+            
+            function startDrag(e) {
+                isDragging = true;
+                currentSlider = { carousel, slider, thumb };
+                e.preventDefault();
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag, { passive: false });
+                document.addEventListener('mouseup', stopDrag);
+                document.addEventListener('touchend', stopDrag);
+            }
+            
+            function drag(e) {
+                if (!isDragging || !currentSlider) return;
+                e.preventDefault();
 
-    // Update thumb position based on scroll
-    function updateThumbPosition() {
-      const scrollLeft = carouselRow.scrollLeft;
-      const scrollWidth = carouselRow.scrollWidth;
-      const clientWidth = carouselRow.clientWidth;
-      const sliderWidth = customSlider.clientWidth;
-      const thumbWidth = sliderThumb.offsetWidth;
-      
-      if (scrollWidth <= clientWidth) {
-        sliderThumb.style.left = '0px';
-        return;
-      }
-      
-      const maxScroll = scrollWidth - clientWidth;
-      const maxThumbPosition = sliderWidth - thumbWidth;
-      const thumbPosition = (scrollLeft / maxScroll) * maxThumbPosition;
-      
-      sliderThumb.style.left = thumbPosition + 'px';
-    }
-
-    // Handle scroll events
-    carouselRow.addEventListener('scroll', updateThumbPosition);
-
-    // Handle thumb dragging
-    sliderThumb.addEventListener('mousedown', startDrag);
-    sliderThumb.addEventListener('touchstart', startDrag);
-
-    function startDrag(e) {
-      isDragging = true;
-      e.preventDefault();
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag);
-      document.addEventListener('mouseup', stopDrag);
-      document.addEventListener('touchend', stopDrag);
-    }
-
-    function drag(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const sliderRect = customSlider.getBoundingClientRect();
-      const thumbWidth = sliderThumb.offsetWidth;
-      
-      let newLeft = clientX - sliderRect.left - (thumbWidth / 2);
-      const maxLeft = customSlider.clientWidth - thumbWidth;
-      
-      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-      
-      const percentage = newLeft / maxLeft;
-      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
-      
-      carouselRow.scrollLeft = percentage * maxScroll;
-    }
-
-    function stopDrag() {
-      isDragging = false;
-      document.removeEventListener('mousemove', drag);
-      document.removeEventListener('touchmove', drag);
-      document.removeEventListener('mouseup', stopDrag);
-      document.removeEventListener('touchend', stopDrag);
-    }
-
-    // Handle slider bar clicks
-    customSlider.addEventListener('click', function(e) {
-      if (e.target === sliderThumb) return;
-      
-      const sliderRect = customSlider.getBoundingClientRect();
-      const clickX = e.clientX - sliderRect.left;
-      const sliderWidth = customSlider.clientWidth;
-      const percentage = clickX / sliderWidth;
-      const maxScroll = carouselRow.scrollWidth - carouselRow.clientWidth;
-      
-      carouselRow.scrollLeft = percentage * maxScroll;
-    });
-
-    // Enhanced under construction functionality with better messaging
-    function showUnderConstruction() {
-      carouselContainerAll.style.display = 'none';
-      underConstructionContent.style.display = 'block';
-      blackStrip.style.display = 'flex';
-      footerBlack.style.display = 'none';
-      
-      // Add some visual feedback
-      console.log('Showing under construction page - file not found or in development');
-    }
-
-    function showCarousel() {
-      carouselContainerAll.style.display = 'flex';
-      underConstructionContent.style.display = 'none';
-      blackStrip.style.display = 'none';
-      footerBlack.style.display = 'flex';
-      setTimeout(updateThumbPosition, 100);
-      
-      console.log('Returning to main carousel');
-    }
-
-    blackStrip.addEventListener('click', showCarousel);
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      createCards();
-      setTimeout(updateThumbPosition, 100);
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', function() {
-      setTimeout(updateThumbPosition, 100);
-    });
-  </script>
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const sliderRect = currentSlider.slider.getBoundingClientRect();
+                const thumbWidth = currentSlider.thumb.offsetWidth;
+                
+                let newLeft = clientX - sliderRect.left - (thumbWidth / 2);
+                const maxLeft = currentSlider.slider.clientWidth - thumbWidth;
+                
+                newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+                
+                const percentage = newLeft / maxLeft;
+                const maxScroll = currentSlider.carousel.scrollWidth - currentSlider.carousel.clientWidth;
+                
+                currentSlider.carousel.scrollLeft = percentage * maxScroll;
+            }
+            
+            function stopDrag() {
+                isDragging = false;
+                currentSlider = null;
+                document.removeEventListener('mousemove', drag);
+                document.removeEventListener('touchmove', drag);
+                document.removeEventListener('mouseup', stopDrag);
+                document.removeEventListener('touchend', stopDrag);
+            }
+            
+            // Event listeners
+            carousel.addEventListener('scroll', updateThumbPosition);
+            thumb.addEventListener('mousedown', startDrag);
+            thumb.addEventListener('touchstart', startDrag, { passive: false });
+            
+            // Slider bar clicks
+            slider.addEventListener('click', function(e) {
+                if (e.target === thumb) return;
+                
+                const sliderRect = slider.getBoundingClientRect();
+                const clickX = e.clientX - sliderRect.left;
+                const sliderWidth = slider.clientWidth;
+                const percentage = clickX / sliderWidth;
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                
+                carousel.scrollLeft = percentage * maxScroll;
+            });
+            
+            // Initialize thumb position
+            setTimeout(updateThumbPosition, 100);
+        }
+        
+        // Module opening function with proper navigation
+        function openModule(modulePath) {
+            console.log(`Opening module: ${modulePath}/index.html`);
+            
+            // Simulate navigation with visual feedback
+            const clickedCard = event.currentTarget;
+            clickedCard.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                clickedCard.style.transform = '';
+                // Navigate to the module - check for existing files
+                const moduleUrl = `${modulePath}/index.html`;
+                
+                // For existing modules, navigate directly
+                if (modulePath.includes('grammar-rules') || 
+                    modulePath.includes('similar-words') || 
+                    modulePath.includes('use-of-english') ||
+                    modulePath.includes('reading') ||
+                    modulePath.includes('writing') ||
+                    modulePath.includes('speaking')) {
+                    window.location.href = moduleUrl;
+                } else {
+                    // For modules that don't exist yet, show a message
+                    alert(`🚀 Opening: ${modulePath}\n\nIn the real implementation, this would navigate to:\n${moduleUrl}`);
+                }
+            }, 150);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' && currentSection < totalSections - 1) {
+                scrollToSection(currentSection + 1);
+            } else if (e.key === 'ArrowUp' && currentSection > 0) {
+                scrollToSection(currentSection - 1);
+            }
+        });
+        
+        // Mouse wheel navigation
+        let wheelTimeout;
+        document.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            
+            clearTimeout(wheelTimeout);
+            wheelTimeout = setTimeout(() => {
+                if (e.deltaY > 0 && currentSection < totalSections - 1) {
+                    scrollToSection(currentSection + 1);
+                } else if (e.deltaY < 0 && currentSection > 0) {
+                    scrollToSection(currentSection - 1);
+                }
+            }, 50);
+        }, { passive: false });
+        
+        // Touch swipe navigation for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.carousel-row') || e.target.closest('.slider-thumb')) return;
+            touchStartY = e.changedTouches[0].screenY;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            if (e.target.closest('.carousel-row') || e.target.closest('.slider-thumb')) return;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartY - touchEndY;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && currentSection < totalSections - 1) {
+                    // Swipe up
+                    scrollToSection(currentSection + 1);
+                } else if (diff < 0 && currentSection > 0) {
+                    // Swipe down
+                    scrollToSection(currentSection - 1);
+                }
+            }
+        }
+        
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            // Initialize all horizontal sliders
+            sliders.forEach(initializeSlider);
+            
+            // Setup vertical slider
+            verticalThumb.addEventListener('mousedown', startVerticalDrag);
+            verticalThumb.addEventListener('touchstart', startVerticalDrag, { passive: false });
+            
+            // Setup vertical slider area clicks
+            verticalSlider.addEventListener('click', (e) => {
+                if (e.target === verticalThumb) return;
+                
+                const sliderRect = verticalSlider.getBoundingClientRect();
+                const clickY = e.clientY - sliderRect.top;
+                const sliderHeight = verticalSlider.clientHeight;
+                const percentage = clickY / sliderHeight;
+                const sectionIndex = Math.round(percentage * (totalSections - 1));
+                
+                scrollToSection(sectionIndex);
+            });
+            
+            // Initialize positions
+            updateVerticalThumb();
+            updateProgressDots();
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            setTimeout(() => {
+                sliders.forEach(sliderId => {
+                    const carousel = document.getElementById(sliderId + 'Carousel');
+                    const slider = document.getElementById(sliderId + 'Slider');
+                    const thumb = document.getElementById(sliderId + 'Thumb');
+                    
+                    if (carousel && slider && thumb) {
+                        const scrollLeft = carousel.scrollLeft;
+                        const scrollWidth = carousel.scrollWidth;
+                        const clientWidth = carousel.clientWidth;
+                        const sliderWidth = slider.clientWidth;
+                        const thumbWidth = thumb.offsetWidth;
+                        
+                        if (scrollWidth <= clientWidth) {
+                            thumb.style.left = '0px';
+                            return;
+                        }
+                        
+                        const maxScroll = scrollWidth - clientWidth;
+                        const maxThumbPosition = sliderWidth - thumbWidth;
+                        const thumbPosition = (scrollLeft / maxScroll) * maxThumbPosition;
+                        
+                        thumb.style.left = thumbPosition + 'px';
+                    }
+                });
+                
+                updateVerticalThumb();
+            }, 100);
+        });
+    </script>
 </body>
 </html>
