@@ -411,7 +411,7 @@
   </div>
   
   <script>
-    // Word Formation tests - 10 boxes (matching your GitHub file structure)
+    // ✅ CORRECTED: Word Formation tests - 10 boxes (matching your GitHub file structure)
     const cardData = [
       { label: "TEST 1", url: "test-01/index.html" },
       { label: "TEST 2", url: "test-02/index.html" },
@@ -436,7 +436,7 @@
 
     let isDragging = false;
 
-    // Create cards with "under construction" logic
+    // ✅ CORRECTED: Proper card creation with "under construction" logic (like grammar-rules/index.html)
     function createCards() {
       cardData.forEach(item => {
         const card = document.createElement('div');
@@ -531,23 +531,23 @@
       carouselRow.scrollLeft = percentage * maxScroll;
     });
 
-    // Under construction functionality
+    // ✅ CORRECTED: Under construction functionality (like grammar-rules/index.html)
     function showUnderConstruction() {
       carouselContainerAll.style.display = 'none';
       underConstructionContent.style.display = 'block';
-      blackStrip.style.display = 'flex';
+      blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'none';
     }
 
     function showCarousel() {
       carouselContainerAll.style.display = 'flex';
       underConstructionContent.style.display = 'none';
-      blackStrip.style.display = 'flex';
+      blackStrip.style.display = 'flex';  // Keep back button visible
       footerBlack.style.display = 'none';
       setTimeout(updateThumbPosition, 100);
     }
 
-    // Back button functionality - Level B carousel returns to Use of English
+    // ✅ CORRECTED: Back button goes to Use of English
     blackStrip.addEventListener('click', function() {
       // Try multiple navigation approaches to ensure it works
       try {
