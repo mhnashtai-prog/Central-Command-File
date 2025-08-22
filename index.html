@@ -1042,12 +1042,19 @@
             // Initialize thumb position
             setTimeout(updateThumbPosition, 100);
         }
-        
-        // Module opening function with proper navigation
-        function openModule(modulePath) {
-            console.log(`Opening module: ${modulePath}/index.html`);
-            
-            // Simulate navigation with visual feedback
+     
+function openModule(modulePath) {
+    const clickedCard = event.currentTarget;
+    clickedCard.style.transform = 'scale(0.95)';
+    
+    setTimeout(() => {
+        clickedCard.style.transform = '';
+        // Direct navigation to existing carousel pages
+        window.location.href = `${modulePath}/index.html`;
+    }, 150);
+}           
+
+   // Simulate navigation with visual feedback
             const clickedCard = event.currentTarget;
             clickedCard.style.transform = 'scale(0.95)';
             
