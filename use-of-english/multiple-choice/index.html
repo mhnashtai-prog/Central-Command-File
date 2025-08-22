@@ -446,16 +446,10 @@
           <div class="card-label">${item.label}</div>
         `;
         
-       card.addEventListener('click', () => {
-          // Check if URL exists and is not empty
-          if (item.url && item.url.trim() !== "") {
-            console.log(`Attempting to navigate to: ${item.url}`);
-            
-            // For TEST 1, we know the file exists, so navigate directly
-            if (item.label === "TEST 1") {
-              window.location.href = item.url;
-              return;
-            }
+        card.addEventListener('click', () => {
+          // SIMPLIFIED: Just show under construction for all missing files
+          showUnderConstruction();
+        });
         
         carouselRow.appendChild(card);
       });
