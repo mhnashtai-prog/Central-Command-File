@@ -111,35 +111,7 @@
             border-radius: 2px;
             opacity: 0.8;
         }
-        
-        /* Progress indicator dots */
-        .progress-dots {
-            position: fixed;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 999;
-        }
-        
-        .progress-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .progress-dot.active {
-            background: rgba(255,255,255,0.9);
-            transform: scale(1.5);
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-        
+
         /* Main Container */
         .main-container {
             width: 100vw;
@@ -569,19 +541,7 @@
             <div class="vertical-slider-thumb" id="verticalThumb"></div>
         </div>
     </nav>
-    
-    <!-- Progress Dots -->
-    <div class="progress-dots" id="progressDots">
-        <div class="progress-dot active" data-section="0"></div>
-        <div class="progress-dot" data-section="1"></div>
-        <div class="progress-dot" data-section="2"></div>
-        <div class="progress-dot" data-section="3"></div>
-        <div class="progress-dot" data-section="4"></div>
-        <div class="progress-dot" data-section="5"></div>
-        <div class="progress-dot" data-section="6"></div>
-        <div class="progress-dot" data-section="7"></div>
-    </div>
-    
+  
     <!-- Main Container -->
     <div class="main-container">
         <div class="sections-wrapper" id="sectionsWrapper">
@@ -918,7 +878,6 @@
         const sectionsWrapper = document.getElementById('sectionsWrapper');
         const verticalSlider = document.getElementById('verticalSlider');
         const verticalThumb = document.getElementById('verticalThumb');
-        const progressDots = document.querySelectorAll('.progress-dot');
         
         // Calculate section positions for precise navigation
         function getSectionPositions() {
@@ -957,21 +916,7 @@
             
             verticalThumb.style.top = thumbPosition + 'px';
         }
-        
-        // Update progress dots
-        function updateProgressDots() {
-            progressDots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSection);
-            });
-        }
-        
-        // Progress dots click handlers
-        progressDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                scrollToSection(index);
-            });
-        });
-        
+       
         // Vertical slider functionality
         function startVerticalDrag(e) {
             isVerticalDragging = true;
@@ -1204,7 +1149,7 @@
             
             // Initialize positions
             updateVerticalThumb();
-            updateProgressDots();
+
         });
         
         // Handle window resize
