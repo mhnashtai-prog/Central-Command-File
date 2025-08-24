@@ -1,810 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>INTUITY – Multiple Choice Test 01</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<title>INTUITY – Multiple Choice Test 01</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --main-font: 'Inter', 'Poppins', 'Montserrat', Arial, sans-serif;
+  --question-font-size: 1.05rem;
+  --options-font-size: 1rem;
+  --option-gap: 0.52em;
+  --sentence-gap: 44px;
+}
+body {
+  background: linear-gradient(135deg, #2c5aa0 0%, #3b6bb5 15%, #4a7bc8 30%, #7a9fd9 45%, #b8d3ea 60%, #e8c5d8 75%, #f0b7c9 85%, #f5a9ba 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--main-font);
+  color: #151515;
+}
+.flex-center {display: flex; flex-direction: column; align-items: center;}
+.quiz-container {
+  max-width: 780px;
+  margin: 48px auto 44px auto;
+  background: #ffffff;
+  border-radius: 2.4em;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 40px 22px 42px 22px;
+  font-size: 95%;
+}
+.title {
+  font-size: 2.48em;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  margin-bottom: 9px;
+  color: #1b1c1f;
+  text-align: center;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1.12em;
+  letter-spacing: 0.06em;
+  color: #444448;
+  font-family:"Inter", "Poppins", Arial, sans-serif;
+  font-weight: 600;
+  margin-bottom: 21px;
+}
+.form-quiz {
+  width: 100%;
+}
+.q-block {
+  margin-bottom: var(--sentence-gap);
+}
+.q-sentence {
+  font-size: var(--question-font-size);
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #141414;
+  line-height: 1.47;
+}
+.q-num {
+  display: inline-block;
+  width: 1.3em;
+  font-weight: 900;
+  color: #405080;
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
+  font-size: 1em;
+}
+.q-options-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--option-gap);
+  margin-bottom: 0.08em;
+  flex-wrap: wrap;
+}
+.q-opt-btn {
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-size: var(--options-font-size);
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.08em;
+  background: #e8e8eb;
+  border-radius: 1.2em;
+  border: none;
+  padding: 12px 18px;
+  margin-right: 1px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  position: relative;
+  min-width: 70px;
+  user-select: none;
+  flex: 1;
+  box-shadow: 
+    7.9px 7.9px 15.9px #d1d1d4,
+    -6px -6px 12px #ffffff;
+}
+.q-opt-btn .lbl {
+  font-weight: 900;
+  margin-right: 8px;
+  font-size: 1.18em;
+  color: #1a284e;
+  vertical-align: middle;
+  display: inline-block;
+}
+.q-opt-btn:hover {
+  background: #e8e8eb;
+  box-shadow: 
+    6.6px 6.6px 13.2px #c5c5c8,
+    -6px -6px 12px #ffffff;
+  transform: translateY(-1px);
+}
 
-    body {
-      background: linear-gradient(135deg, 
-        #2c5aa0 0%, 
-        #3b6bb5 15%, 
-        #4a7bc8 30%, 
-        #7a9fd9 45%, 
-        #b8d3ea 60%, 
-        #e8c5d8 75%, 
-        #f0b7c9 85%, 
-        #f5a9ba 100%
-      );
-      background-attachment: fixed;
-      font-family: 'Montserrat', Arial, sans-serif;
-      min-height: 100vh;
-      padding: 20px;
-      color: #333;
-    }
+.q-opt-btn.selected {
+  background: #e8e8eb;
+  box-shadow: 
+    inset 6px 6px 12px #d1d1d4,
+    inset -6px -6px 12px #ffffff;
+  color: #2c5aa0;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
+.q-opt-btn.selected .lbl {
+  color: #2c5aa0;
+}
 
-    /* Header */
-    .header {
-      background: linear-gradient(135deg, #2c5aa0, #4a7bc8);
-      color: white;
-      padding: 30px;
-      text-align: center;
-      position: relative;
-    }
+.q-opt-btn.correct {
+  background: #e8f5e8 !important;
+  color: #2d5a2d !important;
+  box-shadow: 
+    inset 6px 6px 12px #c8e6c8,
+    inset -6px -6px 12px #ffffff !important;
+}
 
-    .header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
+.q-opt-btn.correct .lbl {
+  color: #2d5a2d !important;
+}
 
-    .header .subtitle {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      font-weight: 500;
-    }
+.q-opt-btn.wrong {
+  background: #f5e8e8 !important;
+  color: #8b4513 !important;
+  box-shadow: 
+    inset 6px 6px 12px #e0c5c5,
+    inset -6px -6px 12px #ffffff !important;
+}
 
-    .progress-bar {
-      background: rgba(255,255,255,0.2);
-      height: 6px;
-      border-radius: 3px;
-      margin-top: 20px;
-      overflow: hidden;
-    }
+.q-opt-btn.wrong .lbl {
+  color: #8b4513 !important;
+}
+.q-block:last-child {margin-bottom: 10px;}
+.controls-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 32px;
+}
+.control-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.control-btn {
+  font-size: 1.05em;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 1.05em;
+  padding: 11px 28px;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: background 0.13s, color 0.12s, transform 0.1s;
+  box-shadow: 0 3px 16px #b8d3ea27;
+}
+.control-btn.check {
+  color: #274b75;
+  background: linear-gradient(120deg, #e8f5fd 70%, #f5a9ba 100%);
+}
+.control-btn.check:hover {
+  background: linear-gradient(120deg, #d4ebf7 70%, #f299b0 100%);
+}
+.control-btn.repeat {
+  color: #7a4b00;
+  background: linear-gradient(120deg, #fff3cd 70%, #ffeaa7 100%);
+}
+.control-btn.repeat:hover {
+  background: linear-gradient(120deg, #ffecb3 70%, #ffe082 100%);
+}
+.control-btn:active {
+  transform: translateY(1px);
+}
+.score-panel {
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #117d48;
+  margin: 21px auto 14px auto;
+  text-align: center;
+}
 
-    .progress-fill {
-      background: #63e3c0;
-      height: 100%;
-      width: 0%;
-      border-radius: 3px;
-      transition: width 0.3s ease;
-    }
-
-    /* Question Container */
-    .question-container {
-      padding: 40px;
-    }
-
-    .question-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid #f0f0f0;
-    }
-
-    .question-number {
-      background: #2c5aa0;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .score-display {
-      font-weight: 600;
-      color: #2c5aa0;
-      font-size: 1rem;
-    }
-
-    .question-text {
-      font-size: 1.3rem;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      color: #2c3e50;
-      font-weight: 500;
-    }
-
-    .context {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      font-style: italic;
-      color: #555;
-      border-left: 4px solid #2c5aa0;
-    }
-
-    .blank {
-      background: #fff3cd;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 600;
-      color: #856404;
-    }
-
-    /* Options */
-    .options-container {
-      display: grid;
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-
-    .option {
-      background: white;
-      border: 2px solid #e9ecef;
-      border-radius: 12px;
-      padding: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      font-size: 1.1rem;
-      position: relative;
-    }
-
-    .option:hover {
-      border-color: #2c5aa0;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(44, 90, 160, 0.1);
-    }
-
-    .option-letter {
-      background: #f8f9fa;
-      color: #495057;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      margin-right: 15px;
-      flex-shrink: 0;
-    }
-
-    .option.selected {
-      border-color: #2c5aa0;
-      background: rgba(44, 90, 160, 0.05);
-    }
-
-    .option.selected .option-letter {
-      background: #2c5aa0;
-      color: white;
-    }
-
-    .option.correct {
-      border-color: #28a745;
-      background: rgba(40, 167, 69, 0.1);
-    }
-
-    .option.correct .option-letter {
-      background: #28a745;
-      color: white;
-    }
-
-    .option.incorrect {
-      border-color: #dc3545;
-      background: rgba(220, 53, 69, 0.1);
-    }
-
-    .option.incorrect .option-letter {
-      background: #dc3545;
-      color: white;
-    }
-
-    .option.disabled {
-      cursor: not-allowed;
-      opacity: 0.7;
-    }
-
-    /* Feedback */
-    .feedback {
-      background: #f8f9fa;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px 0;
-      border-left: 4px solid #2c5aa0;
-      display: none;
-    }
-
-    .feedback.show {
-      display: block;
-      animation: slideDown 0.3s ease;
-    }
-
-    .feedback.correct {
-      background: rgba(40, 167, 69, 0.1);
-      border-color: #28a745;
-      color: #155724;
-    }
-
-    .feedback.incorrect {
-      background: rgba(220, 53, 69, 0.1);
-      border-color: #dc3545;
-      color: #721c24;
-    }
-
-    .feedback-title {
-      font-weight: 600;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-
-    /* Navigation */
-    .navigation {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 30px 40px;
-      background: #f8f9fa;
-      border-top: 1px solid #e9ecef;
-    }
-
-    .nav-button {
-      background: #2c5aa0;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-button:hover {
-      background: #1e3d72;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(44, 90, 160, 0.3);
-    }
-
-    .nav-button:disabled {
-      background: #6c757d;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .back-button {
-      background: #6c757d;
-      color: white;
-    }
-
-    .back-button:hover {
-      background: #545b62;
-    }
-
-    /* Results Screen */
-    .results {
-      display: none;
-      text-align: center;
-      padding: 60px 40px;
-    }
-
-    .results.show {
-      display: block;
-    }
-
-    .results h2 {
-      font-size: 2.5rem;
-      color: #2c5aa0;
-      margin-bottom: 20px;
-    }
-
-    .final-score {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #28a745;
-      margin: 20px 0;
-    }
-
-    .results-details {
-      background: #f8f9fa;
-      border-radius: 15px;
-      padding: 30px;
-      margin: 30px 0;
-      text-align: left;
-    }
-
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #e9ecef;
-    }
-
-    .result-row:last-child {
-      border-bottom: none;
-    }
-
-    /* Animations */
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    .correct-answer {
-      animation: pulse 0.6s ease;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .container {
-        margin: 10px;
-        border-radius: 15px;
-      }
-      
-      .header h1 {
-        font-size: 2rem;
-      }
-      
-      .question-container {
-        padding: 20px;
-      }
-      
-      .question-text {
-        font-size: 1.1rem;
-      }
-      
-      .option {
-        padding: 15px;
-        font-size: 1rem;
-      }
-      
-      .navigation {
-        padding: 20px;
-        flex-direction: column;
-        gap: 15px;
-      }
-    }
-  </style>
+/* Black Strip Navigation */
+.black-strip {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 28px;
+  background: rgba(68, 68, 68, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow: 0 2px 18px 0 rgba(34, 34, 34, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+  z-index: 40;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat', Arial, sans-serif;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.black-strip .arrow {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-right: 14px;
+  transition: color 0.17s;
+}
+.black-strip .arrow:hover {
+  color: #63e3c0;
+}
+.black-strip .back-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 6px;
+}
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 5vw 2vw;
+    margin: 20px auto;
+  }
+  .q-options-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .q-opt-btn {
+    flex: none;
+    text-align: left;
+  }
+  .control-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .control-btn {
+    width: 200px;
+  }
+}
+@media (max-width: 480px) {
+  .title {
+    font-size: 2em;
+  }
+  .subtitle {
+    font-size: 1em;
+  }
+  :root {
+    --question-font-size: 0.95rem;
+    --options-font-size: 0.9rem;
+    --sentence-gap: 32px;
+  }
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <div class="header">
-      <h1>INTUITY</h1>
-      <div class="subtitle">Multiple Choice Test 01</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
+<div class="quiz-container flex-center">
+  <div class="title">INTUITY</div>
+  <div class="subtitle">Multiple Choice Test 01</div>
+  <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
+  <div class="controls-container">
+    <div class="control-buttons">
+      <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
+      <button class="control-btn repeat" onclick="clearAll()">REPEAT</button>
     </div>
-
-    <!-- Main Content -->
-    <div id="questionScreen">
-      <div class="question-container">
-        <div class="question-header">
-          <div class="question-number" id="questionNumber">Question 1 of 12</div>
-          <div class="score-display" id="scoreDisplay">Score: 0/0</div>
-        </div>
-
-        <div id="context" class="context"></div>
-        <div class="question-text" id="questionText"></div>
-
-        <div class="options-container" id="optionsContainer"></div>
-
-        <div id="feedback" class="feedback">
-          <div class="feedback-title" id="feedbackTitle"></div>
-          <div id="feedbackText"></div>
-        </div>
-      </div>
-
-      <div class="navigation">
-        <button class="nav-button back-button" onclick="goBack()">
-          ← Back to Tests
-        </button>
-        <button class="nav-button" id="nextButton" onclick="nextQuestion()" disabled>
-          Next Question →
-        </button>
-      </div>
-    </div>
-
-    <!-- Results Screen -->
-    <div id="resultsScreen" class="results">
-      <h2>Test Completed!</h2>
-      <div class="final-score" id="finalScore">0/12</div>
-      <div class="results-details">
-        <div class="result-row">
-          <span>Correct Answers:</span>
-          <span id="correctCount">0</span>
-        </div>
-        <div class="result-row">
-          <span>Incorrect Answers:</span>
-          <span id="incorrectCount">0</span>
-        </div>
-        <div class="result-row">
-          <span>Percentage:</span>
-          <span id="percentage">0%</span>
-        </div>
-        <div class="result-row">
-          <span>Grade:</span>
-          <span id="grade">F</span>
-        </div>
-      </div>
-      <button class="nav-button" onclick="restartTest()" style="margin-right: 15px;">
-        🔄 Restart Test
-      </button>
-      <button class="nav-button back-button" onclick="goBack()">
-        ← Back to Tests
-      </button>
-    </div>
+    <div class="score-panel" id="scorePanel"></div>
   </div>
 
-  <script>
-    // Test Data - High-quality C1 level questions
-    const testQuestions = [
-      {
-        context: "Company restructuring announcement",
-        question: "The CEO announced that the entire marketing department _______ by external consultants next quarter.",
-        options: [
-          "will be reviewed",
-          "would be reviewed", 
-          "is being reviewed",
-          "has been reviewed"
-        ],
-        correct: 1,
-        explanation: "In reported speech, 'will' becomes 'would' when reporting future plans. This combines reported speech with passive voice."
-      },
-      {
-        context: "University research project",
-        question: "_______ the professor's initial skepticism, the student's hypothesis proved to be groundbreaking.",
-        options: [
-          "Despite of",
-          "In spite",
-          "Regardless", 
-          "Despite"
-        ],
-        correct: 3,
-        explanation: "'Despite' + noun phrase expresses contrast. 'Despite of' is incorrect; 'In spite' needs 'of'; 'Regardless' needs 'of' + noun."
-      },
-      {
-        context: "Environmental policy discussion",
-        question: "If the government _______ carbon taxes five years ago, we might not be facing this crisis today.",
-        options: [
-          "would have introduced",
-          "had introduced",
-          "would introduce",
-          "introduced"
-        ],
-        correct: 1,
-        explanation: "Mixed conditional: past perfect in if-clause for unreal past condition affecting present. 'Had introduced' creates the correct timeline."
-      },
-      {
-        context: "Medical breakthrough news",
-        question: "Scientists claim _______ a significant breakthrough in cancer treatment research.",
-        options: [
-          "to have made",
-          "to make",
-          "that they made",
-          "making"
-        ],
-        correct: 0,
-        explanation: "'Claim to have done' reports a completed action using perfect infinitive. This structure emphasizes the achievement has been completed."
-      },
-      {
-        context: "International business meeting",
-        question: "The proposal _______ by the board before the shareholders' meeting next week.",
-        options: [
-          "must approve",
-          "must be approved",
-          "must have approved", 
-          "must be approving"
-        ],
-        correct: 1,
-        explanation: "'Must be approved' expresses necessity in passive form. The proposal receives the action rather than performing it."
-      },
-      {
-        context: "Academic conference presentation",
-        question: "_______ her presentation skills, Dr. Martinez would have secured the research funding.",
-        options: [
-          "If she improved",
-          "Had she improved", 
-          "Should she improve",
-          "Were she to improve"
-        ],
-        correct: 1,
-        explanation: "Inverted third conditional: 'Had she improved' = 'If she had improved'. This formal structure emphasizes the unreal past condition."
-      },
-      {
-        context: "Technology startup discussion",
-        question: "The investors insisted that all financial records _______ available for inspection.",
-        options: [
-          "should be made",
-          "would be made",
-          "be made",
-          "will be made"
-        ],
-        correct: 2,
-        explanation: "After 'insist that', we use subjunctive form 'be made' (base form). This formal structure follows verbs of demand/requirement."
-      },
-      {
-        context: "Cultural exchange program",
-        question: "Students reported _______ significant improvements in their language skills after the immersion program.",
-        options: [
-          "to experience",
-          "experiencing",
-          "that they experienced",
-          "to have experienced"
-        ],
-        correct: 1,
-        explanation: "'Report doing' uses gerund for personal experience. This structure emphasizes the students' direct involvement in the experience."
-      },
-      {
-        context: "Urban planning committee",
-        question: "_______ the traffic congestion problem, the city council approved the new subway extension.",
-        options: [
-          "To address",
-          "Addressing",
-          "Having addressed",
-          "Being addressed"
-        ],
-        correct: 0,
-        explanation: "'To address' expresses purpose/intention. The infinitive shows the council's aim in approving the subway extension."
-      },
-      {
-        context: "Manufacturing industry report",
-        question: "The factory workers demanded that safety protocols _______ immediately.",
-        options: [
-          "would be updated",
-          "should update", 
-          "be updated",
-          "will be updated"
-        ],
-        correct: 2,
-        explanation: "After 'demand that', use subjunctive 'be updated'. This structure follows verbs expressing urgent requirements."
-      },
-      {
-        context: "Climate change symposium",
-        question: "_______ the scientific community's warnings been heeded earlier, current environmental damage could have been prevented.",
-        options: [
-          "Should",
-          "Would",
-          "Had",
-          "Were"
-        ],
-        correct: 2,
-        explanation: "Inverted third conditional: 'Had the warnings been heeded' = 'If the warnings had been heeded'. This emphasizes the missed opportunity."
-      },
-      {
-        context: "Educational policy reform",
-        question: "The minister confirmed that new teaching standards _______ in all schools by September.",
-        options: [
-          "will have implemented",
-          "would be implemented",
-          "will have been implemented", 
-          "would have been implemented"
-        ],
-        correct: 1,
-        explanation: "Reported speech: 'will be' becomes 'would be'. The passive voice shows standards will be implemented (not self-implementing)."
-      }
-    ];
+  <!-- Black Strip Navigation - Consistent with other files -->
+  <div id="black-strip" class="black-strip">
+    <span class="arrow">←</span>
+    <span class="back-label">Multiple Choice</span>
+  </div>
+</div>
+<script>
+const quiz = [
+  {q: "His mistake was _______ as a vital part of the theory.", options:["amusing","ancient","aged","elderly","olden"], correct:1},
+  {q: "Peter is going to _______ the post as Manager of the Sales Department.", options:["find","fill","occupy","accept","apply"], correct:1},
+  {q: "Mary was accused _______ breaking the window.", options:["for","of","with","about","from"], correct:1},
+  {q: "I don't think I know the answer to that question, but I'll _______ and see if I can remember.", options:["realize","remind","recognize","recollect","refresh"], correct:3},
+  {q: "Some people find it _______ to believe that the earth is round.", options:["excited","exciting","amused","amusing","amazed"], correct:1},
+  {q: "A person who is always _______ is a nuisance.", options:["complaining","complaints","complaint","complain","complained"], correct:0},
+  {q: "People like John are always ready to _______ you a helping hand.", options:["put","pass","hand","offer","share"], correct:3},
+  {q: "_______ the long distance he came on foot.", options:["Although","In spite","Despite","Even if","Unless"], correct:2},
+  {q: "James tried to hide the _______ in his hands.", options:["broken","break","broke","breaking","breaks"], correct:0},
+  {q: "As we have plenty of time we _______ go to the cinema.", options:["ought","may","must","could","would"], correct:3},
+  {q: "When the bus arrived everyone got _______.", options:["out","up","in","by","on"], correct:4},
+  {q: "We had better _______ plenty of fresh air in the house.", options:["have","do","get","keep","give"], correct:0},
+  {q: "When he being so _______, he broke the glass.", options:["care","careless","carefully","careful","carelessly"], correct:1},
+  {q: "As soon as the show was _______, the children went home.", options:["ended","start","over","began","up"], correct:2},
+  {q: "If you want to pass, you must work _______.", options:["hard","hardly","almost","late","good"], correct:0},
+  {q: "Mary's _______ made the children laugh.", options:["amusing","amusement","amused","amuse","amusements"], correct:1},
+  {q: "We must always _______ the rules at school.", options:["agree","stand","obey","hear","rely"], correct:2},
+  {q: "It was _______ a big company that he was given a car.", options:["enough","so","such","very","too"], correct:2},
+  {q: "The _______ prize was given to the best runner.", options:["recently","first","finally","last","perfect"], correct:1},
+  {q: "When I was at school I _______ to play tennis.", options:["use","used","am used","am using","using"], correct:1},
+  {q: "The children could see the _______ debating in the House of Commons.", options:["speakers","speech","speak","speaking","spoken"], correct:0},
+  {q: "He is too _______ to walk alone at night.", options:["afraid","fear","feared","fearless","fearing"], correct:0},
+  {q: "They _______ him to go with them but he refused.", options:["pretended","allowed","persuaded","accused","promised"], correct:2},
+  {q: "I would like you to look after my dog _______ I am away.", options:["during","while","for","until","by"], correct:1},
+  {q: "The teacher _______ him for cheating in the test.", options:["depended","described","decided","punished","liked"], correct:3}
+];
 
-    // Game State
-    let currentQuestion = 0;
-    let score = 0;
-    let selectedAnswer = null;
-    let answered = false;
+let answers = Array(quiz.length).fill(null);
+let checked = false;
 
-    // DOM Elements
-    const questionNumber = document.getElementById('questionNumber');
-    const scoreDisplay = document.getElementById('scoreDisplay');
-    const contextDiv = document.getElementById('context');
-    const questionText = document.getElementById('questionText');
-    const optionsContainer = document.getElementById('optionsContainer');
-    const feedback = document.getElementById('feedback');
-    const feedbackTitle = document.getElementById('feedbackTitle');
-    const feedbackText = document.getElementById('feedbackText');
-    const nextButton = document.getElementById('nextButton');
-    const progressFill = document.getElementById('progressFill');
-    const questionScreen = document.getElementById('questionScreen');
-    const resultsScreen = document.getElementById('resultsScreen');
-
-    // Initialize
-    function initTest() {
-      loadQuestion();
-      updateProgress();
-    }
-
-    function loadQuestion() {
-      const q = testQuestions[currentQuestion];
+function renderQuiz() {
+  const form = document.getElementById('quizForm');
+  form.innerHTML = "";
+  for (let i = 0; i < quiz.length; i++) {
+    const block = document.createElement('div');
+    block.className = 'q-block';
+    
+    // Sentence
+    const stxt = document.createElement('div');
+    stxt.className = 'q-sentence';
+    stxt.innerHTML = `<span class="q-num">${i+1}.</span> ${quiz[i].q}`;
+    block.appendChild(stxt);
+    
+    // Options
+    const opts = document.createElement('div');
+    opts.className = 'q-options-row';
+    for (let j = 0; j < quiz[i].options.length; j++) {
+      const obtn = document.createElement('button');
+      obtn.type = 'button';
+      obtn.className = 'q-opt-btn';
+      obtn.innerHTML = `<span class="lbl">${String.fromCharCode(65+j)}</span> ${quiz[i].options[j]}`;
       
-      // Update question info
-      questionNumber.textContent = `Question ${currentQuestion + 1} of ${testQuestions.length}`;
-      scoreDisplay.textContent = `Score: ${score}/${currentQuestion}`;
-      
-      // Show context if exists
-      if (q.context) {
-        contextDiv.style.display = 'block';
-        contextDiv.innerHTML = `<strong>Context:</strong> ${q.context}`;
-      } else {
-        contextDiv.style.display = 'none';
-      }
-      
-      // Load question
-      questionText.innerHTML = q.question;
-      
-      // Load options
-      optionsContainer.innerHTML = '';
-      q.options.forEach((option, index) => {
-        const optionDiv = document.createElement('div');
-        optionDiv.className = 'option';
-        optionDiv.innerHTML = `
-          <div class="option-letter">${String.fromCharCode(65 + index)}</div>
-          <div>${option}</div>
-        `;
-        optionDiv.onclick = () => selectAnswer(index, optionDiv);
-        optionsContainer.appendChild(optionDiv);
-      });
-      
-      // Reset state
-      selectedAnswer = null;
-      answered = false;
-      feedback.classList.remove('show', 'correct', 'incorrect');
-      nextButton.disabled = true;
-      
-      // Update next button text
-      if (currentQuestion === testQuestions.length - 1) {
-        nextButton.innerHTML = 'View Results →';
-      } else {
-        nextButton.innerHTML = 'Next Question →';
-      }
-    }
-
-    function selectAnswer(index, optionElement) {
-      if (answered) return;
-      
-      // Clear previous selections
-      document.querySelectorAll('.option').forEach(opt => {
-        opt.classList.remove('selected');
-      });
-      
-      // Select current option
-      optionElement.classList.add('selected');
-      selectedAnswer = index;
-      
-      // Show feedback immediately
-      showFeedback();
-    }
-
-    function showFeedback() {
-      if (selectedAnswer === null) return;
-      
-      answered = true;
-      const q = testQuestions[currentQuestion];
-      const isCorrect = selectedAnswer === q.correct;
-      
-      // Update score
-      if (isCorrect) {
-        score++;
-      }
-      
-      // Style options
-      document.querySelectorAll('.option').forEach((opt, index) => {
-        opt.classList.add('disabled');
-        if (index === q.correct) {
-          opt.classList.add('correct');
-          if (isCorrect) opt.classList.add('correct-answer');
-        } else if (index === selectedAnswer && !isCorrect) {
-          opt.classList.add('incorrect');
-        }
-      });
-      
-      // Show feedback
-      feedback.classList.add('show');
-      if (isCorrect) {
-        feedback.classList.add('correct');
-        feedbackTitle.textContent = '✓ Correct!';
-      } else {
-        feedback.classList.add('incorrect');
-        feedbackTitle.textContent = '✗ Incorrect';
-      }
-      feedbackText.textContent = q.explanation;
-      
-      // Enable next button
-      nextButton.disabled = false;
-      
-      // Update progress
-      updateProgress();
-    }
-
-    function nextQuestion() {
-      if (currentQuestion < testQuestions.length - 1) {
-        currentQuestion++;
-        loadQuestion();
-      } else {
-        showResults();
-      }
-    }
-
-    function updateProgress() {
-      const progress = ((currentQuestion + (answered ? 1 : 0)) / testQuestions.length) * 100;
-      progressFill.style.width = progress + '%';
-    }
-
-    function showResults() {
-      questionScreen.style.display = 'none';
-      resultsScreen.classList.add('show');
-      
-      const percentage = Math.round((score / testQuestions.length) * 100);
-      let grade;
-      
-      if (percentage >= 90) grade = 'A+';
-      else if (percentage >= 80) grade = 'A';
-      else if (percentage >= 70) grade = 'B';
-      else if (percentage >= 60) grade = 'C';
-      else if (percentage >= 50) grade = 'D';
-      else grade = 'F';
-      
-      document.getElementById('finalScore').textContent = `${score}/${testQuestions.length}`;
-      document.getElementById('correctCount').textContent = score;
-      document.getElementById('incorrectCount').textContent = testQuestions.length - score;
-      document.getElementById('percentage').textContent = percentage + '%';
-      document.getElementById('grade').textContent = grade;
-    }
-
-    function restartTest() {
-      currentQuestion = 0;
-      score = 0;
-      selectedAnswer = null;
-      answered = false;
-      
-      questionScreen.style.display = 'block';
-      resultsScreen.classList.remove('show');
-      
-      loadQuestion();
-      updateProgress();
-    }
-
-    function goBack() {
-      // Navigate back to the multiple choice test selection
-      window.location.href = '../index.html';
-    }
-
-    // Start the test
-    document.addEventListener('DOMContentLoaded', initTest);
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (!answered) {
-        if (e.key >= '1' && e.key <= '4') {
-          const index = parseInt(e.key) - 1;
-          const options = document.querySelectorAll('.option');
-          if (options[index]) {
-            selectAnswer(index, options[index]);
-          }
-        }
-      } else if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (!nextButton.disabled) {
-          nextQuestion();
+      if (answers[i] === j) obtn.classList.add('selected');
+      if (checked) {
+        if (quiz[i].correct === j && answers[i] === j) {
+          obtn.classList.add('correct');
+        } else if (answers[i] === j && quiz[i].correct !== j) {
+          obtn.classList.add('wrong');
+        } else if (quiz[i].correct === j) {
+          obtn.classList.add('correct');
         }
       }
-    });
-  </script>
+      
+      obtn.onclick = ()=>{
+        if(!checked){
+          answers[i]=j;
+          renderQuiz();
+        }
+      };
+      opts.appendChild(obtn);
+    }
+    block.appendChild(opts);
+    form.appendChild(block);
+  }
+}
+
+function clearAll() {
+  checked = false;
+  answers = Array(quiz.length).fill(null);
+  renderQuiz();
+  document.getElementById('scorePanel').textContent = '';
+}
+
+// Black strip navigation - goes back to multiple-choice index
+document.getElementById('black-strip').addEventListener('click', function() {
+  window.location.href = '../index.html';
+});
+
+document.getElementById('checkBtn').onclick = function() {
+  checked = true;
+  renderQuiz();
+  
+  // Calculate score
+  let correct = 0;
+  for(let i = 0; i < quiz.length; i++) {
+    if(answers[i] === quiz[i].correct) correct++;
+  }
+  let pct = Math.round(100 * correct / quiz.length);
+  document.getElementById('scorePanel').textContent = 
+    `You got ${correct} out of ${quiz.length} correct. (${pct}%)`;
+};
+
+// Initialize
+renderQuiz();
+</script>
 </body>
 </html>
