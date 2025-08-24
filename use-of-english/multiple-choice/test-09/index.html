@@ -1,1 +1,184 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INTUITY – Multiple Choice Test 09</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --main-font: 'Inter','Poppins','Montserrat',Arial,sans-serif;
+  --question-font-size: 1.05rem;
+  --options-font-size: 1rem;
+  --option-gap: 0.52em;
+  --sentence-gap: 44px;
+}
+body {
+  background: linear-gradient(135deg, #2c5aa0 0%, #3b6bb5 15%, #4a7bc8 30%, #7a9fd9 45%, #b8d3ea 60%, #e8c5d8 75%, #f0b7c9 85%, #f5a9ba 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--main-font);
+  color: #151515;
+}
+.flex-center {display: flex; flex-direction: column; align-items: center;}
+.quiz-container {
+  max-width: 780px;
+  margin: 48px auto 44px auto;
+  background: #ffffff;
+  border-radius: 2.4em;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 40px 22px 42px 22px;
+  font-size: 95%;
+}
+.title {
+  font-size: 2.48em;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  margin-bottom: 9px;
+  color: #1b1c1f;
+  text-align: center;
+  font-family: "Inter","Poppins",Arial,sans-serif;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1.12em;
+  letter-spacing: 0.06em;
+  color: #444448;
+  font-weight: 600;
+  margin-bottom: 21px;
+  font-family: "Inter","Poppins",Arial,sans-serif;
+}
+.form-quiz {width:100%;}
+.q-block {margin-bottom: var(--sentence-gap);}
+.q-sentence {
+  font-size: var(--question-font-size);
+  font-family: 'Inter','Poppins',Arial,sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #141414;
+  line-height: 1.47;
+}
+.q-num {
+  display:inline-block; width:1.3em;
+  font-weight:900; color:#405080;
+}
+.q-options-row {
+  display:flex; flex-direction:row;
+  gap:var(--option-gap);
+  flex-wrap:wrap; margin-bottom:0.08em;
+}
+.q-opt-btn {
+  font-family:"Inter","Poppins",Arial,sans-serif;
+  font-size:var(--options-font-size);
+  font-weight:700;
+  color:#2c3e50;
+  letter-spacing:0.08em;
+  background:#e8e8eb;
+  border-radius:1.2em; border:none;
+  padding:12px 18px; min-width:70px;
+  cursor:pointer; user-select:none;
+  flex:1; margin-bottom:2px;
+  box-shadow:7.9px 7.9px 15.9px #d1d1d4,
+             -6px -6px 12px #ffffff;
+}
+.q-opt-btn .lbl {
+  font-weight:900; margin-right:8px;
+  font-size:1.18em; color:#1a284e;
+}
+.q-opt-btn:hover {
+  transform:translateY(-1px);
+}
+.q-opt-btn.selected {color:#2c5aa0; box-shadow: inset 6px 6px 12px #d1d1d4, inset -6px -6px 12px #ffffff;}
+.q-opt-btn.selected .lbl {color:#2c5aa0;}
+.q-opt-btn.correct {background:#7dd87d!important;color:#fff!important;}
+.q-opt-btn.correct .lbl {color:#fff!important;}
+.q-opt-btn.wrong {background:#f5e8e8!important;color:#8b4513!important;}
+.q-opt-btn.wrong .lbl {color:#8b4513!important;}
+.controls-container {text-align:center; margin-top:32px;}
+.control-buttons {display:flex; gap:20px; justify-content:center; flex-wrap:wrap;}
+.control-btn {padding:11px 28px; border:none; border-radius:1.05em; font-weight:700;}
+.control-btn.check {color:#274b75; background:linear-gradient(120deg,#e8f5fd 70%,#f5a9ba 100%);}
+.control-btn.repeat {color:#7a4b00; background:linear-gradient(120deg,#fff3cd 70%,#ffeaa7 100%);}
+.score-panel {font-size:1.18em;font-weight:700;color:#117d48;margin-top:21px;}
+.black-strip {position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:80%;height:28px;background:rgba(68,68,68,.9);border-radius:24px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;}
+.black-strip .arrow{margin-right:14px;}
+@media(max-width:768px){.q-options-row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="quiz-container flex-center">
+  <div class="title">INTUITY</div>
+  <div class="subtitle">Multiple Choice Test 09</div>
+  <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
+  <div class="controls-container">
+    <div class="control-buttons">
+      <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
+      <button class="control-btn repeat" onclick="clearAll()">REPEAT</button>
+    </div>
+    <div id="scorePanel" class="score-panel"></div>
+  </div>
+  <div id="black-strip" class="black-strip"><span class="arrow">←</span><span class="back-label">Multiple Choice</span></div>
+</div>
+<script>
+const quiz = [
+{q:"The children have got used _______ sandwiches for lunch.",options:["to eat","eat","eating","to eating","for eating"],correct:3},
+{q:"His father bought a new _______ car.",options:["sports","sporting","sporty","sport","sported"],correct:0},
+{q:"The new manager is very _______ about punctuality.",options:["particular","familiar","peculiar","repeated","remarkable"],correct:0},
+{q:"A _______ is a large, heavy motor vehicle for carrying goods.",options:["truck","van","car","trailer","lorry"],correct:0},
+{q:"He's on _______ at the moment.",options:["business","trip","work","duty","holiday"],correct:4},
+{q:"I managed to _______ the bus at the last moment.",options:["near","approach","reach","catch","arrive"],correct:3},
+{q:"The little boy was too _______ to ask the teacher a question.",options:["shy","cowardly","nervous","timid","afraid"],correct:0},
+{q:"He was only _______ when he said that.",options:["kidding","joking","laughing","telling","speaking"],correct:1},
+{q:"They went to London by _______.",options:["air","car","plane","railway","train"],correct:4},
+{q:"Joan ignored the warning at her _______.",options:["cost","risk","loss","trouble","danger"],correct:1},
+{q:"The _______ lasted for about three hours.",options:["meeting","meet","meeting up","meet up","gatherings"],correct:0},
+{q:"He tried to _______ all contact with his old friends.",options:["break","keep","make","let","stop"],correct:0},
+{q:"The _______ of the new company is in the city.",options:["head","head office","centre","office","headquarters"],correct:4},
+{q:"The child was lost and started to _______.",options:["weep","wept","weeping","cry","cried"],correct:0},
+{q:"It _______ to rain as we left the house.",options:["began","begun","begins","beginning","start"],correct:0},
+{q:"Can you _______ the time on your watch?",options:["say","tell","ask","talk","speak"],correct:1},
+{q:"We _______ the bus so we had to walk.",options:["missed","lost","passed","failed","forget"],correct:0},
+{q:"I _______ to go to the cinema last Saturday.",options:["didn't","shouldn't","didn't go","hasn't","hadn't"],correct:2},
+{q:"When he was in hospital I sent him a _______.",options:["get-well card","postcard","birthday card","book","letter"],correct:0},
+{q:"The _______ was so loud I couldn't hear myself speak.",options:["crowded","noise","shouting","sound","crying"],correct:1},
+{q:"She _______ her hair yourself every day.",options:["washes","wash","washing","washed","is washing"],correct:0},
+{q:"That's the man _______ room was broken into last night.",options:["which","whom","whose","who's","who"],correct:2},
+{q:"May I have a cup of tea, _______ I?",options:["could","may","might","can","shall"],correct:4},
+{q:"_______ he was in a hurry, he stopped to talk to me.",options:["Though","Although","Because","Since","If"],correct:1},
+{q:"She always _______ to help with the housework.",options:["offers","offered","offer","offering","has offered"],correct:0}
+];
+let answers=Array(quiz.length).fill(null);
+let checked=false;
+function renderQuiz(){
+  const form=document.getElementById('quizForm');
+  form.innerHTML="";
+  quiz.forEach((qset,i)=>{
+    const block=document.createElement('div');
+    block.className='q-block';
+    const stxt=document.createElement('div');
+    stxt.className='q-sentence';
+    stxt.innerHTML=`<span class="q-num">${i+1}.</span> ${qset.q}`;
+    block.appendChild(stxt);
+    const opts=document.createElement('div'); opts.className='q-options-row';
+    qset.options.forEach((opt,j)=>{
+      const obtn=document.createElement('button'); obtn.type='button'; obtn.className='q-opt-btn';
+      obtn.innerHTML=`<span class="lbl">${String.fromCharCode(65+j)}</span> ${opt}`;
+      if(answers[i]===j) obtn.classList.add('selected');
+      if(checked){
+        if(qset.correct===j) obtn.classList.add('correct');
+        if(answers[i]===j && qset.correct!==j) obtn.classList.add('wrong');
+      }
+      obtn.onclick=()=>{if(!checked){answers[i]=j;renderQuiz();}};
+      opts.appendChild(obtn);
+    });
+    block.appendChild(opts); form.appendChild(block);
+  });
+}
+function clearAll(){checked=false;answers=Array(quiz.length).fill(null);renderQuiz();document.getElementById('scorePanel').textContent='';}
+document.getElementById('black-strip').onclick=()=>{window.location.href='../index.html';}
+document.getElementById('checkBtn').onclick=()=>{checked=true;renderQuiz();let correct=answers.filter((a,i)=>a===quiz[i].correct).length;let pct=Math.round(100*correct/quiz.length);document.getElementById('scorePanel').textContent=`You got ${correct} out of ${quiz.length} correct. (${pct}%)`;};
+renderQuiz();
+</script>
+</body>
+</html>
