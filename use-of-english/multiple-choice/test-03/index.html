@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INTUITY – Multiple Choice Test 03</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --main-font: 'Inter','Poppins','Montserrat',Arial,sans-serif;
+  --question-font-size: 1.05rem;
+  --options-font-size: 1rem;
+  --option-gap: 0.52em;
+  --sentence-gap: 44px;
+}
+body {
+  background: linear-gradient(135deg, #2c5aa0 0%, #3b6bb5 15%, #4a7bc8 30%, #7a9fd9 45%, #b8d3ea 60%, #e8c5d8 75%, #f0b7c9 85%, #f5a9ba 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--main-font);
+  color: #151515;
+}
+.flex-center {display: flex; flex-direction: column; align-items: center;}
+.quiz-container {
+  max-width: 780px;
+  margin: 48px auto 44px auto;
+  background: #ffffff;
+  border-radius: 2.4em;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 40px 22px 42px 22px;
+  font-size: 95%;
+}
+.title {
+  font-size: 2.48em;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  margin-bottom: 9px;
+  color: #1b1c1f;
+  text-align: center;
+  font-family: "Inter","Poppins",Arial,sans-serif;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1.12em;
+  letter-spacing: 0.06em;
+  color: #444448;
+  font-weight: 600;
+  margin-bottom: 21px;
+  font-family: "Inter","Poppins",Arial,sans-serif;
+}
+.form-quiz {width:100%;}
+.q-block {margin-bottom: var(--sentence-gap);}
+.q-sentence {
+  font-size: var(--question-font-size);
+  font-family: 'Inter','Poppins',Arial,sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #141414;
+  line-height: 1.47;
+}
+.q-num {
+  display:inline-block; width:1.3em;
+  font-weight:900; color:#405080;
+}
+.q-options-row {
+  display:flex; flex-direction:row;
+  gap:var(--option-gap);
+  flex-wrap:wrap; margin-bottom:0.08em;
+}
+.q-opt-btn {
+  font-family:"Inter","Poppins",Arial,sans-serif;
+  font-size:var(--options-font-size);
+  font-weight:700;
+  color:#2c3e50;
+  letter-spacing:0.08em;
+  background:#e8e8eb;
+  border-radius:1.2em; border:none;
+  padding:12px 18px; min-width:70px;
+  cursor:pointer; user-select:none;
+  flex:1; margin-bottom:2px;
+  box-shadow:7.9px 7.9px 15.9px #d1d1d4,
+             -6px -6px 12px #ffffff;
+}
+.q-opt-btn .lbl {
+  font-weight:900; margin-right:8px;
+  font-size:1.18em; color:#1a284e;
+}
+.q-opt-btn:hover {
+  transform:translateY(-1px);
+}
+.q-opt-btn.selected {color:#2c5aa0; box-shadow: inset 6px 6px 12px #d1d1d4, inset -6px -6px 12px #ffffff;}
+.q-opt-btn.selected .lbl {color:#2c5aa0;}
+.q-opt-btn.correct {background:#7dd87d!important;color:#fff!important;}
+.q-opt-btn.correct .lbl {color:#fff!important;}
+.q-opt-btn.wrong {background:#f5e8e8!important;color:#8b4513!important;}
+.q-opt-btn.wrong .lbl {color:#8b4513!important;}
+.controls-container {text-align:center; margin-top:32px;}
+.control-buttons {display:flex; gap:20px; justify-content:center; flex-wrap:wrap;}
+.control-btn {padding:11px 28px; border:none; border-radius:1.05em; font-weight:700;}
+.control-btn.check {color:#274b75; background:linear-gradient(120deg,#e8f5fd 70%,#f5a9ba 100%);}
+.control-btn.repeat {color:#7a4b00; background:linear-gradient(120deg,#fff3cd 70%,#ffeaa7 100%);}
+.score-panel {font-size:1.18em;font-weight:700;color:#117d48;margin-top:21px;}
+.black-strip {position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:80%;height:28px;background:rgba(68,68,68,.9);border-radius:24px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;}
+.black-strip .arrow{margin-right:14px;}
+@media(max-width:768px){.q-options-row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="quiz-container flex-center">
+  <div class="title">INTUITY</div>
+  <div class="subtitle">Multiple Choice Test 03</div>
+  <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
+  <div class="controls-container">
+    <div class="control-buttons">
+      <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
+      <button class="control-btn repeat" onclick="clearAll()">REPEAT</button>
+    </div>
+    <div id="scorePanel" class="score-panel"></div>
+  </div>
+  <div id="black-strip" class="black-strip"><span class="arrow">←</span><span class="back-label">Multiple Choice</span></div>
+</div>
+<script>
+const quiz = [
+{q:"Mary is almost well again now, but she still looks rather _______.",options:["flushed","pale","poor","transparent","solid"],correct:1},
+{q:"The Council meeting was very badly _______.",options:["controlled","commanded","governed","performed","held"],correct:4},
+{q:"I feel so sleepy, I can hardly _______ my eyes open.",options:["make","bring","push","take","bring"],correct:0},
+{q:"A snake _______ its skin.",options:["brings","puts","sheds","covers","removes"],correct:2},
+{q:"When we were repairing the fence, we found _______ under a stone.",options:["a worm","an ant","a fly","a frog","a worm"],correct:0},
+{q:"After walking for hours in the pouring rain, the children were _______ to the skin.",options:["soaked","washed","watered","swept","covered"],correct:0},
+{q:"You must take _______ of your health.",options:["keeping","care","think","maintenance","duty"],correct:1},
+{q:"The Grand Hotel, _______, provides for a single room with breakfast.",options:["with all modem comforts","as comfortable as possible","for one night only","with all modern comforts","comfortably"],correct:3},
+{q:"She was _______ that she cried.",options:["so disappointed","disappointed so much","disappointed such","much disappointed","disappointment"],correct:0},
+{q:"The new computer is very _______ for the work.",options:["capable","suitable","accustomed","described","agreed"],correct:1},
+{q:"He was afraid _______ the dog would bite him.",options:["of","why","that","how","so"],correct:0},
+{q:"The house has been in our family for many _______.",options:["generations","ancestors","descents","families","ages"],correct:0},
+{q:"Fresh air is _______ to good health.",options:["concerned","essential","important","associated","fair"],correct:1},
+{q:"She comes of a/an _______ family.",options:["ancestral","old","elderly","ancient","modern"],correct:3},
+{q:"I think he is going to _______ me a letter.",options:["write","tell","say","speak","complain"],correct:0},
+{q:"There are many _______ connected with his work.",options:["functions","occupations","professions","employments","obligations"],correct:1},
+{q:"They have gone abroad _______ business.",options:["in","on","for","to","at"],correct:1},
+{q:"He tried to _______ me from joining the club.",options:["stop","prevent","protect","avoid","oppose"],correct:1},
+{q:"His house is built _______ stone.",options:["with","on","at","of","by"],correct:3},
+{q:"The price was so high that I couldn't _______ it.",options:["afford","buy","pay","purchase","spend"],correct:0},
+{q:"As soon as she entered the Park I _______ her at once.",options:["saw","looked","noticed","observed","watched"],correct:0},
+{q:"The train was so packed that I had to _______ all the way.",options:["stand","stood","stand up","stood up","standing"],correct:0},
+{q:"The baby began to cry but I _______ him to sleep.",options:["sang","rocked","called","listened","spoke"],correct:1},
+{q:"Peter was _______ for two hours in the rain.",options:["kept up","held","delayed","waited","detained"],correct:2},
+{q:"He is so _______ that everybody likes him.",options:["pleasant","pleased","pleasing","likely","delighted"],correct:0}
+];
 
+let answers=Array(quiz.length).fill(null);
+let checked=false;
+function renderQuiz(){
+  const form=document.getElementById('quizForm');
+  form.innerHTML="";
+  quiz.forEach((qset,i)=>{
+    const block=document.createElement('div');
+    block.className='q-block';
+    const stxt=document.createElement('div');
+    stxt.className='q-sentence';
+    stxt.innerHTML=`<span class="q-num">${i+1}.</span> ${qset.q}`;
+    block.appendChild(stxt);
+    const opts=document.createElement('div'); opts.className='q-options-row';
+    qset.options.forEach((opt,j)=>{
+      const obtn=document.createElement('button'); obtn.type='button'; obtn.className='q-opt-btn';
+      obtn.innerHTML=`<span class="lbl">${String.fromCharCode(65+j)}</span> ${opt}`;
+      if(answers[i]===j) obtn.classList.add('selected');
+      if(checked){
+        if(qset.correct===j) obtn.classList.add('correct');
+        if(answers[i]===j && qset.correct!==j) obtn.classList.add('wrong');
+      }
+      obtn.onclick=()=>{if(!checked){answers[i]=j;renderQuiz();}};
+      opts.appendChild(obtn);
+    });
+    block.appendChild(opts); form.appendChild(block);
+  });
+}
+function clearAll(){checked=false;answers=Array(quiz.length).fill(null);renderQuiz();document.getElementById('scorePanel').textContent='';}
+document.getElementById('black-strip').onclick=()=>{window.location.href='../index.html';}
+document.getElementById('checkBtn').onclick=()=>{checked=true;renderQuiz();let correct=answers.filter((a,i)=>a===quiz[i].correct).length;let pct=Math.round(100*correct/quiz.length);document.getElementById('scorePanel').textContent=`You got ${correct} out of ${quiz.length} correct. (${pct}%)`;};
+renderQuiz();
+</script>
+</body>
+</html>
