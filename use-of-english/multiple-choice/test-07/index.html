@@ -1,1 +1,184 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INTUITY – Multiple Choice Test 07</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --main-font: 'Inter','Poppins','Montserrat',Arial,sans-serif;
+  --question-font-size: 1.05rem;
+  --options-font-size: 1rem;
+  --option-gap: 0.52em;
+  --sentence-gap: 44px;
+}
+body {
+  background: linear-gradient(135deg, #2c5aa0 0%, #3b6bb5 15%, #4a7bc8 30%, #7a9fd9 45%, #b8d3ea 60%, #e8c5d8 75%, #f0b7c9 85%, #f5a9ba 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--main-font);
+  color: #151515;
+}
+.flex-center {display: flex; flex-direction: column; align-items: center;}
+.quiz-container {
+  max-width: 780px;
+  margin: 48px auto 44px auto;
+  background: #ffffff;
+  border-radius: 2.4em;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 40px 22px 42px 22px;
+  font-size: 95%;
+}
+.title {
+  font-size: 2.48em;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  margin-bottom: 9px;
+  color: #1b1c1f;
+  text-align: center;
+  font-family: "Inter","Poppins",Arial,sans-serif;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1.12em;
+  letter-spacing: 0.06em;
+  color: #444448;
+  font-weight: 600;
+  margin-bottom: 21px;
+  font-family: "Inter","Poppins",Arial,sans-serif;
+}
+.form-quiz {width:100%;}
+.q-block {margin-bottom: var(--sentence-gap);}
+.q-sentence {
+  font-size: var(--question-font-size);
+  font-family: 'Inter','Poppins',Arial,sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #141414;
+  line-height: 1.47;
+}
+.q-num {
+  display:inline-block; width:1.3em;
+  font-weight:900; color:#405080;
+}
+.q-options-row {
+  display:flex; flex-direction:row;
+  gap:var(--option-gap);
+  flex-wrap:wrap; margin-bottom:0.08em;
+}
+.q-opt-btn {
+  font-family:"Inter","Poppins",Arial,sans-serif;
+  font-size:var(--options-font-size);
+  font-weight:700;
+  color:#2c3e50;
+  letter-spacing:0.08em;
+  background:#e8e8eb;
+  border-radius:1.2em; border:none;
+  padding:12px 18px; min-width:70px;
+  cursor:pointer; user-select:none;
+  flex:1; margin-bottom:2px;
+  box-shadow:7.9px 7.9px 15.9px #d1d1d4,
+             -6px -6px 12px #ffffff;
+}
+.q-opt-btn .lbl {
+  font-weight:900; margin-right:8px;
+  font-size:1.18em; color:#1a284e;
+}
+.q-opt-btn:hover {
+  transform:translateY(-1px);
+}
+.q-opt-btn.selected {color:#2c5aa0; box-shadow: inset 6px 6px 12px #d1d1d4, inset -6px -6px 12px #ffffff;}
+.q-opt-btn.selected .lbl {color:#2c5aa0;}
+.q-opt-btn.correct {background:#7dd87d!important;color:#fff!important;}
+.q-opt-btn.correct .lbl {color:#fff!important;}
+.q-opt-btn.wrong {background:#f5e8e8!important;color:#8b4513!important;}
+.q-opt-btn.wrong .lbl {color:#8b4513!important;}
+.controls-container {text-align:center; margin-top:32px;}
+.control-buttons {display:flex; gap:20px; justify-content:center; flex-wrap:wrap;}
+.control-btn {padding:11px 28px; border:none; border-radius:1.05em; font-weight:700;}
+.control-btn.check {color:#274b75; background:linear-gradient(120deg,#e8f5fd 70%,#f5a9ba 100%);}
+.control-btn.repeat {color:#7a4b00; background:linear-gradient(120deg,#fff3cd 70%,#ffeaa7 100%);}
+.score-panel {font-size:1.18em;font-weight:700;color:#117d48;margin-top:21px;}
+.black-strip {position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:80%;height:28px;background:rgba(68,68,68,.9);border-radius:24px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;}
+.black-strip .arrow{margin-right:14px;}
+@media(max-width:768px){.q-options-row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="quiz-container flex-center">
+  <div class="title">INTUITY</div>
+  <div class="subtitle">Multiple Choice Test 07</div>
+  <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
+  <div class="controls-container">
+    <div class="control-buttons">
+      <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
+      <button class="control-btn repeat" onclick="clearAll()">REPEAT</button>
+    </div>
+    <div id="scorePanel" class="score-panel"></div>
+  </div>
+  <div id="black-strip" class="black-strip"><span class="arrow">←</span><span class="back-label">Multiple Choice</span></div>
+</div>
+<script>
+const quiz = [
+{q:"She shaped the clay into a _______.",options:["vase","verse","vaseful","vessel","shaped"],correct:0},
+{q:"My cousin, who lives in France, is _______ French.",options:["learning","teaching","told","assisting","instructing"],correct:0},
+{q:"I am going to _______ a few days in the country with Jane.",options:["pass","spend","cost","visit","leave"],correct:1},
+{q:"A passport is necessary if you wish to _______ the country.",options:["exit","go","travel","pass","leave"],correct:4},
+{q:"Peter has not got the right _______ for that occupation.",options:["qualities","qualifications","qualities","abilities","examinations"],correct:1},
+{q:"The students are writing an _______ on the environment.",options:["edition","essay","exercise","composition","exposition"],correct:1},
+{q:"The teacher always gives the children _______ questions.",options:["essay","problem","difficult","possible","fair"],correct:2},
+{q:"There was a loud noise in the high street which attracted a large _______.",options:["mob","audience","crowd","public","spectators"],correct:2},
+{q:"Mr. Smith was _______ to hear that his brother had won the first prize.",options:["sorry","excited","interested","glad","happy"],correct:3},
+{q:"It has always been a _______ with the Browns to have turkey at Christmas.",options:["custom","habit","manner","tradition","way"],correct:0},
+{q:"The shops are very crowded _______ Saturdays.",options:["on","in","at","every","of"],correct:0},
+{q:"If you are worried about your health you ought to _______ advice from your doctor.",options:["have","take","get","seek","gain"],correct:3},
+{q:"When Peter heard the news, he couldn't _______ a word.",options:["say","talk","speak","tell","utter"],correct:0},
+{q:"My younger brother has a great _______ for drawing.",options:["power","skill","capacity","ambition","gift"],correct:4},
+{q:"Has it _______ you that we've met before?",options:["occurred","remembered","reminded","realized","happened"],correct:0},
+{q:"During the trial, the woman was accused of telling a _______.",options:["mistake","joke","story","lie","wrong"],correct:3},
+{q:"Most people would rather live in the _______ than in a town.",options:["state","region","district","country","province"],correct:3},
+{q:"It's very _______ to find a snake in England.",options:["seldom","usual","rare","strange","common"],correct:2},
+{q:"Do you know the _______ to the Town Hall?",options:["way","road","path","route","street"],correct:0},
+{q:"He _______ me for being late.",options:["complained","punished","scolded","warned","threatened"],correct:2},
+{q:"The teacher asked the students to repeat the sentence _______.",options:["again","always","ever","after","once"],correct:4},
+{q:"My brother _______ to drive before he was seventeen.",options:["learnt","studied","taught","educated","practised"],correct:0},
+{q:"I never go out in bad weather if I can _______.",options:["help","decide","avoid","prevent","leave"],correct:0},
+{q:"There's no _______ doing it now, as everyone's left.",options:["point","use","time","reason","sense"],correct:1},
+{q:"If you have any trouble, just let me _______.",options:["to know","known","knowing","know","knew"],correct:3}
+];
+let answers=Array(quiz.length).fill(null);
+let checked=false;
+function renderQuiz(){
+  const form=document.getElementById('quizForm');
+  form.innerHTML="";
+  quiz.forEach((qset,i)=>{
+    const block=document.createElement('div');
+    block.className='q-block';
+    const stxt=document.createElement('div');
+    stxt.className='q-sentence';
+    stxt.innerHTML=`<span class="q-num">${i+1}.</span> ${qset.q}`;
+    block.appendChild(stxt);
+    const opts=document.createElement('div'); opts.className='q-options-row';
+    qset.options.forEach((opt,j)=>{
+      const obtn=document.createElement('button'); obtn.type='button'; obtn.className='q-opt-btn';
+      obtn.innerHTML=`<span class="lbl">${String.fromCharCode(65+j)}</span> ${opt}`;
+      if(answers[i]===j) obtn.classList.add('selected');
+      if(checked){
+        if(qset.correct===j) obtn.classList.add('correct');
+        if(answers[i]===j && qset.correct!==j) obtn.classList.add('wrong');
+      }
+      obtn.onclick=()=>{if(!checked){answers[i]=j;renderQuiz();}};
+      opts.appendChild(obtn);
+    });
+    block.appendChild(opts); form.appendChild(block);
+  });
+}
+function clearAll(){checked=false;answers=Array(quiz.length).fill(null);renderQuiz();document.getElementById('scorePanel').textContent='';}
+document.getElementById('black-strip').onclick=()=>{window.location.href='../index.html';}
+document.getElementById('checkBtn').onclick=()=>{checked=true;renderQuiz();let correct=answers.filter((a,i)=>a===quiz[i].correct).length;let pct=Math.round(100*correct/quiz.length);document.getElementById('scorePanel').textContent=`You got ${correct} out of ${quiz.length} correct. (${pct}%)`;};
+renderQuiz();
+</script>
+</body>
+</html>
