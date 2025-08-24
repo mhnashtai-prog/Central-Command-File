@@ -1,1 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>English Vocabulary Test (Random 10 questions)</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; background: #f9f9f9; }
+    h2 { text-align: center; }
+    .question { margin: 20px 0 10px 0; font-weight: bold; }
+    .option { margin: 5px 0; }
+    .btn { margin: 10px 5px 0 0; padding: 6px 12px; font-size: 16px; cursor: pointer; }
+    .answered { background: #e6ffe6; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    #score { margin: 20px 0 10px 0; font-weight: bold; }
+    #controls { margin: 20px 0; }
+  </style>
+</head>
+<body>
+<h2>English Vocabulary Test</h2>
+<div id="quiz-container"></div>
+<div id="controls">
+  <button class="btn" onclick="showScore()">Return</button>
+  <button class="btn" onclick="repeatTest()">Repeat</button>
+  <button class="btn" onclick="generateTest()">Generate one more test</button>
+</div>
+<div id="score"></div>
 
+<script>
+const questionPool = [
+  // Sample of question format; only a few shown here.
+  // Populate with all 275 questions, IDs 226–500, as your data.
+  {226.	A ____ is a machine for cutting grass.
+A. mower B. cutter C. scythe D. reaper E. plough
+227.	Please ____ me the salt.
+A. give B. pass C. hand D. send E. bring
+228.	Her skirt was ____ when she sat down.
+A. wrinkled B. creased C. folded D. crossed E. twisted
+229.	At the ____ of the play, everyone stood up and clapped.
+A. finish B. stop C. conclusion D. end E. close
+230.	I like my coffee ____.
+A. pure B. clean C. strong D. thin E. weak
+231.	His explanation was perfectly ____.
+A. clear B. pure C. bright D. obvious E. transparent
+232.	A tree is different ____ a rose in shape.
+A. at B. from C. to D. by E. about
+233.	Some children are fond of ____ pets.
+A. having B. keeping C. owning D. feeding E. taking
+234.	What’s the ____ about?
+A. matter B. thing C. object D. cause E. trouble
+235.	A ____ is an instrument for seeing distant objects.
+A. microscope B. periscope C. stethoscope D. telescope E. radar
+236.	I have nothing to do ____ read a book.
+A. but B. except C. unless D. apart E. besides
+237.	A ____ is a very large animal which lives in the sea.
+A. fish B. dolphin C. whale D. octopus E. shark
+238.	The police are trying to find the ____ of the fire.
+A. sourse B. place C. cause D. source E. origin
+239.	The ____ of the company is very good.
+A. repute B. reputation C. reputed D. reputable E. fame
+240.	The ____ is a place where milk is kept and butter is made.
+A. bakery B. dairy C. brewery D. butchery E. pantry
+241.	____ for being late; the bus broke down.
+A. Excuse B. Forgive C. Sorry D. Regret E. Pardon
+242.	The ____ was so deep, the man couldn’t climb out.
+A. valley B. pit C. cave D. hole E. tunnel
+243.	Mr. Smith ____ his money in a bank.
+A. puts B. lays C. invests D. deposits E. pays
+244.	My shoes are old but still ____.
+A. strong B. firm C. stiff D. hard E. solid
+245.	____ of the cake, please!
+A. Cut B. Slice C. Divide D. Break E. Piece
+246.	It is not ____ to talk with your mouth full.
+A. polite B. well C. nice D. honest E. correct
+247.	The teacher asked us to ____ a poem by heart.
+A. recite B. repeat C. read D. report E. say
+248.	Ann is very proud ____ her son’s success.
+A. with B. by C. of D. in E. for
+249.	The children ____ a lot of noise while they were playing.
+A. did B. made C. created D. built E. played
+250.	The scientist ____ an important discovery.
+A. did B. found C. made D. gave E. discovered
+251.	Why no one has ever asked me to his villa is ____.
+A. amazing B. amusing C. agreeing D. wonder E. consider
+252.	It’s so nice ____ an old friend again.
+A. meeting B. to meet C. meeting with D. appearing E. upsetting
+253.	Miss Watson has cleaned the house from ____ to bottom.
+A. floor B. first floor C. top D. down E. upmost
+254.	John has been searching for his notes ____ yesterday.
+A. since B. for C. after D. from E. at
+255.	There’s a bomb in this box; it could ____ at any moment.
+A. explode B. blow C. crackle D. sparkle E. flash
+256.	He has just returned from an Australian ____.
+A. travel B. journey C. trip D. tour E. sport
+257.	Allen is very ____ in his studies.
+A. energetic B. energy C. energic D. energeticly E. energyless
+258.	You should ____ more fruit and vegetables in your diet.
+A. have B. eat C. take D. consume E. supply
+259.	Joan is not interested in politics; she ____ cares who wins the election.
+A. suddenly B. rarely C. barely D. never E. hardly
+260.	Please look in the cupboard for a ____.
+A. mirror B. glass C. bottle D. plate E. towel
+261.	If you want to start the engine, press the ____.
+A. starter B. pedal C. engine D. button E. lever
+262.	Some animals are kept for the production of ____.
+A. skin B. wool C. cover D. hair E. feathers
+263.	John is not very ____; he loses his books and even his pens.
+A. careful B. careless C. honestly D. forgetful E. feature
+264.	A stone hit the window pane and ____ it.
+A. broke B. dropped C. cut D. crashed E. knocked
+265.	The doctor told me to take two ____ a day.
+A. tablets B. bottles C. spoons D. cups E. boxes
+266.	I heard somebody in the other room ____ the piano.
+A. played B. plays C. practicing D. to play E. practising
+267.	If we ____ the train, we will have to take a taxi.
+A. miss B. loss C. missed D. fail E. lacking
+268.	Paul has been unwell ____ last week.
+A. for B. since C. in D. on E. at
+269.	The tourist asked how far it was to the ____ town.
+A. next B. nearest C. nearer D. nearestest E. nearestly
+270.	I can’t hear you; can you speak a bit ____?
+A. serious B. clearer C. clearly D. easy E. harder
+271.	The government is introducing new ____ about smoking in public places.
+A. laws B. rules C. lines D. orders E. legislations
+272.	He’s a very ____ driver; he’s never had an accident.
+A. careful B. caring C. gentle D. clever E. wild
+273.	____ you see Bob, tell him I’ll telephone later.
+A. Unless B. If C. When D. Whether E. Before
+274.	The plane took ____ at exactly ten o’clock.
+A. out B. up C. off D. of E. away
+275.	Mary was disappointed to find the field so ____.
+A. wet B. watered C. water D. watery E. waterlogged
+276.	Mary was so happy when she found her ____.
+A. wallet B. purse C. bag D. pocket E. handbag
+277.	As soon as John sat down the telephone started ____.
+A. ringing B. to ring C. ring D. rang E. rings
+278.	The children are very happy because their father will be ____ at Christmas.
+A. in B. away C. at home D. absent E. foreign
+279.	A nurse looks after ____ people in hospital.
+A. sick B. patient C. poorly D. suffering E. unhealthy
+280.	The price of petrol is very high ____.
+A. next B. now C. for D. late E. always
+281.	My parents ____ me a new bicycle for my birthday.
+A. bought B. have bought C. had bought D. bring E. bought
+282.	Peter likes music and plays the ____ well.
+A. violin B. piano C. guitar D. drum E. flute
+283.	Tom ____ his leg in a football match.
+A. hurt B. wounded C. damaged D. harmed E. pained
+284.	The film was so ____ that I saw it twice.
+A. excited B. excitement C. exciting D. excite E. excites
+285.	The children went out in the rain ____ their parents’ warnings.
+A. besides B. despite C. without D. against E. although
+286.	Have you ____ your homework yet?
+A. did B. made C. finished D. ended E. completed
+287.	Jim’s mother cut the cake into twelve ____.
+A. pieces B. slices C. parts D. sections E. shares
+288.	The train leaves at ____ o’clock.
+A. exact B. punctually C. sharp D. direct E. suddenly
+289.	The ____ on television last night was very good.
+A. program B. show C. series D. performance E. act
+290.	Whenever Charles is late, he always ____ some excuse.
+A. says B. makes C. repeats D. gives E. tells
+291.	It was difficult to ____ the house with new furniture.
+A. decorate B. renew C. fill D. repair E. increase
+292.	I couldn’t eat all the food, it was ____ much.
+A. too B. that C. very D. so E. as
+293.	He ____ to find a new job soon.
+A. hopes B. wishes C. expects D. suspects E. wants
+294.	It was such a ____ day that we decided to go to the beach.
+A. fine B. nice C. lovely D. good E. beautiful
+295.	Joan’s best ____ at school is English.
+A. issue B. subject C. lesson D. exercise E. topic
+296.	He asked me to ____ a glass of water.
+A. fetch B. bring C. carry D. get E. go
+297.	The teacher asked the students to ____ quietly.
+A. take B. go C. make D. be E. keep
+298.	It doesn’t seem ____ that we shall finish the work this week.
+A. possibly B. probable C. likely D. certain E. sure
+299.	Helen’s mother was ____ because Helen had not come home.
+A. anxious B. anxiousness C. worry D. worrying E. frightened
+300.	My shoes are much too tight; they ____ me.
+A. join B. pressure C. cramp D. pinch E. squeeze
+301.	He put his signature at the ____ of the letter.
+A. end B. finish C. bottom D. base E. last
+302.	I ____ for my keys everywhere but I can’t find them.
+A. sought B. looked C. tried D. have looked E. search
+303.	Mary ____ her mother to buy her a dress.
+A. asked B. demanded C. told D. persuaded E. said
+304.	A: “Do you mind if I borrow your book?” B: “____.”
+A. Yes, please B. No, help yourself C. Of course D. Yes, help E. Please
+305.	My brother is fifteen ____ old.
+A. year B. years C. year’s D. years’ E. aged
+306.	He spoke so quickly it was hard to ____ him.
+A. get B. bring C. understand D. see E. listen
+307.	Mary is not ____ for her age.
+A. tall B. enough tall C. tall enough D. so tall E. very tall
+308.	The doctor gave me a stomach ____ for my illness.
+A. pill B. pain C. disease D. tablet E. sickness
+309.	You’ll get used ____ early.
+A. to get up B. get up C. getting up D. to getting up E. up
+310.	John shows a lot of ____ in his schoolwork.
+A. interest B. interesting C. interests D. interested E. interestingly
+311.	My father gave me some good ____ for my exams.
+A. advice B. advices C. advise D. suggesting E. suggestion
+312.	It was ____ the children to break the window.
+A. careless of B. careless by C. careless with D. careless in E. careless at
+313.	The flat is on the top ____.
+A. house B. roof C. storey D. stair E. floor
+314.	Could you give me the ____ for my illness?
+A. cure B. remedy C. medicine D. drug E. prescription
+315.	The children quickly learned the new ____.
+A. song B. music C. singing D. tunes E. sound
+316.	We can’t ____ to buy a new car.
+A. spend B. cost C. afford D. pay E. have
+317.	I ____ to London but I don’t live there now.
+A. used to live B. used to living C. am used to live D. was live E. was living
+318.	The students ____ classes begin at 8 o’clock.
+A. which B. whose C. who D. whom E. that
+319.	John is very ____ in languages.
+A. interested B. interesting C. interest D. interests E. interestingly
+320.	I met her ____ the station.
+A. at B. in C. by D. with E. to
+321.	If you ____ hard, you will pass your exam.
+A. will study B. shall study C. study D. would study E. studied
+322.	A: “How do you do?” B: “____.”
+A. How do you B. Fine, thank you C. How do you do D. I do well E. Good
+323.	He asked me if I ____ in Japan before.
+A. was B. have been C. had been D. am E. would be
+324.	She’s ____ a pretty girl.
+A. too B. very C. absolutely D. so E. such
+325.	The manager discussed the ____ for the new building.
+A. plan B. plans C. planned D. planning E. planner
+326.	When you build a house you must start by laying the ____.
+A. street B. foundation C. solution D. attic E. ground floor
+327.	The door was so ____ that it wouldn’t close.
+A. tight B. loose C. thick D. wide E. narrow
+328.	A tap ____.
+A. runs B. goes C. drips D. opens E. flows
+329.	The windows in my house are made of ____ glass.
+A. thick B. pure C. entire D. full E. complete
+330.	If you throw a stone into the middle of a quiet lake it will ____ on the water.
+A. reflect B. flash C. burst D. disappear E. ripple
+331.	The science teacher advised us to use a ____ to find out the weight of the object.
+A. scale B. balance C. measure D. weight E. weigh
+332.	Simon ran fast to get a ____ start in the race.
+A. lower B. head C. lead D. beginning E. first
+333.	I’ve looked everywhere but I can’t find my ____.
+A. glove B. sock C. ear D. shoe E. slippers
+334.	Bill ate lots of cakes and ____.
+A. got fat B. grew long C. became weak D. turned thin E. is growned
+335.	I ____ my umbrella at home and I got wet.
+A. put B. left C. lost D. forgot E. missed
+336.	Mary painted the door ____ red.
+A. bright B. brightness C. brightly D. brighten E. brighting
+337.	The ____ was very thick so we couldn’t see anything.
+A. mist B. smoke C. cloud D. fog E. haze
+338.	Paul’s trousers are too ____ for him; he needs a belt.
+A. large B. length C. long D. short E. loose
+339.	The glass on the shelf fell and ____.
+A. crashed B. broke C. split D. burst E. cracked
+340.	Sue made a ____ and asked her mother to sign it.
+A. list B. plan C. drawing D. writing E. letter
+341.	Mr. Brown took his car to the ____ to have it repaired.
+A. shop B. store C. garage D. market E. place
+342.	He lay down and was soon fast ____.
+A. sleep B. sleepy C. sleeping D. asleep E. slept
+343.	The old lady kept her money in a ____ under her pillow.
+A. box B. bag C. wallet D. pocket E. purse
+344.	The leaves on the tree will soon ____.
+A. grow B. fall C. change D. drop E. flourish
+345.	The manager thanked the workers for their ____.
+A. success B. work C. working D. effort E. creation
+346.	He’s got the flu and must stay in ____ for a few days.
+A. bed B. home C. house D. room E. sheets
+347.	There was a ____ when the two bicycles hit each other.
+A. sound B. crash C. bang D. noise E. silence
+348.	I retired early and now receive a ____.
+A. pension B. reward C. income D. payment E. allowance
+349.	The architect produced the ____ for the new hospital.
+A. design B. designer C. designate D. designs E. designed
+350.	My cat went up a tree and couldn’t get ____.
+A. down B. over C. away D. loose E. shaped
+351.	She always keeps her room very ____.
+A. clean B. neat C. clear D. tidy E. plain
+352.	They all ____ hands and sang a song.
+A. held B. shook C. lifted D. gave E. waved
+353.	When you buy something in a shop you should be given a ____.
+A. bill B. receipt C. note D. ticket E. invoice
+354.	A person who brings letters to your house is a ____.
+A. postman B. mailman C. messenger D. deliverer E. carrier
+355.	The policeman was directing the ____ at the crossroads.
+A. walking B. traffic C. cars D. coming E. vehicles
+356.	In some cities the clocks are five minutes ____.
+A. in advance B. advance C. ahead D. forward E. advanced
+357.	Our new neighbours made a very good ____ on us.
+A. relation B. impression C. image D. idea E. sight
+358.	A: “____ did you stay in Paris?” B: “A month.”
+A. How far B. How much C. How long D. How often E. How many
+359.	The teacher asked the students to work ____.
+A. themselves B. on their own C. own D. lone E. alone
+360.	The play lasted ____ three hours.
+A. for B. since C. in D. during E. during for
+361.	My uncle gets a good ____ as the director of the firm.
+A. wage B. pay C. salary D. income E. earning
+362.	He always ____ his promises.
+A. makes B. says C. keeps D. gives E. takes
+363.	There is a ____ between London and New York every day.
+A. fly B. flying C. flight D. flyover E. flyer
+364.	He walked up the ____ and knocked at the door.
+A. steps B. upland C. stairs D. floors E. levels
+365.	My little brother is always getting into ____.
+A. mischief B. mischievous C. mishap D. mishandle E. misbehave
+366.	If you take this medicine it will make you feel ____.
+A. better B. best C. good D. fine E. great
+367.	"Where is ____?" "It's in North Africa."
+A. Egypt B. Spanish C. Holland D. Italy E. Spain
+368.	Traveling by plane is very ____.
+A. exciting B. excited C. excite D. excitement E. excites
+369.	Mr. Brown is ____ at home today.
+A. neither B. none C. not D. never E. no
+370.	I hope to meet you ____ the bank at five o’clock.
+A. by B. near C. at D. on E. in
+371.	He ____ for a long time before answering the question.
+A. thought B. thinks C. thought of D. was thinking E. had thought
+372.	I’d like to ____ you to dinner.
+A. call B. pay C. invite D. take E. bring
+373.	This cloth will ____ well if you look after it.
+A. last B. keep C. make D. do E. stay
+374.	My father isn’t interested in ____ the house.
+A. decorate B. to decorate C. decoration D. decorating E. decorates
+375.	The children sat on the ____ to eat their lunch.
+A. field B. ground C. floor D. earth E. grass
+376.	He ____ the old man across the busy road.
+A. led B. guided C. brought D. showed E. took
+377.	My shoes are ____ out and must be replaced.
+A. worn B. spent C. ruined D. torn E. used
+378.	He was brought up by his ____.
+A. guardians B. guides C. godfathers D. managers E. protectors
+379.	The nurse took his ____ to see if he had a fever.
+A. temperature B. measure C. heat D. fever E. warmth
+380.	Jane cut her hand on a piece of ____ glass.
+A. broken B. damaged C. fractured D. cracked E. split
+381.	There is something wrong with this TV set; the ____ isn’t working properly.
+A. image B. shade C. colour D. paint E. picture
+382.	We keep our car in the ____.
+A. shed B. store C. garage D. barn E. box
+383.	He has ____ to lose by refusing the offer.
+A. nothing B. none C. little D. something E. much
+384.	The ____ is falling.
+A. rain B. rainy C. wet D. water E. fall
+385.	Peter ____ to play football on Sunday.
+A. suggested B. proposed C. offered D. advised E. invited
+386.	The house was built ____ 1963.
+A. on B. in C. at D. by E. since
+387.	He ____ to the station to meet a friend.
+A. came B. reached C. got D. went E. arrived
+388.	A ____ of fish swam past our boat.
+A. school B. herd C. flock D. crowd E. group
+389.	She’s ____ a dress for Jane’s party.
+A. sewing B. making C. cutting D. fitting E. doing
+390.	The students are ____ an exam tomorrow.
+A. writing B. taking C. passing D. sitting E. making
+391.	That woman is always ____ about something.
+A. grumbling B. gossiping C. chatting D. complaining E. cursing
+392.	The ____ of the book is lost.
+A. final B. finish C. finished D. ending E. end
+393.	He’s ____ than his sister.
+A. more taller B. as tall C. taller D. more tall E. so tall
+394.	My uncle is ____ abroad next winter.
+A. going B. leaving C. going to D. to go E. go
+395.	We ____ have to speak to the manager tomorrow.
+A. can B. might C. shall D. must E. should
+396.	I ____ have watched that film if I had known it was so bad.
+A. didn’t B. wouldn’t C. shouldn’t D. couldn’t E. hadn’t
+397.	He’s ____ a good job.
+A. looking for B. searching C. seeking after D. wanting E. searching for
+398.	He ____ that book for an hour.
+A. read B. is reading C. has read D. reads E. has been reading
+399.	She ____ when the phone rang.
+A. slept B. was sleeping C. sleeps D. sleeping E. has slept
+400.	I ____ television when the bell rang.
+A. watch B. have watched C. watched D. was watching E. am watching
+401.	I’ve ____ my purse; can you help me look for it?
+A. missed B. lost C. gone D. failed E. left
+402.	Joan ____ to phone her mother, but she forgot.
+A. promised B. said C. told D. spoke E. explained
+403.	You ____ stop smoking; it’s bad for your health.
+A. would B. should C. need D. ought E. must
+404.	“Are you a student?” — “Yes, I ____.”
+A. am B. do C. is D. have E. was
+405.	“Did you enjoy the film?” — “Yes, I ____.”
+A. am B. have C. did D. was E. enjoyed
+406.	That’s the man ____ son won the prize.
+A. who B. which C. whose D. whom E. who’s
+407.	She’s ____ than her brother.
+A. more intelligent B. intelligent C. most intelligent D. as intelligent E. so intelligent
+408.	I’m not hungry, I’ve ____ had lunch.
+A. yet B. still C. already D. now E. even
+409.	He ____ late to work last Monday.
+A. was B. were C. will be D. is E. be
+410.	My friends have all ____ to the party.
+A. invited B. invite C. been invited D. inviting E. invites
+411.	You ____ walk on the grass in this park.
+A. mustn’t B. shouldn’t C. wouldn’t D. don’t need E. must
+412.	She ____ at home last night.
+A. stayed B. stays C. stay D. was stay E. staying
+413.	Someone ____ the window last night.
+A. breaking B. broke C. has broken D. break E. breaks
+414.	The train ____ at 9 o’clock every morning.
+A. left B. leaves C. leaving D. has left E. is leaving
+415.	The students are looking forward ____ the holidays.
+A. for B. to C. after D. in E. with
+416.	Mary is ____ than Anne.
+A. eldest B. elder C. old D. older E. more old
+417.	You must ____ quiet in the classroom.
+A. keep B. make C. stays D. being E. do
+418.	If she ____ to come, I’ll be very pleased.
+A. will agree B. agrees C. agree D. will E. shall agree
+419.	The teacher asked Charles to ____ the door.
+A. open B. opened C. opening D. opens E. to open
+420.	I ____ to meet you at the station at 7 o’clock.
+A. am B. will C. would D. am going E. go
+421.	It ____ a long time to climb that mountain.
+A. took B. takes C. has taken D. take E. taking
+422.	My father ____ to the office every day.
+A. drives B. goes C. goes by car D. drive E. goes to
+423.	He always ____ up early in the morning.
+A. gets B. got C. get D. is get E. will get
+424.	If it ____ tomorrow, we’ll stay at home.
+A. will rain B. raining C. rains D. is raining E. rain
+425.	Jane has never ____ to London.
+A. gone B. was C. be D. been E. being
+426.	He ____ me to open the window.
+A. said B. told C. ordered D. spoke E. requested
+427.	Mary is ____ of her little brother.
+A. proud B. pride C. prideful D. prided E. priding
+428.	The bus was very ____ so I had to stand.
+A. busy B. filled C. full D. occupied E. crowded
+429.	This town is not as ____ as the one we used to live in.
+A. large B. largely C. bigged D. biggest E. much
+430.	You can buy a lot of things at the ____.
+A. shop B. store C. market D. supermarket E. place
+431.	The milk is so ____ that it tastes like water.
+A. pale B. thin C. rare D. clear E. transparent
+432.	I am going to buy a ____ of bread.
+A. bar B. loaf C. block D. piece E. slice
+433.	We sat down in the ____ to watch the television.
+A. hall B. room C. living room D. sitting room E. lounge
+434.	My father’s ____ is to finish painting the house at the weekend.
+A. intend B. intention C. intending D. intension E. intendance
+435.	Do you mind ____ the window?
+A. to close B. closing C. to shut D. closing up E. close
+436.	Look! He ____ the door!
+A. opens B. is opening C. has opened D. opened E. is opened
+437.	Henry didn’t see the car coming and so he was ____ by it.
+A. hit B. crashed C. broken D. struck E. affected
+438.	There are a lot of magazines on the ____ of the library.
+A. shelf B. shelves C. side D. top E. counter
+439.	Can you ____ me a favour?
+A. do B. make C. give D. take E. bring
+440.	He’s got a good ____ of humour.
+A. sense B. quality C. level D. standard E. piece
+441.	If it rains we’ll have to stay ____.
+A. in doors B. indoors C. in D. at home E. inside
+442.	He ____ me that he would come tomorrow.
+A. promised B. said C. told D. spoke E. mentioned
+443.	That’s the best film I have ____ seen.
+A. ever B. never C. just D. already E. yet
+444.	We arrived ____ Paris late at night.
+A. to B. in C. on D. at E. into
+445.	My friend asked me if I ____ ever been to Spain.
+A. have B. was C. had D. am E. would
+446.	Jane is ____ than all her friends.
+A. taller B. tallest C. more tall D. so tall E. as tall
+447.	I ____ my homework before the lesson.
+A. made B. finished C. wrote D. did E. have made
+448.	We walked ____ the park and admired the flowers.
+A. through B. along C. across D. by E. about
+449.	The new hospital ____ by the end of the year.
+A. will be built B. is building C. was built D. will build E. has built
+450.	I don’t know ____ to do.
+A. what B. how C. when D. which E. that
+451.	I ____ him for a week.
+A. don’t see B. haven’t seen C. didn’t see D. wasn’t seeing E. haven’t been seeing
+452.	You ____ let the dog out; he’ll run away.
+A. oughtn’t B. must C. shouldn’t D. wouldn’t E. mustn’t
+453.	I ____ you for your help yesterday.
+A. thanked B. thank C. thanking D. thanks E. thanks to
+454.	The meeting will ____ at 4 o’clock.
+A. begin B. began C. begun D. open E. start
+455.	Have you ____ the door yet?
+A. locked B. lock C. locking D. to lock E. locks
+456.	A: “How long ____ in London?” B: “For three years.”
+A. are you B. have you lived C. you live D. you have lived E. have you be
+457.	The boy ____ the roof fell down and broke his arm.
+A. on B. in C. at D. from E. above
+458.	He was very tired ____ he went straight to bed.
+A. so B. or C. but D. though E. although
+459.	Have you ____? — “No, I’m afraid I haven’t.”
+A. finished yet B. yet finished C. finishing D. finished already E. at finish
+460.	The glass was empty—there was ____ left in it.
+A. nothing B. anything C. something D. no E. none
+461.	He is ____ old to work any harder.
+A. so B. enough C. as D. too E. more
+462.	When I saw her, she ____ a blue dress.
+A. wore B. wears C. wearing D. was wearing E. is wearing
+463.	The lesson lasted ____ an hour.
+A. during B. in C. about D. at E. by
+464.	He hasn’t ____ his mind yet about what to do.
+A. made up B. decided up C. charged up D. changed E. brought up
+465.	Tom ____ his exam now.
+A. taking B. is taking C. takes D. take E. took
+466.	A: “How far is it to the station?” B: “____.”
+A. Two miles B. To walk C. It’s far D. Far enough E. For a mile
+467.	She has never ____ an English novel.
+A. reading B. reads C. read D. been reading E. was reading
+468.	We ____ football every Sunday morning.
+A. have played B. played C. are playing D. used to play E. play
+469.	The teacher ____ the students to be quiet.
+A. said to B. asked C. told D. made E. ordered
+470.	I ____ watch television in the evenings.
+A. always B. ever C. never D. seldom E. often
+471.	John ____ come to the party last night.
+A. couldn’t B. wasn’t able to C. didn’t D. might not E. can’t
+472.	My parents ____ to Paris next week.
+A. must go B. are going C. will have gone D. gone E. go
+473.	She was ____ tired to walk any further.
+A. too B. so C. very D. much E. as
+474.	They went to London ____ train.
+A. on B. in C. by D. with E. at
+475.	He doesn’t enjoy ____ to the theatre.
+A. go B. to go C. going D. been E. gone
+
+
+
+
+476.	He put his hand in his pocket and ____ a coin.
+A. brought B. took C. produced D. found E. got
+477.	____ the window, please.
+A. Shut B. Closing C. Have to shut D. Shutting E. Shuts
+478.	I wonder ____ he will be at home tomorrow.
+A. which B. what C. if D. that E. who
+479.	I ____ see Mary at the party last night.
+A. don’t B. didn’t C. wasn’t D. haven’t E. couldn’t
+480.	The students expect the holidays ____ soon.
+A. beginning B. is to begin C. will begin D. to begin E. begin
+481.	Why ____ here so early?
+A. you are B. are you C. were you D. you were E. you
+482.	The children can play here, but they _____ be careful.
+A. have to B. ought to C. must D. should E. can
+483.	____ did you do last weekend?
+A. Which B. What C. Whose D. How E. When
+484.	Jimmy ____ born in 1980.
+A. is B. was C. has D. had E. were
+485.	We’ll go skiing if it ____ snow.
+A. is B. does C. will D. will be E. would
+486.	He was ____ tired that he fell asleep at once.
+A. so B. such C. very D. too E. much
+487.	I ____ write a dozen letters every day.
+A. have B. want C. am D. try E. must
+488.	I ____ met him before.
+A. never B. haven’t C. hadn’t D. ever E. didn’t
+489.	If you study hard, you ____ pass the exam.
+A. are B. have C. will D. do E. may
+490.	Mary is ____ than Ann.
+A. elder B. oldest C. old D. eldest E. older
+491.	A: “How long ____ you lived here?” B: “For three years.”
+A. do B. have C. did D. are E. will
+492.	There ____ a lot of people at the cinema yesterday.
+A. were B. was C. is D. will E. had
+493.	____ you ever seen a whale?
+A. Did B. Do C. Are D. Have E. Will
+494.	She ____ to make a cake when I arrived.
+A. tried B. tries C. is trying D. was trying E. has tried
+495.	My mother ____ us to bed every night at nine.
+A. puts B. let C. sets D. puts in E. take
+496.	Helen hasn’t ____ her homework yet.
+A. finish B. finished C. has finished D. would finish E. finishing
+497.	The teacher ____ us to use the library.
+A. suggested B. advised C. let D. allowed E. permitted
+498.	I saw Ann at the station, but she ____ me.
+A. hasn’t seen B. wouldn’t see C. didn’t see D. couldn’t see E. not seen
+499.	My mother ____ to go out yesterday.
+A. doesn’t want B. didn’t want C. wanted not D. not want E. hadn’t wanted
+500.	You had better ____ to the dentist at once.
+A. go B. to go C. going D. went E. gone
+];
+// Only the first few shown for brevity. For a real app, include all questions 226-500.
+
+let currentQuiz = [];
+let userAnswers = [];
+let showAnswers = false;
+
+// Utility: random unique sample of n items from array
+function randomSample(arr, n) {
+  let copy = arr.slice(), out = [];
+  while (out.length < n && copy.length) {
+    let idx = Math.floor(Math.random() * copy.length);
+    out.push(copy.splice(idx, 1)[0]);
+  }
+  return out;
+}
+
+function generateTest() {
+  document.getElementById("score").innerHTML = '';
+  showAnswers = false;
+  currentQuiz = randomSample(questionPool, 10);
+  userAnswers = Array(10).fill(null);
+  renderQuiz();
+}
+
+function renderQuiz() {
+  let html = '';
+  currentQuiz.forEach((q, i) => {
+    html += `<div class="question">${i + 1}. ${q.question}</div>`;
+    q.options.forEach((opt, j) => {
+      let checked = userAnswers[i] === j ? 'checked' : '';
+      let style = '';
+      if (showAnswers && userAnswers[i] !== null) {
+        if (q.answer === j) style = 'correct';
+        else if (userAnswers[i] === j) style = 'incorrect';
+      }
+      html += `<div class="option">
+        <label>
+          <input type="radio" name="q${i}" value="${j}" ${checked} ${showAnswers ? 'disabled' : ''}>
+          <span class="${style}">${opt}</span>
+        </label>
+      </div>`;
+    });
+    if (showAnswers && userAnswers[i] !== null) {
+      let correct = q.options[q.answer];
+      if (userAnswers[i] === q.answer) {
+        html += `<div class="correct">Correct!</div>`;
+      } else {
+        html += `<div class="incorrect">Wrong. Correct answer: <b>${correct}</b></div>`;
+      }
+    }
+  });
+  document.getElementById("quiz-container").innerHTML = html;
+  // Event listeners
+  if (!showAnswers) {
+    document.querySelectorAll('input[type=radio]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        let qIndex = parseInt(e.target.name.substring(1),10);
+        let val = parseInt(e.target.value,10);
+        userAnswers[qIndex] = val;
+      });
+    });
+  }
+}
+
+function showScore() {
+  showAnswers = true;
+  renderQuiz();
+  let score = 0;
+  for (let i = 0; i < currentQuiz.length; i++) {
+    if (userAnswers[i] === currentQuiz[i].answer) score++;
+  }
+  document.getElementById("score").innerHTML = `You scored <b>${score}</b> out of <b>${currentQuiz.length}</b>.`;
+}
+
+function repeatTest() {
+  document.getElementById("score").innerHTML = '';
+  showAnswers = false;
+  userAnswers = Array(10).fill(null);
+  renderQuiz();
+}
+
+// On first load
+generateTest();
+</script>
+</body>
+</html>
