@@ -15,8 +15,7 @@
 }
 body {
   background: linear-gradient(135deg, #2c5aa0 0%, #3b6bb5 15%, #4a7bc8 30%, #7a9fd9 45%, #b8d3ea 60%, #e8c5d8 75%, #f0b7c9 85%, #f5a9ba 100%);
-  min-height: 100vh;
-  margin: 0;
+  min-height: 100vh; margin: 0;
   font-family: var(--main-font);
   color: #151515;
 }
@@ -105,9 +104,8 @@ body {
 .control-btn {padding:11px 28px; border:none; border-radius:1.05em; font-weight:700;}
 .control-btn.check {color:#274b75; background:linear-gradient(120deg,#e8f5fd 70%,#f5a9ba 100%);}
 .control-btn.repeat {color:#7a4b00; background:linear-gradient(120deg,#fff3cd 70%,#ffeaa7 100%);}
+.control-btn.next {color:#fff; background:linear-gradient(120deg,#5ac3ff 70%,#e583c0 100%);}
 .score-panel {font-size:1.18em;font-weight:700;color:#117d48;margin-top:21px;}
-.black-strip {position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:80%;height:28px;background:rgba(68,68,68,.9);border-radius:24px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;}
-.black-strip .arrow{margin-right:14px;}
 @media(max-width:768px){.q-options-row{flex-direction:column;}}
 </style>
 </head>
@@ -118,12 +116,11 @@ body {
   <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
   <div class="controls-container">
     <div class="control-buttons">
-      <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
-      <button class="control-btn repeat" onclick="clearAll()">REPEAT</button>
+      <button class="control-btn check" id="checkBtn" type="button">CHECK ANSWERS</button>
+      <button class="control-btn next" id="nextBtn" type="button">NEXT</button>
     </div>
     <div id="scorePanel" class="score-panel"></div>
   </div>
-  <div id="black-strip" class="black-strip"><span class="arrow">←</span><span class="back-label">Multiple Choice</span></div>
 </div>
 <script>
 const quiz = [// === QUESTIONS DATA: 1-150 ===
@@ -277,9 +274,19 @@ const questionsData = [
   {q: "My woolen sweater used to be bigger than this: it's _______ in the wash!", options: ["lessened", "shrunk", "shortened", "reduced"], correct: 1},
   {q: "The small girl had to _______ three teeth taken out because they were so bad.", options: ["have", "let", "operate", "pull"], correct: 0},
 ];
-let answers=Array(quiz.length).fill(null);
-let checked=false;
-function renderQuiz(){
+function randomSubset(arr, n) {
+  let temp = [...arr], res = [];
+  for(let i=0;i<n&&temp.length;i++){
+    let idx = Math.floor(Math.random()*temp.length);
+    res.push(temp[idx]);
+    temp.splice(idx,1);
+  }
+  return res;
+}
+
+let quiz, answers, checked;
+
+function renderQuiz() {
   const form=document.getElementById('quizForm');
   form.innerHTML="";
   quiz.forEach((qset,i)=>{
@@ -301,13 +308,32 @@ function renderQuiz(){
       obtn.onclick=()=>{if(!checked){answers[i]=j;renderQuiz();}};
       opts.appendChild(obtn);
     });
-    block.appendChild(opts); form.appendChild(block);
+    block.appendChild(opts);
+    form.appendChild(block);
   });
 }
-function clearAll(){checked=false;answers=Array(quiz.length).fill(null);renderQuiz();document.getElementById('scorePanel').textContent='';}
-document.getElementById('black-strip').onclick=()=>{window.location.href='../index.html';}
-document.getElementById('checkBtn').onclick=()=>{checked=true;renderQuiz();let correct=answers.filter((a,i)=>a===quiz[i].correct).length;let pct=Math.round(100*correct/quiz.length);document.getElementById('scorePanel').textContent=`You got ${correct} out of ${quiz.length} correct. (${pct}%)`;};
-renderQuiz();
+
+function newQuiz() {
+  quiz = randomSubset(questionsData, Math.min(12, questionsData.length)); // 12 random questions
+  answers = Array(quiz.length).fill(null);
+  checked = false;
+  renderQuiz();
+  document.getElementById('scorePanel').textContent='';
+}
+document.getElementById('checkBtn').onclick=function(){
+  if(answers.includes(null)) {
+    alert('Please answer all questions before checking.');
+    return;
+  }
+  checked=true;
+  renderQuiz();
+  let correct=answers.filter((a,i)=>a===quiz[i].correct).length;
+  document.getElementById('scorePanel').textContent=`Score: ${correct} / ${quiz.length}`;
+};
+document.getElementById('nextBtn').onclick=newQuiz;
+
+newQuiz();
 </script>
 </body>
+</html>
 </html>
