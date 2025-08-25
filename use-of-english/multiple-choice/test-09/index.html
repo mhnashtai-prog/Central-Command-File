@@ -85,16 +85,9 @@ body {
   font-weight:900; margin-right:8px;
   font-size:1.18em; color:#1a284e;
 }
-.q-opt-btn:hover {
-  transform:translateY(-1px);
-}
-.q-opt-btn.selected {
-  background: #2c5aa0 !important;   /* blue background */
-  color: #151515 !important;        /* black text */
-}
-.q-opt-btn.selected .lbl {
-  color: #151515 !important;        /* black label */
-}
+.q-opt-btn:hover { transform:translateY(-1px); }
+.q-opt-btn.selected {background: #2c5aa0 !important; color: #151515 !important;}
+.q-opt-btn.selected .lbl { color: #151515 !important; }
 .q-opt-btn.correct {background:#7dd87d!important;color:#fff!important;}
 .q-opt-btn.correct .lbl {color:#fff!important;}
 .q-opt-btn.wrong {background:#f5e8e8!important;color:#8b4513!important;}
@@ -103,10 +96,17 @@ body {
 .control-buttons {display:flex; gap:20px; justify-content:center; flex-wrap:wrap;}
 .control-btn {padding:11px 28px; border:none; border-radius:1.05em; font-weight:700;}
 .control-btn.check {color:#274b75; background:linear-gradient(120deg,#e8f5fd 70%,#f5a9ba 100%);}
-.control-btn.repeat {color:#7a4b00; background:linear-gradient(120deg,#fff3cd 70%,#ffeaa7 100%);}
 .control-btn.next {color:#fff; background:linear-gradient(120deg,#5ac3ff 70%,#e583c0 100%);}
 .score-panel {font-size:1.18em;font-weight:700;color:#117d48;margin-top:21px;}
-@media(max-width:768px){.q-options-row{flex-direction:column;}}
+.black-strip {
+  position:fixed; bottom:0; left:50%; transform:translateX(-50%);
+  width:80%; height:28px; background:rgba(68,68,68,.9);
+  border-radius:24px; color:#fff;
+  display:flex; align-items:center; justify-content:center;font-weight:600;
+  z-index:1000;
+}
+.black-strip .arrow{margin-right:14px;font-size:1.2em;}
+@media(max-width:768px){.q-options-row{flex-direction:column;} .black-strip{width:96%;}}
 </style>
 </head>
 <body>
@@ -121,6 +121,9 @@ body {
     </div>
     <div id="scorePanel" class="score-panel"></div>
   </div>
+</div>
+<div id="black-strip" class="black-strip" tabindex="0" style="cursor:pointer;">
+  <span class="arrow">&#8592;</span><span class="back-label">Multiple Choice</span>
 </div>
 <script>
 const quiz = [// === QUESTIONS DATA: 1-150 ===
@@ -274,17 +277,36 @@ const questionsData = [
   {q: "My woolen sweater used to be bigger than this: it's _______ in the wash!", options: ["lessened", "shrunk", "shortened", "reduced"], correct: 1},
   {q: "The small girl had to _______ three teeth taken out because they were so bad.", options: ["have", "let", "operate", "pull"], correct: 0},
 ];
-function randomSubset(arr, n) {
-  let temp = [...arr], res = [];
-  for(let i=0;i<n&&temp.length;i++){
-    let idx = Math.floor(Math.random()*temp.length);
-    res.push(temp[idx]);
-    temp.splice(idx,1);
+let quiz = [];
+let answers = [];
+let checked = false;
+
+// This array holds remaining indices NOT YET USED
+let availableIndices = Array.from({length: questionsData.length}, (_, i) => i);
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random()*(i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-  return res;
 }
 
-let quiz, answers, checked;
+// pick up to 12 unused questions, refreshing pool when needed
+function newQuiz() {
+  // If not enough remaining, refresh the pool (start cycle)
+  if (availableIndices.length < 12) {
+    availableIndices = Array.from({length: questionsData.length}, (_, i) => i);
+  }
+  shuffle(availableIndices);
+  let indices = availableIndices.slice(0, Math.min(12, availableIndices.length));
+  quiz = indices.map(idx => questionsData[idx]);
+  // Remove them from pool
+  availableIndices = availableIndices.slice(indices.length);
+  answers = Array(quiz.length).fill(null);
+  checked = false;
+  renderQuiz();
+  document.getElementById('scorePanel').textContent = '';
+}
 
 function renderQuiz() {
   const form=document.getElementById('quizForm');
@@ -313,13 +335,6 @@ function renderQuiz() {
   });
 }
 
-function newQuiz() {
-  quiz = randomSubset(questionsData, Math.min(12, questionsData.length)); // 12 random questions
-  answers = Array(quiz.length).fill(null);
-  checked = false;
-  renderQuiz();
-  document.getElementById('scorePanel').textContent='';
-}
 document.getElementById('checkBtn').onclick=function(){
   if(answers.includes(null)) {
     alert('Please answer all questions before checking.');
@@ -332,8 +347,12 @@ document.getElementById('checkBtn').onclick=function(){
 };
 document.getElementById('nextBtn').onclick=newQuiz;
 
+document.getElementById('black-strip').onclick=()=>{
+  window.location.href = '../index.html';
+};
+
 newQuiz();
 </script>
 </body>
 </html>
-</html>
+
