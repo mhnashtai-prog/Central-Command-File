@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INTUITY – Multiple Choice Test 10</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --main-font: 'Inter', 'Poppins', 'Montserrat', Arial, sans-serif;
+  --question-font-size: 1.05rem;
+  --options-font-size: 1rem;
+  --option-gap: 0.52em;
+  --sentence-gap: 44px;
+}
+body {
+  background: linear-gradient(135deg, #2c5aa0 0%, #3b6bb5 15%, #4a7bc8 30%, #7a9fd9 45%, #b8d3ea 60%, #e8c5d8 75%, #f0b7c9 85%, #f5a9ba 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--main-font);
+  color: #151515;
+}
+.flex-center {display: flex; flex-direction: column; align-items: center;}
+.quiz-container {
+  max-width: 780px;
+  margin: 48px auto 44px auto;
+  background: #ffffff;
+  border-radius: 2.4em;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 40px 22px 42px 22px;
+  font-size: 95%;
+}
+.title {
+  font-size: 2.48em;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  margin-bottom: 9px;
+  color: #1b1c1f;
+  text-align: center;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1.12em;
+  letter-spacing: 0.06em;
+  color: #444448;
+  font-family:"Inter", "Poppins", Arial, sans-serif;
+  font-weight: 600;
+  margin-bottom: 21px;
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  width: 0%;
+  transition: width 0.5s ease;
+}
+.progress-text {
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin: 8px 0;
+  font-weight: 600;
+}
+
+.form-quiz {
+  width: 100%;
+}
+.q-block {
+  margin-bottom: var(--sentence-gap);
+}
+.q-sentence {
+  font-size: var(--question-font-size);
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #141414;
+  line-height: 1.47;
+}
+.q-num {
+  display: inline-block;
+  width: 1.3em;
+  font-weight: 900;
+  color: #405080;
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
+  font-size: 1em;
+}
+.q-options-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--option-gap);
+  margin-bottom: 0.08em;
+  flex-wrap: wrap;
+}
+.q-opt-btn {
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-size: var(--options-font-size);
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.08em;
+  background: #e8e8eb;
+  border-radius: 1.2em;
+  border: none;
+  padding: 12px 18px;
+  margin-right: 1px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  position: relative;
+  min-width: 70px;
+  user-select: none;
+  flex: 1;
+  box-shadow: 
+    7.9px 7.9px 15.9px #d1d1d4,
+    -6px -6px 12px #ffffff;
+}
+.q-opt-btn .lbl {
+  font-weight: 900;
+  margin-right: 8px;
+  font-size: 1.18em;
+  color: #1a284e;
+  vertical-align: middle;
+  display: inline-block;
+}
+.q-opt-btn:hover {
+  background: #e8e8eb;
+  box-shadow: 
+    6.6px 6.6px 13.2px #c5c5c8,
+    -6px -6px 12px #ffffff;
+  transform: translateY(-1px);
+}
+
+.q-opt-btn.selected {
+  background: #2c5aa0 !important;
+  color: #151515 !important;
+}
+.q-opt-btn.selected .lbl {
+  color: #151515 !important;
+}
+
+.q-opt-btn.correct {
+  background: #7dd87d !important;
+  color: #ffffff !important;
+  box-shadow: 
+    inset 6px 6px 12px #6bc46b,
+    inset -6px -6px 12px #8fec8f !important;
+}
+
+.q-opt-btn.correct .lbl {
+  color: #ffffff !important;
+}
+
+.q-opt-btn.wrong {
+  background: #f5e8e8 !important;
+  color: #8b4513 !important;
+  box-shadow: 
+    inset 6px 6px 12px #e0c5c5,
+    inset -6px -6px 12px #ffffff !important;
+}
+
+.q-opt-btn.wrong .lbl {
+  color: #8b4513 !important;
+}
+.q-block:last-child {margin-bottom: 10px;}
+.controls-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 32px;
+}
+.control-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.control-btn {
+  font-size: 1.05em;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 1.05em;
+  padding: 11px 28px;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: background 0.13s, color 0.12s, transform 0.1s;
+  box-shadow: 0 3px 16px #b8d3ea27;
+}
+.control-btn.check {
+  color: #274b75;
+  background: linear-gradient(120deg, #e8f5fd 70%, #f5a9ba 100%);
+}
+.control-btn.check:hover {
+  background: linear-gradient(120deg, #d4ebf7 70%, #f299b0 100%);
+}
+.control-btn.next {
+  color: #2d5a27;
+  background: linear-gradient(120deg, #e8f5e8 70%, #c8e6c9 100%);
+}
+.control-btn.next:hover {
+  background: linear-gradient(120deg, #d4f4d4 70%, #a5d6a7 100%);
+}
+.control-btn.repeat {
+  color: #7a4b00;
+  background: linear-gradient(120deg, #fff3cd 70%, #ffeaa7 100%);
+}
+.control-btn.repeat:hover {
+  background: linear-gradient(120deg, #ffecb3 70%, #ffe082 100%);
+}
+.control-btn.reset {
+  color: #c62828;
+  background: linear-gradient(120deg, #ffebee 70%, #ffcdd2 100%);
+}
+.control-btn.reset:hover {
+  background: linear-gradient(120deg, #fce4ec 70%, #f8bbd9 100%);
+}
+.control-btn:active {
+  transform: translateY(1px);
+}
+.control-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.score-panel {
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #117d48;
+  margin: 21px auto 14px auto;
+  text-align: center;
+}
+
+.session-stats {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+}
+.session-stats strong {
+  color: #333;
+}
+
+/* Black Strip Navigation */
+.black-strip {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 28px;
+  background: rgba(68, 68, 68, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow: 0 2px 18px 0 rgba(34, 34, 34, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+  z-index: 40;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat', Arial, sans-serif;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.black-strip .arrow {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-right: 14px;
+  transition: color 0.17s;
+}
+.black-strip .arrow:hover {
+  color: #63e3c0;
+}
+.black-strip .back-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 6px;
+}
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 5vw 2vw;
+    margin: 20px auto;
+  }
+  .q-options-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .q-opt-btn {
+    flex: none;
+    text-align: left;
+  }
+  .control-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .control-btn {
+    width: 200px;
+  }
+}
+@media (max-width: 480px) {
+  .title {
+    font-size: 2em;
+  }
+  .subtitle {
+    font-size: 1em;
+  }
+  .control-buttons {
+    gap: 10px;
+  }
+  .control-btn {
+    padding: 8px 20px;
+    font-size: 0.95em;
+  }
+  :root {
+    --question-font-size: 0.95rem;
+    --options-font-size: 0.9rem;
+    --sentence-gap: 32px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="quiz-container flex-center">
+  <div class="title">INTUITY</div>
+  <div class="subtitle">Multiple Choice Test 10 - Advanced Mode</div>
+  
+  <!-- Progress tracking -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="progress-text" id="progressText">Questions used: 0 / 100</div>
+  
+  <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
+  
+  <div class="controls-container">
+    <div class="control-buttons">
+      <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
+      <button class="control-btn next" id="nextBtn" style="display:none;">NEXT SET (12 NEW)</button>
+      <button class="control-btn repeat" id="repeatBtn">REPEAT CURRENT</button>
+      <button class="control-btn reset" id="resetBtn">RESET PROGRESS</button>
+    </div>
+    <div class="score-panel" id="scorePanel"></div>
+    <div class="session-stats" id="sessionStats"></div>
+  </div>
+
+  <div id="black-strip" class="black-strip">
+    <span class="arrow">←</span>
+    <span class="back-label">Multiple Choice</span>
+  </div>
+</div>
+<script>
+// 100+ PROPERLY FORMATTED QUESTIONS - SYNTAX ERROR FREE
+const allQuestions = [
+  {q: "The _______ from the gate to the cottage was overgrown with weeds.", options: ["road", "street", "path", "passage"], correct: 2},
+  {q: "The field was surrounded by _______ wire.", options: ["spiked", "barbed", "pricked", "scratched"], correct: 1},
+  {q: "He has just been _______ to Senior Clerk.", options: ["promoted", "raised", "elevated", "advanced"], correct: 0},
+  {q: "The football match resulted in a _______.", options: ["loss", "equaliser", "draw", "zero"], correct: 2},
+  {q: "Paul Black is _______ as Labour MP for Brightford in the next election.", options: ["sitting", "standing", "presenting", "appearing"], correct: 1},
+  {q: "My boss insists on seeing everything in _______ before he makes a decision.", options: ["red, white and blue", "green and yellow", "black and white", "black and blue"], correct: 2},
+  {q: "How _______ is it from here to the city centre?", options: ["long", "far", "distant", "near"], correct: 1},
+  {q: "I don't understand why people put _______ with the bad service in this restaurant.", options: ["upon", "over", "up", "down"], correct: 2},
+  {q: "Do you think there's any _______ of him passing the exam?", options: ["chance", "opportunity", "occasion", "expectancy"], correct: 0},
+  {q: "Our school doesn't break _______ until the end of July.", options: ["out", "in", "off", "up"], correct: 2},
+  {q: "When he was studying he stayed at a student _______ in London.", options: ["hospital", "house", "hostel", "hotel"], correct: 2},
+  {q: "Do _______ if you come to London.", options: ["look me up", "find me out", "take me up", "show me up"], correct: 0},
+  {q: "The _______ from the explosion broke every window in the street.", options: ["force", "bang", "blast", "draught"], correct: 2},
+  {q: "To _______ the truth I don't really understand computers.", options: ["say", "allow", "admit", "tell"], correct: 3},
+  {q: "I had to have two _______ when I went to the dentist last week.", options: ["fillings", "refills", "flings", "paddings"], correct: 0},
+  {q: "Mrs Jones has offered a _______ for the return of her lost cat.", options: ["prize", "bonus", "tip", "reward"], correct: 3},
+  {q: "I phoned him this morning but when I said who I was he _______.", options: ["rang up", "hung up", "shut down", "shut up"], correct: 1},
+  {q: "Pass me the salad _______ please.", options: ["sauce", "seasoning", "spice", "dressing"], correct: 3},
+  {q: "You'll find his number in the telephone _______.", options: ["directory", "index", "catalogue", "list"], correct: 0},
+  {q: "Those prawns we had for supper have given me _______.", options: ["indisposition", "infection", "sickness", "indigestion"], correct: 3},
+  {q: "I don't think he's the sort of man who will ever _______ much money.", options: ["acquire", "gain", "obtain", "make"], correct: 3},
+  {q: "He's _______ First Certificate next June.", options: ["passing", "taking", "attending", "making"], correct: 1},
+  {q: "We were the _______ students in the class who could speak Spanish.", options: ["one", "single", "only", "alone"], correct: 2},
+  {q: "What are you going to do when you _______ school?", options: ["conclude", "end", "complete", "leave"], correct: 3},
+  {q: "When he died he left _______ amounting to £50,000.", options: ["accounts", "debts", "obligations", "payments"], correct: 1},
+  {q: "I was just _______ to go out when you telephoned.", options: ["around", "about", "thinking", "planned"], correct: 1},
+  {q: "You will become ill _______ you stop working so hard.", options: ["until", "when", "unless", "if"], correct: 2},
+  {q: "When he heard the terrible noise he asked me what was _______ on.", options: ["happening", "being", "getting", "going"], correct: 0},
+  {q: "I don't think that red dress _______ her.", options: ["suits", "matches", "cheers", "agrees"], correct: 0},
+  {q: "The three friends all _______ for the same job.", options: ["requested", "applied", "intended", "referred"], correct: 1},
+  {q: "She remembered the correct address only _______ she had posted the letter.", options: ["since", "afterwards", "following", "after"], correct: 3},
+  {q: "It's difficult to pay one's bills when prices keep _______.", options: ["rising", "growing", "gaining", "raising"], correct: 0},
+  {q: "The dentist told him to open his mouth _______.", options: ["broad", "much", "greatly", "wide"], correct: 3},
+  {q: "The wild animal _______ savagely at the piece of meat.", options: ["rent", "severed", "tore", "split"], correct: 2},
+  {q: "At the interview for the job, he gave _______ of himself.", options: ["a good opinion", "a good account", "a good idea", "a good appearance"], correct: 1},
+  {q: "Gavin was a very lively child, always full of _______.", options: ["excellent spirits", "good spirits", "high spirits", "bright spirits"], correct: 2},
+  {q: "_______ he connected the plug up properly, he still got an electric shock.", options: ["Because", "However", "Since", "Although"], correct: 3},
+  {q: "In the old days, curtains were hung over doors to keep out _______.", options: ["draughts", "breezes", "gales", "currents"], correct: 0},
+  {q: "On January 1st many people make a New Year _______.", options: ["intention", "determination", "dedication", "resolution"], correct: 3},
+  {q: "He had many regrets when he _______ his life.", options: ["looked down on", "looked back on", "looked up to", "looked out for"], correct: 1},
+  {q: "When you are driving along the streets, you must be _______ not to go in a bus lane.", options: ["careful", "useful", "careless", "thoughtless"], correct: 0},
+  {q: "There's _______ in trying to contact him as he's touring Europe.", options: ["no way", "nowhere", "no point", "no quarter"], correct: 2},
+  {q: "She made no attempt to _______ the problem.", options: ["tackle", "try", "undertake", "achieve"], correct: 0},
+  {q: "The government was forced to _______ the wishes of the people.", options: ["stoop", "bow to", "bend to", "kneel to"], correct: 1},
+  {q: "_______ allowing for his age, he still acts very immaturely.", options: ["But", "Yet", "Although", "Even"], correct: 2},
+  {q: "He was very modest and _______ his part in the rescue.", options: ["played out", "played up", "played off", "played down"], correct: 3},
+  {q: "The child began to cry and tears slowly _______ down her face.", options: ["trickled", "oozed", "dribbled", "leaked"], correct: 0},
+  {q: "It is against the _______ not to wear seat belts in a car.", options: ["rule", "regulation", "law", "order"], correct: 2},
+  {q: "All those old houses in Church Street are being pulled _______.", options: ["away", "off", "in", "down"], correct: 3},
+  {q: "I have just _______ an account with the Great Eastern Bank.", options: ["made", "opened", "entered", "registered"], correct: 1},
+  {q: "There was a _______ failure on the underground this morning.", options: ["signal", "direction", "sign", "indication"], correct: 0},
+  {q: "The fishermen were _______ from the sinking boat by helicopter.", options: ["taken round", "drawn off", "taken off", "brought up"], correct: 2},
+  {q: "I don't think those curtains _______ very well with the wallpaper.", options: ["suit", "go", "fit", "match"], correct: 1},
+  {q: "The central heating doesn't seem to be _______ properly.", options: ["going", "performing", "warming", "working"], correct: 3},
+  {q: "In recent years inflation has almost doubled the _______ of living.", options: ["price", "expense", "charge", "cost"], correct: 3},
+  {q: "Johnny's parents always let him have his own _______.", options: ["will", "wish", "way", "demand"], correct: 2},
+  {q: "He _______ before I had time to tell him my name.", options: ["rang off", "put down", "rang up", "set down"], correct: 0},
+  {q: "I heard the news _______ the radio last night.", options: ["by", "on", "with", "in"], correct: 1},
+  {q: "I'm afraid Mr Brown isn't in. Would you like to _______ a message?", options: ["give", "leave", "say", "tell"], correct: 1},
+  {q: "The residents are organising a protest _______ against the closing of their local hospital.", options: ["outing", "march", "progress", "run"], correct: 1},
+  {q: "He never takes _______ in any college activities.", options: ["part", "place", "shares", "time"], correct: 0},
+  {q: "Our _______ was delayed owing to bad weather conditions.", options: ["airline", "runway", "airway", "flight"], correct: 3},
+  {q: "Do you get extra pay when you work _______?", options: ["extensively", "overtime", "overactively", "overlong"], correct: 1},
+  {q: "Whatever _______ him buy that old car?", options: ["obliged", "forced", "made", "encouraged"], correct: 2},
+  {q: "All medicines should be kept out of _______ of children.", options: ["hand", "touch", "contact", "reach"], correct: 3},
+  {q: "Everything in the sale has been _______ to half price.", options: ["reduced", "decreased", "diminished", "lowered"], correct: 0},
+  {q: "I can never touch lobster because I'm _______ to shellfish.", options: ["sensitive", "allergic", "infected", "sensible"], correct: 1},
+  {q: "The little boy _______ into tears when he thought he was lost.", options: ["burst", "fell", "broke", "dripped"], correct: 0},
+  {q: "All the food in that little café is _______.", options: ["handmade", "self-made", "homemade", "home-based"], correct: 2},
+  {q: "Please inform the college secretary if you _______ your address.", options: ["move", "remove", "vary", "change"], correct: 3},
+  {q: "Our telephone has been _______ for three weeks.", options: ["out of line", "out of touch", "out of order", "out of place"], correct: 2},
+  {q: "Label on bottle of medicine: It is dangerous to exceed the stated _______.", options: ["drops", "measure", "limit", "dose"], correct: 3},
+  {q: "The noise of the traffic prevented me from _______ to sleep.", options: ["falling", "starting", "beginning", "going"], correct: 0},
+  {q: "The train will be leaving in five minutes so you _______ better hurry up.", options: ["had", "should", "will", "would"], correct: 0},
+  {q: "He was very upset by the _______ of his English examination.", options: ["result", "failure", "effect", "success"], correct: 0},
+  {q: "Wait _______ you get home before you unpack your parcel.", options: ["to", "until", "when", "after"], correct: 1},
+  {q: "He hit the vase with his elbow and it _______ to the floor.", options: ["crashed", "smashed", "broke", "knocked"], correct: 1},
+  {q: "The children did not know the _______ by which the game was played.", options: ["facts", "customs", "orders", "rules"], correct: 3},
+  {q: "It was difficult to _______ a date which was convenient for everyone.", options: ["elect", "organise", "arrange", "provide"], correct: 2},
+  {q: "The new factory must be finished _______ as the profitability of the company depends on it.", options: ["on time", "in times", "at time", "for time"], correct: 0},
+  {q: "It's _______ long time since he last saw his brothers and sisters.", options: ["such a", "so", "very", "too"], correct: 0},
+  {q: "He played an active _______ in politics until he was well over 80.", options: ["scene", "job", "position", "part"], correct: 3},
+  {q: "He retired early _______ ill-health.", options: ["on behalf of", "ahead of", "on account of", "in front of"], correct: 2},
+  {q: "I had no _______ that the divorce rate was so high in this country.", options: ["knowledge", "idea", "doubt", "understanding"], correct: 1},
+  {q: "A railway bridge is already _______ over the river.", options: ["been erected", "erecting", "in construction", "being built"], correct: 3},
+  {q: "This is the _______ of the bicycle which was stolen.", options: ["detail", "description", "information", "example"], correct: 1},
+  {q: "There was nothing they could do _______ leave the car at the roadside where it had broken down.", options: ["than", "unless", "instead", "but"], correct: 3},
+  {q: "Some drivers, after _______ annoy their fellow-motorists by slowing down again immediately.", options: ["passing by", "overtaking", "taking over", "passing along"], correct: 1},
+  {q: "Despite her undoubted ability at tennis, she never became the _______ of the local tennis club.", options: ["member", "partner", "champion", "winner"], correct: 2},
+  {q: "He liked to sit _______ the river and fish.", options: ["at", "next", "beside", "along"], correct: 2},
+  {q: "The bus was so late reaching the station that I _______ missed my train.", options: ["almost", "already", "soon", "entirely"], correct: 0},
+  {q: "She was unable to warn her mother that she would be late because the telephone was _______.", options: ["being used", "off work", "out of order", "off duty"], correct: 2},
+  {q: "How can we _______ out together what we're to do if we never talk about it frankly?", options: ["test", "find", "work", "search"], correct: 2},
+  {q: "Wild ducks always fly in a definite _______.", options: ["figure", "formula", "shape", "formation"], correct: 3},
+  {q: "There was a terrible traffic-jam at rush-hour because the traffic lights on the main road weren't _______.", options: ["going", "working", "changing", "shining"], correct: 1},
+  {q: "I can't get that new book anywhere. Can I _______ yours for a day or two?", options: ["lend", "present", "borrow", "order"], correct: 2},
+  {q: "After signing his will, the old man placed it carefully in _______ envelope.", options: ["an enclosed", "a secured", "an attached", "a sealed"], correct: 3},
+  {q: "It was just beginning to get dark when we decided to _______ for home.", options: ["head", "drive", "direct", "go"], correct: 0},
+  {q: "I am writing in response to your _______ for a petrol-pump attendant in yesterday's Daily Globe.", options: ["publicity", "announcement", "propaganda", "advertisement"], correct: 3},
+  {q: "When he had examined her thoroughly, the doctor gave the woman a _______ for some tablets for her headaches.", options: ["paper", "prescription", "cure", "treatment"], correct: 1},
+  {q: "The audience gave the soloist an enthusiastic _______ when she entered.", options: ["reception", "applause", "clapping", "ovation"], correct: 1},
+  {q: "They've finally decided to _______ their lovely old house on the hill.", options: ["renew", "preserve", "renovate", "appoint"], correct: 2},
+  {q: "He was a novelist for many years until something happened which _______ him give it all up and go and work in a factory.", options: ["let", "caused", "forced", "made"], correct: 2},
+  {q: "I'd like to buy the clock, but I haven't got any money on me at the moment. Could you _______ it for me for a day or two?", options: ["take it in", "bring it round", "lay it in", "put it by"], correct: 3},
+  {q: "I'd _______ you didn't touch that, if you don't mind.", options: ["rather", "better", "happier", "farther"], correct: 0},
+  {q: "The two men who were arrested for breaking into that shop have been _______ £500.", options: ["committed", "prosecuted", "fined", "charged"], correct: 2},
+  {q: "Mr Smith will be in _______ of arrangements for the end-of-term party.", options: ["direction", "management", "leadership", "charge"], correct: 3}
+];
+
+// Advanced question management system
+class QuestionManager {
+  constructor(questions) {
+    this.allQuestions = questions;
+    this.usedQuestions = this.loadUsedQuestions();
+    this.currentQuiz = [];
+    this.currentAnswers = Array(12).fill(null);
+    this.currentChecked = false;
+    this.sessionStats = {
+      setsCompleted: 0,
+      totalCorrect: 0,
+      totalAnswered: 0
+    };
+  }
+
+  // Load used questions from memory (since we can't use localStorage in artifacts)
+  loadUsedQuestions() {
+    return [];
+  }
+
+  // Save used questions (no-op in artifact environment)
+  saveUsedQuestions() {
+    // No localStorage available in artifacts
+  }
+
+  // Get available questions (not used yet)
+  getAvailableQuestions() {
+    return this.allQuestions.filter((_, index) => !this.usedQuestions.includes(index));
+  }
+
+  // Get next 12 unique questions
+  getNextQuestions() {
+    const available = this.getAvailableQuestions();
+    
+    console.log(`Available questions: ${available.length}, Used: ${this.usedQuestions.length}, Total: ${this.allQuestions.length}`);
+    
+    if (available.length < 12) {
+      if (available.length === 0) {
+        console.log('🎉 All questions used! Ready to reset.');
+        return null; // Truly no more questions
+      } else {
+        // Return whatever is left (less than 12)
+        console.log(`⚠️ Only ${available.length} questions remaining`);
+        const remainingQuestions = [...available];
+        
+        // Mark these as used
+        remainingQuestions.forEach(question => {
+          const index = this.allQuestions.indexOf(question);
+          if (index !== -1 && !this.usedQuestions.includes(index)) {
+            this.usedQuestions.push(index);
+          }
+        });
+        
+        this.saveUsedQuestions();
+        return remainingQuestions;
+      }
+    }
+
+    // Shuffle available questions and take 12
+    const shuffled = [...available];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    const selectedQuestions = shuffled.slice(0, 12);
+    
+    // Mark these questions as used
+    selectedQuestions.forEach(question => {
+      const index = this.allQuestions.indexOf(question);
+      if (index !== -1 && !this.usedQuestions.includes(index)) {
+        this.usedQuestions.push(index);
+      }
+    });
+    
+    this.saveUsedQuestions();
+    return selectedQuestions;
+  }
+
+  // Reset all progress
+  resetProgress() {
+    this.usedQuestions = [];
+    this.saveUsedQuestions();
+    this.sessionStats = { setsCompleted: 0, totalCorrect: 0, totalAnswered: 0 };
+  }
+
+  // Get progress statistics
+  getProgress() {
+    return {
+      used: this.usedQuestions.length,
+      total: this.allQuestions.length,
+      percentage: Math.round((this.usedQuestions.length / this.allQuestions.length) * 100)
+    };
+  }
+}
+
+// Initialize the question manager
+const questionManager = new QuestionManager(allQuestions);
+let answers = Array(12).fill(null);
+let checked = false;
+
+function updateProgress() {
+  const progress = questionManager.getProgress();
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  
+  progressBar.style.width = progress.percentage + '%';
+  progressText.textContent = `Questions used: ${progress.used} / ${progress.total} (${progress.percentage}%)`;
+}
+
+function updateSessionStats() {
+  const stats = document.getElementById('sessionStats');
+  const s = questionManager.sessionStats;
+  const avgScore = s.totalAnswered > 0 ? Math.round((s.totalCorrect / s.totalAnswered) * 100) : 0;
+  
+  stats.innerHTML = `
+    <strong>Session Stats:</strong> 
+    Sets completed: ${s.setsCompleted} | 
+    Average score: ${avgScore}% | 
+    Total questions answered: ${s.totalAnswered}
+  `;
+}
+
+function loadNewQuestions() {
+  const newQuestions = questionManager.getNextQuestions();
+  
+  if (!newQuestions) {
+    alert('🎉 Congratulations! You have completed all questions!\nClick RESET PROGRESS to start over.');
+    document.getElementById('nextBtn').disabled = true;
+    return false;
+  }
+  
+  console.log(`✅ Loaded ${newQuestions.length} questions`);
+  
+  questionManager.currentQuiz = newQuestions;
+  answers = Array(newQuestions.length).fill(null); // Dynamic array size
+  checked = false;
+  
+  document.getElementById('checkBtn').style.display = 'inline-block';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('scorePanel').textContent = '';
+  
+  renderQuiz();
+  updateProgress();
+  return true;
+}
+
+function renderQuiz() {
+  const form = document.getElementById('quizForm');
+  form.innerHTML = "";
+  
+  for (let i = 0; i < questionManager.currentQuiz.length; i++) {
+    const question = questionManager.currentQuiz[i];
+    const block = document.createElement('div');
+    block.className = 'q-block';
+    
+    // Sentence
+    const stxt = document.createElement('div');
+    stxt.className = 'q-sentence';
+    stxt.innerHTML = `<span class="q-num">${i+1}.</span> ${question.q}`;
+    block.appendChild(stxt);
+    
+    // Options
+    const opts = document.createElement('div');
+    opts.className = 'q-options-row';
+    for (let j = 0; j < question.options.length; j++) {
+      const obtn = document.createElement('button');
+      obtn.type = 'button';
+      obtn.className = 'q-opt-btn';
+      obtn.innerHTML = `<span class="lbl">${String.fromCharCode(65+j)}</span> ${question.options[j]}`;
+      
+      if (answers[i] === j) obtn.classList.add('selected');
+      if (checked) {
+        if (question.correct === j && answers[i] === j) {
+          obtn.classList.add('correct');
+        } else if (answers[i] === j && question.correct !== j) {
+          obtn.classList.add('wrong');
+        } else if (question.correct === j) {
+          obtn.classList.add('correct');
+        }
+      }
+      
+      obtn.onclick = () => {
+        if (!checked) {
+          answers[i] = j;
+          renderQuiz();
+        }
+      };
+      opts.appendChild(obtn);
+    }
+    block.appendChild(opts);
+    form.appendChild(block);
+  }
+}
+
+// Event handlers
+document.getElementById('checkBtn').onclick = function() {
+  checked = true;
+  renderQuiz();
+  
+  // Calculate score
+  let correct = 0;
+  for (let i = 0; i < questionManager.currentQuiz.length; i++) {
+    if (answers[i] === questionManager.currentQuiz[i].correct) correct++;
+  }
+  
+  // Update session stats
+  questionManager.sessionStats.totalCorrect += correct;
+  questionManager.sessionStats.totalAnswered += questionManager.currentQuiz.length;
+  
+  const pct = Math.round(100 * correct / questionManager.currentQuiz.length);
+  document.getElementById('scorePanel').innerHTML = 
+    `You got <strong>${correct}</strong> out of <strong>${questionManager.currentQuiz.length}</strong> correct. (<strong>${pct}%</strong>)`;
+  
+  // Show NEXT button
+  document.getElementById('checkBtn').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'inline-block';
+  
+  updateSessionStats();
+};
+
+document.getElementById('nextBtn').onclick = function() {
+  questionManager.sessionStats.setsCompleted++;
+  loadNewQuestions();
+};
+
+document.getElementById('repeatBtn').onclick = function() {
+  const currentQuizLength = questionManager.currentQuiz.length;
+  answers = Array(currentQuizLength).fill(null);
+  checked = false;
+  document.getElementById('checkBtn').style.display = 'inline-block';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('scorePanel').textContent = '';
+  renderQuiz();
+};
+
+document.getElementById('resetBtn').onclick = function() {
+  const confirmed = confirm('Are you sure you want to reset all progress? This will allow you to retake all questions.');
+  if (confirmed) {
+    // Reset everything completely
+    questionManager.usedQuestions = [];
+    questionManager.sessionStats = { setsCompleted: 0, totalCorrect: 0, totalAnswered: 0 };
+    
+    // Clear current quiz state
+    questionManager.currentQuiz = [];
+    answers = [];
+    checked = false;
+    
+    // Re-enable next button in case it was disabled
+    document.getElementById('nextBtn').disabled = false;
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('checkBtn').style.display = 'inline-block';
+    
+    // Update displays
+    updateProgress();
+    updateSessionStats();
+    
+    // Load fresh questions
+    const success = loadNewQuestions();
+    if (success) {
+      console.log('✅ Reset successful - new questions loaded');
+      alert('Progress reset successfully! You can now retake all questions.');
+    } else {
+      console.log('❌ Reset failed - unable to load new questions');
+      alert('Reset failed. Please refresh the page and try again.');
+    }
+  } else {
+    console.log('Reset cancelled by user');
+  }
+};
+
+// Navigation
+document.getElementById('black-strip').addEventListener('click', function() {
+  window.location.href = '../index.html';
+});
+
+// Initialize
+loadNewQuestions();
+updateSessionStats();
+</script>
+</body>
+</html>
