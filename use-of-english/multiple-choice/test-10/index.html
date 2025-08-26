@@ -363,7 +363,7 @@ body {
   </div>
 </div>
 <script>
-// 100+ PROPERLY FORMATTED QUESTIONS - SYNTAX ERROR FREE
+// 560+ PROPERLY FORMATTED QUESTIONS - SYNTAX ERROR FREE
 const allQuestions = [
   {q: "The _______ from the gate to the cottage was overgrown with weeds.", options: ["road", "street", "path", "passage"], correct: 2},
   {q: "The field was surrounded by _______ wire.", options: ["spiked", "barbed", "pricked", "scratched"], correct: 1},
@@ -372,9 +372,9 @@ const allQuestions = [
   {q: "Paul Black is _______ as Labour MP for Brightford in the next election.", options: ["sitting", "standing", "presenting", "appearing"], correct: 1},
   {q: "My boss insists on seeing everything in _______ before he makes a decision.", options: ["red", "white and blue", "green and yellow", "black and white", "black and blue"], correct: 2},
   {q: "How _______ is it from here to the city centre?", options: ["long", "far", "distant", "near"], correct: 1},
-  {q: "I don", options: ["upon", "over", "up", "down"], correct: 2},
+  {q: "I don´t", options: ["upon", "over", "up", "down"], correct: 2},
   {q: "Do you think there", options: ["chance", "opportunity", "occasion", "expectancy"], correct: 0},
-  {q: "Our school doesn", options: ["out", "in", "off", "up"], correct: 2},
+  {q: "Our school doesn´t", options: ["out", "in", "off", "up"], correct: 2},
   {q: "When he was studying he stayed at a student _______ in London.", options: ["hospital", "house", "hostel", "hotel"], correct: 2},
   {q: "Do _______ if you come to London.", options: ["look me up", "find me out", "take me up", "show me up"], correct: 0},
   {q: "The _______ from the explosion broke every window in the street.", options: ["force", "bang", "blast", "draught"], correct: 2},
@@ -385,7 +385,7 @@ const allQuestions = [
   {q: "Pass me the salad _______ please.", options: ["sauce", "seasoning", "spice", "dressing"], correct: 3},
   {q: "You", options: ["directory", "index", "catalogue", "list"], correct: 0},
   {q: "Those prawns we had for supper have given me _______.", options: ["indisposition", "infection", "sickness", "indigestion"], correct: 3},
-  {q: "I don", options: ["acquire", "gain", "obtain", "make"], correct: 3},
+  {q: "I don´t", options: ["acquire", "gain", "obtain", "make"], correct: 3},
   {q: "He", options: ["passing", "taking", "attending", "making"], correct: 1},
   {q: "We were the _______ students in the class who could speak Spanish.", options: ["one", "single", "only", "alone"], correct: 2},
   {q: "What are you going to do when you _______ school?", options: ["conclude", "end", "complete", "leave"], correct: 3},
@@ -919,6 +919,7 @@ const allQuestions = [
   {q: "I", options: ["unless", "in case", "provided", "conditionally"], correct: 2},
   {q: "She spent a fortune _______ rare books for her collection.", options: ["on", "in", "at", "by"], correct: 0},
 ];
+
 // Advanced question management system
 class QuestionManager {
   constructor(questions) {
@@ -1156,13 +1157,21 @@ document.getElementById('repeatBtn').onclick = function() {
 };
 
 document.getElementById('resetBtn').onclick = function() {
-  if (confirm('Are you sure you want to reset all progress? This will allow you to retake all questions.')) {
-    // Reset everything
-    questionManager.resetProgress();
+  const confirmed = confirm('Are you sure you want to reset all progress? This will allow you to retake all questions.');
+  if (confirmed) {
+    // Reset everything completely
+    questionManager.usedQuestions = [];
     questionManager.sessionStats = { setsCompleted: 0, totalCorrect: 0, totalAnswered: 0 };
     
-    // Enable next button in case it was disabled
+    // Clear current quiz state
+    questionManager.currentQuiz = [];
+    answers = [];
+    checked = false;
+    
+    // Re-enable next button in case it was disabled
     document.getElementById('nextBtn').disabled = false;
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('checkBtn').style.display = 'inline-block';
     
     // Update displays
     updateProgress();
@@ -1172,9 +1181,13 @@ document.getElementById('resetBtn').onclick = function() {
     const success = loadNewQuestions();
     if (success) {
       console.log('✅ Reset successful - new questions loaded');
+      alert('Progress reset successfully! You can now retake all questions.');
     } else {
       console.log('❌ Reset failed - unable to load new questions');
+      alert('Reset failed. Please refresh the page and try again.');
     }
+  } else {
+    console.log('Reset cancelled by user');
   }
 };
 
