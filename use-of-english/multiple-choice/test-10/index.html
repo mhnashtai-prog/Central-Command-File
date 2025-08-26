@@ -342,7 +342,7 @@ body {
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
-  <div class="progress-text" id="progressText">Questions used: 0 / 560</div>
+  <div class="progress-text" id="progressText">Questions used: 0 / 100</div>
   
   <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
   
@@ -363,257 +363,115 @@ body {
   </div>
 </div>
 <script>
+// 100+ PROPERLY FORMATTED QUESTIONS - SYNTAX ERROR FREE
 const allQuestions = [
-  {
-    q: "The _______ from the gate to the cottage was overgrown with weeds.",
-    options: ["road", "street", "path", "passage"],
-    correct: 2
-  },
-  {
-    q: "The field was surrounded by _______ wire.",
-    options: ["spiked", "barbed", "pricked", "scratched"],
-    correct: 1
-  },
-  {
-    q: "He has just been _______ to Senior Clerk.",
-    options: ["promoted", "raised", "elevated", "advanced"],
-    correct: 0
-  },
-  {
-    q: "The football match resulted in a _______.",
-    options: ["loss", "equaliser", "draw", "zero"],
-    correct: 2
-  },
-  {
-    q: "Paul Black is _______ as Labour MP for Brightford in the next election.",
-    options: ["sitting", "standing", "presenting", "appearing"],
-    correct: 1
-  },
-  {
-    q: "My boss insists on seeing everything in _______ before he makes a decision.",
-    options: ["red, white and blue", "green and yellow", "black and white", "black and blue"],
-    correct: 2
-  },
-  {
-    q: "How _______ is it from here to the city centre?",
-    options: ["long", "far", "distant", "near"],
-    correct: 1
-  },
-  {
-    q: "I don't understand why people put _______ with the bad service in this restaurant.",
-    options: ["upon", "over", "up", "down"],
-    correct: 2
-  },
-  {
-    q: "Do you think there's any _______ of him passing the exam?",
-    options: ["chance", "opportunity", "occasion", "expectancy"],
-    correct: 0
-  },
-  {
-    q: "Our school doesn't break _______ until the end of July.",
-    options: ["out", "in", "off", "up"],
-    correct: 2
-  },
-  {
-    q: "When he was studying he stayed at a student _______ in London.",
-    options: ["hospital", "house", "hostel", "hotel"],
-    correct: 2
-  },
-  {
-    q: "Do _______ if you come to London.",
-    options: ["look me up", "find me out", "take me up", "show me up"],
-    correct: 0
-  },
-  {
-    q: "The _______ from the explosion broke every window in the street.",
-    options: ["force", "bang", "blast", "draught"],
-    correct: 2
-  },
-  {
-    q: "To _______ the truth I don't really understand computers.",
-    options: ["say", "allow", "admit", "tell"],
-    correct: 3
-  },
-  {
-    q: "I had to have two _______ when I went to the dentist last week.",
-    options: ["fillings", "refills", "flings", "paddings"],
-    correct: 0
-  },
-  {
-    q: "Mrs Jones has offered a _______ for the return of her lost cat.",
-    options: ["prize", "bonus", "tip", "reward"],
-    correct: 3
-  },
-  {
-    q: "I phoned him this morning but when I said who I was he _______.",
-    options: ["rang up", "hung up", "shut down", "shut up"],
-    correct: 1
-  },
-  {
-    q: "Pass me the salad _______ please.",
-    options: ["sauce", "seasoning", "spice", "dressing"],
-    correct: 3
-  },
-  {
-    q: "You'll find his number in the telephone _______.",
-    options: ["directory", "index", "catalogue", "list"],
-    correct: 0
-  },
-  {
-    q: "Those prawns we had for supper have given me _______.",
-    options: ["indisposition", "infection", "sickness", "indigestion"],
-    correct: 3
-  },
-  {
-    q: "I don't think he's the sort of man who will ever _______ much money.",
-    options: ["acquire", "gain", "obtain", "make"],
-    correct: 3
-  },
-  {
-    q: "He's _______ First Certificate next June.",
-    options: ["passing", "taking", "attending", "making"],
-    correct: 1
-  },
-  {
-    q: "We were the _______ students in the class who could speak Spanish.",
-    options: ["one", "single", "only", "alone"],
-    correct: 2
-  },
-  {
-    q: "What are you going to do when you _______ school?",
-    options: ["conclude", "end", "complete", "leave"],
-    correct: 3
-  },
-  {
-    q: "When he died he left _______ amounting to £50,000.",
-    options: ["accounts", "debts", "obligations", "payments"],
-    correct: 1
-  },
-  {
-    q: "I was just _______ to go out when you telephoned.",
-    options: ["around", "about", "thinking", "planned"],
-    correct: 1
-  },
-  {
-    q: "You will become ill _______ you stop working so hard.",
-    options: ["until", "when", "unless", "if"],
-    correct: 2
-  },
-  {
-    q: "When he heard the terrible noise he asked me what was _______ on.",
-    options: ["happening", "being", "getting", "going"],
-    correct: 0
-  },
-  {
-    q: "I don't think that red dress _______ her.",
-    options: ["suits", "matches", "cheers", "agrees"],
-    correct: 0
-  },
-  {
-    q: "The three friends all _______ for the same job.",
-    options: ["requested", "applied", "intended", "referred"],
-    correct: 1
-  },
-  {
-    q: "She remembered the correct address only _______ she had posted the letter.",
-    options: ["since", "afterwards", "following", "after"],
-    correct: 3
-  },
-  {
-    q: "It's difficult to pay one's bills when prices keep _______.",
-    options: ["rising", "growing", "gaining", "raising"],
-    correct: 0
-  },
-  {
-    q: "The dentist told him to open his mouth _______.",
-    options: ["broad", "much", "greatly", "wide"],
-    correct: 3
-  },
-  {
-    q: "The wild animal _______ savagely at the piece of meat.",
-    options: ["rent", "severed", "tore", "split"],
-    correct: 2
-  },
-  {
-    q: "At the interview for the job, he gave _______ of himself.",
-    options: ["a good opinion", "a good account", "a good idea", "a good appearance"],
-    correct: 1
-  },
-  {
-    q: "Gavin was a very lively child, always full of _______.",
-    options: ["excellent spirits", "good spirits", "high spirits", "bright spirits"],
-    correct: 2
-  },
-  {
-    q: "_______ he connected the plug up properly, he still got an electric shock.",
-    options: ["Because", "However", "Since", "Although"],
-    correct: 3
-  },
-  {
-    q: "In the old days, curtains were hung over doors to keep out _______.",
-    options: ["draughts", "breezes", "gales", "currents"],
-    correct: 0
-  },
-  {
-    q: "On January 1st many people make a New Year _______.",
-    options: ["intention", "determination", "dedication", "resolution"],
-    correct: 3
-  },
-  {
-    q: "He had many regrets when he _______ his life.",
-    options: ["looked down on", "looked back on", "looked up to", "looked out for"],
-    correct: 1
-  },
-  {
-    q: "When you are driving along the streets, you must be _______ not to go in a bus lane.",
-    options: ["careful", "useful", "careless", "thoughtless"],
-    correct: 0
-  },
-  {
-    q: "There's _______ in trying to contact him as he's touring Europe.",
-    options: ["no way", "nowhere", "no point", "no quarter"],
-    correct: 2
-  },
-  {
-    q: "She made no attempt to _______ the problem.",
-    options: ["tackle", "try", "undertake", "achieve"],
-    correct: 0
-  },
-  {
-    q: "The government was forced to _______ the wishes of the people.",
-    options: ["stoop", "bow to", "bend to", "kneel to"],
-    correct: 1
-  },
-  {
-    q: "_______ allowing for his age, he still acts very immaturely.",
-    options: ["But", "Yet", "Although", "Even"],
-    correct: 2
-  },
-  {
-    q: "He was very modest and _______ his part in the rescue.",
-    options: ["played out", "played up", "played off", "played down"],
-    correct: 3
-  },
-  {
-    q: "The child began to cry and tears slowly _______ down her face.",
-    options: ["trickled", "oozed", "dribbled", "leaked"],
-    correct: 0
-  },
-  {
-    q: "It is against the _______ not to wear seat belts in a car.",
-    options: ["rule", "regulation", "law", "order"],
-    correct: 2
-  },
-  {
-    q: "All those old houses in Church Street are being pulled _______.",
-    options: ["away", "off", "in", "down"],
-    correct: 3
-  },
-  {
-    q: "I have just _______ an account with the Great Eastern Bank.",
-    options: ["made", "opened", "entered", "registered"],
-    correct: 1
-  }
+  {q: "The _______ from the gate to the cottage was overgrown with weeds.", options: ["road", "street", "path", "passage"], correct: 2},
+  {q: "The field was surrounded by _______ wire.", options: ["spiked", "barbed", "pricked", "scratched"], correct: 1},
+  {q: "He has just been _______ to Senior Clerk.", options: ["promoted", "raised", "elevated", "advanced"], correct: 0},
+  {q: "The football match resulted in a _______.", options: ["loss", "equaliser", "draw", "zero"], correct: 2},
+  {q: "Paul Black is _______ as Labour MP for Brightford in the next election.", options: ["sitting", "standing", "presenting", "appearing"], correct: 1},
+  {q: "My boss insists on seeing everything in _______ before he makes a decision.", options: ["red, white and blue", "green and yellow", "black and white", "black and blue"], correct: 2},
+  {q: "How _______ is it from here to the city centre?", options: ["long", "far", "distant", "near"], correct: 1},
+  {q: "I don't understand why people put _______ with the bad service in this restaurant.", options: ["upon", "over", "up", "down"], correct: 2},
+  {q: "Do you think there's any _______ of him passing the exam?", options: ["chance", "opportunity", "occasion", "expectancy"], correct: 0},
+  {q: "Our school doesn't break _______ until the end of July.", options: ["out", "in", "off", "up"], correct: 2},
+  {q: "When he was studying he stayed at a student _______ in London.", options: ["hospital", "house", "hostel", "hotel"], correct: 2},
+  {q: "Do _______ if you come to London.", options: ["look me up", "find me out", "take me up", "show me up"], correct: 0},
+  {q: "The _______ from the explosion broke every window in the street.", options: ["force", "bang", "blast", "draught"], correct: 2},
+  {q: "To _______ the truth I don't really understand computers.", options: ["say", "allow", "admit", "tell"], correct: 3},
+  {q: "I had to have two _______ when I went to the dentist last week.", options: ["fillings", "refills", "flings", "paddings"], correct: 0},
+  {q: "Mrs Jones has offered a _______ for the return of her lost cat.", options: ["prize", "bonus", "tip", "reward"], correct: 3},
+  {q: "I phoned him this morning but when I said who I was he _______.", options: ["rang up", "hung up", "shut down", "shut up"], correct: 1},
+  {q: "Pass me the salad _______ please.", options: ["sauce", "seasoning", "spice", "dressing"], correct: 3},
+  {q: "You'll find his number in the telephone _______.", options: ["directory", "index", "catalogue", "list"], correct: 0},
+  {q: "Those prawns we had for supper have given me _______.", options: ["indisposition", "infection", "sickness", "indigestion"], correct: 3},
+  {q: "I don't think he's the sort of man who will ever _______ much money.", options: ["acquire", "gain", "obtain", "make"], correct: 3},
+  {q: "He's _______ First Certificate next June.", options: ["passing", "taking", "attending", "making"], correct: 1},
+  {q: "We were the _______ students in the class who could speak Spanish.", options: ["one", "single", "only", "alone"], correct: 2},
+  {q: "What are you going to do when you _______ school?", options: ["conclude", "end", "complete", "leave"], correct: 3},
+  {q: "When he died he left _______ amounting to £50,000.", options: ["accounts", "debts", "obligations", "payments"], correct: 1},
+  {q: "I was just _______ to go out when you telephoned.", options: ["around", "about", "thinking", "planned"], correct: 1},
+  {q: "You will become ill _______ you stop working so hard.", options: ["until", "when", "unless", "if"], correct: 2},
+  {q: "When he heard the terrible noise he asked me what was _______ on.", options: ["happening", "being", "getting", "going"], correct: 0},
+  {q: "I don't think that red dress _______ her.", options: ["suits", "matches", "cheers", "agrees"], correct: 0},
+  {q: "The three friends all _______ for the same job.", options: ["requested", "applied", "intended", "referred"], correct: 1},
+  {q: "She remembered the correct address only _______ she had posted the letter.", options: ["since", "afterwards", "following", "after"], correct: 3},
+  {q: "It's difficult to pay one's bills when prices keep _______.", options: ["rising", "growing", "gaining", "raising"], correct: 0},
+  {q: "The dentist told him to open his mouth _______.", options: ["broad", "much", "greatly", "wide"], correct: 3},
+  {q: "The wild animal _______ savagely at the piece of meat.", options: ["rent", "severed", "tore", "split"], correct: 2},
+  {q: "At the interview for the job, he gave _______ of himself.", options: ["a good opinion", "a good account", "a good idea", "a good appearance"], correct: 1},
+  {q: "Gavin was a very lively child, always full of _______.", options: ["excellent spirits", "good spirits", "high spirits", "bright spirits"], correct: 2},
+  {q: "_______ he connected the plug up properly, he still got an electric shock.", options: ["Because", "However", "Since", "Although"], correct: 3},
+  {q: "In the old days, curtains were hung over doors to keep out _______.", options: ["draughts", "breezes", "gales", "currents"], correct: 0},
+  {q: "On January 1st many people make a New Year _______.", options: ["intention", "determination", "dedication", "resolution"], correct: 3},
+  {q: "He had many regrets when he _______ his life.", options: ["looked down on", "looked back on", "looked up to", "looked out for"], correct: 1},
+  {q: "When you are driving along the streets, you must be _______ not to go in a bus lane.", options: ["careful", "useful", "careless", "thoughtless"], correct: 0},
+  {q: "There's _______ in trying to contact him as he's touring Europe.", options: ["no way", "nowhere", "no point", "no quarter"], correct: 2},
+  {q: "She made no attempt to _______ the problem.", options: ["tackle", "try", "undertake", "achieve"], correct: 0},
+  {q: "The government was forced to _______ the wishes of the people.", options: ["stoop", "bow to", "bend to", "kneel to"], correct: 1},
+  {q: "_______ allowing for his age, he still acts very immaturely.", options: ["But", "Yet", "Although", "Even"], correct: 2},
+  {q: "He was very modest and _______ his part in the rescue.", options: ["played out", "played up", "played off", "played down"], correct: 3},
+  {q: "The child began to cry and tears slowly _______ down her face.", options: ["trickled", "oozed", "dribbled", "leaked"], correct: 0},
+  {q: "It is against the _______ not to wear seat belts in a car.", options: ["rule", "regulation", "law", "order"], correct: 2},
+  {q: "All those old houses in Church Street are being pulled _______.", options: ["away", "off", "in", "down"], correct: 3},
+  {q: "I have just _______ an account with the Great Eastern Bank.", options: ["made", "opened", "entered", "registered"], correct: 1},
+  {q: "There was a _______ failure on the underground this morning.", options: ["signal", "direction", "sign", "indication"], correct: 0},
+  {q: "The fishermen were _______ from the sinking boat by helicopter.", options: ["taken round", "drawn off", "taken off", "brought up"], correct: 2},
+  {q: "I don't think those curtains _______ very well with the wallpaper.", options: ["suit", "go", "fit", "match"], correct: 1},
+  {q: "The central heating doesn't seem to be _______ properly.", options: ["going", "performing", "warming", "working"], correct: 3},
+  {q: "In recent years inflation has almost doubled the _______ of living.", options: ["price", "expense", "charge", "cost"], correct: 3},
+  {q: "Johnny's parents always let him have his own _______.", options: ["will", "wish", "way", "demand"], correct: 2},
+  {q: "He _______ before I had time to tell him my name.", options: ["rang off", "put down", "rang up", "set down"], correct: 0},
+  {q: "I heard the news _______ the radio last night.", options: ["by", "on", "with", "in"], correct: 1},
+  {q: "I'm afraid Mr Brown isn't in. Would you like to _______ a message?", options: ["give", "leave", "say", "tell"], correct: 1},
+  {q: "The residents are organising a protest _______ against the closing of their local hospital.", options: ["outing", "march", "progress", "run"], correct: 1},
+  {q: "He never takes _______ in any college activities.", options: ["part", "place", "shares", "time"], correct: 0},
+  {q: "Our _______ was delayed owing to bad weather conditions.", options: ["airline", "runway", "airway", "flight"], correct: 3},
+  {q: "Do you get extra pay when you work _______?", options: ["extensively", "overtime", "overactively", "overlong"], correct: 1},
+  {q: "Whatever _______ him buy that old car?", options: ["obliged", "forced", "made", "encouraged"], correct: 2},
+  {q: "All medicines should be kept out of _______ of children.", options: ["hand", "touch", "contact", "reach"], correct: 3},
+  {q: "Everything in the sale has been _______ to half price.", options: ["reduced", "decreased", "diminished", "lowered"], correct: 0},
+  {q: "I can never touch lobster because I'm _______ to shellfish.", options: ["sensitive", "allergic", "infected", "sensible"], correct: 1},
+  {q: "The little boy _______ into tears when he thought he was lost.", options: ["burst", "fell", "broke", "dripped"], correct: 0},
+  {q: "All the food in that little café is _______.", options: ["handmade", "self-made", "homemade", "home-based"], correct: 2},
+  {q: "Please inform the college secretary if you _______ your address.", options: ["move", "remove", "vary", "change"], correct: 3},
+  {q: "Our telephone has been _______ for three weeks.", options: ["out of line", "out of touch", "out of order", "out of place"], correct: 2},
+  {q: "Label on bottle of medicine: It is dangerous to exceed the stated _______.", options: ["drops", "measure", "limit", "dose"], correct: 3},
+  {q: "The noise of the traffic prevented me from _______ to sleep.", options: ["falling", "starting", "beginning", "going"], correct: 0},
+  {q: "The train will be leaving in five minutes so you _______ better hurry up.", options: ["had", "should", "will", "would"], correct: 0},
+  {q: "He was very upset by the _______ of his English examination.", options: ["result", "failure", "effect", "success"], correct: 0},
+  {q: "Wait _______ you get home before you unpack your parcel.", options: ["to", "until", "when", "after"], correct: 1},
+  {q: "He hit the vase with his elbow and it _______ to the floor.", options: ["crashed", "smashed", "broke", "knocked"], correct: 1},
+  {q: "The children did not know the _______ by which the game was played.", options: ["facts", "customs", "orders", "rules"], correct: 3},
+  {q: "It was difficult to _______ a date which was convenient for everyone.", options: ["elect", "organise", "arrange", "provide"], correct: 2},
+  {q: "The new factory must be finished _______ as the profitability of the company depends on it.", options: ["on time", "in times", "at time", "for time"], correct: 0},
+  {q: "It's _______ long time since he last saw his brothers and sisters.", options: ["such a", "so", "very", "too"], correct: 0},
+  {q: "He played an active _______ in politics until he was well over 80.", options: ["scene", "job", "position", "part"], correct: 3},
+  {q: "He retired early _______ ill-health.", options: ["on behalf of", "ahead of", "on account of", "in front of"], correct: 2},
+  {q: "I had no _______ that the divorce rate was so high in this country.", options: ["knowledge", "idea", "doubt", "understanding"], correct: 1},
+  {q: "A railway bridge is already _______ over the river.", options: ["been erected", "erecting", "in construction", "being built"], correct: 3},
+  {q: "This is the _______ of the bicycle which was stolen.", options: ["detail", "description", "information", "example"], correct: 1},
+  {q: "There was nothing they could do _______ leave the car at the roadside where it had broken down.", options: ["than", "unless", "instead", "but"], correct: 3},
+  {q: "Some drivers, after _______ annoy their fellow-motorists by slowing down again immediately.", options: ["passing by", "overtaking", "taking over", "passing along"], correct: 1},
+  {q: "Despite her undoubted ability at tennis, she never became the _______ of the local tennis club.", options: ["member", "partner", "champion", "winner"], correct: 2},
+  {q: "He liked to sit _______ the river and fish.", options: ["at", "next", "beside", "along"], correct: 2},
+  {q: "The bus was so late reaching the station that I _______ missed my train.", options: ["almost", "already", "soon", "entirely"], correct: 0},
+  {q: "She was unable to warn her mother that she would be late because the telephone was _______.", options: ["being used", "off work", "out of order", "off duty"], correct: 2},
+  {q: "How can we _______ out together what we're to do if we never talk about it frankly?", options: ["test", "find", "work", "search"], correct: 2},
+  {q: "Wild ducks always fly in a definite _______.", options: ["figure", "formula", "shape", "formation"], correct: 3},
+  {q: "There was a terrible traffic-jam at rush-hour because the traffic lights on the main road weren't _______.", options: ["going", "working", "changing", "shining"], correct: 1},
+  {q: "I can't get that new book anywhere. Can I _______ yours for a day or two?", options: ["lend", "present", "borrow", "order"], correct: 2},
+  {q: "After signing his will, the old man placed it carefully in _______ envelope.", options: ["an enclosed", "a secured", "an attached", "a sealed"], correct: 3},
+  {q: "It was just beginning to get dark when we decided to _______ for home.", options: ["head", "drive", "direct", "go"], correct: 0},
+  {q: "I am writing in response to your _______ for a petrol-pump attendant in yesterday's Daily Globe.", options: ["publicity", "announcement", "propaganda", "advertisement"], correct: 3},
+  {q: "When he had examined her thoroughly, the doctor gave the woman a _______ for some tablets for her headaches.", options: ["paper", "prescription", "cure", "treatment"], correct: 1},
+  {q: "The audience gave the soloist an enthusiastic _______ when she entered.", options: ["reception", "applause", "clapping", "ovation"], correct: 1},
+  {q: "They've finally decided to _______ their lovely old house on the hill.", options: ["renew", "preserve", "renovate", "appoint"], correct: 2},
+  {q: "He was a novelist for many years until something happened which _______ him give it all up and go and work in a factory.", options: ["let", "caused", "forced", "made"], correct: 2},
+  {q: "I'd like to buy the clock, but I haven't got any money on me at the moment. Could you _______ it for me for a day or two?", options: ["take it in", "bring it round", "lay it in", "put it by"], correct: 3},
+  {q: "I'd _______ you didn't touch that, if you don't mind.", options: ["rather", "better", "happier", "farther"], correct: 0},
+  {q: "The two men who were arrested for breaking into that shop have been _______ £500.", options: ["committed", "prosecuted", "fined", "charged"], correct: 2},
+  {q: "Mr Smith will be in _______ of arrangements for the end-of-term party.", options: ["direction", "management", "leadership", "charge"], correct: 3}
 ];
 
 // Advanced question management system
@@ -650,8 +508,28 @@ class QuestionManager {
   getNextQuestions() {
     const available = this.getAvailableQuestions();
     
+    console.log(`Available questions: ${available.length}, Used: ${this.usedQuestions.length}, Total: ${this.allQuestions.length}`);
+    
     if (available.length < 12) {
-      return null; // No more questions available
+      if (available.length === 0) {
+        console.log('🎉 All questions used! Ready to reset.');
+        return null; // Truly no more questions
+      } else {
+        // Return whatever is left (less than 12)
+        console.log(`⚠️ Only ${available.length} questions remaining`);
+        const remainingQuestions = [...available];
+        
+        // Mark these as used
+        remainingQuestions.forEach(question => {
+          const index = this.allQuestions.indexOf(question);
+          if (index !== -1 && !this.usedQuestions.includes(index)) {
+            this.usedQuestions.push(index);
+          }
+        });
+        
+        this.saveUsedQuestions();
+        return remainingQuestions;
+      }
     }
 
     // Shuffle available questions and take 12
@@ -723,13 +601,15 @@ function loadNewQuestions() {
   const newQuestions = questionManager.getNextQuestions();
   
   if (!newQuestions) {
-    alert('🎉 Congratulations! You have completed all available questions!\nClick RESET PROGRESS to start over.');
+    alert('🎉 Congratulations! You have completed all questions!\nClick RESET PROGRESS to start over.');
     document.getElementById('nextBtn').disabled = true;
     return false;
   }
   
+  console.log(`✅ Loaded ${newQuestions.length} questions`);
+  
   questionManager.currentQuiz = newQuestions;
-  answers = Array(12).fill(null);
+  answers = Array(newQuestions.length).fill(null); // Dynamic array size
   checked = false;
   
   document.getElementById('checkBtn').style.display = 'inline-block';
@@ -821,7 +701,8 @@ document.getElementById('nextBtn').onclick = function() {
 };
 
 document.getElementById('repeatBtn').onclick = function() {
-  answers = Array(12).fill(null);
+  const currentQuizLength = questionManager.currentQuiz.length;
+  answers = Array(currentQuizLength).fill(null);
   checked = false;
   document.getElementById('checkBtn').style.display = 'inline-block';
   document.getElementById('nextBtn').style.display = 'none';
@@ -831,10 +712,24 @@ document.getElementById('repeatBtn').onclick = function() {
 
 document.getElementById('resetBtn').onclick = function() {
   if (confirm('Are you sure you want to reset all progress? This will allow you to retake all questions.')) {
+    // Reset everything
     questionManager.resetProgress();
+    questionManager.sessionStats = { setsCompleted: 0, totalCorrect: 0, totalAnswered: 0 };
+    
+    // Enable next button in case it was disabled
+    document.getElementById('nextBtn').disabled = false;
+    
+    // Update displays
     updateProgress();
     updateSessionStats();
-    loadNewQuestions();
+    
+    // Load fresh questions
+    const success = loadNewQuestions();
+    if (success) {
+      console.log('✅ Reset successful - new questions loaded');
+    } else {
+      console.log('❌ Reset failed - unable to load new questions');
+    }
   }
 };
 
