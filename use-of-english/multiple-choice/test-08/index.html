@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --main-font: 'Inter','Poppins','Montserrat',Arial,sans-serif;
+  --main-font: 'Inter', 'Poppins', 'Montserrat', Arial, sans-serif;
   --question-font-size: 1.05rem;
   --options-font-size: 1rem;
   --option-gap: 0.52em;
@@ -33,76 +33,243 @@ body {
 }
 .title {
   font-size: 2.48em;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
   font-weight: 900;
   letter-spacing: 0.10em;
   margin-bottom: 9px;
   color: #1b1c1f;
   text-align: center;
-  font-family: "Inter","Poppins",Arial,sans-serif;
 }
 .subtitle {
   text-align: center;
   font-size: 1.12em;
   letter-spacing: 0.06em;
   color: #444448;
+  font-family:"Inter", "Poppins", Arial, sans-serif;
   font-weight: 600;
   margin-bottom: 21px;
-  font-family: "Inter","Poppins",Arial,sans-serif;
 }
-.form-quiz {width:100%;}
-.q-block {margin-bottom: var(--sentence-gap);}
+.form-quiz {
+  width: 100%;
+}
+.q-block {
+  margin-bottom: var(--sentence-gap);
+}
 .q-sentence {
   font-size: var(--question-font-size);
-  font-family: 'Inter','Poppins',Arial,sans-serif;
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
   font-weight: 600;
   margin-bottom: 0.5em;
   color: #141414;
   line-height: 1.47;
 }
 .q-num {
-  display:inline-block; width:1.3em;
-  font-weight:900; color:#405080;
+  display: inline-block;
+  width: 1.3em;
+  font-weight: 900;
+  color: #405080;
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
+  font-size: 1em;
 }
 .q-options-row {
-  display:flex; flex-direction:row;
-  gap:var(--option-gap);
-  flex-wrap:wrap; margin-bottom:0.08em;
+  display: flex;
+  flex-direction: row;
+  gap: var(--option-gap);
+  margin-bottom: 0.08em;
+  flex-wrap: wrap;
 }
 .q-opt-btn {
-  font-family:"Inter","Poppins",Arial,sans-serif;
-  font-size:var(--options-font-size);
-  font-weight:700;
-  color:#2c3e50;
-  letter-spacing:0.08em;
-  background:#e8e8eb;
-  border-radius:1.2em; border:none;
-  padding:12px 18px; min-width:70px;
-  cursor:pointer; user-select:none;
-  flex:1; margin-bottom:2px;
-  box-shadow:7.9px 7.9px 15.9px #d1d1d4,
-             -6px -6px 12px #ffffff;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-size: var(--options-font-size);
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.08em;
+  background: #e8e8eb;
+  border-radius: 1.2em;
+  border: none;
+  padding: 12px 18px;
+  margin-right: 1px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  position: relative;
+  min-width: 70px;
+  user-select: none;
+  flex: 1;
+  box-shadow: 
+    7.9px 7.9px 15.9px #d1d1d4,
+    -6px -6px 12px #ffffff;
 }
 .q-opt-btn .lbl {
-  font-weight:900; margin-right:8px;
-  font-size:1.18em; color:#1a284e;
+  font-weight: 900;
+  margin-right: 8px;
+  font-size: 1.18em;
+  color: #1a284e;
+  vertical-align: middle;
+  display: inline-block;
 }
 .q-opt-btn:hover {
-  transform:translateY(-1px);
+  background: #e8e8eb;
+  box-shadow: 
+    6.6px 6.6px 13.2px #c5c5c8,
+    -6px -6px 12px #ffffff;
+  transform: translateY(-1px);
 }
-mhnashtai-progs-projects/central-command-file
-.q-opt-btn.correct {background:#7dd87d!important;color:#fff!important;}
-.q-opt-btn.correct .lbl {color:#fff!important;}
-.q-opt-btn.wrong {background:#f5e8e8!important;color:#8b4513!important;}
-.q-opt-btn.wrong .lbl {color:#8b4513!important;}
-.controls-container {text-align:center; margin-top:32px;}
-.control-buttons {display:flex; gap:20px; justify-content:center; flex-wrap:wrap;}
-.control-btn {padding:11px 28px; border:none; border-radius:1.05em; font-weight:700;}
-.control-btn.check {color:#274b75; background:linear-gradient(120deg,#e8f5fd 70%,#f5a9ba 100%);}
-.control-btn.repeat {color:#7a4b00; background:linear-gradient(120deg,#fff3cd 70%,#ffeaa7 100%);}
-.score-panel {font-size:1.18em;font-weight:700;color:#117d48;margin-top:21px;}
-.black-strip {position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:80%;height:28px;background:rgba(68,68,68,.9);border-radius:24px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;}
-.black-strip .arrow{margin-right:14px;}
-@media(max-width:768px){.q-options-row{flex-direction:column;}}
+
+.q-opt-btn.selected {
+  background: #2c5aa0 !important;
+  color: #151515 !important;
+}
+.q-opt-btn.selected .lbl {
+  color: #151515 !important;
+}
+
+.q-opt-btn.correct {
+  background: #7dd87d !important;
+  color: #ffffff !important;
+  box-shadow: 
+    inset 6px 6px 12px #6bc46b,
+    inset -6px -6px 12px #8fec8f !important;
+}
+
+.q-opt-btn.correct .lbl {
+  color: #ffffff !important;
+}
+
+.q-opt-btn.wrong {
+  background: #f5e8e8 !important;
+  color: #8b4513 !important;
+  box-shadow: 
+    inset 6px 6px 12px #e0c5c5,
+    inset -6px -6px 12px #ffffff !important;
+}
+
+.q-opt-btn.wrong .lbl {
+  color: #8b4513 !important;
+}
+.q-block:last-child {margin-bottom: 10px;}
+.controls-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 32px;
+}
+.control-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.control-btn {
+  font-size: 1.05em;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 1.05em;
+  padding: 11px 28px;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: background 0.13s, color 0.12s, transform 0.1s;
+  box-shadow: 0 3px 16px #b8d3ea27;
+}
+.control-btn.check {
+  color: #274b75;
+  background: linear-gradient(120deg, #e8f5fd 70%, #f5a9ba 100%);
+}
+.control-btn.check:hover {
+  background: linear-gradient(120deg, #d4ebf7 70%, #f299b0 100%);
+}
+.control-btn.repeat {
+  color: #7a4b00;
+  background: linear-gradient(120deg, #fff3cd 70%, #ffeaa7 100%);
+}
+.control-btn.repeat:hover {
+  background: linear-gradient(120deg, #ffecb3 70%, #ffe082 100%);
+}
+.control-btn:active {
+  transform: translateY(1px);
+}
+.score-panel {
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #117d48;
+  margin: 21px auto 14px auto;
+  text-align: center;
+}
+
+/* Black Strip Navigation */
+.black-strip {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 28px;
+  background: rgba(68, 68, 68, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow: 0 2px 18px 0 rgba(34, 34, 34, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+  z-index: 40;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat', Arial, sans-serif;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.black-strip .arrow {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-right: 14px;
+  transition: color 0.17s;
+}
+.black-strip .arrow:hover {
+  color: #63e3c0;
+}
+.black-strip .back-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 6px;
+}
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 5vw 2vw;
+    margin: 20px auto;
+  }
+  .q-options-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .q-opt-btn {
+    flex: none;
+    text-align: left;
+  }
+  .control-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .control-btn {
+    width: 200px;
+  }
+}
+@media (max-width: 480px) {
+  .title {
+    font-size: 2em;
+  }
+  .subtitle {
+    font-size: 1em;
+  }
+  :root {
+    --question-font-size: 0.95rem;
+    --options-font-size: 0.9rem;
+    --sentence-gap: 32px;
+  }
+}
 </style>
 </head>
 <body>
@@ -115,9 +282,14 @@ mhnashtai-progs-projects/central-command-file
       <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
       <button class="control-btn repeat" onclick="clearAll()">REPEAT</button>
     </div>
-    <div id="scorePanel" class="score-panel"></div>
+    <div class="score-panel" id="scorePanel"></div>
   </div>
-  <div id="black-strip" class="black-strip"><span class="arrow">←</span><span class="back-label">Multiple Choice</span></div>
+
+  <!-- Black Strip Navigation - Fixed to match test-01 -->
+  <div id="black-strip" class="black-strip">
+    <span class="arrow">←</span>
+    <span class="back-label">Multiple Choice</span>
+  </div>
 </div>
 <script>
 const quiz = [
@@ -147,36 +319,83 @@ const quiz = [
 {q:"She _______ a letter from her friend yesterday.",options:["received","taken","read","had","gave"],correct:0},
 {q:"A nurse is a person who _______ the sick.",options:["cures","cares","heals","treats","helps"],correct:1}
 ];
-let answers=Array(quiz.length).fill(null);
-let checked=false;
-function renderQuiz(){
-  const form=document.getElementById('quizForm');
-  form.innerHTML="";
-  quiz.forEach((qset,i)=>{
-    const block=document.createElement('div');
-    block.className='q-block';
-    const stxt=document.createElement('div');
-    stxt.className='q-sentence';
-    stxt.innerHTML=`<span class="q-num">${i+1}.</span> ${qset.q}`;
+
+let answers = Array(quiz.length).fill(null);
+let checked = false;
+
+function renderQuiz() {
+  const form = document.getElementById('quizForm');
+  form.innerHTML = "";
+  for (let i = 0; i < quiz.length; i++) {
+    const block = document.createElement('div');
+    block.className = 'q-block';
+    
+    // Sentence
+    const stxt = document.createElement('div');
+    stxt.className = 'q-sentence';
+    stxt.innerHTML = `<span class="q-num">${i+1}.</span> ${quiz[i].q}`;
     block.appendChild(stxt);
-    const opts=document.createElement('div'); opts.className='q-options-row';
-    qset.options.forEach((opt,j)=>{
-      const obtn=document.createElement('button'); obtn.type='button'; obtn.className='q-opt-btn';
-      obtn.innerHTML=`<span class="lbl">${String.fromCharCode(65+j)}</span> ${opt}`;
-      if(answers[i]===j) obtn.classList.add('selected');
-      if(checked){
-        if(qset.correct===j) obtn.classList.add('correct');
-        if(answers[i]===j && qset.correct!==j) obtn.classList.add('wrong');
+    
+    // Options
+    const opts = document.createElement('div');
+    opts.className = 'q-options-row';
+    for (let j = 0; j < quiz[i].options.length; j++) {
+      const obtn = document.createElement('button');
+      obtn.type = 'button';
+      obtn.className = 'q-opt-btn';
+      obtn.innerHTML = `<span class="lbl">${String.fromCharCode(65+j)}</span> ${quiz[i].options[j]}`;
+      
+      if (answers[i] === j) obtn.classList.add('selected');
+      if (checked) {
+        if (quiz[i].correct === j && answers[i] === j) {
+          obtn.classList.add('correct');
+        } else if (answers[i] === j && quiz[i].correct !== j) {
+          obtn.classList.add('wrong');
+        } else if (quiz[i].correct === j) {
+          obtn.classList.add('correct');
+        }
       }
-      obtn.onclick=()=>{if(!checked){answers[i]=j;renderQuiz();}};
+      
+      obtn.onclick = ()=>{
+        if(!checked){
+          answers[i]=j;
+          renderQuiz();
+        }
+      };
       opts.appendChild(obtn);
-    });
-    block.appendChild(opts); form.appendChild(block);
-  });
+    }
+    block.appendChild(opts);
+    form.appendChild(block);
+  }
 }
-function clearAll(){checked=false;answers=Array(quiz.length).fill(null);renderQuiz();document.getElementById('scorePanel').textContent='';}
-document.getElementById('black-strip').onclick=()=>{window.location.href='../index.html';}
-document.getElementById('checkBtn').onclick=()=>{checked=true;renderQuiz();let correct=answers.filter((a,i)=>a===quiz[i].correct).length;let pct=Math.round(100*correct/quiz.length);document.getElementById('scorePanel').textContent=`You got ${correct} out of ${quiz.length} correct. (${pct}%)`;};
+
+function clearAll() {
+  checked = false;
+  answers = Array(quiz.length).fill(null);
+  renderQuiz();
+  document.getElementById('scorePanel').textContent = '';
+}
+
+// Black strip navigation - Fixed to match test-01 exactly
+document.getElementById('black-strip').addEventListener('click', function() {
+  window.location.href = '../index.html';
+});
+
+document.getElementById('checkBtn').onclick = function() {
+  checked = true;
+  renderQuiz();
+  
+  // Calculate score
+  let correct = 0;
+  for(let i = 0; i < quiz.length; i++) {
+    if(answers[i] === quiz[i].correct) correct++;
+  }
+  let pct = Math.round(100 * correct / quiz.length);
+  document.getElementById('scorePanel').textContent = 
+    `You got ${correct} out of ${quiz.length} correct. (${pct}%)`;
+};
+
+// Initialize
 renderQuiz();
 </script>
 </body>
