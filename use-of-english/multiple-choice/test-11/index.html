@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>INTUITY – Multiple Choice Test 11</title>
+<title>INTUITY – Multiple Choice Test 10</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -336,7 +336,7 @@ body {
 <body>
 <div class="quiz-container flex-center">
   <div class="title">INTUITY</div>
-  <div class="subtitle">Multiple Choice Test 10 - Advanced Mode</div>
+  <div class="subtitle">Multiple Choice Test 11 - Fixed Version</div>
   
   <!-- Progress tracking -->
   <div class="progress-container">
@@ -474,29 +474,19 @@ const allQuestions = [
   {q: "Mr Smith will be in _______ of arrangements for the end-of-term party.", options: ["direction", "management", "leadership", "charge"], correct: 3}
 ];
 
-// Advanced question management system
+// ARTIFACT-COMPATIBLE QUESTION MANAGER (NO LOCALSTORAGE DEPENDENCY)
 class QuestionManager {
   constructor(questions) {
     this.allQuestions = questions;
-    this.usedQuestions = this.loadUsedQuestions();
+    this.usedQuestions = []; // Always starts fresh in artifacts
     this.currentQuiz = [];
-    this.currentAnswers = Array(12).fill(null);
-    this.currentChecked = false;
     this.sessionStats = {
       setsCompleted: 0,
       totalCorrect: 0,
       totalAnswered: 0
     };
-  }
-
-  // Load used questions from memory (since we can't use localStorage in artifacts)
-  loadUsedQuestions() {
-    return [];
-  }
-
-  // Save used questions (no-op in artifact environment)
-  saveUsedQuestions() {
-    // No localStorage available in artifacts
+    
+    console.log(`🎯 Initialized with ${questions.length} questions`);
   }
 
   // Get available questions (not used yet)
@@ -508,40 +498,26 @@ class QuestionManager {
   getNextQuestions() {
     const available = this.getAvailableQuestions();
     
-    console.log(`Available questions: ${available.length}, Used: ${this.usedQuestions.length}, Total: ${this.allQuestions.length}`);
+    console.log(`📊 Available: ${available.length}, Used: ${this.usedQuestions.length}, Total: ${this.allQuestions.length}`);
     
-    if (available.length < 12) {
-      if (available.length === 0) {
-        console.log('🎉 All questions used! Ready to reset.');
-        return null; // Truly no more questions
-      } else {
-        // Return whatever is left (less than 12)
-        console.log(`⚠️ Only ${available.length} questions remaining`);
-        const remainingQuestions = [...available];
-        
-        // Mark these as used
-        remainingQuestions.forEach(question => {
-          const index = this.allQuestions.indexOf(question);
-          if (index !== -1 && !this.usedQuestions.includes(index)) {
-            this.usedQuestions.push(index);
-          }
-        });
-        
-        this.saveUsedQuestions();
-        return remainingQuestions;
-      }
+    if (available.length === 0) {
+      console.log('🎉 All questions completed!');
+      return null;
     }
 
-    // Shuffle available questions and take 12
+    // Take up to 12 questions (or whatever is left)
+    const questionsToTake = Math.min(12, available.length);
+    
+    // Shuffle and select
     const shuffled = [...available];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     
-    const selectedQuestions = shuffled.slice(0, 12);
+    const selectedQuestions = shuffled.slice(0, questionsToTake);
     
-    // Mark these questions as used
+    // Mark as used (this will work in artifacts for the session)
     selectedQuestions.forEach(question => {
       const index = this.allQuestions.indexOf(question);
       if (index !== -1 && !this.usedQuestions.includes(index)) {
@@ -549,15 +525,17 @@ class QuestionManager {
       }
     });
     
-    this.saveUsedQuestions();
+    console.log(`✅ Selected ${selectedQuestions.length} new questions`);
+    console.log(`📈 Progress: ${this.usedQuestions.length}/${this.allQuestions.length} used`);
+    
     return selectedQuestions;
   }
 
   // Reset all progress
   resetProgress() {
     this.usedQuestions = [];
-    this.saveUsedQuestions();
     this.sessionStats = { setsCompleted: 0, totalCorrect: 0, totalAnswered: 0 };
+    console.log('🔄 Progress reset - all questions available again');
   }
 
   // Get progress statistics
