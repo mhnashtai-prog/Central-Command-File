@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>INTUITY – Multiple Choice Test 10</title>
+<title>INTUITY – Multiple Choice Test System</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Poppins:wght@600;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --main-font: 'Inter', 'Poppins', 'Montserrat', Arial, sans-serif;
@@ -12,7 +12,14 @@
   --options-font-size: 1rem;
   --option-gap: 0.52em;
   --sentence-gap: 44px;
+  --primary-blue: #2c5aa0;
+  --success-green: #10b981;
+  --neumorphic-light: #ffffff;
+  --neumorphic-dark: #d1d9e6;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1cc;
 }
+
 body {
   background: linear-gradient(135deg, #2c5aa0 0%, #3b6bb5 15%, #4a7bc8 30%, #7a9fd9 45%, #b8d3ea 60%, #e8c5d8 75%, #f0b7c9 85%, #f5a9ba 100%);
   min-height: 100vh;
@@ -20,17 +27,128 @@ body {
   font-family: var(--main-font);
   color: #151515;
 }
-.flex-center {display: flex; flex-direction: column; align-items: center;}
+
+.main-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 30px;
+}
+
+/* Progress Slider Sidebar */
+.progress-sidebar {
+  width: 200px;
+  background: var(--neumorphic-light);
+  border-radius: 24px;
+  padding: 25px 15px;
+  box-shadow: 
+    20px 20px 60px var(--shadow-dark),
+    -20px -20px 60px var(--shadow-light);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.progress-title {
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+}
+
+.test-slider {
+  height: 500px;
+  background: #e2e8f0;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 
+    inset 8px 8px 16px var(--shadow-dark),
+    inset -8px -8px 16px var(--shadow-light);
+  padding: 15px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.test-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #cbd5e0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    4px 4px 8px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light);
+  position: relative;
+}
+
+.test-marker.completed {
+  background: var(--success-green);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 
+    0 0 20px rgba(16, 185, 129, 0.4),
+    4px 4px 8px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light);
+}
+
+.test-marker.current {
+  background: var(--primary-blue);
+  color: white;
+  transform: scale(1.2);
+  box-shadow: 
+    0 0 20px rgba(44, 90, 160, 0.5),
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+}
+
+.test-marker:hover {
+  transform: scale(1.15);
+  background: var(--primary-blue);
+  color: white;
+}
+
+.progress-stats {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #64748b;
+}
+
+.progress-stats .stat {
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.progress-stats .current-test {
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+/* Main Quiz Container */
 .quiz-container {
-  max-width: 780px;
-  margin: 48px auto 44px auto;
-  background: #ffffff;
+  flex: 1;
+  background: var(--neumorphic-light);
   border-radius: 2.4em;
-  box-shadow: none;
-  border: 1px solid rgba(0,0,0,0.1);
-  padding: 40px 22px 42px 22px;
+  box-shadow: 
+    20px 20px 60px var(--shadow-dark),
+    -20px -20px 60px var(--shadow-light);
+  padding: 40px 32px 42px 32px;
   font-size: 95%;
 }
+
 .title {
   font-size: 2.48em;
   font-family: "Inter", "Poppins", Arial, sans-serif;
@@ -40,36 +158,39 @@ body {
   color: #1b1c1f;
   text-align: center;
 }
+
 .subtitle {
   text-align: center;
   font-size: 1.12em;
   letter-spacing: 0.06em;
   color: #444448;
-  font-family:"Inter", "Poppins", Arial, sans-serif;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
   font-weight: 600;
   margin-bottom: 21px;
 }
 
-/* Progress Bar */
-.progress-container {
-  width: 100%;
-  background: #e0e0e0;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-.progress-bar {
-  height: 8px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  width: 0%;
-  transition: width 0.5s ease;
-}
-.progress-text {
+.test-info {
   text-align: center;
-  font-size: 0.9em;
-  color: #666;
-  margin: 8px 0;
-  font-weight: 600;
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
+}
+
+.test-number {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 5px;
+}
+
+.test-description {
+  color: #64748b;
+  font-size: 0.95em;
+  font-weight: 500;
 }
 
 /* Loading State */
@@ -77,31 +198,37 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
+
 .loading-spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border-top: 4px solid var(--primary-blue);
   border-radius: 50%;
   width: 50px;
   height: 50px;
   animation: spin 1s linear infinite;
   margin: 0 auto 20px auto;
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
 .loading-text {
   font-size: 1.1em;
   color: #666;
   font-weight: 600;
 }
 
+/* Quiz Form */
 .form-quiz {
   width: 100%;
 }
+
 .q-block {
   margin-bottom: var(--sentence-gap);
 }
+
 .q-sentence {
   font-size: var(--question-font-size);
   font-family: 'Inter', 'Poppins', Arial, sans-serif;
@@ -110,14 +237,16 @@ body {
   color: #141414;
   line-height: 1.47;
 }
+
 .q-num {
   display: inline-block;
   width: 1.3em;
   font-weight: 900;
-  color: #405080;
+  color: var(--primary-blue);
   font-family: 'Inter', 'Poppins', Arial, sans-serif;
   font-size: 1em;
 }
+
 .q-options-row {
   display: flex;
   flex-direction: row;
@@ -125,13 +254,14 @@ body {
   margin-bottom: 0.08em;
   flex-wrap: wrap;
 }
+
 .q-opt-btn {
   font-family: "Inter", "Poppins", Arial, sans-serif;
   font-size: var(--options-font-size);
   font-weight: 700;
   color: #2c3e50;
   letter-spacing: 0.08em;
-  background: #e8e8eb;
+  background: var(--neumorphic-light);
   border-radius: 1.2em;
   border: none;
   padding: 12px 18px;
@@ -145,9 +275,10 @@ body {
   user-select: none;
   flex: 1;
   box-shadow: 
-    7.9px 7.9px 15.9px #d1d1d4,
-    -6px -6px 12px #ffffff;
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
 }
+
 .q-opt-btn .lbl {
   font-weight: 900;
   margin-right: 8px;
@@ -156,28 +287,32 @@ body {
   vertical-align: middle;
   display: inline-block;
 }
+
 .q-opt-btn:hover {
-  background: #e8e8eb;
   box-shadow: 
-    6.6px 6.6px 13.2px #c5c5c8,
-    -6px -6px 12px #ffffff;
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
   transform: translateY(-1px);
 }
 
 .q-opt-btn.selected {
-  background: #2c5aa0 !important;
+  background: var(--primary-blue) !important;
   color: #ffffff !important;
+  box-shadow: 
+    inset 6px 6px 12px #1e3a6f,
+    inset -6px -6px 12px #3a74d1 !important;
 }
+
 .q-opt-btn.selected .lbl {
   color: #ffffff !important;
 }
 
 .q-opt-btn.correct {
-  background: #7dd87d !important;
+  background: var(--success-green) !important;
   color: #ffffff !important;
   box-shadow: 
-    inset 6px 6px 12px #6bc46b,
-    inset -6px -6px 12px #8fec8f !important;
+    inset 6px 6px 12px #0d9488,
+    inset -6px -6px 12px #14b8a6 !important;
 }
 
 .q-opt-btn.correct .lbl {
@@ -185,22 +320,24 @@ body {
 }
 
 .q-opt-btn.wrong {
-  background: #f5e8e8 !important;
-  color: #8b4513 !important;
+  background: #ef4444 !important;
+  color: #ffffff !important;
   box-shadow: 
-    inset 6px 6px 12px #e0c5c5,
-    inset -6px -6px 12px #ffffff !important;
+    inset 6px 6px 12px #dc2626,
+    inset -6px -6px 12px #f87171 !important;
 }
 
 .q-opt-btn.wrong .lbl {
-  color: #8b4513 !important;
+  color: #ffffff !important;
 }
-.q-block:last-child {margin-bottom: 10px;}
+
+/* Control Buttons */
 .controls-container {
   width: 100%;
   text-align: center;
   margin-top: 32px;
 }
+
 .control-buttons {
   display: flex;
   gap: 15px;
@@ -208,72 +345,125 @@ body {
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
+
 .control-btn {
   font-size: 1.05em;
   font-family: "Inter", "Poppins", Arial, sans-serif;
   font-weight: 700;
   border: none;
   border-radius: 1.05em;
-  padding: 11px 28px;
+  padding: 14px 32px;
   letter-spacing: 1.2px;
   cursor: pointer;
-  transition: background 0.13s, color 0.12s, transform 0.1s;
-  box-shadow: 0 3px 16px #b8d3ea27;
+  transition: all 0.15s ease;
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
 }
+
 .control-btn.check {
-  color: #274b75;
-  background: linear-gradient(120deg, #e8f5fd 70%, #f5a9ba 100%);
+  color: #1e40af;
+  background: linear-gradient(145deg, #dbeafe, #bfdbfe);
 }
+
 .control-btn.check:hover {
-  background: linear-gradient(120deg, #d4ebf7 70%, #f299b0 100%);
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+  transform: translateY(-2px);
 }
+
 .control-btn.next {
-  color: #2d5a27;
-  background: linear-gradient(120deg, #e8f5e8 70%, #c8e6c9 100%);
+  color: #065f46;
+  background: linear-gradient(145deg, #d1fae5, #a7f3d0);
 }
+
 .control-btn.next:hover {
-  background: linear-gradient(120deg, #d4f4d4 70%, #a5d6a7 100%);
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+  transform: translateY(-2px);
 }
+
 .control-btn.repeat {
-  color: #7a4b00;
-  background: linear-gradient(120deg, #fff3cd 70%, #ffeaa7 100%);
+  color: #92400e;
+  background: linear-gradient(145deg, #fef3c7, #fde68a);
 }
+
 .control-btn.repeat:hover {
-  background: linear-gradient(120deg, #ffecb3 70%, #ffe082 100%);
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+  transform: translateY(-2px);
 }
-.control-btn.reset {
-  color: #c62828;
-  background: linear-gradient(120deg, #ffebee 70%, #ffcdd2 100%);
-}
-.control-btn.reset:hover {
-  background: linear-gradient(120deg, #fce4ec 70%, #f8bbd9 100%);
-}
+
 .control-btn:active {
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
   transform: translateY(1px);
 }
+
 .control-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
 .score-panel {
   font-size: 1.18em;
   font-weight: 700;
-  color: #117d48;
+  color: var(--success-green);
   margin: 21px auto 14px auto;
   text-align: center;
 }
 
 .session-stats {
-  background: #f8f9fa;
-  border-radius: 12px;
-  padding: 15px;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 18px;
   margin: 15px 0;
   text-align: center;
-  font-size: 0.9em;
-  color: #666;
+  font-size: 0.95em;
+  color: #64748b;
+  box-shadow: 
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
 }
+
 .session-stats strong {
-  color: #333;
+  color: #1e293b;
+}
+
+/* Error State */
+.error-container {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fef2f2;
+  border-radius: 16px;
+  border: 1px solid #fecaca;
+  margin: 20px 0;
+  box-shadow: 
+    inset 6px 6px 12px #fca5a5,
+    inset -6px -6px 12px #ffffff;
+}
+
+.error-text {
+  color: #dc2626;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.retry-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
 }
 
 /* Black Strip Navigation */
@@ -283,11 +473,11 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  height: 28px;
-  background: rgba(68, 68, 68, 0.9);
-  backdrop-filter: blur(10px);
+  height: 32px;
+  background: rgba(68, 68, 68, 0.95);
+  backdrop-filter: blur(15px);
   border-radius: 24px;
-  box-shadow: 0 2px 18px 0 rgba(34, 34, 34, 0.6);
+  box-shadow: 0 2px 20px 0 rgba(34, 34, 34, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -299,15 +489,18 @@ body {
   font-family: 'Montserrat', Arial, sans-serif;
   border: 1px solid rgba(255,255,255,0.1);
 }
+
 .black-strip .arrow {
   font-size: 1.9rem;
   font-weight: 600;
   margin-right: 14px;
   transition: color 0.17s;
 }
+
 .black-strip .arrow:hover {
   color: #63e3c0;
 }
+
 .black-strip .back-label {
   font-size: 1.1rem;
   font-weight: 600;
@@ -315,65 +508,73 @@ body {
   margin-left: 6px;
 }
 
-/* Error State */
-.error-container {
-  text-align: center;
-  padding: 40px 20px;
-  background: #fff5f5;
-  border-radius: 12px;
-  border: 1px solid #fed7d7;
-  margin: 20px 0;
-}
-.error-text {
-  color: #c53030;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-.retry-btn {
-  background: #e53e3e;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
+@media (max-width: 1024px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .progress-sidebar {
+    width: 100%;
+    position: relative;
+  }
+  
+  .test-slider {
+    height: 80px;
+    flex-direction: row;
+    padding: 8px 15px;
+    overflow-x: auto;
+  }
+  
+  .test-marker {
+    min-width: 24px;
+    margin: 0 4px;
+  }
 }
 
 @media (max-width: 768px) {
   .quiz-container {
-    padding: 5vw 2vw;
-    margin: 20px auto;
+    padding: 5vw 3vw;
+    margin: 10px;
   }
+  
   .q-options-row {
     flex-direction: column;
     gap: 8px;
   }
+  
   .q-opt-btn {
     flex: none;
     text-align: left;
   }
+  
   .control-buttons {
     flex-direction: column;
     align-items: center;
   }
+  
   .control-btn {
-    width: 200px;
+    width: 220px;
   }
 }
+
 @media (max-width: 480px) {
   .title {
     font-size: 2em;
   }
+  
   .subtitle {
     font-size: 1em;
   }
+  
   .control-buttons {
     gap: 10px;
   }
+  
   .control-btn {
-    padding: 8px 20px;
+    padding: 10px 20px;
     font-size: 0.95em;
   }
+  
   :root {
     --question-font-size: 0.95rem;
     --options-font-size: 0.9rem;
@@ -383,127 +584,143 @@ body {
 </style>
 </head>
 <body>
-<div class="quiz-container flex-center">
-  <div class="title">INTUITY</div>
-  <div class="subtitle">Multiple Choice Test 10 - Advanced Mode</div>
-  
-  <!-- Loading State -->
-  <div id="loadingContainer" class="loading-container">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Loading questions...</div>
-  </div>
-
-  <!-- Error State -->
-  <div id="errorContainer" class="error-container" style="display: none;">
-    <div class="error-text">Failed to load questions. Please check that the JSON file is available.</div>
-    <button class="retry-btn" onclick="initializeQuiz()">Retry</button>
-  </div>
-
-  <!-- Main Quiz Content -->
-  <div id="quizContent" style="display: none;">
-    <!-- Progress tracking -->
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar"></div>
+<div class="main-container">
+  <!-- Progress Sidebar -->
+  <div class="progress-sidebar">
+    <div class="progress-title">Test Progress</div>
+    <div class="test-slider" id="testSlider">
+      <!-- Test markers will be generated here -->
     </div>
-    <div class="progress-text" id="progressText">Questions used: 0 / 0</div>
-    
-    <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
-    
-    <div class="controls-container">
-      <div class="control-buttons">
-        <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
-        <button class="control-btn next" id="nextBtn" style="display:none;">NEXT SET (12 NEW)</button>
-        <button class="control-btn repeat" id="repeatBtn">REPEAT CURRENT</button>
-        <button class="control-btn reset" id="resetBtn">RESET PROGRESS</button>
+    <div class="progress-stats">
+      <div class="current-test" id="currentTestDisplay">Test 1</div>
+      <div class="stat" id="completedStats">0 / 17 Completed</div>
+      <div class="stat" id="totalQuestions">200 Total Questions</div>
+    </div>
+  </div>
+
+  <!-- Main Quiz Container -->
+  <div class="quiz-container">
+    <!-- Loading State -->
+    <div id="loadingContainer" class="loading-container">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading questions...</div>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorContainer" class="error-container" style="display: none;">
+      <div class="error-text">Failed to load questions. Please check that the JSON file is available.</div>
+      <button class="retry-btn" onclick="initializeQuiz()">Retry</button>
+    </div>
+
+    <!-- Main Quiz Content -->
+    <div id="quizContent" style="display: none;">
+      <div class="title">INTUITY</div>
+      <div class="subtitle">Multiple Choice Test System</div>
+      
+      <div class="test-info">
+        <div class="test-number" id="testTitle">Test 1</div>
+        <div class="test-description" id="testSubtitle">Questions 1-12</div>
       </div>
-      <div class="score-panel" id="scorePanel"></div>
-      <div class="session-stats" id="sessionStats"></div>
+      
+      <form class="form-quiz" id="quizForm" onsubmit="return false"></form>
+      
+      <div class="controls-container">
+        <div class="control-buttons">
+          <button class="control-btn check" id="checkBtn">CHECK ANSWERS</button>
+          <button class="control-btn next" id="nextBtn" style="display:none;">NEXT TEST</button>
+          <button class="control-btn repeat" id="repeatBtn">REPEAT TEST</button>
+        </div>
+        <div class="score-panel" id="scorePanel"></div>
+        <div class="session-stats" id="sessionStats"></div>
+      </div>
     </div>
-  </div>
-
-  <div id="black-strip" class="black-strip">
-    <span class="arrow">←</span>
-    <span class="back-label">Multiple Choice</span>
   </div>
 </div>
 
+<div id="black-strip" class="black-strip">
+  <span class="arrow">←</span>
+  <span class="back-label">Main Menu</span>
+</div>
+
 <script>
-// ARTIFACT-COMPATIBLE QUESTION MANAGER (NO LOCALSTORAGE DEPENDENCY)
-class QuestionManager {
+// SEQUENTIAL TEST SYSTEM
+class SequentialTestManager {
   constructor(questions) {
     this.allQuestions = questions;
-    this.usedQuestions = []; // Always starts fresh in artifacts
-    this.currentQuiz = [];
+    this.questionsPerTest = 12;
+    this.totalTests = Math.ceil(questions.length / this.questionsPerTest);
+    this.currentTestNumber = 1;
+    this.completedTests = new Set(); // Track completed tests
     this.sessionStats = {
-      setsCompleted: 0,
+      testsCompleted: 0,
       totalCorrect: 0,
       totalAnswered: 0
     };
     
-    console.log(`🎯 Initialized with ${questions.length} questions`);
+    console.log(`🎯 Initialized Sequential System: ${questions.length} questions, ${this.totalTests} tests`);
   }
 
-  // Get available questions (not used yet)
-  getAvailableQuestions() {
-    return this.allQuestions.filter((_, index) => !this.usedQuestions.includes(index));
-  }
-
-  // Get next 12 unique questions
-  getNextQuestions() {
-    const available = this.getAvailableQuestions();
-    
-    console.log(`📊 Available: ${available.length}, Used: ${this.usedQuestions.length}, Total: ${this.allQuestions.length}`);
-    
-    if (available.length === 0) {
-      console.log('🎉 All questions completed!');
+  // Get questions for a specific test number
+  getTestQuestions(testNumber) {
+    if (testNumber < 1 || testNumber > this.totalTests) {
       return null;
     }
-
-    // Take up to 12 questions (or whatever is left)
-    const questionsToTake = Math.min(12, available.length);
     
-    // Shuffle and select
-    const shuffled = [...available];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    const startIndex = (testNumber - 1) * this.questionsPerTest;
+    const endIndex = Math.min(startIndex + this.questionsPerTest, this.allQuestions.length);
+    
+    return this.allQuestions.slice(startIndex, endIndex);
+  }
+
+  // Move to next test
+  goToNextTest() {
+    if (this.currentTestNumber < this.totalTests) {
+      this.currentTestNumber++;
+      return this.getTestQuestions(this.currentTestNumber);
     }
-    
-    const selectedQuestions = shuffled.slice(0, questionsToTake);
-    
-    // Mark as used (this will work in artifacts for the session)
-    selectedQuestions.forEach(question => {
-      const index = this.allQuestions.indexOf(question);
-      if (index !== -1 && !this.usedQuestions.includes(index)) {
-        this.usedQuestions.push(index);
-      }
-    });
-    
-    console.log(`✅ Selected ${selectedQuestions.length} new questions`);
-    console.log(`📈 Progress: ${this.usedQuestions.length}/${this.allQuestions.length} used`);
-    
-    return selectedQuestions;
+    return null;
   }
 
-  // Reset all progress
-  resetProgress() {
-    this.usedQuestions = [];
-    this.sessionStats = { setsCompleted: 0, totalCorrect: 0, totalAnswered: 0 };
-    console.log('🔄 Progress reset - all questions available again');
+  // Jump to specific test
+  goToTest(testNumber) {
+    if (testNumber >= 1 && testNumber <= this.totalTests) {
+      this.currentTestNumber = testNumber;
+      return this.getTestQuestions(testNumber);
+    }
+    return null;
   }
 
-  // Get progress statistics
+  // Mark test as completed
+  markTestCompleted(testNumber) {
+    this.completedTests.add(testNumber);
+  }
+
+  // Get current test questions
+  getCurrentTest() {
+    return this.getTestQuestions(this.currentTestNumber);
+  }
+
+  // Get progress info
   getProgress() {
     return {
-      used: this.usedQuestions.length,
-      total: this.allQuestions.length,
-      percentage: Math.round((this.usedQuestions.length / this.allQuestions.length) * 100)
+      currentTest: this.currentTestNumber,
+      totalTests: this.totalTests,
+      completedCount: this.completedTests.size,
+      completedTests: Array.from(this.completedTests).sort((a, b) => a - b)
     };
+  }
+
+  // Get test range description
+  getTestRange(testNumber) {
+    const startQ = (testNumber - 1) * this.questionsPerTest + 1;
+    const endQ = Math.min(testNumber * this.questionsPerTest, this.allQuestions.length);
+    return `Questions ${startQ}-${endQ}`;
   }
 }
 
 // Global variables
-let questionManager = null;
+let testManager = null;
+let currentQuestions = [];
 let answers = [];
 let checked = false;
 
@@ -512,7 +729,6 @@ async function loadQuestionsFromJSON() {
   try {
     console.log('📥 Fetching questions from JSON file...');
     
-    // Try to fetch the JSON file
     const response = await fetch('fetchdata-for-multiplechoice.json');
     
     if (!response.ok) {
@@ -534,7 +750,7 @@ async function loadQuestionsFromJSON() {
   }
 }
 
-// Initialize the quiz
+// Initialize the quiz system
 async function initializeQuiz() {
   const loadingContainer = document.getElementById('loadingContainer');
   const errorContainer = document.getElementById('errorContainer');
@@ -549,21 +765,20 @@ async function initializeQuiz() {
     // Load questions from JSON
     const questions = await loadQuestionsFromJSON();
     
-    // Initialize question manager
-    questionManager = new QuestionManager(questions);
+    // Initialize test manager
+    testManager = new SequentialTestManager(questions);
     
     // Hide loading and show quiz
     loadingContainer.style.display = 'none';
     quizContent.style.display = 'block';
     
-    // Load first set of questions
-    loadNewQuestions();
-    updateSessionStats();
-    
-    // Set up event handlers
+    // Initialize UI
+    setupProgressSlider();
+    loadCurrentTest();
+    updateStats();
     setupEventHandlers();
     
-    console.log('🚀 Quiz initialized successfully!');
+    console.log('🚀 Sequential Test System initialized successfully!');
     
   } catch (error) {
     console.error('💥 Quiz initialization failed:', error);
@@ -575,155 +790,111 @@ async function initializeQuiz() {
   }
 }
 
-function setupEventHandlers() {
-  // Check answers button
-  document.getElementById('checkBtn').onclick = function() {
-    checked = true;
-    renderQuiz();
+// Setup the progress slider with test markers
+function setupProgressSlider() {
+  const slider = document.getElementById('testSlider');
+  const progress = testManager.getProgress();
+  
+  slider.innerHTML = '';
+  
+  for (let i = 1; i <= progress.totalTests; i++) {
+    const marker = document.createElement('div');
+    marker.className = 'test-marker';
+    marker.textContent = i;
+    marker.dataset.testNumber = i;
     
-    // Calculate score
-    let correct = 0;
-    for (let i = 0; i < questionManager.currentQuiz.length; i++) {
-      if (answers[i] === questionManager.currentQuiz[i].correct) correct++;
+    // Set marker state
+    if (i === progress.currentTest) {
+      marker.classList.add('current');
+    } else if (progress.completedTests.includes(i)) {
+      marker.classList.add('completed');
+      marker.innerHTML = '✓';
     }
     
-    // Update session stats
-    questionManager.sessionStats.totalCorrect += correct;
-    questionManager.sessionStats.totalAnswered += questionManager.currentQuiz.length;
+    // Add click handler
+    marker.onclick = () => jumpToTest(i);
     
-    const pct = Math.round(100 * correct / questionManager.currentQuiz.length);
-    document.getElementById('scorePanel').innerHTML = 
-      `You got <strong>${correct}</strong> out of <strong>${questionManager.currentQuiz.length}</strong> correct. (<strong>${pct}%</strong>)`;
-    
-    // Show NEXT button
-    document.getElementById('checkBtn').style.display = 'none';
-    document.getElementById('nextBtn').style.display = 'inline-block';
-    
-    updateSessionStats();
-  };
+    slider.appendChild(marker);
+  }
+  
+  // Update stats display
+  document.getElementById('totalQuestions').textContent = `${testManager.allQuestions.length} Total Questions`;
+}
 
-  // Next set button
-  document.getElementById('nextBtn').onclick = function() {
-    questionManager.sessionStats.setsCompleted++;
-    loadNewQuestions();
-  };
-
-  // Repeat current set button
-  document.getElementById('repeatBtn').onclick = function() {
-    const currentQuizLength = questionManager.currentQuiz.length;
-    answers = Array(currentQuizLength).fill(null);
+// Jump to specific test
+function jumpToTest(testNumber) {
+  const questions = testManager.goToTest(testNumber);
+  if (questions) {
+    currentQuestions = questions;
+    answers = Array(questions.length).fill(null);
     checked = false;
+    
+    updateTestDisplay();
+    renderQuiz();
+    updateStats();
+    setupProgressSlider(); // Refresh slider
+    
+    // Reset button states
     document.getElementById('checkBtn').style.display = 'inline-block';
     document.getElementById('nextBtn').style.display = 'none';
     document.getElementById('scorePanel').textContent = '';
-    renderQuiz();
-  };
-
-  // Reset progress button
-  document.getElementById('resetBtn').onclick = function() {
-    const confirmed = confirm('Are you sure you want to reset all progress? This will allow you to retake all questions.');
-    if (confirmed) {
-      // Reset everything completely
-      questionManager.resetProgress();
-      
-      // Clear current quiz state
-      questionManager.currentQuiz = [];
-      answers = [];
-      checked = false;
-      
-      // Re-enable next button in case it was disabled
-      document.getElementById('nextBtn').disabled = false;
-      document.getElementById('nextBtn').style.display = 'none';
-      document.getElementById('checkBtn').style.display = 'inline-block';
-      
-      // Update displays
-      updateProgress();
-      updateSessionStats();
-      
-      // Load fresh questions
-      const success = loadNewQuestions();
-      if (success) {
-        console.log('✅ Reset successful - new questions loaded');
-        alert('Progress reset successfully! You can now retake all questions.');
-      } else {
-        console.log('❌ Reset failed - unable to load new questions');
-        alert('Reset failed. Please refresh the page and try again.');
-      }
-    } else {
-      console.log('Reset cancelled by user');
-    }
-  };
-
-  // Navigation
-  document.getElementById('black-strip').addEventListener('click', function() {
-    window.location.href = '../index.html';
-  });
-}
-
-function updateProgress() {
-  if (!questionManager) return;
-  
-  const progress = questionManager.getProgress();
-  const progressBar = document.getElementById('progressBar');
-  const progressText = document.getElementById('progressText');
-  
-  progressBar.style.width = progress.percentage + '%';
-  progressText.textContent = `Questions used: ${progress.used} / ${progress.total} (${progress.percentage}%)`;
-}
-
-function updateSessionStats() {
-  if (!questionManager) return;
-  
-  const stats = document.getElementById('sessionStats');
-  const s = questionManager.sessionStats;
-  const avgScore = s.totalAnswered > 0 ? Math.round((s.totalCorrect / s.totalAnswered) * 100) : 0;
-  
-  stats.innerHTML = `
-    <strong>Session Stats:</strong> 
-    Sets completed: ${s.setsCompleted} | 
-    Average score: ${avgScore}% | 
-    Total questions answered: ${s.totalAnswered}
-  `;
-}
-
-function loadNewQuestions() {
-  if (!questionManager) return false;
-  
-  const newQuestions = questionManager.getNextQuestions();
-  
-  if (!newQuestions) {
-    alert('🎉 Congratulations! You have completed all questions!\nClick RESET PROGRESS to start over.');
-    document.getElementById('nextBtn').disabled = true;
-    return false;
   }
-  
-  console.log(`✅ Loaded ${newQuestions.length} questions`);
-  
-  questionManager.currentQuiz = newQuestions;
-  answers = Array(newQuestions.length).fill(null); // Dynamic array size
+}
+
+// Load current test
+function loadCurrentTest() {
+  currentQuestions = testManager.getCurrentTest();
+  answers = Array(currentQuestions.length).fill(null);
   checked = false;
   
+  updateTestDisplay();
+  renderQuiz();
+  
+  // Reset button states
   document.getElementById('checkBtn').style.display = 'inline-block';
   document.getElementById('nextBtn').style.display = 'none';
   document.getElementById('scorePanel').textContent = '';
-  
-  renderQuiz();
-  updateProgress();
-  return true;
 }
 
-function renderQuiz() {
-  if (!questionManager || !questionManager.currentQuiz.length) return;
+// Update test display info
+function updateTestDisplay() {
+  const progress = testManager.getProgress();
+  const testRange = testManager.getTestRange(progress.currentTest);
   
+  document.getElementById('testTitle').textContent = `Test ${progress.currentTest}`;
+  document.getElementById('testSubtitle').textContent = testRange;
+  document.getElementById('currentTestDisplay').textContent = `Test ${progress.currentTest}`;
+}
+
+// Update statistics
+function updateStats() {
+  const progress = testManager.getProgress();
+  const stats = testManager.sessionStats;
+  const avgScore = stats.totalAnswered > 0 ? Math.round((stats.totalCorrect / stats.totalAnswered) * 100) : 0;
+  
+  document.getElementById('completedStats').textContent = 
+    `${progress.completedCount} / ${progress.totalTests} Completed`;
+  
+  const sessionStatsElement = document.getElementById('sessionStats');
+  sessionStatsElement.innerHTML = `
+    <strong>Session Performance:</strong><br>
+    Tests completed: ${stats.testsCompleted} | 
+    Average score: ${avgScore}% | 
+    Questions answered: ${stats.totalAnswered}
+  `;
+}
+
+// Render current quiz
+function renderQuiz() {
   const form = document.getElementById('quizForm');
   form.innerHTML = "";
   
-  for (let i = 0; i < questionManager.currentQuiz.length; i++) {
-    const question = questionManager.currentQuiz[i];
+  for (let i = 0; i < currentQuestions.length; i++) {
+    const question = currentQuestions[i];
     const block = document.createElement('div');
     block.className = 'q-block';
     
-    // Sentence
+    // Question sentence
     const stxt = document.createElement('div');
     stxt.className = 'q-sentence';
     stxt.innerHTML = `<span class="q-num">${i+1}.</span> ${question.q}`;
@@ -760,6 +931,81 @@ function renderQuiz() {
     block.appendChild(opts);
     form.appendChild(block);
   }
+}
+
+// Setup event handlers
+function setupEventHandlers() {
+  // Check answers button
+  document.getElementById('checkBtn').onclick = function() {
+    checked = true;
+    renderQuiz();
+    
+    // Calculate score
+    let correct = 0;
+    for (let i = 0; i < currentQuestions.length; i++) {
+      if (answers[i] === currentQuestions[i].correct) correct++;
+    }
+    
+    // Update session stats
+    testManager.sessionStats.totalCorrect += correct;
+    testManager.sessionStats.totalAnswered += currentQuestions.length;
+    
+    // Mark test as completed
+    testManager.markTestCompleted(testManager.currentTestNumber);
+    
+    const pct = Math.round(100 * correct / currentQuestions.length);
+    document.getElementById('scorePanel').innerHTML = 
+      `You got <strong>${correct}</strong> out of <strong>${currentQuestions.length}</strong> correct. (<strong>${pct}%</strong>)`;
+    
+    // Show NEXT TEST button
+    document.getElementById('checkBtn').style.display = 'none';
+    document.getElementById('nextBtn').style.display = 'inline-block';
+    
+    // Update UI
+    updateStats();
+    setupProgressSlider(); // Refresh to show completed status
+  };
+
+  // Next test button
+  document.getElementById('nextBtn').onclick = function() {
+    testManager.sessionStats.testsCompleted++;
+    
+    const nextQuestions = testManager.goToNextTest();
+    if (nextQuestions) {
+      currentQuestions = nextQuestions;
+      answers = Array(nextQuestions.length).fill(null);
+      checked = false;
+      
+      updateTestDisplay();
+      renderQuiz();
+      updateStats();
+      setupProgressSlider();
+      
+      // Reset button states
+      document.getElementById('checkBtn').style.display = 'inline-block';
+      document.getElementById('nextBtn').style.display = 'none';
+      document.getElementById('scorePanel').textContent = '';
+    } else {
+      // All tests completed
+      alert('🎉 Congratulations! You have completed all tests!\n\nYou can review any test by clicking on its number in the progress slider.');
+      document.getElementById('nextBtn').disabled = true;
+    }
+  };
+
+  // Repeat current test button
+  document.getElementById('repeatBtn').onclick = function() {
+    answers = Array(currentQuestions.length).fill(null);
+    checked = false;
+    document.getElementById('checkBtn').style.display = 'inline-block';
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('scorePanel').textContent = '';
+    renderQuiz();
+  };
+
+  // Navigation
+  document.getElementById('black-strip').addEventListener('click', function() {
+    window.location.href = '../index.html';
+  });
 }
 
 // Initialize when page loads
