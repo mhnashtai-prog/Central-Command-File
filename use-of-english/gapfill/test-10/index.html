@@ -380,6 +380,7 @@
                 <button class="btn" onclick="repeatExercise()">Repeat</button>
                 <button class="btn" onclick="nextExercise()">Next</button>
                 <button class="btn" onclick="returnToMenu()">Return to Menu</button>
+                <button class="btn" onclick="showAnswers()">Show Answers</button>
             </div>
             <div class="score">Score: <span id="score">0/8</span></div>
         </div>
@@ -389,6 +390,7 @@
         let isChecked = false;
         let exerciseData = null;
         let currentTestIndex = 0;
+        let hasCheckedAnswers = false; // Track if CHECK ANSWERS was used
 
         // 10 Modern color schemes for different tests
         const colorSchemes = [
@@ -697,7 +699,45 @@
             document.getElementById('score').textContent = `${filled}/${exerciseData.exercise.totalBlanks}`;
         }
 
+        function showAnswers() {
+            // Check if CHECK ANSWERS has been used first
+            if (!hasCheckedAnswers) {
+                alert('⚠️ Warning!\n\nYou must click "CHECK ANSWERS" first to attempt the exercise before viewing the correct answers.\n\nTry your best, then check your work!');
+                return;
+            }
+            
+            // Fill all blanks with correct answers
+            document.querySelectorAll('.blank').forEach(blank => {
+                const number = blank.dataset.number;
+                const correctAnswer = blank.dataset.answer;
+                
+                // Show the correct answer in the blank
+                blank.textContent = `(${number}) ${correctAnswer}`;
+                blank.classList.add('filled');
+                blank.classList.add('correct'); // Style as correct
+                
+                // Also fill the corresponding circle input
+                const circle = document.querySelector(`[data-number="${number}"].circle`);
+                if (circle) {
+                    const input = circle.querySelector('.circle-input');
+                    input.value = correctAnswer;
+                    input.style.fontWeight = 'bold';
+                }
+            });
+            
+            // Update score to show all correct
+            document.getElementById('score').textContent = `${exerciseData.exercise.totalBlanks}/${exerciseData.exercise.totalBlanks}`;
+            
+            // Visual feedback
+            setTimeout(() => {
+                alert('All answers are now shown. Study them, then use REPEAT to practice again.');
+            }, 500);
+        }
+
         function checkAnswers() {
+            isChecked = true;
+            hasCheckedAnswers = true; // Enable SHOW ANSWERS button
+            let correct = 0;
             isChecked = true;
             let correct = 0;
             
@@ -747,6 +787,7 @@
         function repeatExercise() {
             // Reset everything
             isChecked = false;
+            hasCheckedAnswers = false; // Reset SHOW ANSWERS restriction
             
             document.querySelectorAll('.blank').forEach(blank => {
                 const number = blank.dataset.number;
@@ -765,6 +806,7 @@
         function nextExercise() {
             currentTestIndex++;
             isChecked = false;
+            hasCheckedAnswers = false; // Reset SHOW ANSWERS restriction for new test
             loadTestData(currentTestIndex);
         }
 
