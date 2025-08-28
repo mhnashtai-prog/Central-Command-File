@@ -224,3 +224,596 @@
     }
   }
 }
+{
+  "text1_saving_the_tiger": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "In 1973, when the tiger appeared to be",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "facing",
+              "position": "after"
+            }
+          ],
+          "afterText": "extinction, the World Wide"
+        },
+        {
+          "content": "Fund for Nature and",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "the",
+              "position": "after"
+            }
+          ],
+          "afterText": "Indian Government agreed to set"
+        },
+        {
+          "content": "",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "up",
+              "position": "after"
+            }
+          ],
+          "afterText": "Operation Tiger to save this threatened creature."
+        },
+        {
+          "content": "They started by creating special parks so that tigers could",
+          "blanks": []
+        },
+        {
+          "content": "live in safety. The first was at Ranthambore, which was turning",
+          "blanks": []
+        },
+        {
+          "content": "into a desert",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "because",
+              "position": "after"
+            }
+          ],
+          "afterText": "too much grass was being eaten"
+        },
+        {
+          "content": "by local people's cattle. The government had to clear twelve",
+          "blanks": []
+        },
+        {
+          "content": "villages so the land could be handed back to nature.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "Today, Ranthambore has grass tall",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "enough",
+              "position": "after"
+            }
+          ],
+          "afterText": "for tigers to"
+        },
+        {
+          "content": "hide in, and there are now forty tigers wandering freely. There are",
+          "blanks": []
+        },
+        {
+          "content": "many",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "more",
+              "position": "after"
+            }
+          ],
+          "afterText": "deer and monkeys than before. The people who"
+        },
+        {
+          "content": "were moved now live in better conditions, away",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "from",
+              "position": "after"
+            }
+          ],
+          "afterText": "the"
+        },
+        {
+          "content": "tiger park. The animal's future now looks",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "much",
+              "position": "after"
+            }
+          ],
+          "afterText": "safer."
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  },
+
+  "text2_london_marathon": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2", 
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "The London Marathon is one of the best-known long-distance races",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "in",
+              "position": "after"
+            }
+          ],
+          "afterText": "the"
+        },
+        {
+          "content": "world. Two million professional runners have competed in it. But",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "what",
+              "position": "after"
+            }
+          ],
+          "afterText": "makes it different from other sporting events is"
+        },
+        {
+          "content": "",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "that",
+              "position": "after"
+            }
+          ],
+          "afterText": "ordinary people can also participate."
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "The race was Chris Brasher's idea, a former Olympic athlete. In",
+          "blanks": []
+        },
+        {
+          "content": "1979, he heard about the New York Marathon, during",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "which",
+              "position": "after"
+            }
+          ],
+          "afterText": "the"
+        },
+        {
+          "content": "runners are encouraged by enthusiastic spectators. He was so",
+          "blanks": []
+        },
+        {
+          "content": "impressed that he decided to organise a similar event in Britain.",
+          "blanks": []
+        },
+        {
+          "content": "Many problems",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "had",
+              "position": "after"
+            }
+          ],
+          "afterText": "to be overcome before the first"
+        },
+        {
+          "content": "London Marathon took place in 1981.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "Since then, around 300,000 runners have completed the race.",
+          "blanks": []
+        },
+        {
+          "content": "Numbers are limited",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "because",
+              "position": "after"
+            }
+          ],
+          "afterText": "the streets of London are too"
+        },
+        {
+          "content": "narrow. Each year more than 70,000 people apply",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "for",
+              "position": "after"
+            }
+          ],
+          "afterText": "the"
+        },
+        {
+          "content": "26,000 places in the race. Hundreds of thousands of spectators",
+          "blanks": []
+        },
+        {
+          "content": "line the route and 150 countries televise it. Over the years,",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "since",
+              "position": "after"
+            }
+          ],
+          "afterText": "the"
+        },
+        {
+          "content": "first race, £75 million has been raised for charity.",
+          "blanks": []
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  },
+
+  "text3_inferno_ski_race": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "The Inferno is the oldest and",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "most",
+              "position": "after"
+            }
+          ],
+          "afterText": "celebrated of all amateur ski"
+        },
+        {
+          "content": "races. It",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "is",
+              "position": "after"
+            }
+          ],
+          "afterText": "held every year in January, above the"
+        },
+        {
+          "content": "remote village of Mürren in Switzerland. Anyone can take part, as",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "long",
+              "position": "after"
+            }
+          ],
+          "afterText": "as"
+        },
+        {
+          "content": "they can ski and pay the race fee.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "The Inferno is, strangely enough, a British invention. Harry Lunn",
+          "blanks": []
+        },
+        {
+          "content": "invented the package holiday and took British people to the Alps.",
+          "blanks": []
+        },
+        {
+          "content": "His son Arnold grew very fond",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "of",
+              "position": "after"
+            }
+          ],
+          "afterText": "Mürren and founded a ski"
+        },
+        {
+          "content": "club there in 1924. Four years later, seventeen club members",
+          "blanks": []
+        },
+        {
+          "content": "took part in the first Inferno race, from the 2,970 metre",
+          "blanks": []
+        },
+        {
+          "content": "Schilthorn mountain to Mürren below.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "In those early days, they",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "used",
+              "position": "after"
+            }
+          ],
+          "afterText": "to climb for six hours to"
+        },
+        {
+          "content": "reach the start. Today, racers can use a cable car which",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "takes",
+              "position": "after"
+            }
+          ],
+          "afterText": "about"
+        },
+        {
+          "content": "twenty minutes. In the first race, the winning time was one hour,",
+          "blanks": []
+        },
+        {
+          "content": "twelve minutes. Today it's almost an hour less. Although skiers are",
+          "blanks": []
+        },
+        {
+          "content": "very",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "much",
+              "position": "after"
+            }
+          ],
+          "afterText": "faster now, skiing techniques haven't"
+        },
+        {
+          "content": "changed. The course,",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "which",
+              "position": "after"
+            }
+          ],
+          "afterText": "is steep with sharp bends,"
+        },
+        {
+          "content": "remains one of the most demanding in the world.",
+          "blanks": []
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  },
+
+  "text4_ufo_reports": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Franklin Roberts was a commercial airline pilot with",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "more",
+              "position": "after"
+            }
+          ],
+          "afterText": "than"
+        },
+        {
+          "content": "21,000 flying hours behind him. However, he could not explain",
+          "blanks": []
+        },
+        {
+          "content": "something",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "that",
+              "position": "after"
+            }
+          ],
+          "afterText": "happened to him in 1981. As he was flying"
+        },
+        {
+          "content": "over Lake Michigan, an object appeared and took him completely",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "by",
+              "position": "after"
+            }
+          ],
+          "afterText": "surprise."
+        },
+        {
+          "content": "Whatever it was, it raced through the sky ahead of his plane",
+          "blanks": []
+        },
+        {
+          "content": "and then disappeared into the distance.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "This is the kind of incident that fascinates Richard Haines, a",
+          "blanks": []
+        },
+        {
+          "content": "psychologist",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "who",
+              "position": "after"
+            }
+          ],
+          "afterText": "works at a research institute in California."
+        },
+        {
+          "content": "Over the last twelve years, he",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "has",
+              "position": "after"
+            }
+          ],
+          "afterText": "collected thousands of UFO"
+        },
+        {
+          "content": "reports from plane crews. He concentrates on stories told by pilots",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "because",
+              "position": "after"
+            }
+          ],
+          "afterText": "he"
+        },
+        {
+          "content": "believes they are more likely to be accurate. Pilots are trained",
+          "blanks": []
+        },
+        {
+          "content": "in observation and would generally know what they were looking at",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "and",
+              "position": "after"
+            }
+          ],
+          "afterText": "if"
+        },
+        {
+          "content": "it were something familiar. Critics say that pilots can make",
+          "blanks": []
+        },
+        {
+          "content": "mistakes like",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "anyone",
+              "position": "after"
+            }
+          ],
+          "afterText": "else. However, this hasn't stopped"
+        },
+        {
+          "content": "Haines, who continues to investigate UFO reports with enthusiasm.",
+          "blanks": []
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  }
+}
