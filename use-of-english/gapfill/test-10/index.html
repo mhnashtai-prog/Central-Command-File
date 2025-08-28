@@ -17,6 +17,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: auto;
+            transition: background 0.8s ease;
         }
 
         .container {
@@ -148,15 +149,15 @@
             top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80px;
-            height: 30px;
+            width: 50px;
+            height: 24px;
             border: none;
             border-bottom: 1px solid #999;
             background: transparent;
             color: #2d1b3d;
             text-align: center;
             font-weight: bold;
-            font-size: 1em;
+            font-size: 0.9em;
             outline: none;
             z-index: 15;
         }
@@ -177,33 +178,33 @@
             background: rgba(74, 222, 128, 0.3);
         }
 
-        /* Standard size circles */
+        /* Standard size circles - downsized considerably */
         .circle.standard {
-            width: 120px;
-            height: 120px;
+            width: 70px;
+            height: 70px;
         }
 
-        /* Large size circles */
+        /* Large size circles - downsized considerably */
         .circle.large {
-            width: 140px;
-            height: 140px;
+            width: 85px;
+            height: 85px;
         }
 
-        /* Reduced large size circles (30% smaller) */
+        /* Reduced large size circles */
         .circle.reduced-large {
-            width: 98px;
-            height: 98px;
+            width: 75px;
+            height: 75px;
         }
 
-        /* Extra large size circles (restored previous sizes) */
+        /* Extra large size circles - downsized considerably */
         .circle.extra-large-standard {
-            width: 143px;
-            height: 143px;
+            width: 80px;
+            height: 80px;
         }
 
         .circle.extra-large-large {
-            width: 167px;
-            height: 167px;
+            width: 90px;
+            height: 90px;
         }
 
         /* Repositioned circles with corrected data-number correlation */
@@ -277,23 +278,23 @@
             }
             
             .circle.standard, .circle.large {
-                width: 90px;
-                height: 90px;
+                width: 60px;
+                height: 60px;
             }
 
             .circle.extra-large-standard, .circle.extra-large-large {
-                width: 107px;
-                height: 107px;
+                width: 75px;
+                height: 75px;
             }
             
             .circle-number {
-                font-size: 1.2em;
+                font-size: 1.1em;
             }
             
             .circle-input {
-                width: 60px;
-                height: 25px;
-                font-size: 0.8em;
+                width: 45px;
+                height: 22px;
+                font-size: 0.85em;
                 border: none;
                 border-bottom: 1px solid #999;
                 background: transparent;
@@ -315,13 +316,13 @@
 
         @media (max-width: 480px) {
             .circle.standard, .circle.large {
-                width: 70px;
-                height: 70px;
+                width: 50px;
+                height: 50px;
             }
 
             .circle.extra-large-standard, .circle.extra-large-large {
-                width: 83px;
-                height: 83px;
+                width: 65px;
+                height: 65px;
             }
             
             .circle-number {
@@ -329,9 +330,9 @@
             }
             
             .circle-input {
-                width: 50px;
+                width: 40px;
                 height: 20px;
-                font-size: 0.7em;
+                font-size: 0.8em;
                 border: none;
                 border-bottom: 1px solid #999;
                 background: transparent;
@@ -354,105 +355,22 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="main-title">INTUITY</h1>
-        <h2 class="sub-title">Use of English Part 2</h2>
+        <h1 class="main-title" id="mainTitle">INTUITY</h1>
+        <h2 class="sub-title" id="subTitle">Use of English Part 2</h2>
 
         <div class="content-area">
             <div class="text-content">
-                <div class="instructions">
+                <div class="instructions" id="instructions">
                     <strong>Instructions:</strong> Type answers in numbered circles, then click the circle to transfer to blanks.
                 </div>
-
-                <div class="text-line">
-                    <strong>Kieron Williamson is a very successful landscape painter. His paintings, which</strong>
-                </div>
-                <div class="text-line">
-                    <strong>mostly depict the peaceful countryside around his home village in</strong>
-                </div>
-                <div class="text-line">
-                    <strong>eastern England, sell very well. Perhaps this shouldn't <span class="blank" data-answer="come" data-number="1">(1)</span> as</strong>
-                </div>
-                <div class="text-line">
-                    <strong>that much of a surprise. It's a beautiful part of</strong>
-                </div>
-                <div class="text-line">
-                    <strong>the world, and landscape paintings are always popular.</strong>
-                </div>
                 
-                <div class="text-line">
-                    <strong>The strange thing about Kieron, however, <span class="blank" data-answer="is" data-number="2">(2)</span> that he</strong>
-                </div>
-                <div class="text-line">
-                    <strong>is only seven years old. At a recent exhibition of</strong>
-                </div>
-                <div class="text-line">
-                    <strong>his work, all the paintings were sold in half an</strong>
-                </div>
-                <div class="text-line">
-                    <strong>hour, some for £100,000 each. Kieron now has fans all</strong>
-                </div>
-                <div class="text-line">
-                    <strong>over the world and has gained the nickname 'the Mini-Monet'.</strong>
-                </div>
-                
-                <div class="text-line">
-                    <strong>What's even <span class="blank" data-answer="more" data-number="3">(3)</span> surprising is that Kieron doesn't</strong>
-                </div>
-                <div class="text-line">
-                    <strong>come from an artistic family, and only started painting two</strong>
-                </div>
-                <div class="text-line">
-                    <strong>years <span class="blank" data-answer="ago" data-number="4">(4)</span>. He first got inspiration <span class="blank" data-answer="from" data-number="5">(5)</span> some boats</strong>
-                </div>
-                <div class="text-line">
-                    <strong>he saw on holiday at the seaside. Kieron asked his</strong>
-                </div>
-                <div class="text-line">
-                    <strong>parents if they <span class="blank" data-answer="could" data-number="6">(6)</span> buy him a sketch pad</strong>
-                </div>
-                <div class="text-line">
-                    <strong>and pencils <span class="blank" data-answer="so" data-number="7">(7)</span> that he could draw them. Only</strong>
-                </div>
-                <div class="text-line">
-                    <strong>when they saw <span class="blank" data-answer="how" data-number="8">(8)</span> well he drew did they</strong>
-                </div>
-                <div class="text-line">
-                    <strong>realise that he was talented.</strong>
+                <div id="textContent">
+                    <!-- Text content will be loaded dynamically -->
                 </div>
             </div>
 
-            <!-- 8 Circles: circle 7 reduced, circles 1&5 moved left -->
-            <div class="circle extra-large-large" data-number="1">
-                <div class="circle-number">1</div>
-                <input type="text" class="circle-input" maxlength="10">
-            </div>
-            <div class="circle standard" data-number="3">
-                <div class="circle-number">3</div>
-                <input type="text" class="circle-input" maxlength="10">
-            </div>
-            <div class="circle extra-large-large" data-number="5">
-                <div class="circle-number">5</div>
-                <input type="text" class="circle-input" maxlength="10">
-            </div>
-            <div class="circle standard" data-number="7">
-                <div class="circle-number">7</div>
-                <input type="text" class="circle-input" maxlength="10">
-            </div>
-            <div class="circle standard" data-number="2">
-                <div class="circle-number">2</div>
-                <input type="text" class="circle-input" maxlength="10">
-            </div>
-            <div class="circle extra-large-large" data-number="6">
-                <div class="circle-number">6</div>
-                <input type="text" class="circle-input" maxlength="10">
-            </div>
-            <div class="circle standard" data-number="4">
-                <div class="circle-number">4</div>
-                <input type="text" class="circle-input" maxlength="10">
-            </div>
-            <div class="circle extra-large-large" data-number="8">
-                <div class="circle-number">8</div>
-                <input type="text" class="circle-input" maxlength="10">
+            <div id="circlesContainer">
+                <!-- Circles will be loaded dynamically -->
             </div>
         </div>
 
@@ -469,53 +387,305 @@
 
     <script>
         let isChecked = false;
+        let exerciseData = null;
+        let currentTestIndex = 0;
 
-        // Add click functionality to circles
-        document.querySelectorAll('.circle').forEach(circle => {
-            circle.addEventListener('click', function() {
-                const number = this.dataset.number;
-                const input = this.querySelector('.circle-input');
-                const word = input.value.trim();
-                const blank = document.querySelector(`[data-number="${number}"]`);
+        // 10 Modern color schemes for different tests
+        const colorSchemes = [
+            'linear-gradient(135deg, #8B4B9C 0%, #A855B8 25%, #B968C7 50%, #D8A8DB 75%, #E5C3E8 100%)', // Purple (default)
+            'linear-gradient(135deg, #84CC16 0%, #65A30D 25%, #4D7C0F 50%, #22C55E 75%, #86EFAC 100%)', // Lime Green
+            'linear-gradient(135deg, #0EA5E9 0%, #0284C7 25%, #0369A1 50%, #38BDF8 75%, #BAE6FD 100%)', // Sky Blue
+            'linear-gradient(135deg, #DC2626 0%, #B91C1C 25%, #991B1B 50%, #EF4444 75%, #FCA5A5 100%)', // Brick Red
+            'linear-gradient(135deg, #EA580C 0%, #DC2626 25%, #C2410C 50%, #FB923C 75%, #FED7AA 100%)', // Orange
+            'linear-gradient(135deg, #7C3AED 0%, #6D28D9 25%, #5B21B6 50%, #8B5CF6 75%, #C4B5FD 100%)', // Deep Purple
+            'linear-gradient(135deg, #059669 0%, #047857 25%, #065F46 50%, #10B981 75%, #A7F3D0 100%)', // Emerald
+            'linear-gradient(135deg, #DB2777 0%, #BE185D 25%, #9D174D 50%, #EC4899 75%, #F9A8D4 100%)', // Pink
+            'linear-gradient(135deg, #0891B2 0%, #0E7490 25%, #155E75 50%, #22D3EE 75%, #A5F3FC 100%)', // Cyan
+            'linear-gradient(135deg, #7C2D12 0%, #92400E 25%, #A16207 50%, #F59E0B 75%, #FDE68A 100%)'  // Amber
+        ];
+
+        // Array of all test data - you'll populate this with your 10 JSON structures
+        const allTests = [
+            // Test 1 - Original (Kieron Williamson)
+            {
+                exercise: {
+                    title: "INTUITY",
+                    subtitle: "Use of English Part 2",
+                    instructions: "Type answers in numbered circles, then click the circle to transfer to blanks.",
+                    totalBlanks: 8
+                },
+                text: {
+                    segments: [
+                        { content: "Kieron Williamson is a very successful landscape painter. His paintings, which", blanks: [] },
+                        { content: "mostly depict the peaceful countryside around his home village in", blanks: [] },
+                        { content: "eastern England, sell very well. Perhaps this shouldn't", blanks: [{ number: 1, answer: "come", position: "after" }], afterText: "as" },
+                        { content: "that much of a surprise. It's a beautiful part of", blanks: [] },
+                        { content: "the world, and landscape paintings are always popular.", blanks: [] },
+                        { content: "", blanks: [] },
+                        { content: "The strange thing about Kieron, however,", blanks: [{ number: 2, answer: "is", position: "after" }], afterText: "that he" },
+                        { content: "is only seven years old. At a recent exhibition of", blanks: [] },
+                        { content: "his work, all the paintings were sold in half an", blanks: [] },
+                        { content: "hour, some for £100,000 each. Kieron now has fans all", blanks: [] },
+                        { content: "over the world and has gained the nickname 'the Mini-Monet'.", blanks: [] },
+                        { content: "", blanks: [] },
+                        { content: "What's even", blanks: [{ number: 3, answer: "more", position: "after" }], afterText: "surprising is that Kieron doesn't" },
+                        { content: "come from an artistic family, and only started painting two", blanks: [] },
+                        { content: "years", blanks: [{ number: 4, answer: "ago", position: "after" }], afterText: ". He first got inspiration", continueBlanks: [{ number: 5, answer: "from", position: "after" }], finalText: "some boats" },
+                        { content: "he saw on holiday at the seaside. Kieron asked his", blanks: [] },
+                        { content: "parents if they", blanks: [{ number: 6, answer: "could", position: "after" }], afterText: "buy him a sketch pad" },
+                        { content: "and pencils", blanks: [{ number: 7, answer: "so", position: "after" }], afterText: "that he could draw them. Only" },
+                        { content: "when they saw", blanks: [{ number: 8, answer: "how", position: "after" }], afterText: "well he drew did they" },
+                        { content: "realise that he was talented.", blanks: [] }
+                    ]
+                }
+            },
+            
+            // Test 2 - Saving the Tiger
+            {
+                exercise: {
+                    title: "INTUITY",
+                    subtitle: "Use of English Part 2",
+                    instructions: "Type answers in numbered circles, then click the circle to transfer to blanks.",
+                    totalBlanks: 8
+                },
+                text: {
+                    segments: [
+                        { content: "In 1973, when the tiger appeared to be", blanks: [{ number: 1, answer: "facing", position: "after" }], afterText: "extinction, the World Wide" },
+                        { content: "Fund for Nature and", blanks: [{ number: 2, answer: "the", position: "after" }], afterText: "Indian Government agreed to set" },
+                        { content: "", blanks: [{ number: 3, answer: "up", position: "after" }], afterText: "Operation Tiger to save this threatened creature." },
+                        { content: "They started by creating special parks so that tigers could", blanks: [] },
+                        { content: "live in safety. The first was at Ranthambore, which was turning", blanks: [] },
+                        { content: "into a desert", blanks: [{ number: 4, answer: "because", position: "after" }], afterText: "too much grass was being eaten" },
+                        { content: "by local people's cattle. The government had to clear twelve", blanks: [] },
+                        { content: "villages so the land could be handed back to nature.", blanks: [] },
+                        { content: "", blanks: [] },
+                        { content: "Today, Ranthambore has grass tall", blanks: [{ number: 5, answer: "enough", position: "after" }], afterText: "for tigers to" },
+                        { content: "hide in, and there are now forty tigers wandering freely. There are", blanks: [] },
+                        { content: "many", blanks: [{ number: 6, answer: "more", position: "after" }], afterText: "deer and monkeys than before. The people who" },
+                        { content: "were moved now live in better conditions, away", blanks: [{ number: 7, answer: "from", position: "after" }], afterText: "the" },
+                        { content: "tiger park. The animal's future now looks", blanks: [{ number: 8, answer: "much", position: "after" }], afterText: "safer." }
+                    ]
+                }
+            },
+
+            // Test 3 - London Marathon  
+            {
+                exercise: {
+                    title: "INTUITY",
+                    subtitle: "Use of English Part 2",
+                    instructions: "Type answers in numbered circles, then click the circle to transfer to blanks.",
+                    totalBlanks: 8
+                },
+                text: {
+                    segments: [
+                        { content: "The London Marathon is one of the best-known long-distance races", blanks: [{ number: 1, answer: "in", position: "after" }], afterText: "the" },
+                        { content: "world. Two million professional runners have competed in it. But", blanks: [] },
+                        { content: "", blanks: [{ number: 2, answer: "what", position: "after" }], afterText: "makes it different from other sporting events is" },
+                        { content: "", blanks: [{ number: 3, answer: "that", position: "after" }], afterText: "ordinary people can also participate." },
+                        { content: "", blanks: [] },
+                        { content: "The race was Chris Brasher's idea, a former Olympic athlete. In", blanks: [] },
+                        { content: "1979, he heard about the New York Marathon, during", blanks: [{ number: 4, answer: "which", position: "after" }], afterText: "the" },
+                        { content: "runners are encouraged by enthusiastic spectators. He was so", blanks: [] },
+                        { content: "impressed that he decided to organise a similar event in Britain.", blanks: [] },
+                        { content: "Many problems", blanks: [{ number: 5, answer: "had", position: "after" }], afterText: "to be overcome before the first" },
+                        { content: "London Marathon took place in 1981.", blanks: [] },
+                        { content: "", blanks: [] },
+                        { content: "Since then, around 300,000 runners have completed the race.", blanks: [] },
+                        { content: "Numbers are limited", blanks: [{ number: 6, answer: "because", position: "after" }], afterText: "the streets of London are too" },
+                        { content: "narrow. Each year more than 70,000 people apply", blanks: [{ number: 7, answer: "for", position: "after" }], afterText: "the" },
+                        { content: "26,000 places in the race. Hundreds of thousands of spectators", blanks: [] },
+                        { content: "line the route and 150 countries televise it. Over the years,", blanks: [{ number: 8, answer: "since", position: "after" }], afterText: "the" },
+                        { content: "first race, £75 million has been raised for charity.", blanks: [] }
+                    ]
+                }
+            }
+
+            // Add remaining 7 tests here...
+        ];
+
+        // Change background color
+        function changeBackgroundColor(testIndex) {
+            document.body.style.background = colorSchemes[testIndex % colorSchemes.length];
+        }
+
+        // Load exercise data from JSON file or use built-in tests
+        async function loadExerciseData() {
+            try {
+                const response = await fetch('fetchdata-for-gapfill-test10.json');
+                const jsonData = await response.json();
+                // If external JSON exists, use it, otherwise use built-in tests
+                exerciseData = jsonData || allTests[currentTestIndex];
+                initializeExercise();
+            } catch (error) {
+                console.error('Using built-in test data:', error);
+                // Use built-in test data
+                loadTestData(currentTestIndex);
+            }
+        }
+
+        // Load specific test data
+        function loadTestData(testIndex) {
+            if (testIndex < allTests.length) {
+                exerciseData = allTests[testIndex];
+                changeBackgroundColor(testIndex);
+                initializeExercise();
+            } else {
+                // All tests completed
+                alert('Congratulations! You have completed all 10 tests!');
+                currentTestIndex = 0; // Reset to beginning
+                loadTestData(currentTestIndex);
+            }
+        }
+
+        // Initialize the exercise with loaded data
+        function initializeExercise() {
+            // Set titles and instructions
+            document.getElementById('mainTitle').textContent = exerciseData.exercise.title;
+            document.getElementById('subTitle').textContent = exerciseData.exercise.subtitle;
+            document.getElementById('instructions').innerHTML = `<strong>Instructions:</strong> ${exerciseData.exercise.instructions}`;
+            
+            // Generate text content
+            generateTextContent();
+            
+            // Generate circles
+            generateCircles();
+            
+            // Update score display
+            document.getElementById('score').textContent = `0/${exerciseData.exercise.totalBlanks}`;
+            
+            // Add event listeners
+            addEventListeners();
+            
+            // Focus first input
+            setTimeout(() => {
+                const firstInput = document.querySelector('.circle-input');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        }
+
+        // Generate text content with blanks
+        function generateTextContent() {
+            const textContainer = document.getElementById('textContent');
+            textContainer.innerHTML = '';
+
+            exerciseData.text.segments.forEach(segment => {
+                const line = document.createElement('div');
+                line.className = 'text-line';
                 
-                if (word) {
-                    // Transfer word to blank
-                    blank.textContent = `(${number}) ${word}`;
-                    blank.classList.add('filled');
+                let content = `<strong>${segment.content}`;
+                
+                // Add blanks
+                if (segment.blanks && segment.blanks.length > 0) {
+                    segment.blanks.forEach(blank => {
+                        content += ` <span class="blank" data-answer="${blank.answer}" data-number="${blank.number}">(${blank.number})</span>`;
+                    });
                     
-                    // Keep word in circle and make it bold
-                    input.style.fontWeight = 'bold';
-                    
-                    // Visual feedback
-                    this.style.background = 'rgba(74, 222, 128, 0.3)';
-                    setTimeout(() => {
-                        this.style.background = 'rgba(255, 255, 255, 0.4)';
-                    }, 300);
+                    if (segment.afterText) {
+                        content += ` ${segment.afterText}`;
+                    }
                 }
                 
-                updateScore();
-            });
-        });
-
-        // Make input text bold when typing
-        document.querySelectorAll('.circle-input').forEach(input => {
-            input.addEventListener('input', function() {
-                if (this.value.trim()) {
-                    this.style.fontWeight = 'bold';
-                } else {
-                    this.style.fontWeight = 'normal';
+                // Add continue blanks (for complex segments)
+                if (segment.continueBlanks && segment.continueBlanks.length > 0) {
+                    segment.continueBlanks.forEach(blank => {
+                        content += ` <span class="blank" data-answer="${blank.answer}" data-number="${blank.number}">(${blank.number})</span>`;
+                    });
+                    
+                    if (segment.finalText) {
+                        content += ` ${segment.finalText}`;
+                    }
                 }
+                
+                content += '</strong>';
+                line.innerHTML = content;
+                textContainer.appendChild(line);
             });
-        });
+        }
 
-        // Allow Enter key to trigger click
-        document.querySelectorAll('.circle-input').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    this.parentElement.click();
-                }
+        // Generate circles
+        function generateCircles() {
+            const circlesContainer = document.getElementById('circlesContainer');
+            circlesContainer.innerHTML = '';
+
+            // Use default circle layout if not specified
+            const defaultCircles = [
+                { number: 1, size: "extra-large-large", position: { top: "7px", left: "165px" } },
+                { number: 2, size: "standard", position: { top: "7px", left: "850px" } },
+                { number: 3, size: "standard", position: { top: "169px", left: "210px" } },
+                { number: 4, size: "extra-large-large", position: { top: "127px", left: "850px" } },
+                { number: 5, size: "extra-large-large", position: { top: "290px", left: "165px" } },
+                { number: 6, size: "standard", position: { top: "294px", left: "850px" } },
+                { number: 7, size: "standard", position: { top: "452px", left: "210px" } },
+                { number: 8, size: "extra-large-large", position: { top: "414px", left: "850px" } }
+            ];
+
+            const circleLayout = exerciseData.circles ? exerciseData.circles.layout : defaultCircles;
+
+            circleLayout.forEach(circle => {
+                const circleElement = document.createElement('div');
+                circleElement.className = `circle ${circle.size}`;
+                circleElement.setAttribute('data-number', circle.number);
+                circleElement.style.top = circle.position.top;
+                circleElement.style.left = circle.position.left;
+                
+                circleElement.innerHTML = `
+                    <div class="circle-number">${circle.number}</div>
+                    <input type="text" class="circle-input" maxlength="10">
+                `;
+                
+                circlesContainer.appendChild(circleElement);
             });
-        });
+        }
+
+        // Add event listeners
+        function addEventListeners() {
+            // Add click functionality to circles
+            document.querySelectorAll('.circle').forEach(circle => {
+                circle.addEventListener('click', function() {
+                    const number = this.dataset.number;
+                    const input = this.querySelector('.circle-input');
+                    const word = input.value.trim();
+                    const blank = document.querySelector(`[data-number="${number}"]`);
+                    
+                    if (word) {
+                        // Transfer word to blank
+                        blank.textContent = `(${number}) ${word}`;
+                        blank.classList.add('filled');
+                        
+                        // Keep word in circle and make it bold
+                        input.style.fontWeight = 'bold';
+                        
+                        // Visual feedback
+                        this.style.background = 'rgba(74, 222, 128, 0.3)';
+                        setTimeout(() => {
+                            this.style.background = 'rgba(255, 255, 255, 0.4)';
+                        }, 300);
+                    }
+                    
+                    updateScore();
+                });
+            });
+
+            // Make input text bold when typing
+            document.querySelectorAll('.circle-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.trim()) {
+                        this.style.fontWeight = 'bold';
+                    } else {
+                        this.style.fontWeight = 'normal';
+                    }
+                });
+            });
+
+            // Allow Enter key to trigger click
+            document.querySelectorAll('.circle-input').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        this.parentElement.click();
+                    }
+                });
+            });
+        }
 
         function updateScore() {
             if (isChecked) return;
@@ -524,7 +694,7 @@
             document.querySelectorAll('.blank').forEach(blank => {
                 if (blank.classList.contains('filled')) filled++;
             });
-            document.getElementById('score').textContent = `${filled}/8`;
+            document.getElementById('score').textContent = `${filled}/${exerciseData.exercise.totalBlanks}`;
         }
 
         function checkAnswers() {
@@ -556,10 +726,10 @@
                 }
             });
             
-            document.getElementById('score').textContent = `${correct}/8`;
+            document.getElementById('score').textContent = `${correct}/${exerciseData.exercise.totalBlanks}`;
             
             // Show result message
-            const percentage = (correct / 8) * 100;
+            const percentage = (correct / exerciseData.exercise.totalBlanks) * 100;
             let message = '';
             if (percentage >= 80) {
                 message = '🎉 Excellent work!';
@@ -570,7 +740,7 @@
             }
             
             setTimeout(() => {
-                alert(`${message}\nYou scored ${correct} out of 8 (${percentage.toFixed(0)}%)`);
+                alert(`${message}\nYou scored ${correct} out of ${exerciseData.exercise.totalBlanks} (${percentage.toFixed(0)}%)`);
             }, 500);
         }
 
@@ -589,11 +759,13 @@
                 input.style.fontWeight = 'normal';
             });
             
-            document.getElementById('score').textContent = '0/8';
+            document.getElementById('score').textContent = `0/${exerciseData.exercise.totalBlanks}`;
         }
 
         function nextExercise() {
-            alert('Next exercise would load here in a real application.');
+            currentTestIndex++;
+            isChecked = false;
+            loadTestData(currentTestIndex);
         }
 
         function returnToMenu() {
@@ -619,9 +791,10 @@
             }
         });
 
-        // Focus first input on load
+        // Load exercise data when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.circle-input').focus();
+            changeBackgroundColor(currentTestIndex);
+            loadExerciseData();
         });
     </script>
 </body>
