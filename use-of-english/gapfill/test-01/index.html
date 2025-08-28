@@ -1,1 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCE Cambridge - Use of English</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #8B4B9C 0%, #A855B8 25%, #B968C7 50%, #D8A8DB 75%, #E5C3E8 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: white;
+            margin: 15px 0 5px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .sub-title {
+            text-align: center;
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .content-area {
+            position: relative;
+            margin: 0 140px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .text-content {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 6mm;
+            border-radius: 15px;
+            line-height: 1.6;
+            font-size: 0.75em;
+            color: #2d1b3d;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            width: fit-content;
+            max-width: 500px;
+        }
+
+        .instructions {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 0.9em;
+            color: #2d1b3d;
+            border: none;
+        }
+
+        .text-line {
+            margin-bottom: 8px;
+        }
+
+        .blank {
+            display: inline-block;
+            min-width: 50px;
+            height: 18px;
+            border-bottom: 1px solid #8B4B9C;
+            margin: 0 2px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.75em;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .blank.filled {
+            background: rgba(139, 75, 156, 0.1);
+            border-radius: 3px;
+            border-bottom: 1px solid #4ade80;
+        }
+
+        .blank.correct {
+            background: #4ade80;
+            color: white;
+        }
+
+        .blank.incorrect {
+            background: #f97316;
+            color: white;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3), 
+                       -8px -8px 16px rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2d1b3d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .circle-number {
+            position: absolute;
+            top: 65%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #2d1b3d;
+            z-index: 10;
+        }
+
+        .circle-input {
+            position: absolute;
+            top: 65%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 30px;
+            border: 2px solid rgba(45, 27, 61, 0.5);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 1);
+            color: #2d1b3d;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1em;
+            outline: none;
+            z-index: 15;
+        }
+
+        .circle-input:focus {
+            border-color: #4ade80;
+            box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
+        }
+
+        .green-arrow {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2),
+                       -2px -2px 6px rgba(255, 255, 255, 0.9);
+            z-index: 10;
+        }
+
+        .green-arrow::after {
+            content: '↓';
+            color: #2d1b3d;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .circle input {
+            display: none;
+        }
+
+        .circle:hover {
+            transform: translateY(-3px);
+            box-shadow: 12px 12px 24px rgba(0, 0, 0, 0.4), 
+                       -12px -12px 24px rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Standard size circles */
+        .circle.standard {
+            width: 147px;
+            height: 147px;
+        }
+
+        .circle.standard input {
+            font-size: 0.7em;
+        }
+
+        /* Large size circles */
+        .circle.large {
+            width: 210px;
+            height: 210px;
+        }
+
+        .circle.large input {
+            font-size: 0.9em;
+        }
+
+        /* Left side circles - wavy alignment */
+        .circle:nth-child(2) { top: 180px; left: -125px; }  /* 3 - standard (moved further out) */
+        .circle:nth-child(3) { top: 280px; left: -140px; }  /* 5 - large */
+        .circle:nth-child(4) { top: 380px; left: -125px; }  /* 7 - standard (moved further out) */
+        .circle:nth-child(8) { top: 500px; left: -140px; }  /* 8 - large (moved to left side) */
+        
+        /* Right side circles - wavy alignment */
+        .circle:nth-child(5) { top: 100px; right: -125px; } /* 2 - standard (moved further out) */
+        .circle:nth-child(6) { top: 200px; right: -140px; } /* 4 - large */
+        .circle:nth-child(7) { top: 300px; right: -125px; } /* 6 - standard (moved further out) */
+        .circle:nth-child(1) { top: 400px; right: -140px; } /* 1 - large (moved to right side) */
+
+        .arrow {
+            display: none;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.65em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4ade80, #22c55e);
+            color: white;
+            box-shadow: 0 3px 10px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+            color: white;
+            box-shadow: 0 3px 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-tertiary {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            color: white;
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 3px 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .score {
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 12px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 8px;
+            }
+            
+            .content-area {
+                margin: 0 140px;
+            }
+            
+            .circle.standard {
+                width: 105px;
+                height: 105px;
+            }
+            
+            .circle.large {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .circle-number {
+                font-size: 1.4em;
+            }
+            
+            .circle-input {
+                width: 65px;
+                height: 25px;
+                font-size: 0.9em;
+            }
+            
+            .green-arrow {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .green-arrow::after {
+                font-size: 18px;
+            }
+            
+            .circle:nth-child(1) { left: -110px; }  /* 1 */
+            .circle:nth-child(2) { left: -85px; }   /* 3 */
+            .circle:nth-child(3) { left: -110px; }  /* 5 */
+            .circle:nth-child(4) { left: -85px; }   /* 7 */
+            .circle:nth-child(5) { right: -85px; }  /* 2 */
+            .circle:nth-child(6) { right: -110px; } /* 4 */
+            .circle:nth-child(7) { right: -85px; }  /* 6 */
+            .circle:nth-child(8) { right: -20px; }  /* 8 moved 5cm more right */
+            
+            .text-content {
+                font-size: 0.7em;
+                padding: 4mm;
+            }
+            
+            .instructions {
+                font-size: 0.84em;
+            }
+            
+            .main-title {
+                font-size: 1.5em;
+            }
+            
+            .sub-title {
+                font-size: 0.9em;
+            }
+            
+            .footer-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-area {
+                margin: 0 110px;
+            }
+            
+            .circle.standard {
+                width: 84px;
+                height: 84px;
+            }
+            
+            .circle.large {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .circle-number {
+                font-size: 1.2em;
+            }
+            
+            .circle-input {
+                width: 55px;
+                height: 22px;
+                font-size: 0.8em;
+            }
+            
+            .green-arrow {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .green-arrow::after {
+                font-size: 16px;
+            }
+            
+            .circle:nth-child(1) { left: -90px; }   /* 1 */
+            .circle:nth-child(2) { left: -70px; }   /* 3 */
+            .circle:nth-child(3) { left: -90px; }   /* 5 */
+            .circle:nth-child(4) { left: -70px; }   /* 7 */
+            .circle:nth-child(5) { right: -70px; }  /* 2 */
+            .circle:nth-child(6) { right: -90px; }  /* 4 */
+            .circle:nth-child(7) { right: -70px; }  /* 6 */
+            .circle:nth-child(8) { right: 0px; }    /* 8 moved 5cm more right */
+            
+            .text-content {
+                font-size: 0.65em;
+                padding: 3mm;
+            }
+            
+            .instructions {
+                font-size: 0.78em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">INTUITY</h1>
+        <h2 class="sub-title">Use of English Part 2</h2>
+
+        <div class="content-area">
+            <div class="text-content">
+                <div class="instructions">
+                    <strong>Instructions:</strong> Type answers in numbered circles to fill blanks.
+                </div>
+
+                <div class="text-line">
+                    <strong>Kieron Williamson is a very successful landscape painter. His paintings, which
+                </strong>
+                </div>
+                <div class="text-line">
+                    <strong>mostly depict the peaceful countryside around his home village in</strong>
+                </div>
+                <div class="text-line">
+                    <strong>eastern England, sell very well. Perhaps this shouldn't <span class="blank" data-answer="come" data-number="1">(1)</span> as</strong>
+                </div>
+                <div class="text-line">
+                    <strong>that much of a surprise. It's a beautiful part of</strong>
+                </div>
+                <div class="text-line">
+                    <strong>the world, and landscape paintings are always popular.</strong>
+                </div>
+                
+                <div class="text-line">
+                    <strong>The strange thing about Kieron, however, <span class="blank" data-answer="is" data-number="2">(2)</span> that he</strong>
+                </div>
+                <div class="text-line">
+                    <strong>is only seven years old. At a recent exhibition of</strong>
+                </div>
+                <div class="text-line">
+                    <strong>his work, all the paintings were sold in half an</strong>
+                </div>
+                <div class="text-line">
+                    <strong>hour, some for £100,000 each. Kieron now has fans all</strong>
+                </div>
+                <div class="text-line">
+                    <strong>over the world and has gained the nickname 'the Mini-Monet'.</strong>
+                </div>
+                
+                <div class="text-line">
+                    <strong>What's even <span class="blank" data-answer="more" data-number="3">(3)</span> surprising is that Kieron doesn't</strong>
+                </div>
+                <div class="text-line">
+                    <strong>come from an artistic family, and only started painting two</strong>
+                </div>
+                <div class="text-line">
+                    <strong>years <span class="blank" data-answer="ago" data-number="4">(4)</span>. He first got inspiration <span class="blank" data-answer="from" data-number="5">(5)</span> some boats</strong>
+                </div>
+                <div class="text-line">
+                    <strong>he saw on holiday at the seaside. Kieron asked his</strong>
+                </div>
+                <div class="text-line">
+                    <strong>parents if they <span class="blank" data-answer="could" data-number="6">(6)</span> buy him a sketch pad</strong>
+                </div>
+                <div class="text-line">
+                    <strong>and pencils <span class="blank" data-answer="so" data-number="7">(7)</span> that he could draw them. Only</strong>
+                </div>
+                <div class="text-line">
+                    <strong>when they saw <span class="blank" data-answer="how" data-number="8">(8)</span> well he drew did they</strong>
+                </div>
+                <div class="text-line">
+                    <strong>realise that he was talented.</strong>
+                </div>
+            </div>
+
+            <!-- Circles positioned around the content -->
+            <div class="circle large" data-number="1">
+                <div class="circle-number">1</div>
+                <input type="text" class="circle-input" maxlength="10" value="Joy">
+                <div class="green-arrow"></div>
+            </div>
+            <div class="circle standard" data-number="3">
+                <div class="circle-number">3</div>
+                <input type="text" class="circle-input" maxlength="10" value="Love">
+                <div class="green-arrow"></div>
+            </div>
+            <div class="circle large" data-number="5">
+                <div class="circle-number">5</div>
+                <input type="text" class="circle-input" maxlength="10" value="Dream">
+                <div class="green-arrow"></div>
+            </div>
+            <div class="circle standard" data-number="7">
+                <div class="circle-number">7</div>
+                <input type="text" class="circle-input" maxlength="10" value="Shine">
+                <div class="green-arrow"></div>
+            </div>
+            <div class="circle standard" data-number="2">
+                <div class="circle-number">2</div>
+                <input type="text" class="circle-input" maxlength="10" value="Hope">
+                <div class="green-arrow"></div>
+            </div>
+            <div class="circle large" data-number="4">
+                <div class="circle-number">4</div>
+                <input type="text" class="circle-input" maxlength="10" value="Peace">
+                <div class="green-arrow"></div>
+            </div>
+            <div class="circle standard" data-number="6">
+                <div class="circle-number">6</div>
+                <input type="text" class="circle-input" maxlength="10" value="Smile">
+                <div class="green-arrow"></div>
+            </div>
+            <div class="circle large" data-number="8">
+                <div class="circle-number">8</div>
+                <input type="text" class="circle-input" maxlength="10" value="Happy">
+                <div class="green-arrow"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-buttons">
+                <button class="btn btn-primary" onclick="checkAnswers()">Check Answers</button>
+                <button class="btn btn-secondary" onclick="repeatExercise()">Repeat</button>
+                <button class="btn btn-tertiary" onclick="nextExercise()">Next</button>
+                <button class="btn btn-danger" onclick="returnToMenu()">Return to Menu</button>
+            </div>
+            <div class="score">Score: <span id="score">0/8</span></div>
+        </div>
+    </div>
+
+    <script>
+        let isChecked = false;
+
+        // Auto-fill blanks as user types in circles
+        document.querySelectorAll('.circle-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const circle = this.parentElement;
+                const number = circle.dataset.number;
+                const blank = document.querySelector(`[data-number="${number}"]`);
+                const word = this.value.trim();
+                
+                if (word) {
+                    blank.textContent = `(${number}) ${word}`;
+                    blank.classList.add('filled');
+                } else {
+                    blank.textContent = `(${number})`;
+                    blank.classList.remove('filled', 'correct', 'incorrect');
+                }
+                
+                updateScore();
+            });
+        });
+
+        // Clear functionality for blanks - DISABLED
+        // Students can only type in circles, not in blanks
+
+        function updateScore() {
+            if (isChecked) return;
+            
+            let filled = 0;
+            document.querySelectorAll('.circle-input').forEach(input => {
+                if (input.value.trim()) filled++;
+            });
+            document.getElementById('score').textContent = `${filled}/8`;
+        }
+
+        function checkAnswers() {
+            isChecked = true;
+            let correct = 0;
+            
+            document.querySelectorAll('.blank').forEach(blank => {
+                const number = blank.dataset.number;
+                const correctAnswer = blank.dataset.answer;
+                const input = document.querySelector(`[data-number="${number}"] .circle-input`);
+                const userAnswer = input.value.trim();
+                
+                blank.classList.remove('filled');
+                
+                if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    blank.classList.add('correct');
+                    correct++;
+                } else {
+                    blank.classList.add('incorrect');
+                }
+            });
+            
+            document.getElementById('score').textContent = `${correct}/8`;
+            
+            // Show result message
+            const percentage = (correct / 8) * 100;
+            let message = '';
+            if (percentage >= 80) {
+                message = '🎉 Excellent work!';
+            } else if (percentage >= 60) {
+                message = '👍 Good job!';
+            } else {
+                message = '📚 Keep practicing!';
+            }
+            
+            setTimeout(() => {
+                alert(`${message}\nYou scored ${correct} out of 8 (${percentage.toFixed(0)}%)`);
+            }, 500);
+        }
+
+        function repeatExercise() {
+            // Reset everything
+            isChecked = false;
+            
+            document.querySelectorAll('.blank').forEach(blank => {
+                const number = blank.dataset.number;
+                blank.textContent = `(${number})`;
+                blank.classList.remove('filled', 'correct', 'incorrect');
+            });
+            
+            document.querySelectorAll('.circle-input').forEach(input => {
+                input.value = '';
+            });
+            
+            document.getElementById('score').textContent = '0/8';
+        }
+
+        function nextExercise() {
+            alert('Next exercise would load here in a real application.');
+        }
+
+        function returnToMenu() {
+            alert('Returning to main menu...');
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const inputs = Array.from(document.querySelectorAll('.circle-input'));
+                const currentIndex = inputs.findIndex(input => input === document.activeElement);
+                
+                if (e.shiftKey) {
+                    // Shift+Tab - go to previous
+                    const prevIndex = currentIndex > 0 ? currentIndex - 1 : inputs.length - 1;
+                    inputs[prevIndex].focus();
+                } else {
+                    // Tab - go to next
+                    const nextIndex = currentIndex < inputs.length - 1 ? currentIndex + 1 : 0;
+                    inputs[nextIndex].focus();
+                }
+            }
+        });
+
+        // Focus first input on load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.circle-input').focus();
+        });
+    </script>
+</body>
+</html>
