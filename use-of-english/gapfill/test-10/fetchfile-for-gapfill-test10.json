@@ -1,4 +1,3 @@
-
 {
   "exercise": {
     "title": "INTUITY",
@@ -800,6 +799,990 @@
         {
           "content": "Haines, who continues to investigate UFO reports with enthusiasm.",
           "blanks": []
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  }
+}
+{
+  "text5_future_of_car": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "The car is central",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "to",
+              "position": "after"
+            }
+          ],
+          "afterText": "our way of life. To some it's a symbol of"
+        },
+        {
+          "content": "freedom, to others just the quickest way of getting from A to B.",
+          "blanks": []
+        },
+        {
+          "content": "Yet, with ever more cars on",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "the",
+              "position": "after"
+            }
+          ],
+          "afterText": "road and ever worse traffic"
+        },
+        {
+          "content": "and pollution, there is a growing awareness that we",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "need",
+              "position": "after"
+            }
+          ],
+          "afterText": "to survive"
+        },
+        {
+          "content": "as a means of transport must change fundamentally.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "'The Car - Your Future' is an exhibition put",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "together",
+              "position": "after"
+            }
+          ],
+          "afterText": "by the Science"
+        },
+        {
+          "content": "Museum in London, which shows ways that technical improvements",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "could",
+              "position": "after"
+            }
+          ],
+          "afterText": "bring a bright future for the car. Displays include"
+        },
+        {
+          "content": "electric engines, alternative fuels and new materials from",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "which",
+              "position": "after"
+            }
+          ],
+          "afterText": "the cars"
+        },
+        {
+          "content": "of the future will be made.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "The emphasis is on the environment. New inventions,",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "such",
+              "position": "after"
+            }
+          ],
+          "afterText": "as solar and"
+        },
+        {
+          "content": "battery-powered vehicles, will provide cleaner alternatives in the",
+          "blanks": []
+        },
+        {
+          "content": "future. New, stronger steels are also being developed.",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "These",
+              "position": "after"
+            }
+          ],
+          "afterText": "will make"
+        },
+        {
+          "content": "the car's body lighter and more efficient, so that it needs less fuel",
+          "blanks": []
+        },
+        {
+          "content": "to go the same distance.",
+          "blanks": []
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  },
+
+  "text6_bees": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Bees are important",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "to",
+              "position": "after"
+            }
+          ],
+          "afterText": "us not just because they make honey."
+        },
+        {
+          "content": "They play an important part in agricultural production.",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "They",
+              "position": "after"
+            }
+          ],
+          "afterText": "are never"
+        },
+        {
+          "content": "found very far from the flowers which provide them",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "with",
+              "position": "after"
+            }
+          ],
+          "afterText": "food. When it"
+        },
+        {
+          "content": "lands on a flower, a bee picks up several substances including a",
+          "blanks": []
+        },
+        {
+          "content": "yellow powder called pollen. The bee uses its large, tube-shaped",
+          "blanks": []
+        },
+        {
+          "content": "tongue to suck the pollen up from inside the flower.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "Bees spend a lot",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "of",
+              "position": "after"
+            }
+          ],
+          "afterText": "time looking for flowers which contain"
+        },
+        {
+          "content": "pollen. Because they do not eat, they will die in twenty-four hours.",
+          "blanks": []
+        },
+        {
+          "content": "When a bee discovers a new source, it can inform other bees of the",
+          "blanks": []
+        },
+        {
+          "content": "location of the flowers by",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "doing",
+              "position": "after"
+            }
+          ],
+          "afterText": "a special dance. This movement"
+        },
+        {
+          "content": "is a message to the other bees about which direction to fly. When",
+          "blanks": []
+        },
+        {
+          "content": "they are carrying pollen, bees accidentally drop some of it onto other",
+          "blanks": []
+        },
+        {
+          "content": "flowers. This fertilises them. Bees are very important for agriculture",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "because",
+              "position": "after"
+            }
+          ],
+          "afterText": "many plants can only be fertilised by the activity of bees."
+        },
+        {
+          "content": "The cocoa bean can quite fragile and, as a result, they are easily",
+          "blanks": []
+        },
+        {
+          "content": "damaged by strong winds and rain. Many are killed by other insects,",
+          "blanks": []
+        },
+        {
+          "content": "and diseases can destroy millions of them in a very short time.",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "If",
+              "position": "after"
+            }
+          ],
+          "afterText": "this"
+        },
+        {
+          "content": "happens, the consequences for farmers can be very serious because",
+          "blanks": []
+        },
+        {
+          "content": "the plants they are growing will not be fertilised. They may have to",
+          "blanks": []
+        },
+        {
+          "content": "bring in more bees from other areas,",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "which",
+              "position": "after"
+            }
+          ],
+          "afterText": "is a considerable distance"
+        },
+        {
+          "content": "away, in order to make sure that they have a successful harvest.",
+          "blanks": []
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  },
+
+  "text7_how_to_study": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Many students find it difficult to remember material",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "which",
+              "position": "after"
+            }
+          ],
+          "afterText": "they have been"
+        },
+        {
+          "content": "studying. Some study intensively for four or five hours and then",
+          "blanks": []
+        },
+        {
+          "content": "cannot remember almost any",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "of",
+              "position": "after"
+            }
+          ],
+          "afterText": "what they had been hoping to learn."
+        },
+        {
+          "content": "Psychologists say that, in general, people remember best",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "what",
+              "position": "after"
+            }
+          ],
+          "afterText": "happens at the beginning and at the end of a series of events."
+        },
+        {
+          "content": "Things which occur in the middle of a series are remembered",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "least",
+              "position": "after"
+            }
+          ],
+          "afterText": "well."
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "If you study without a break for four hours, this means there can be",
+          "blanks": []
+        },
+        {
+          "content": "only one 'first' and one 'last' section of",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "what",
+              "position": "after"
+            }
+          ],
+          "afterText": "you are studying,"
+        },
+        {
+          "content": "along with a very long middle section. If you split the four hours",
+          "blanks": []
+        },
+        {
+          "content": "into several shorter periods of study, you will have a",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "much",
+              "position": "after"
+            }
+          ],
+          "afterText": "greater number"
+        },
+        {
+          "content": "of 'first' and 'last' sections. However, these short periods must",
+          "blanks": []
+        },
+        {
+          "content": "be long enough to allow your mind to establish a rhythm. An ideal",
+          "blanks": []
+        },
+        {
+          "content": "study time should last for about ten active minutes. This",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "helps",
+              "position": "after"
+            }
+          ],
+          "afterText": "your mind"
+        },
+        {
+          "content": "with breaks of two to five minutes depending on the difficulty of",
+          "blanks": []
+        },
+        {
+          "content": "the subject and your interest in it. When you organise your study",
+          "blanks": []
+        },
+        {
+          "content": "in this way, you will not only remember more but will also feel",
+          "blanks": []
+        },
+        {
+          "content": "more relaxed afterwards,",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "because",
+              "position": "after"
+            }
+          ],
+          "afterText": "your mind will have had the"
+        },
+        {
+          "content": "chance both to rest and to sort out the information it has been taking in.",
+          "blanks": []
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  },
+
+  "text8_dickens_childhood": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Charles Dickens was one of the greatest nineteenth-century English",
+          "blanks": []
+        },
+        {
+          "content": "novelists. At the time of",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "his",
+              "position": "after"
+            }
+          ],
+          "afterText": "death in 1870 he was a wealthy man,"
+        },
+        {
+          "content": "in contrast to the poverty of his early days. His parents did their",
+          "blanks": []
+        },
+        {
+          "content": "best to look after him but were always in difficulties",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "over",
+              "position": "after"
+            }
+          ],
+          "afterText": "money. Eventually,"
+        },
+        {
+          "content": "his father owed such a large amount of money that he was sent to",
+          "blanks": []
+        },
+        {
+          "content": "prison for three months.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "Two days after his twelfth birthday, Dickens was taken away from",
+          "blanks": []
+        },
+        {
+          "content": "school by his parents and made to work in a factory in London to",
+          "blanks": []
+        },
+        {
+          "content": "increase the family income. Factories could be dangerous places and",
+          "blanks": []
+        },
+        {
+          "content": "some employees were cruel. Charles was not extremely unhappy, but",
+          "blanks": []
+        },
+        {
+          "content": "also ashamed of working there, and he never forgot that period of",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "his",
+              "position": "after"
+            }
+          ],
+          "afterText": "life."
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "Years later, after he had become famous",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "as",
+              "position": "after"
+            }
+          ],
+          "afterText": "a writer, Dickens described his"
+        },
+        {
+          "content": "own childhood experiences. Oliver Twist was one of his most famous",
+          "blanks": []
+        },
+        {
+          "content": "characters and he too suffered as a child worker. Dickens' novels",
+          "blanks": []
+        },
+        {
+          "content": "showed how shocking working and living conditions",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "were",
+              "position": "after"
+            }
+          ],
+          "afterText": ". Working in the"
+        },
+        {
+          "content": "factory affected him so deeply that he found it much too painful to",
+          "blanks": []
+        },
+        {
+          "content": "speak about in later life. His own wife and children knew very little",
+          "blanks": []
+        },
+        {
+          "content": "about",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "all",
+              "position": "after"
+            }
+          ],
+          "afterText": "the unhappiness of his childhood while Dickens was"
+        },
+        {
+          "content": "still alive. Only",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "shortly",
+              "position": "after"
+            }
+          ],
+          "afterText": "after his death, a biography was published"
+        },
+        {
+          "content": "in which Dickens' terrible childhood experiences in the factory were",
+          "blanks": []
+        },
+        {
+          "content": "revealed",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "for",
+              "position": "after"
+            }
+          ],
+          "afterText": "the first time."
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  }
+}
+{
+  "text9_department_stores": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "In 1846 an Irish immigrant in New York named Alexander Stewart",
+          "blanks": []
+        },
+        {
+          "content": "opened a business called the Marble Dry Goods Palace. He saw the",
+          "blanks": []
+        },
+        {
+          "content": "world of shopping as something completely new - the department store.",
+          "blanks": []
+        },
+        {
+          "content": "Before this, no-one",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "had",
+              "position": "after"
+            }
+          ],
+          "afterText": "tried to bring together such a wide"
+        },
+        {
+          "content": "range of goods under a single roof, to be sold by the same company.",
+          "blanks": []
+        },
+        {
+          "content": "The store",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "had",
+              "position": "after"
+            }
+          ],
+          "afterText": "staff of two thousand. For Stewart even that was"
+        },
+        {
+          "content": "not enough. In 1862 he moved to an eight-storey building nearby.",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "This",
+              "position": "after"
+            }
+          ],
+          "afterText": "he"
+        },
+        {
+          "content": "renamed A.T. Stewart's Cast-Iron Palace. It was huge and designed",
+          "blanks": []
+        },
+        {
+          "content": "to impress customers.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "Others followed Stewart's example and soon there were stores like his",
+          "blanks": []
+        },
+        {
+          "content": "in many major cities in the United States. We don't know",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "when",
+              "position": "after"
+            }
+          ],
+          "afterText": "people"
+        },
+        {
+          "content": "started calling them department stores. The expression wasn't used",
+          "blanks": []
+        },
+        {
+          "content": "in print until 1893, when it appeared in Harper's magazine, but the",
+          "blanks": []
+        },
+        {
+          "content": "way that it used there makes it clear that it was already widely",
+          "blanks": []
+        },
+        {
+          "content": "understood.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "What",
+              "position": "after"
+            }
+          ],
+          "afterText": "is certain is that department stores completely changed"
+        },
+        {
+          "content": "the shopping experience for millions of people. They offered not",
+          "blanks": []
+        },
+        {
+          "content": "only an enormous range of goods,",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "but",
+              "position": "after"
+            }
+          ],
+          "afterText": "also levels of comfort, luxury"
+        },
+        {
+          "content": "and excitement previously unknown to customers. Almost from the start",
+          "blanks": []
+        },
+        {
+          "content": "they had restaurants, toilets and many other facilities,",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "so",
+              "position": "after"
+            }
+          ],
+          "afterText": "there was no"
+        },
+        {
+          "content": "need to go",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "anywhere",
+              "position": "after"
+            }
+          ],
+          "afterText": "else for anything."
+        }
+      ]
+    },
+    "circles": {
+      "layout": [
+        {"number": 1, "size": "extra-large-large", "position": {"top": "7px", "left": "165px"}},
+        {"number": 2, "size": "standard", "position": {"top": "7px", "left": "850px"}},
+        {"number": 3, "size": "standard", "position": {"top": "169px", "left": "210px"}},
+        {"number": 4, "size": "extra-large-large", "position": {"top": "127px", "left": "850px"}},
+        {"number": 5, "size": "extra-large-large", "position": {"top": "290px", "left": "165px"}},
+        {"number": 6, "size": "standard", "position": {"top": "294px", "left": "850px"}},
+        {"number": 7, "size": "standard", "position": {"top": "452px", "left": "210px"}},
+        {"number": 8, "size": "extra-large-large", "position": {"top": "414px", "left": "850px"}}
+      ]
+    }
+  },
+
+  "text10_importance_of_computers": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "Type answers in numbered circles, then click the circle to transfer to blanks.",
+      "totalBlanks": 8
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Many of the things we do depend on receiving information from other",
+          "blanks": []
+        },
+        {
+          "content": "people. Catching a train, making a phone call and going to the cinema",
+          "blanks": []
+        },
+        {
+          "content": "all involve information which",
+          "blanks": [
+            {
+              "number": 1,
+              "answer": "is",
+              "position": "after"
+            }
+          ],
+          "afterText": "stored, processed and communicated."
+        },
+        {
+          "content": "In the past this information used to be kept on paper in the form",
+          "blanks": [
+            {
+              "number": 2,
+              "answer": "of",
+              "position": "after"
+            }
+          ],
+          "afterText": "books,"
+        },
+        {
+          "content": "newspapers and timetables. Now more and more information is put",
+          "blanks": []
+        },
+        {
+          "content": "on computers.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "Computers play a major role in our everyday lives, sometimes without",
+          "blanks": []
+        },
+        {
+          "content": "us even realising it. Consider the use of computers in both shops and",
+          "blanks": []
+        },
+        {
+          "content": "offices. Big shops, especially chain stores with branches",
+          "blanks": [
+            {
+              "number": 3,
+              "answer": "all",
+              "position": "after"
+            }
+          ],
+          "afterText": "over the"
+        },
+        {
+          "content": "country, have to deal with very large amounts of information. They",
+          "blanks": []
+        },
+        {
+          "content": "have to know",
+          "blanks": [
+            {
+              "number": 4,
+              "answer": "whether",
+              "position": "after"
+            }
+          ],
+          "afterText": "there are enough goods on the shelves"
+        },
+        {
+          "content": "for customers to buy, they need to be able to re-order before stocks",
+          "blanks": []
+        },
+        {
+          "content": "run out, to decide when things are selling well and when to put them",
+          "blanks": []
+        },
+        {
+          "content": "on sale. All these processes must",
+          "blanks": [
+            {
+              "number": 5,
+              "answer": "be",
+              "position": "after"
+            }
+          ],
+          "afterText": "performed quickly and efficiently"
+        },
+        {
+          "content": "by computers.",
+          "blanks": []
+        },
+        {
+          "content": "",
+          "blanks": []
+        },
+        {
+          "content": "A great deal of office work in the past involved information on paper.",
+          "blanks": []
+        },
+        {
+          "content": "Once it had been dealt",
+          "blanks": [
+            {
+              "number": 6,
+              "answer": "with",
+              "position": "after"
+            }
+          ],
+          "afterText": "by people, the paper was"
+        },
+        {
+          "content": "put away for future reference. This way of working was particularly",
+          "blanks": []
+        },
+        {
+          "content": "easy",
+          "blanks": [
+            {
+              "number": 7,
+              "answer": "or",
+              "position": "after"
+            }
+          ],
+          "afterText": "fast. A computerised system is"
+        },
+        {
+          "content": "",
+          "blanks": [
+            {
+              "number": 8,
+              "answer": "much",
+              "position": "after"
+            }
+          ],
+          "afterText": "more efficient."
         }
       ]
     },
