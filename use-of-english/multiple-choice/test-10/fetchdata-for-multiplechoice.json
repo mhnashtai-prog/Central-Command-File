@@ -7,7 +7,7 @@
     {"id": 5, "q": "Paul Black is _______ as Labour MP for Brightford in the next election.", "options": ["sitting", "standing", "presenting", "appearing"], "correct": 1},
     {"id": 6, "q": "My boss insists on seeing everything in _______ before he makes a decision.", "options": ["red", "white and blue", "green and yellow", "black and white"], "correct": 3},
     {"id": 7, "q": "How _______ is it from here to the city centre?", "options": ["long", "far", "distant", "near"], "correct": 1},
-    {"id": 8, "q": "I don't know what he is _______.", "options": ["upon", "over", "up", "down"], "correct": 2},
+    {"id": 8, "q": "I don't know what he is _______ to.", "options": ["upon", "over", "up", "down"], "correct": 2},
     {"id": 9, "q": "Do you think there's any _______ of his agreeing?", "options": ["chance", "opportunity", "occasion", "expectancy"], "correct": 0},
     {"id": 10, "q": "Our school doesn't break _______ until next week.", "options": ["out", "in", "off", "up"], "correct": 2},
     {"id": 11, "q": "When he was studying he stayed at a student _______ in London.", "options": ["hospital", "house", "hostel", "hotel"], "correct": 2},
