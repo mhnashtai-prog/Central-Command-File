@@ -354,12 +354,12 @@ document.addEventListener('keydown', function(e) {
 window.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing...');
     
-    // Attach Return to Menu button event listener
+    // Attach Return to Menu button event listener with corrected path
     const returnBtn = document.getElementById('returnBtn');
     if (returnBtn) {
         returnBtn.addEventListener('click', function() {
-            // Navigate back to the central command file
-            window.location.href = '../../html.code';
+            // Navigate back to the Central Command File
+            window.location.href = '../../../Central-Command-File/use-of-english/index.html';
         });
     }
     
