@@ -128,17 +128,17 @@ function generateInputFields() {
         inputButton.className = 'input-button';
         inputButton.dataset.number = questionNum;
         
-        // Question number label
-        const questionLabel = document.createElement('span');
-        questionLabel.className = 'question-number';
-        questionLabel.textContent = questionNum;
+        // Answer label (grey, above input field)
+        const answerLabel = document.createElement('div');
+        answerLabel.className = 'answer-label';
+        answerLabel.textContent = `ANSWER ${questionNum}`;
         
         // Input field
         const inputField = document.createElement('input');
         inputField.type = 'text';
         inputField.className = 'input-field';
         inputField.maxLength = 15;
-        inputField.placeholder = `Q${questionNum}`;
+        inputField.placeholder = '';
         inputField.dataset.answer = answers.get(questionNum) || '';
         inputField.dataset.questionNumber = questionNum;
         
@@ -151,7 +151,7 @@ function generateInputFields() {
             }
         });
         
-        inputButton.appendChild(questionLabel);
+        inputButton.appendChild(answerLabel);
         inputButton.appendChild(inputField);
         inputColumn.appendChild(inputButton);
     }
