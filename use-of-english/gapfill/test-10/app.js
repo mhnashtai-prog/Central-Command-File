@@ -44,7 +44,16 @@ function initializePage() {
         'text_actors_problems': 'Problems Actors Face',
         'text_dickens_childhood': 'Charles Dickens\' Childhood',
         'text_sharks': 'Great White Shark Research (15 questions)',
-        'text_horse_art': 'The Horse in Art (15 questions)'
+        'text_horse_art': 'The Horse in Art (15 questions)',
+        'text_inferno_ski_race': 'The Inferno Ski Race',
+        'text_vancouver': 'Vancouver - A Canadian Gem',
+        'text_my_home_town': 'My Malaysian Home Town',
+        'text_waste_plastic': 'Dealing with Waste Plastic',
+        'text_cruise_ship': 'The Island Princess Cruise Ship',
+        'text_many_parts': 'A Man of Many Parts',
+        'text_model_village': 'Cadbury\'s Model Village',
+        'text_history_sea': 'History from the Sea',
+        'text_riverside_hotel': 'A Hotel Famous for Food'
     };
     
     // Populate dropdown with exercises
