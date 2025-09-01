@@ -53,7 +53,13 @@ function initializePage() {
         'text_many_parts': 'A Man of Many Parts',
         'text_model_village': 'Cadbury\'s Model Village',
         'text_history_sea': 'History from the Sea',
-        'text_riverside_hotel': 'A Hotel Famous for Food'
+        'text_riverside_hotel': 'A Hotel Famous for Food',
+        'text_cycling_corners': 'Cycling Round Corners (15 questions)',
+        'text_mission_mars': 'Mission to Mars (15 questions)',
+        'text_writing_story': 'Writing a Story (15 questions)',
+        'text_family_photographs': 'Family Photographs (15 questions)',
+        'text_busy_family': 'A Busy Family (15 questions)',
+        'text_export_ice': 'The Export of Ice (15 questions)'
     };
     
     // Populate dropdown with exercises
@@ -91,7 +97,6 @@ function loadExercise() {
     try {
         generateInputFields();
         generateTextContent();
-        updateInstructions();
         resetScore();
         console.log('Exercise loaded successfully');
     } catch (error) {
@@ -213,15 +218,6 @@ function createParagraph(container, content) {
     container.appendChild(paragraph);
 }
 
-// Update instructions based on current exercise
-function updateInstructions() {
-    const instructionsDiv = document.getElementById('instructions');
-    const startNum = currentExercise.exercise.startNumber;
-    const endNum = startNum + currentExercise.exercise.totalBlanks - 1;
-    
-    instructionsDiv.innerHTML = `<strong>Instructions:</strong> For questions ${startNum}-${endNum}, read the text below and think of the word which best fits each gap. Use only one word in each gap.`;
-}
-
 // Reset score display
 function resetScore() {
     const scoreDiv = document.getElementById('score');
@@ -323,11 +319,9 @@ function showAnswers() {
 // Reset interface to initial state
 function resetInterface() {
     document.getElementById('inputColumn').innerHTML = '<div class="loading">Select an exercise to begin</div>';
-    document.getElementById('instructions').innerHTML = '<strong>Instructions:</strong> Select an exercise from the dropdown menu above to begin practicing.';
     document.getElementById('textContent').innerHTML = `
-        <p>This interactive exercise will help you prepare for the FCE Use of English Part 2 (Open Cloze). 
-        Each exercise follows the authentic Cambridge exam format with proper question numbering and difficulty level.</p>
-        <p>Choose an exercise to get started!</p>
+        <p><strong>FCE Use of English Part 2 - Open Cloze Practice</strong></p>
+        <p>Select an exercise from the dropdown menu above. Read the text and think of the word which best fits each gap. Use only one word in each gap.</p>
     `;
     document.getElementById('score').textContent = 'Ready to start';
     currentExercise = null;
@@ -358,8 +352,8 @@ window.addEventListener('DOMContentLoaded', function() {
     const returnBtn = document.getElementById('returnBtn');
     if (returnBtn) {
         returnBtn.addEventListener('click', function() {
-            // Navigate back to the Central Command File
-            window.location.href = '../../../Central-Command-File/use-of-english/index.html';
+            // Navigate back to the use-of-english index (adjust path as needed)
+            window.location.href = '../../index.html';
         });
     }
     
