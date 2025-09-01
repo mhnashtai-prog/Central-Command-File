@@ -21,6 +21,18 @@ body {
     background: rgba(255,255,255,0.2); color: #2d1b3d; font-weight: bold; cursor: pointer;
 }
 
+/* Completed exercise styling */
+.completed-exercise {
+    color: #22c55e !important;
+    font-weight: bold;
+}
+
+.exercise-selector select option.completed-exercise::before {
+    content: "✓ ";
+    color: #22c55e;
+    font-weight: bold;
+}
+
 /* Updated content area to always maintain two columns */
 .content-area {
     display: grid; 
@@ -62,7 +74,7 @@ body {
 
 .input-button {
     background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
-    padding: 4px 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    padding: 1px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; 
     min-height: 40px; transition: all 0.3s ease;
     box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
     width: 100%; /* Ensure button takes full width of its container */
@@ -77,18 +89,27 @@ body {
     font-weight: 500;
 }
 
-/* Reduced input field width by 25% (58px instead of 77px) */
+/* Much wider input field - takes almost full button width */
 .input-field {
-    width: 58px; 
+    width: calc(100% - 4px); /* Almost full button width */
+    min-width: 80px; /* Minimum for desktop */
     border: none; 
     border-bottom: 1px solid #999; 
     background: transparent;
     color: #2d1b3d; 
-    font-size: 0.9em; 
+    font-size: 0.85em; 
     font-weight: bold; 
     outline: none; 
-    padding: 2px;
+    padding: 1px 2px; /* Minimal padding */
     text-align: center;
+}
+
+/* Mobile-specific input field sizing */
+@media (max-width: 768px) {
+    .input-field {
+        width: calc(100% - 2px); /* Nearly full width on mobile */
+        font-size: 0.8em;
+    }
 }
 .input-field:focus {border-bottom: 2px solid #4ade80; background: rgba(76, 222, 128, 0.1);}
 .input-field.correct {background: #4ade80 !important; color: white; border-bottom: 2px solid #22c55e;}
@@ -99,9 +120,42 @@ body {
     line-height: 1.7; font-size: 0.85em; color: #2d1b3d; margin-bottom: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-height: 600px; overflow-y: auto;
 }
-.instructions {font-weight:500; font-size: 0.95em; color:#2d1b3d; margin-bottom: 18px; 
-    padding: 10px; background: rgba(255,255,255,0.2); border-radius: 8px;}
 .text-paragraph {margin-bottom:18px; text-align:justify;}
+
+/* Aggressive mobile text optimization - much lighter and smaller */
+@media (max-width: 768px) {
+    .text-content {
+        font-size: 0.75em; /* Smaller text on mobile */
+        padding: 15px; /* Less padding on mobile */
+    }
+    .text-paragraph {
+        font-weight: 300; /* Very light text on mobile */
+        margin-bottom: 10px; /* Tighter spacing */
+        line-height: 1.5; /* Tighter line spacing */
+    }
+    .text-paragraph strong {
+        font-weight: 400; /* Remove bold completely on mobile */
+    }
+    .blank {
+        font-weight: 400; /* Lighter blanks too */
+        font-size: 0.9em; /* Smaller blank indicators */
+    }
+    .input-field {
+        width: calc(100% - 2px); /* Nearly full width on mobile */
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-content {
+        font-size: 0.7em; /* Even smaller on very small screens */
+        padding: 12px;
+    }
+    .text-paragraph {
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+}
 .blank {
     display:inline-block; min-width:35px; height:20px; border-bottom: 2px solid #8B4B9C;
     margin:0 3px; text-align:center; font-weight:bold; font-size:0.9em; 
@@ -149,13 +203,8 @@ body {
             <div class="loading">Select an exercise to begin</div>
         </div>
         <div class="text-content">
-            <div class="instructions" id="instructions">
-                <strong>Instructions:</strong> Select an exercise from the dropdown menu above to begin practicing.
-            </div>
             <div id="textContent">
-                <p>This interactive exercise will help you prepare for the FCE Use of English Part 2 (Open Cloze). 
-                Each exercise follows the authentic Cambridge exam format with proper question numbering and difficulty level.</p>
-                <p>Choose an exercise to get started!</p>
+                <p>Select an exercise from the dropdown menu above to begin practicing.</p>
             </div>
         </div>
     </div>
