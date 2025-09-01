@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FCE Cambridge - Use of English</title>
+<title>FCE Cambridge - Use of English Part 2</title>
 <style>
 * {margin:0; padding:0; box-sizing:border-box;}
 body {
@@ -11,7 +11,7 @@ body {
     background: linear-gradient(135deg, #8B4B9C 0%, #A855B8 25%, #B968C7 50%, #D8A8DB 75%, #E5C3E8 100%);
     min-height: 100vh; position: relative; overflow-x: auto; transition: background 0.8s ease;
 }
-.container {max-width: 1200px; margin:0 auto; padding:10px; position:relative; min-height:100vh;}
+.container {max-width: 1400px; margin:0 auto; padding:10px; position:relative; min-height:100vh;}
 .main-title {text-align: center; font-size: 1.8em; font-weight:700; color:white; margin:15px 0 5px 0; text-shadow: 2px 2px 4px rgba(0,0,0,.3);}
 .sub-title {text-align: center; font-size: 1.1em; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 20px;}
 
@@ -21,34 +21,53 @@ body {
     background: rgba(255,255,255,0.2); color: #2d1b3d; font-weight: bold; cursor: pointer;
 }
 
-.content-area {display: grid; grid-template-columns: 100px 1fr; gap:20px; margin:0 auto; max-width:1000px; width:100%;}
-.input-column {display: flex; flex-direction: column; gap: 8px;}
+.content-area {display: grid; grid-template-columns: 140px 1fr; gap:20px; margin:0 auto; max-width:1200px; width:100%;}
+
+.input-column {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px; 
+    max-height: 600px; overflow-y: auto; padding-right: 5px;
+}
+@media (max-width: 768px) {
+    .input-column {grid-template-columns: 1fr; max-height: 400px;}
+    .content-area {grid-template-columns: 1fr; gap: 15px;}
+}
+
 .input-button {
-    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px;
-    padding: 5px 10px; display: flex; align-items: center; min-height: 33px; width: 90%;
-    box-shadow: 4px 4px 8px rgba(0,0,0,0.2), -4px -4px 8px rgba(255,255,255,0.1);
-    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+    padding: 4px 8px; display: flex; align-items: center; justify-content: space-between; 
+    min-height: 32px; transition: all 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
 }
+.input-button:hover {transform: translateY(-1px); box-shadow: 3px 3px 6px rgba(0,0,0,0.3);}
+
+.question-number {
+    font-size: 0.8em; font-weight: bold; color: #2d1b3d; 
+    min-width: 20px; text-align: center;
+}
+
 .input-field {
-    flex: 1; border: none; border-bottom: 1px solid #999; background: transparent;
-    color: #2d1b3d; font-size: 0.9em; font-weight: bold; outline: none; padding: 4px;
+    width: 70px; border: none; border-bottom: 1px solid #999; background: transparent;
+    color: #2d1b3d; font-size: 0.9em; font-weight: bold; outline: none; padding: 2px;
+    text-align: center;
 }
-.input-field:focus {border-bottom: 2px solid #4ade80;}
-.input-field.correct {background: #4ade80 !important; color: white;}
-.input-field.incorrect {background: #f97316 !important; color: white;}
+.input-field:focus {border-bottom: 2px solid #4ade80; background: rgba(76, 222, 128, 0.1);}
+.input-field.correct {background: #4ade80 !important; color: white; border-bottom: 2px solid #22c55e;}
+.input-field.incorrect {background: #f97316 !important; color: white; border-bottom: 2px solid #ea580c;}
 
 .text-content {
-    background: rgba(255,255,255,0.4); padding: 6mm; border-radius: 15px;
-    line-height: 1.6; font-size: 0.75em; color: #2d1b3d; margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.4); padding: 20px; border-radius: 15px;
+    line-height: 1.7; font-size: 0.85em; color: #2d1b3d; margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-height: 600px; overflow-y: auto;
 }
-.instructions {font-weight:500; font-size: 0.9em; color:#2d1b3d; margin-bottom: 15px;}
-.text-paragraph {margin-bottom:16px; text-align:justify;}
+.instructions {font-weight:500; font-size: 0.95em; color:#2d1b3d; margin-bottom: 18px; 
+    padding: 10px; background: rgba(255,255,255,0.2); border-radius: 8px;}
+.text-paragraph {margin-bottom:18px; text-align:justify;}
 .blank {
-    display:inline-block; min-width:50px; height:18px; border-bottom:1px solid #8B4B9C;
-    margin:0 2px; text-align:center; font-weight:bold; font-size:1.125em; transition: all 0.3s ease;
+    display:inline-block; min-width:35px; height:20px; border-bottom: 2px solid #8B4B9C;
+    margin:0 3px; text-align:center; font-weight:bold; font-size:0.9em; 
+    transition: all 0.3s ease; padding: 1px 3px;
 }
-.blank.filled {background: rgba(45, 27, 61, 0.1); border-bottom: 2px solid #8B4B9C;}
+.blank.filled {background: rgba(45, 27, 61, 0.15); border-bottom: 2px solid #6B21A8; color: #6B21A8;}
 
 .footer {
     background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 12px;
@@ -59,20 +78,25 @@ body {
 .btn {
     padding: 8px 16px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer;
     background: rgba(255,255,255,0.4); color: #2d1b3d; font-size: 0.9em; transition: all 0.3s;
-    box-shadow: 8px 8px 16px rgba(0,0,0,0.3), -8px -8px 16px rgba(255,255,255,0.1);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3), -4px -4px 8px rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
 }
-.btn:hover {transform: translateY(-3px); background: rgba(255,255,255,0.6);}
+.btn:hover {transform: translateY(-2px); background: rgba(255,255,255,0.6); 
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.4);}
+.btn:active {transform: translateY(0px);}
+
 .score {
-    font-size: 0.8em; font-weight: bold; color: white; background: rgba(255,255,255,0.2);
-    padding: 5px 10px; border-radius: 12px;
+    font-size: 0.85em; font-weight: bold; color: white; background: rgba(255,255,255,0.2);
+    padding: 6px 12px; border-radius: 12px; white-space: nowrap;
 }
+
+.loading {text-align: center; color: white; font-style: italic; margin: 20px 0;}
 </style>
 </head>
 <body>
 <div class="container">
-    <h1 class="main-title">INTUITY</h1>
-    <h2 class="sub-title">Use of English Part 2</h2>
+    <h1 class="main-title">FCE Cambridge English</h1>
+    <h2 class="sub-title">Use of English Part 2 - Open Cloze</h2>
     
     <div class="exercise-selector">
         <select id="exerciseSelect" onchange="loadExercise()">
@@ -82,27 +106,33 @@ body {
 
     <div class="content-area">
         <div class="input-column" id="inputColumn">
-            <!-- Input fields generated by script -->
+            <div class="loading">Select an exercise to begin</div>
         </div>
         <div class="text-content">
-            <div class="instructions" id="instructions">Select an exercise to begin.</div>
-            <div id="textContent"><!-- Exercise content loaded here --></div>
+            <div class="instructions" id="instructions">
+                <strong>Instructions:</strong> Select an exercise from the dropdown menu above to begin practicing.
+            </div>
+            <div id="textContent">
+                <p>This interactive exercise will help you prepare for the FCE Use of English Part 2 (Open Cloze). 
+                Each exercise follows the authentic Cambridge exam format with proper question numbering and difficulty level.</p>
+                <p>Choose an exercise to get started!</p>
+            </div>
         </div>
     </div>
     
     <div class="footer">
         <div class="footer-buttons">
             <button class="btn" onclick="checkAnswers()">Check Answers</button>
-            <button class="btn" onclick="repeatExercise()">Repeat</button>
-            <button class="btn" onclick="showAnswers()">Show Answers</button>
+            <button class="btn" onclick="repeatExercise()">Repeat Exercise</button>
+            <button class="btn" onclick="showAnswers()">Show All Answers</button>
+            <button class="btn" onclick="returnToMenu()">Return to Menu</button>
         </div>
-        <div class="score" id="score">Score: 0/8</div>
+        <div class="score" id="score">Ready to start</div>
     </div>
 </div>
 
-<!-- Load external data file -->
+<!-- Load external data and application files -->
 <script src="fetchfile-for-gapfill-test10.js"></script>
-<!-- Load main application script -->
 <script src="app.js"></script>
 </body>
 </html>
