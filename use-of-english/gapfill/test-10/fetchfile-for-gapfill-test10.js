@@ -1396,5 +1396,552 @@ const exerciseData = {
         }
       ]
     }
+  },
+
+  // NEW PASSAGES ADDED FROM WORD DOCUMENT
+
+  "text_cycling_corners": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "For questions 16-30, read the text below and think of the word which best fits each gap. Use only one word in each gap.",
+      "totalBlanks": 15,
+      "startNumber": 16
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Taking a corner is one of the most satisfying moves you can make on a bike. It's fun, it's exciting, and it also happens",
+          "blanks": [{"number": 16, "answer": "to", "position": "after"}],
+          "afterText": "be one of the hardest things to learn. Even"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 17, "answer": "an", "position": "after"}],
+          "afterText": "experienced rider can always"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 18, "answer": "make", "position": "after"}],
+          "afterText": "improvements in this area. Good cornering is the ability to cycle through a turn"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 19, "answer": "in", "position": "after"}],
+          "afterText": "full control, no matter"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 20, "answer": "what", "position": "after"}],
+          "afterText": "the conditions. This might mean racing"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 21, "answer": "at", "position": "after"}],
+          "afterText": "high speed down a winding descent, but just"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 22, "answer": "as", "position": "after"}],
+          "afterText": "important is the ability to deal with a slow, sharp turn"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 23, "answer": "when", "position": "after"}],
+          "afterText": "you are touring with lots of luggage. In"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 24, "answer": "both", "position": "after"}],
+          "afterText": "these cases there are some general points to remember."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "When going very slowly you can steer through a corner using your hands on the handlebars",
+          "blanks": [{"number": 25, "answer": "alone", "position": "after"}],
+          "afterText": ", as speed increases, any sudden turning of the front wheel"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 26, "answer": "is", "position": "after"}],
+          "afterText": "likely to result in loss of control. To avoid"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 27, "answer": "this", "position": "after"}],
+          "afterText": "effect, a bike must be turned by leaning it, by steering with the body instead of the hands. On sharp turns of more"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 28, "answer": "than", "position": "after"}],
+          "afterText": "about 70 degrees, even this is"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 29, "answer": "not", "position": "after"}],
+          "afterText": "enough: you must also lower your body towards the bike as much as you"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 30, "answer": "can", "position": "after"}],
+          "afterText": "to help keep it from slipping out from under you. When you are cornering correctly you will feel very solid. It's a good feeling - exciting but not really dangerous."
+        }
+      ]
+    }
+  },
+
+  "text_mission_mars": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "For questions 16-30, read the text below and think of the word which best fits each gap. Use only one word in each gap.",
+      "totalBlanks": 15,
+      "startNumber": 16
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "The Americans are keen to win the race to send human beings to Mars. In 1992, the new boss of NASA, Dan Goldin, called on the American people to be the first to send explorers to",
+          "blanks": [{"number": 16, "answer": "another", "position": "after"}],
+          "afterText": "planet in the solar system. He reminded them"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 17, "answer": "of", "position": "after"}],
+          "afterText": "the symbolic gift carried to the moon and back by the Apollo 11 mission. It bears"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 18, "answer": "a", "position": "after"}],
+          "afterText": "message intended for the crew of the first spaceship to visit Mars."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "Goldin thinks",
+          "blanks": [{"number": 19, "answer": "it", "position": "after"}],
+          "afterText": "is time to begin the preparations"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 20, "answer": "for", "position": "after"}],
+          "afterText": "this historic journey. His speech echoed the words of the President,"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 21, "answer": "who", "position": "after"}],
+          "afterText": "promised that in 2019, 50 years after Neil Armstrong"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 22, "answer": "became", "position": "after"}],
+          "afterText": "the first man to set foot on the Moon, the first astronaut"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 23, "answer": "would", "position": "after"}],
+          "afterText": "stand on Mars."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "",
+          "blanks": [{"number": 24, "answer": "By", "position": "after"}],
+          "afterText": "the end of the twentieth century, various unmanned spaceships will"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 25, "answer": "have", "position": "after"}],
+          "afterText": "thoroughly investigated the surface of the planet. But, however clever a robot"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 26, "answer": "may", "position": "after"}],
+          "afterText": "be, it cannot match the type of information"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 27, "answer": "that", "position": "after"}],
+          "afterText": "can be gained from direct human experience. The first geologist on the moon, Harrison Schmitt, was"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 28, "answer": "capable", "position": "after"}],
+          "afterText": "of interpreting the story of the landscape on the spot."
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 29, "answer": "Until", "position": "after"}],
+          "afterText": "humans walk on the red deserts of Mars, we will not be able to determine the history of this frozen world"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 30, "answer": "in", "position": "after"}],
+          "afterText": "any detail."
+        }
+      ]
+    }
+  },
+
+  "text_writing_story": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "For questions 16-30, read the text below and think of the word which best fits each gap. Use only one word in each gap.",
+      "totalBlanks": 15,
+      "startNumber": 16
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Where do you start if you want to write a successful story? Clearly, what you need first of",
+          "blanks": [{"number": 16, "answer": "all", "position": "after"}],
+          "afterText": "is an idea which you can develop into a strong plot. But"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 17, "answer": "where", "position": "after"}],
+          "afterText": "do ideas like this come from? The"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 18, "answer": "answer", "position": "after"}],
+          "afterText": "is 'anywhere and everywhere'."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "They may come from something that has",
+          "blanks": [{"number": 19, "answer": "happened", "position": "after"}],
+          "afterText": "to you or to"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 20, "answer": "someone", "position": "after"}],
+          "afterText": "else, from a newspaper, an interesting picture, or even a song. It's a good idea to keep a notebook nearby"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 21, "answer": "so", "position": "after"}],
+          "afterText": "that you can write down the details of any odd incidents"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 22, "answer": "that", "position": "after"}],
+          "afterText": "catch your imagination. Make a note of ideas"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 23, "answer": "and", "position": "after"}],
+          "afterText": "titles too, and any special phrases or descriptions that you think of. A small tape recorder can"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 24, "answer": "be", "position": "after"}],
+          "afterText": "useful for this purpose. Some writers even keep"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 25, "answer": "one", "position": "after"}],
+          "afterText": "by their bed in"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 26, "answer": "case", "position": "after"}],
+          "afterText": "they wake up with the 'idea of the century'."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "Another method of developing the story is to make use",
+          "blanks": [{"number": 27, "answer": "of", "position": "after"}],
+          "afterText": "the characters themselves. Why not"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 28, "answer": "try", "position": "after"}],
+          "afterText": "putting three people you know well into a situation such as a wedding, where feelings may be very strong, and see"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 29, "answer": "what", "position": "after"}],
+          "afterText": "happens. But don't make the final characters too much like your Aunt Jane or Uncle Jim or you may find"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 30, "answer": "yourself", "position": "after"}],
+          "afterText": "in real trouble."
+        }
+      ]
+    }
+  },
+
+  "text_family_photographs": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "For questions 16-30, read the text below and think of the word which best fits each gap. Use only one word in each gap.",
+      "totalBlanks": 15,
+      "startNumber": 16
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "A family portrait is a valuable picture which is fun to look at now, it's great for relatives far",
+          "blanks": [{"number": 16, "answer": "away", "position": "after"}],
+          "afterText": "and it will bring back memories in the years to come. Families change quickly as children grow,"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 17, "answer": "so", "position": "after"}],
+          "afterText": "don't wait, whatever your position in the family-photograph your family group now, and plan to make this"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 18, "answer": "a", "position": "after"}],
+          "afterText": "regular event. Your family album isn't really complete"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 19, "answer": "without", "position": "after"}],
+          "afterText": "this record of all of you together."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "Getting the",
+          "blanks": [{"number": 20, "answer": "whole", "position": "after"}],
+          "afterText": "of the family together isn't always easy, and so you will need to plan ahead to be sure"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 21, "answer": "everyone", "position": "after"}],
+          "afterText": "has time to pose. A relaxed, friendly feeling is"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 22, "answer": "what", "position": "after"}],
+          "afterText": "makes the picture, and you can't expect people to relax"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 23, "answer": "if", "position": "after"}],
+          "afterText": "they're in a hurry to do"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 24, "answer": "something", "position": "after"}],
+          "afterText": "else. Make your plans when you're all together and"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 25, "answer": "in", "position": "after"}],
+          "afterText": "a cheerful, friendly mood - say, during a meal, and set a time convenient"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 26, "answer": "for", "position": "after"}],
+          "afterText": "everyone."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "A family portrait takes some technical planning, too. Make",
+          "blanks": [{"number": 27, "answer": "up", "position": "after"}],
+          "afterText": "your mind in advance"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 28, "answer": "which", "position": "after"}],
+          "afterText": "room you want to use; choose your camera position and check the lighting. If you want to be in the picture, make sure you know exactly"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 29, "answer": "how", "position": "after"}],
+          "afterText": "the self-timer on your camera operates. With most cameras, you'll have from eight"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 30, "answer": "to", "position": "after"}],
+          "afterText": "twelve seconds to get into the picture after you press the shutter button."
+        }
+      ]
+    }
+  },
+
+  "text_busy_family": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "For questions 16-30, read the text below and think of the word which best fits each gap. Use only one word in each gap.",
+      "totalBlanks": 15,
+      "startNumber": 16
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "In the front room of his home, the Henry family gathered around their TV set",
+          "blanks": [{"number": 16, "answer": "as", "position": "after"}],
+          "afterText": "a popular soap opera began. 'Look, there's Mum!' shouted 11-year-old Kathy, pointing"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 17, "answer": "at", "position": "after"}],
+          "afterText": "the screen. 'She's sitting at that table"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 18, "answer": "in", "position": "after"}],
+          "afterText": "the corner.' Sure enough, there was Julia Henry, enjoying a relaxed drink in"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 19, "answer": "one", "position": "after"}],
+          "afterText": "of the country's most famous TV programmes."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "Julia's family see",
+          "blanks": [{"number": 20, "answer": "nothing", "position": "after"}],
+          "afterText": "unusual in her job"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 21, "answer": "as", "position": "after"}],
+          "afterText": "a 'bit-part' actor, or 'extra', because they are all doing it. Her husband, Tony,"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 22, "answer": "has", "position": "after"}],
+          "afterText": "been in several drama series as"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 23, "answer": "well", "position": "after"}],
+          "afterText": "as numerous adverts, while Kathy and her 13-year-old brother, Robin, have also appeared"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 24, "answer": "on", "position": "after"}],
+          "afterText": "TV countless times."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "It all started four years",
+          "blanks": [{"number": 25, "answer": "ago", "position": "after"}],
+          "afterText": "when Tony, an amateur actor from Lancashire, decided to leave his job and take"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 26, "answer": "up", "position": "after"}],
+          "afterText": "acting professionally. At the age of 41, it was a big step to take, but he has"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 27, "answer": "no", "position": "after"}],
+          "afterText": "regrets about it at all."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "Soon the whole family were being offered chances to play small parts just like him, though Tony admits there are times when he wishes he",
+          "blanks": [{"number": 28, "answer": "were", "position": "after"}],
+          "afterText": "a star. 'We really enjoy our lives,' says Tony, 'although it is difficult to"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 29, "answer": "make", "position": "after"}],
+          "afterText": "plans. A couple of phone calls can turn our week upside down, but we love"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 30, "answer": "every", "position": "after"}],
+          "afterText": "minute of it!'"
+        }
+      ]
+    }
+  },
+
+  "text_export_ice": {
+    "exercise": {
+      "title": "INTUITY",
+      "subtitle": "Use of English Part 2",
+      "instructions": "For questions 16-30, read the text below and think of the word which best fits each gap. Use only one word in each gap.",
+      "totalBlanks": 15,
+      "startNumber": 16
+    },
+    "text": {
+      "segments": [
+        {
+          "content": "Ice from the Rocky Mountains in the United States is being exported to countries on the other",
+          "blanks": [{"number": 16, "answer": "side", "position": "after"}],
+          "afterText": "of the world. From Seattle to Tokyo"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 17, "answer": "may", "position": "after"}],
+          "afterText": "seem a long way to send ice, but the idea is certainly not new."
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 18, "answer": "As", "position": "after"}],
+          "afterText": "early as 1833, Frederick Tudor,"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 19, "answer": "known", "position": "after"}],
+          "afterText": "as the 'Ice King', sent a shipload of ice from America to India. About half"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 20, "answer": "the", "position": "after"}],
+          "afterText": "ice melted during the long journey, but Tudor would have"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 21, "answer": "made", "position": "after"}],
+          "afterText": "a profit even"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 22, "answer": "if", "position": "after"}],
+          "afterText": "he had lost three quarters of his cargo."
+        },
+        {"content": "", "blanks": []},
+        {
+          "content": "Most people think",
+          "blanks": [{"number": 23, "answer": "of", "position": "after"}],
+          "afterText": "ice as rather short-lived but, when it was cut from frozen lakes in huge blocks and stored in the depths of a sailing ship,"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 24, "answer": "its", "position": "after"}],
+          "afterText": "life was considerably extended. In Britain in the 1840s,"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 25, "answer": "there", "position": "after"}],
+          "afterText": "was already a local commercial ice trade, but the import of ice, first from America and then from Norway,"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 26, "answer": "brought", "position": "after"}],
+          "afterText": "about a revolution in the food business. The main port of entry for Norwegian ice was London, from"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 27, "answer": "where", "position": "after"}],
+          "afterText": "the firm of Carlo Gatti, the largest dealers, distributed ice around the country. It was Gatti"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 28, "answer": "who", "position": "after"}],
+          "afterText": "introduced the penny ice-cream in the 1850s."
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 29, "answer": "Until", "position": "after"}],
+          "afterText": "then, ice-cream had been a luxury, but the penny ice, served in Gatti's cafés, became a Victorian fashion and brought hundreds of Italian ice-cream sellers"
+        },
+        {
+          "content": "",
+          "blanks": [{"number": 30, "answer": "onto", "position": "after"}],
+          "afterText": "the streets of the capital."
+        }
+      ]
+    }
   }
 };
