@@ -401,8 +401,7 @@ function showAnswers() {
 function resetInterface() {
     document.getElementById('inputColumn').innerHTML = '<div class="loading">Select an exercise to begin</div>';
     document.getElementById('textContent').innerHTML = `
-        <p><strong>FCE Use of English Part 2 - Open Cloze Practice</strong></p>
-        <p>Select an exercise from the dropdown menu above. Read the text and think of the word which best fits each gap. Use only one word in each gap.</p>
+        <p>Select an exercise from the dropdown menu above to begin practicing.</p>
     `;
     document.getElementById('score').textContent = 'Ready to start';
     currentExercise = null;
@@ -433,8 +432,8 @@ window.addEventListener('DOMContentLoaded', function() {
     const returnBtn = document.getElementById('returnBtn');
     if (returnBtn) {
         returnBtn.addEventListener('click', function() {
-            // Navigate back to the use-of-english index (adjust path as needed)
-            window.location.href = 'Central-Command-File/use-of-english/gapfill/index.html';
+            // Navigate back to Central Command File (corrected path)
+            window.location.href = '../../Central-Command-File/use-of-english/gapfill/index.html';
         });
     }
     
