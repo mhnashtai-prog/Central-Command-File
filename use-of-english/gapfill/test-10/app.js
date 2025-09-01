@@ -311,12 +311,6 @@ function showAnswers() {
     document.getElementById('score').textContent = `Score: ${totalBlanks}/${totalBlanks} (100%)`;
 }
 
-// Return to central menu
-function returnToMenu() {
-    // Navigate back to the central command file
-    window.location.href = '../../html.code';
-}
-
 // Reset interface to initial state
 function resetInterface() {
     document.getElementById('inputColumn').innerHTML = '<div class="loading">Select an exercise to begin</div>';
@@ -350,6 +344,15 @@ document.addEventListener('keydown', function(e) {
 // Initialize when DOM is loaded
 window.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing...');
+    
+    // Attach Return to Menu button event listener
+    const returnBtn = document.getElementById('returnBtn');
+    if (returnBtn) {
+        returnBtn.addEventListener('click', function() {
+            // Navigate back to the central command file
+            window.location.href = '../../html.code';
+        });
+    }
     
     // Small delay to ensure all scripts are loaded
     setTimeout(initializePage, 100);
