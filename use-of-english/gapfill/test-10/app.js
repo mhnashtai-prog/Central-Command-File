@@ -353,7 +353,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (returnBtn) {
         returnBtn.addEventListener('click', function() {
             // Navigate back to the use-of-english index (adjust path as needed)
-            window.location.href = '../../index.html';
+            window.location.href = 'Central-Command-File/use-of-english/gapfill/index.html';
         });
     }
     
