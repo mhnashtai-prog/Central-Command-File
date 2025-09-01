@@ -2,6 +2,7 @@
 
 let currentExercise = null;
 let exerciseKeys = [];
+let completedExercises = new Set(); // Track completed exercises
 
 // Initialize the application
 function initializePage() {
@@ -66,7 +67,16 @@ function initializePage() {
     exerciseKeys.forEach(key => {
         const option = document.createElement('option');
         option.value = key;
-        option.textContent = exerciseTitles[key] || key.replace(/_/g, ' ').replace(/text_/, '');
+        const title = exerciseTitles[key] || key.replace(/_/g, ' ').replace(/text_/, '');
+        
+        // Add green tick for completed exercises
+        if (completedExercises.has(key)) {
+            option.textContent = `✓ ${title}`;
+            option.classList.add('completed-exercise');
+        } else {
+            option.textContent = title;
+        }
+        
         select.appendChild(option);
         console.log('Added exercise:', option.textContent);
     });
@@ -211,6 +221,63 @@ function generateTextContent() {
 }
 
 // Helper function to create paragraph elements
+function updateDropdownWithCompletion() {
+    const select = document.getElementById('exerciseSelect');
+    const currentValue = select.value;
+    
+    // Clear existing options (keep the default one)
+    while (select.children.length > 1) {
+        select.removeChild(select.lastChild);
+    }
+    
+    // Create user-friendly titles for exercises
+    const exerciseTitles = {
+        'text_ideal_school': 'Your Ideal School',
+        'text_dictionaries': 'The History of Dictionaries',
+        'text_swimming': 'Swimming Technique and the Shaw Method',
+        'text_summer_camp': 'American Summer Camps',
+        'text_hollywood': 'The Birth of Hollywood',
+        'text_actors_problems': 'Problems Actors Face',
+        'text_dickens_childhood': 'Charles Dickens\' Childhood',
+        'text_sharks': 'Great White Shark Research (15 questions)',
+        'text_horse_art': 'The Horse in Art (15 questions)',
+        'text_inferno_ski_race': 'The Inferno Ski Race',
+        'text_vancouver': 'Vancouver - A Canadian Gem',
+        'text_my_home_town': 'My Malaysian Home Town',
+        'text_waste_plastic': 'Dealing with Waste Plastic',
+        'text_cruise_ship': 'The Island Princess Cruise Ship',
+        'text_many_parts': 'A Man of Many Parts',
+        'text_model_village': 'Cadbury\'s Model Village',
+        'text_history_sea': 'History from the Sea',
+        'text_riverside_hotel': 'A Hotel Famous for Food',
+        'text_cycling_corners': 'Cycling Round Corners (15 questions)',
+        'text_mission_mars': 'Mission to Mars (15 questions)',
+        'text_writing_story': 'Writing a Story (15 questions)',
+        'text_family_photographs': 'Family Photographs (15 questions)',
+        'text_busy_family': 'A Busy Family (15 questions)',
+        'text_export_ice': 'The Export of Ice (15 questions)'
+    };
+    
+    // Repopulate dropdown with completion status
+    exerciseKeys.forEach(key => {
+        const option = document.createElement('option');
+        option.value = key;
+        const title = exerciseTitles[key] || key.replace(/_/g, ' ').replace(/text_/, '');
+        
+        // Add green tick for completed exercises
+        if (completedExercises.has(key)) {
+            option.textContent = `✓ ${title}`;
+            option.classList.add('completed-exercise');
+        } else {
+            option.textContent = title;
+        }
+        
+        select.appendChild(option);
+    });
+    
+    // Restore previous selection
+    select.value = currentValue;
+}
 function createParagraph(container, content) {
     const paragraph = document.createElement('div');
     paragraph.className = 'text-paragraph';
@@ -255,6 +322,20 @@ function checkAnswers() {
     // Calculate percentage
     const percentage = Math.round((correct / totalBlanks) * 100);
     document.getElementById('score').textContent = `Score: ${correct}/${totalBlanks} (${percentage}%)`;
+    
+    // Mark exercise as completed if 100% score
+    if (percentage === 100) {
+        const selectedKey = document.getElementById('exerciseSelect').value;
+        if (selectedKey && !completedExercises.has(selectedKey)) {
+            completedExercises.add(selectedKey);
+            updateDropdownWithCompletion();
+            
+            // Show completion message
+            setTimeout(() => {
+                alert('🎉 Congratulations! Exercise completed with 100%! ✓');
+            }, 500);
+        }
+    }
     
     console.log(`Final score: ${correct}/${totalBlanks} (${percentage}%)`);
     
