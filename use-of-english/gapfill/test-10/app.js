@@ -1,11 +1,38 @@
 // FCE Cambridge Use of English Part 2 - Application Logic
 
 let currentExercise = null;
-let exerciseKeys = Object.keys(exerciseData);
+let exerciseKeys = [];
 
 // Initialize the application
 function initializePage() {
+    console.log('Initializing page...');
+    
+    // Check if exerciseData is loaded
+    if (typeof exerciseData === 'undefined') {
+        console.error('exerciseData not found! Make sure fetchfile-for-gapfill-test10.js is loaded.');
+        alert('Error: Exercise data not loaded. Please check that all files are in the same folder.');
+        return;
+    }
+    
+    console.log('Exercise data found:', exerciseData);
+    exerciseKeys = Object.keys(exerciseData);
+    console.log('Available exercises:', exerciseKeys);
+    
+    if (exerciseKeys.length === 0) {
+        console.error('No exercises found in exerciseData');
+        return;
+    }
+    
     const select = document.getElementById('exerciseSelect');
+    if (!select) {
+        console.error('exerciseSelect dropdown not found');
+        return;
+    }
+    
+    // Clear existing options (keep the default one)
+    while (select.children.length > 1) {
+        select.removeChild(select.lastChild);
+    }
     
     // Create user-friendly titles for exercises
     const exerciseTitles = {
@@ -26,28 +53,47 @@ function initializePage() {
         option.value = key;
         option.textContent = exerciseTitles[key] || key.replace(/_/g, ' ').replace(/text_/, '');
         select.appendChild(option);
+        console.log('Added exercise:', option.textContent);
     });
+    
+    console.log(`Successfully loaded ${exerciseKeys.length} exercises`);
 }
 
 // Load selected exercise
 function loadExercise() {
+    console.log('Loading exercise...');
     const selectedKey = document.getElementById('exerciseSelect').value;
+    console.log('Selected key:', selectedKey);
+    
     if (!selectedKey) {
         resetInterface();
         return;
     }
     
     currentExercise = exerciseData[selectedKey];
-    if (!currentExercise) return;
+    if (!currentExercise) {
+        console.error('Exercise not found:', selectedKey);
+        return;
+    }
     
-    generateInputFields();
-    generateTextContent();
-    updateInstructions();
-    resetScore();
+    console.log('Loaded exercise:', currentExercise.exercise.title);
+    console.log('Total blanks:', currentExercise.exercise.totalBlanks);
+    
+    try {
+        generateInputFields();
+        generateTextContent();
+        updateInstructions();
+        resetScore();
+        console.log('Exercise loaded successfully');
+    } catch (error) {
+        console.error('Error loading exercise:', error);
+        alert('Error loading exercise. Please check the console for details.');
+    }
 }
 
 // Generate input fields dynamically based on exercise
 function generateInputFields() {
+    console.log('Generating input fields...');
     const inputColumn = document.getElementById('inputColumn');
     inputColumn.innerHTML = '';
     
@@ -59,9 +105,13 @@ function generateInputFields() {
         });
     });
     
+    console.log('Found answers:', Array.from(answers.entries()));
+    
     // Create input fields for all question numbers
     const startNum = currentExercise.exercise.startNumber;
     const totalBlanks = currentExercise.exercise.totalBlanks;
+    
+    console.log(`Creating ${totalBlanks} input fields starting from ${startNum}`);
     
     for (let i = 0; i < totalBlanks; i++) {
         const questionNum = startNum + i;
@@ -96,16 +146,21 @@ function generateInputFields() {
         inputButton.appendChild(inputField);
         inputColumn.appendChild(inputButton);
     }
+    
+    console.log('Input fields generated successfully');
 }
 
 // Generate text content with blanks
 function generateTextContent() {
+    console.log('Generating text content...');
     const textContent = document.getElementById('textContent');
     textContent.innerHTML = '';
     
     let paragraphContent = '';
     
-    currentExercise.text.segments.forEach(segment => {
+    currentExercise.text.segments.forEach((segment, index) => {
+        console.log(`Processing segment ${index}:`, segment);
+        
         // Handle empty segments (paragraph breaks)
         if (segment.content.trim() === '' && segment.blanks.length === 0) {
             if (paragraphContent.trim()) {
@@ -137,6 +192,8 @@ function generateTextContent() {
     if (paragraphContent.trim()) {
         createParagraph(textContent, paragraphContent);
     }
+    
+    console.log('Text content generated successfully');
 }
 
 // Helper function to create paragraph elements
@@ -170,6 +227,7 @@ function checkAnswers() {
         return;
     }
     
+    console.log('Checking answers...');
     let correct = 0;
     const totalBlanks = currentExercise.exercise.totalBlanks;
     
@@ -178,6 +236,8 @@ function checkAnswers() {
         
         const userAnswer = field.value.trim().toLowerCase();
         const correctAnswer = field.dataset.answer.trim().toLowerCase();
+        
+        console.log(`Q${field.dataset.questionNumber}: "${userAnswer}" vs "${correctAnswer}"`);
         
         if (userAnswer === correctAnswer) {
             field.classList.add('correct');
@@ -191,6 +251,8 @@ function checkAnswers() {
     const percentage = Math.round((correct / totalBlanks) * 100);
     document.getElementById('score').textContent = `Score: ${correct}/${totalBlanks} (${percentage}%)`;
     
+    console.log(`Final score: ${correct}/${totalBlanks} (${percentage}%)`);
+    
     // Scroll to top to see results
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
@@ -201,6 +263,8 @@ function repeatExercise() {
         alert('Please select an exercise first.');
         return;
     }
+    
+    console.log('Repeating exercise...');
     
     // Clear all input fields
     document.querySelectorAll('.input-field').forEach(field => {
@@ -225,6 +289,8 @@ function showAnswers() {
         alert('Please select an exercise first.');
         return;
     }
+    
+    console.log('Showing all answers...');
     
     document.querySelectorAll('.input-field').forEach(field => {
         field.value = field.dataset.answer;
@@ -282,4 +348,18 @@ document.addEventListener('keydown', function(e) {
 });
 
 // Initialize when DOM is loaded
-window.addEventListener('DOMContentLoaded', initializePage);
+window.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing...');
+    
+    // Small delay to ensure all scripts are loaded
+    setTimeout(initializePage, 100);
+});
+
+// Error handling for uncaught errors
+window.addEventListener('error', function(e) {
+    console.error('JavaScript error:', e.error);
+    console.error('Error occurred in:', e.filename, 'at line', e.lineno);
+});
+
+// Log when script loads
+console.log('app.js loaded successfully');
