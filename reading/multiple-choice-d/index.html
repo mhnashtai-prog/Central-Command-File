@@ -1,1 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>B2 First – Passage Highlight Only</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Inter:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg,#2c5aa0 0%,#f5a9ba 100%);
+      font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+      margin:0;
+    }
+    .container { max-width:670px; margin:0 auto; padding:18px 2vw 110px 2vw; }
+    .title { margin-top: 12px; font-size: 2.08rem; color: #fff; font-family: 'Montserrat', Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.09em; text-shadow: 0 3px 10px rgba(0,0,0,.12); margin-bottom: 7px; font-weight: 500; text-align: center;}
+    .divider { width: 46px; height: 2px; background: rgba(255,255,255,0.8); margin: 0 auto 19px auto; border-radius: 2px; opacity: 0.93;}
+    .card { background: #fffdfc; border-radius:20px; box-shadow:0 14px 18px -8px rgba(83,89,100,0.13),0 1.5px 8px -6px #637faa2d; padding:20px 18px 10px 18px; margin-bottom:30px; position:relative; }
+    .text-box { margin-bottom: 12px; color: #222; line-height: 1.58; font-size: 1rem;}
+    .highlighted { background: #93C560; color: #181c2e; border-radius: 4px; padding: 0 2px;}
+    .question-title { font-size: 1.03rem; margin-bottom: 10px; color: #2a3e66; font-weight: 500; }
+    .choices { display: flex; flex-direction: column; gap: 13px; margin-bottom: 7px;}
+    .choice {
+      background: linear-gradient(160deg, #fafcff 70%, #e9eaea 100%);
+      border-radius: 22px;
+      box-shadow:0 14px 20px -8px rgba(83,89,100,0.17),0 3px 14px -8px #637faa2d,-10px -10px 24px -3px rgba(255,255,255,0.90),0px -7px 14px -1px rgba(255,230,150,0.18),inset 2px 2px 6px rgba(255,255,255,0.39),inset -1px -1px 7px rgba(0,0,0,0.04);
+      border:1px solid #e6e7ea; color:#181c2e; font-size:1.15em; cursor:pointer; padding:13px 22px; transition:background 0.15s, box-shadow 0.16s, border 0.14s; text-align:left; user-select:none;
+    }
+    .choice.selected, .choice:active { background:#daf5b0; box-shadow:0px 18px 25px -10px rgba(60,210,89,0.13),0px 3px 13px 0 rgba(211,255,219,0.16),inset 1.5px 1.5px 3px rgba(255,255,255,0.17),inset -3px -3px 8px rgba(147,197,96,0.12); border:2px solid #93C560; color:#181c2e }
+    .feedback { margin-top: 8px; font-size: 1em; color: #c72c2c; min-height: 18px; }
+    .card-actions { margin-top: 10px; display: flex; gap: 10px;}
+    .card-btn { background: #93C560; color: #fff; border: none; border-radius: 12px; font-size: 1em; padding: 8px 18px; cursor: pointer; transition: background 0.13s; font-family: inherit;}
+    .card-btn:active { background: #bfd58e; }
+    .card-btn:disabled { background: #b8d3ea; cursor: default; opacity: 0.7; }
+    .footer { background: #222; color:#fff; font-weight:600; max-width:670px; margin:0 auto; padding:13px 20vw 13px 18px; text-align:center; font-size:1.13rem; position:fixed; left:50%; bottom:0; transform:translateX(-50%); width:99vw; border-radius: 18px 18px 0 0; z-index:15; display:flex;align-items:center;justify-content:center;}
+    .footer-btn { background: none; color:#fff; border:none; font-size:1.05rem; font-weight:600; margin-left:18px; margin-right:8px; cursor:pointer; display:flex;align-items:center;}
+    .footer-btn .arrow { font-size:1.45em; margin-right:7px; }
+    @media (max-width: 650px) {
+      .container{padding-left:0; padding-right:0;} .footer{max-width:99vw;}
+      .card{padding-left:2vw; padding-right:2vw;}
+    }
+    @media (max-width:480px) {
+      .card { padding: 13px 4px 6px 4px;}
+      .title { font-size:1.13rem;}
+      .footer{font-size: 0.99rem;}
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- CARD 1 -->
+  <div class="card" data-idx="0">
+    <div class="text-box">
+      Noreen Hannington, a sixty-three-year-old grandmother of five, arrives at the Tyre and Wheel Company in North London at 8 a.m. every morning. She puts on a greasy apron, rolls up her sleeves and gets ready for the day's work.<br>
+      The first customer pulls up in an old van. It has a flat tyre and the driver was lucky to make it to the garage. Noreen puts on her rubber gloves and gets down to work. She casually pulls off the wheel, swings it onto the work bench with one hand and takes it apart. ‘There’s your problem, sir,’ she announces, pointing at a tiny hole in the tyre. Right now, he couldn’t care less about that, since <span id="ref-0">what he feels is more serious: a fast-decreasing sense of his own worth.</span> At least his mates haven’t come to witness him being rescued by a sweet-faced granny!
+    </div>
+    <div class="question-title">How does the van driver feel after getting help from Noreen?</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. Impressed by the way she works</div>
+      <div class="choice" data-answer="B">B. Embarrassed that he needed it</div>
+      <div class="choice" data-answer="C">C. Relieved at finding it in time</div>
+      <div class="choice" data-answer="D">D. Unconvinced by her advice</div>
+    </div>
+    <div class="feedback" id="feedback-0"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(0)">Show</button>
+      <button class="card-btn" onclick="repeatQ(0)">Repeat</button>
+      <button class="card-btn" onclick="nextQ(0)">Next</button>
+    </div>
+  </div>
+  <!-- CARD 2 -->
+  <div class="card" data-idx="1">
+    <div class="text-box">
+      Why is Noreen in this line of work, anyway? It’s a family business and when Noreen’s husband died, she decided to <span id="ref-1">keep it going for her two sons, Bill and Fred</span>, then aged only seventeen and fifteen. Before that, her husband had let her watch what went on in the garage, but she had never been allowed to lift a finger. Initially, she doubted her ability to make a go of it, but somehow she managed, and although the boys are now grown up, has never got round to handing over.
+    </div>
+    <div class="question-title">Why did Noreen take over the running of the business?</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. To fulfil a promise to her husband</div>
+      <div class="choice" data-answer="B">B. To stop her sons fighting over it</div>
+      <div class="choice" data-answer="C">C. To make sure it stayed in the family</div>
+      <div class="choice" data-answer="D">D. To prove that she could manage it</div>
+    </div>
+    <div class="feedback" id="feedback-1"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(1)">Show</button>
+      <button class="card-btn" onclick="repeatQ(1)">Repeat</button>
+      <button class="card-btn" onclick="nextQ(1)">Next</button>
+    </div>
+  </div>
+  <!-- CARD 3 -->
+  <div class="card" data-idx="2">
+    <div class="text-box">
+      Now the business has expanded to include not only the sons but daughters-in-law, too. With Noreen in charge, it all runs smoothly. ‘Bill handles anything mechanical. Fred does electrical repairs, while I fix flat tyres and anything else to do with wheels.’ She waves at the new computer: ‘I also do the accounts. <span id="ref-2">They keep on at me to think modern</span>, but we don’t need this.’ Bill jokes: ‘We don’t need you, but you’re still here!’
+    </div>
+    <div class="question-title">‘Keep on at’ in line 34 describes a way of:</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. Trying to make someone laugh</div>
+      <div class="choice" data-answer="B">B. Trying to accept something</div>
+      <div class="choice" data-answer="C">C. Trying to convince someone</div>
+      <div class="choice" data-answer="D">D. Trying to make something easier</div>
+    </div>
+    <div class="feedback" id="feedback-2"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(2)">Show</button>
+      <button class="card-btn" onclick="repeatQ(2)">Repeat</button>
+      <button class="card-btn" onclick="nextQ(2)">Next</button>
+    </div>
+  </div>
+  <!-- CARD 4 -->
+  <div class="card" data-idx="3">
+    <div class="text-box">
+      Noreen is indeed still around, <span id="ref-3">lifting well over twelve kilogrammes in weight up to twenty times a day, which is rather surprising, to say the least </span>. As Bill says, ‘Tyre changing’s hard and she shouldn’t be doing it.’ Noreen pulls a face and replies, ‘I’ll stop when I’m eighty-five. Anyway, it was far worse in the old days, when there was less equipment.’ ‘And before that, you were repairing the horses and carts,’ jokes Bill. We all laugh at that one.
+    </div>
+    <div class="question-title">The writer finds it strange that:</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. Bill allows his mother to work at her age.</div>
+      <div class="choice" data-answer="B">B. Noreen knows exactly when she will retire.</div>
+      <div class="choice" data-answer="C">C. Bill doesn’t find a way to help his mother.</div>
+      <div class="choice" data-answer="D">D. Noreen does a job that is unsuitable for her</div>
+    </div>
+    <div class="feedback" id="feedback-3"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(3)">Show</button>
+      <button class="card-btn" onclick="repeatQ(3)">Repeat</button>
+      <button class="card-btn" onclick="nextQ(3)">Next</button>
+    </div>
+  </div>
+  <!-- CARD 5 -->
+  <div class="card" data-idx="4">
+    <div class="text-box">
+      Suddenly it all becomes obvious to me – <span id="ref-4">these friendly jokes create an environment that Noreen loves, and, despite her advanced age, she wants to stick it out, even if the work is hard at times</span>. So much so, that on the rare occasions when she does go away, she can’t wait to return. ‘I have just had a wonderful holiday on board a cruise ship. Going to sea made sure I couldn’t come running back to the garage after a few hours! But walking back into the garage meant coming home to me,’ she says fondly.
+    </div>
+    <div class="question-title">Why, in the writer’s opinion, does Noreen want to carry on working at the garage?</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. She feels that working keeps her young.</div>
+      <div class="choice" data-answer="B">B. She enjoys the working atmosphere</div>
+      <div class="choice" data-answer="C">C. She feels genuinely interested in the work.</div>
+      <div class="choice" data-answer="D">D. She looks forward to more expensive holidays.</div>
+    </div>
+    <div class="feedback" id="feedback-4"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(4)">Show</button>
+      <button class="card-btn" onclick="repeatQ(4)">Repeat</button>
+      <button class="card-btn" onclick="nextQ(4)">Next</button>
+    </div>
+  </div>
+  <!-- CARD 6 -->
+  <div class="card" data-idx="5">
+    <div class="text-box">
+      She stops talking for a moment to check the drinks machine. ‘It’s out of tea,’ she shouts. Everybody sighs; on her first day back at work, <span id="ref-5">the boss is making her presence felt</span>.
+    </div>
+    <div class="question-title">Why do Noreen’s family sigh when she mentions the problem with the drinks machine?</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. They don’t feel responsible for it.</div>
+      <div class="choice" data-answer="B">B. They wish they had noticed it first.</div>
+      <div class="choice" data-answer="C">C. They think she’s asking them to do it</div>
+      <div class="choice" data-answer="D">D. They feel that she is being unreasonable.</div>
+    </div>
+    <div class="feedback" id="feedback-5"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(5)">Show</button>
+      <button class="card-btn" onclick="repeatQ(5)">Repeat</button>
+      <button class="card-btn" onclick="nextQ(5)">Next</button>
+    </div>
+  </div>
+  <!-- CARD 7 -->
+  <div class="card" data-idx="6">
+    <div class="text-box">
+      Surely all this heavy work must affect her health though? Noreen claims that it doesn’t, though her daughter-in-law mentions recent back trouble. ‘That had nothing to do with the tyres! It was when I was doing those stupid roof tiles,’ says Noreen. ‘We rebuilt the garage and added a first floor. <span id="ref-6">It was quite a nice change to be a labourer for a while, actually.</span>
+    </div>
+    <div class="question-title">When Noreen hurt her back, she:</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. wasn’t able to go on with the building work.</div>
+      <div class="choice" data-answer="B">B. missed her usual job of repairing the tyres.</div>
+      <div class="choice" data-answer="C">C. blamed her injury on having to fix the tiles.</div>
+      <div class="choice" data-answer="D">D. enjoyed her temporary change of job</div>
+    </div>
+    <div class="feedback" id="feedback-6"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(6)">Show</button>
+      <button class="card-btn" onclick="repeatQ(6)">Repeat</button>
+      <button class="card-btn" onclick="nextQ(6)">Next</button>
+    </div>
+  </div>
+  <!-- CARD 8 -->
+  <div class="card" data-idx="7">
+    <div class="text-box">
+      <span id="ref-7">Noreen is a delightful woman, who clearly intends to be part of the business for a long time yet.</span>
+    </div>
+    <div class="question-title">Which phrase best describes the writer’s view of Noreen?</div>
+    <div class="choices">
+      <div class="choice" data-answer="A">A. a determined woman</div>
+      <div class="choice" data-answer="B">B. a demanding boss</div>
+      <div class="choice" data-answer="C">C. a loving grandmother</div>
+      <div class="choice" data-answer="D">D. a co-operative worker</div>
+    </div>
+    <div class="feedback" id="feedback-7"></div>
+    <div class="card-actions">
+      <button class="card-btn" onclick="showAnswer(7)">Show</button>
+      <button class="card-btn" onclick="repeatQ(7)">Repeat</button>
+    </div>
+  </div>
+  <div class="footer" id="score-area">
+    <span style="margin-right:12px;">Score: <span id="score">0</span> / 8</span>
+    <button class="footer-btn" onclick="window.location.href='../index.html'"><span class="arrow">←</span> RETURN</button>
+  </div>
+</div>
+<script>
+const correctAnswers = ["B","C","C","D","B","C","D","A"];
+let scores = Array(8).fill(0), answered = Array(8).fill(false);
+document.querySelectorAll('.card').forEach((card,idx) => {
+  card.querySelectorAll('.choice').forEach(choice => {
+    choice.onclick = () => {
+      if (answered[idx]) return;
+      card.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+      choice.classList.add('selected');
+      let val = choice.getAttribute('data-answer');
+      let ref = document.getElementById(`ref-${idx}`);
+      let fb = document.getElementById(`feedback-${idx}`);
+      if (val === correctAnswers[idx]) {
+        fb.textContent = "";
+        if (ref) ref.classList.add('highlighted');
+        scores[idx]=1;
+      } else {
+        fb.textContent = "There is no reference in the text.";
+        if (ref) ref.classList.remove('highlighted');
+        scores[idx]=0;
+      }
+      answered[idx]=true;
+      document.getElementById('score').textContent=scores.reduce((a,b)=>a+b,0);
+    };
+  });
+});
+window.showAnswer = function(idx) {
+  let card = document.querySelector(`.card[data-idx='${idx}']`);
+  let correct = correctAnswers[idx];
+  card.querySelectorAll('.choice').forEach(c => {
+    if (c.getAttribute('data-answer')===correct) c.classList.add('selected');
+  });
+  let ref = document.getElementById(`ref-${idx}`);
+  if (ref) ref.classList.add('highlighted');
+  document.getElementById(`feedback-${idx}`).textContent = '';
+  scores[idx]=1; answered[idx]=true;
+  document.getElementById('score').textContent=scores.reduce((a,b)=>a+b,0);
+};
+window.repeatQ = function(idx) {
+  answered[idx]=false; scores[idx]=0;
+  let card = document.querySelector(`.card[data-idx='${idx}']`);
+  let ref = document.getElementById(`ref-${idx}`);
+  if (ref) ref.classList.remove('highlighted');
+  document.getElementById(`feedback-${idx}`).textContent = '';
+  card.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+  document.getElementById('score').textContent=scores.reduce((a,b)=>a+b,0);
+};
+window.nextQ = function(idx) {
+  let nextCard = document.querySelector(`.card[data-idx='${idx+1}']`);
+  if(nextCard) nextCard.scrollIntoView({behavior:'smooth',block:'start'});
+};
+</script>
+</body>
+</html>
 
