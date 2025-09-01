@@ -433,7 +433,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (returnBtn) {
         returnBtn.addEventListener('click', function() {
             // Navigate back to Central Command File (corrected path)
-            window.location.href = '../../Central-Command-File/use-of-english/gapfill/index.html';
+            window.location.href = '../index.html';
         });
     }
     
