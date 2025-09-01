@@ -41,10 +41,10 @@ body {
     padding-right: 5px;
 }
 
-/* Mobile responsive adjustments while maintaining two-column layout */
+/* Mobile responsive adjustments - reduce button width by 20% to give passage 20% more space */
 @media (max-width: 768px) {
     .content-area {
-        grid-template-columns: 140px 1fr; 
+        grid-template-columns: 110px 1fr; 
         gap: 15px;
         max-width: 100%;
     }
@@ -55,28 +55,31 @@ body {
 
 @media (max-width: 480px) {
     .content-area {
-        grid-template-columns: 120px 1fr; 
+        grid-template-columns: 95px 1fr; 
         gap: 10px;
     }
 }
 
 .input-button {
     background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
-    padding: 4px 8px; display: flex; align-items: center; justify-content: space-between; 
-    min-height: 32px; transition: all 0.3s ease;
+    padding: 4px 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    min-height: 40px; transition: all 0.3s ease;
     box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
     width: 100%; /* Ensure button takes full width of its container */
 }
 .input-button:hover {transform: translateY(-1px); box-shadow: 3px 3px 6px rgba(0,0,0,0.3);}
 
-.question-number {
-    font-size: 0.8em; font-weight: bold; color: #2d1b3d; 
-    min-width: 20px; text-align: center;
+.answer-label {
+    font-size: 0.65em; 
+    color: #666; 
+    margin-bottom: 2px;
+    text-align: center;
+    font-weight: 500;
 }
 
-/* Updated input field to be 10% longer (77px instead of 70px) */
+/* Reduced input field width by 25% (58px instead of 77px) */
 .input-field {
-    width: 77px; 
+    width: 58px; 
     border: none; 
     border-bottom: 1px solid #999; 
     background: transparent;
